@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://whyqrx8a4kgj"]
+
+[ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="1_f6ymn"]
+[ext_resource type="Script" path="res://hud.gd" id="1_wi46d"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hpbpr"]
+device = -1
+keycode = 87
+unicode = 119
+
+[sub_resource type="Shortcut" id="Shortcut_pflqt"]
+events = [SubResource("InputEventKey_hpbpr")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gubex"]
+atlas = ExtResource("1_f6ymn")
+region = Rect2(48, 560, 16, 16)
+
+[sub_resource type="InputEventKey" id="InputEventKey_u651a"]
+device = -1
+pressed = true
+keycode = 65
+unicode = 97
+
+[sub_resource type="Shortcut" id="Shortcut_fvsj0"]
+events = [SubResource("InputEventKey_u651a")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deyin"]
+atlas = ExtResource("1_f6ymn")
+region = Rect2(48, 544, 16, 16)
+
+[sub_resource type="InputEventKey" id="InputEventKey_fl8xf"]
+device = -1
+pressed = true
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_oss6c"]
+device = -1
+pressed = true
+keycode = 69
+unicode = 101
+
+[sub_resource type="Shortcut" id="Shortcut_xwxsu"]
+events = [SubResource("InputEventKey_fl8xf"), SubResource("InputEventKey_oss6c")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvmt5"]
+atlas = ExtResource("1_f6ymn")
+region = Rect2(48, 657, 16, 16)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_wi46d")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+alignment = 1
+reverse_fill = true
+
+[node name="Walk" type="TextureButton" parent="HFlowContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Walk"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_pflqt")
+texture_normal = SubResource("AtlasTexture_gubex")
+stretch_mode = 0
+
+[node name="Attack" type="TextureButton" parent="HFlowContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Attack"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_fvsj0")
+texture_normal = SubResource("AtlasTexture_deyin")
+stretch_mode = 0
+
+[node name="EndTurn" type="TextureButton" parent="HFlowContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "End Turn"
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_xwxsu")
+texture_normal = SubResource("AtlasTexture_fvmt5")
+stretch_mode = 0
+
+[connection signal="pressed" from="HFlowContainer/Walk" to="." method="_on_pressed" binds= [1]]
+[connection signal="pressed" from="HFlowContainer/Attack" to="." method="_on_pressed" binds= [2]]
+[connection signal="pressed" from="HFlowContainer/EndTurn" to="." method="_end_turn_pressed"]
