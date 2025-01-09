@@ -14,9 +14,10 @@ const t = preload("res://fading_text.tscn")
 var rng = RandomNumberGenerator.new()
 
 var WALK_RANGE = 6
-var ATTACK_RANGE = 1
+var ATTACK_RANGE = 10
 var MAX_ACTIONS = 1
 var MAX_HIT_CHANCE = 0.95
+var NAME = "Actor"
 
 var remaining_actions = MAX_ACTIONS
 var remaining_walk_range = WALK_RANGE

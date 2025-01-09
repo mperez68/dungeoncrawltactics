@@ -26,5 +26,5 @@ func set_text(val: String, type_in: int = -1):
 		-1:
 			pass
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	queue_free()

@@ -26,7 +26,7 @@ position = Vector2(886, 630)
 
 [node name="actor2" parent="." instance=ExtResource("3_vocxx")]
 z_index = 1
-position = Vector2(943, 632)
+position = Vector2(960, 687)
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("4_yehju")

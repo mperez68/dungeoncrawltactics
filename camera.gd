@@ -51,10 +51,10 @@ func _input(event):
 
 
 func _on_map_init_camera(origin: Vector2, limit: Vector2) -> void:
-	limit_left = origin.x
-	limit_top = origin.y
-	limit_right = limit.x
-	limit_bottom = limit.y
+	limit_left = round(origin.x)
+	limit_top = round(origin.y)
+	limit_right = round(limit.x)
+	limit_bottom = round(limit.y)
 	position_smoothing_enabled = false
 	position = origin + (limit / 2)
 	position_smoothing_enabled = true

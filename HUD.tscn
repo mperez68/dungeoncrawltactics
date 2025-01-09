@@ -88,6 +88,14 @@ shortcut = SubResource("Shortcut_xwxsu")
 texture_normal = SubResource("AtlasTexture_fvmt5")
 stretch_mode = 0
 
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 100.0
+offset_bottom = 40.0
+
+[node name="CursorLocation" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "(0, 0)"
+
 [connection signal="pressed" from="HFlowContainer/Walk" to="." method="_on_pressed" binds= [1]]
 [connection signal="pressed" from="HFlowContainer/Attack" to="." method="_on_pressed" binds= [2]]
 [connection signal="pressed" from="HFlowContainer/EndTurn" to="." method="_end_turn_pressed"]

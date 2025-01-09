@@ -70,7 +70,19 @@ func is_vantage(origin: Vector2) -> bool:
 
 func can_see(start: Vector2, end: Vector2, max_distance: int = 999999) -> bool:
 	var distance = Vector2i( abs(local_to_map(start).x - local_to_map(end).x), abs(local_to_map(start).y - local_to_map(end).y) )
-	return distance.length() <= max_distance
+	if distance.length() > max_distance:
+		return false
+	
+	var sight_depth = 2
+	var line = get_orthogonal_line(start, end)
+	if !is_vantage(start) and line.size() < sight_depth:
+		line = line.slice(0, -2)
+		for point in line:
+			var wall = wall_layer.get_cell_tile_data(point)
+			if wall and wall.get_custom_data("pathing") == "wall":
+				return false
+	
+	return true
 
 func set_position_solid(local: Vector2, solid: bool = true):
 	astar.set_point_solid(local_to_map(local), solid)
@@ -97,3 +109,48 @@ func clear_highlights():
 	for h in highlights:
 		h.queue_free()
 	highlights = []
+
+# util
+func get_orthogonal_line(origin: Vector2, target: Vector2) -> Array[Vector2i]:
+	var points: Array[Vector2i] = []
+	var g_origin = local_to_map(origin)
+	var g_target = local_to_map(target)
+	if g_origin == g_target:
+		return points
+	var dif = g_target - g_origin
+	var abs_dif = abs(dif)
+	var walk_dir = Vector2i(1, 1)
+	if dif.x < 0:
+		walk_dir.x = -1
+	if dif.y < 0:
+		walk_dir.y = -1
+	
+	var i = Vector2i(0, 0)
+	var p = Vector2i(0, 0)
+	
+	while(true):
+		if (0.5 + i.x) / abs_dif.x < (0.5 + i.y) / abs_dif.y:
+			p.x += walk_dir.x
+			i.x += 1
+		else:
+			p.y += walk_dir.y
+			i.y += 1
+		points.push_back(Vector2i(p) + g_origin)
+		
+		if (abs_dif.x <= i.x and abs_dif.y <= i.y):
+			break
+	
+	return points
+
+func get_line(origin: Vector2, target: Vector2) -> Array[Vector2i]:
+	var points: Array[Vector2i] = []
+	
+	var length: float = diagonal_distance(origin, target)
+	for i in length:
+		points.push_back(local_to_map(lerp(origin, target, i / length)))
+	
+	return points
+
+func diagonal_distance(origin: Vector2, target: Vector2) -> int:
+	var dif = local_to_map(origin - target)
+	return max(abs(dif.x), abs(dif.y))

@@ -16,7 +16,7 @@ func pass_turn():
 
 func _on_timer_timeout() -> void:
 	if actors.is_empty():
-		print("game over, everyone is dead")
+		print("game over")
 	while(true):
 		active = (active + 1) % actors.size()
 		if actors[active].hp > 0:
