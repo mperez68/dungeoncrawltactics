@@ -56,8 +56,8 @@ func start_turn():
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(camera, "zoom", Vector2(2, 2), 0.5)
-	if abs(position - camera.position).length() > (min(camera.get_viewport_rect().end.y / 2, camera.get_viewport_rect().end.x / 2)) / 2:
-		camera.position = position
+	#if abs(position - camera.position).length() > (min(camera.get_viewport_rect().end.y / 2, camera.get_viewport_rect().end.x / 2)) / 2:
+	camera.position = position
 
 func end_turn():
 	active = false

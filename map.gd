@@ -79,7 +79,7 @@ func can_see(start: Vector2, end: Vector2, max_distance: int = 999999, obscuring
 		for point in line:
 			var wall = wall_layer.get_cell_tile_data(point)
 			var terrain = terrain_layer.get_cell_tile_data(point)
-			if (wall and wall.get_custom_data("pathing") == "wall") or (terrain and point != line[0]):
+			if (wall and wall.get_custom_data("pathing") == "wall") or ((terrain and terrain.get_custom_data("pathing") == "blocking") and point != line[0]):
 				return false
 	elif is_vantage(start):
 		var walls = 0
@@ -97,7 +97,6 @@ func can_see(start: Vector2, end: Vector2, max_distance: int = 999999, obscuring
 			is_wall = false
 		wall = wall_layer.get_cell_tile_data(local_to_map(end))
 		if walls > 1 and !is_vantage(end) and !(wall and wall.get_custom_data("pathing") == "wall"):
-			print(local_to_map(end), "--", walls)
 			return false
 	
 	return true
