@@ -6,6 +6,7 @@ var hl = preload("res://highlightrect.tscn")
 
 @onready var ground_layer = $Ground
 @onready var wall_layer = $Vantage
+@onready var terrain_layer = $Terrain
 @onready var offset = Vector2(ground_layer.tile_set.tile_size.x / 2, ground_layer.tile_set.tile_size.y / 2)
 @onready var rect = ground_layer.get_used_rect()
 
@@ -30,21 +31,18 @@ func _ready():
 			var coords = Vector2i(i, j)
 			var wall_data = wall_layer.get_cell_tile_data(coords)
 			var ground_data = ground_layer.get_cell_tile_data(coords)
-			if !ground_data or (ground_data.get_custom_data("pathing") == "water" and !wall_data):
-				astar.set_point_solid(coords)
-			if wall_data and wall_data.get_custom_data("pathing") == "wall":
+			var terrain_data = terrain_layer.get_cell_tile_data(coords)
+			if terrain_data or !ground_data or (ground_data.get_custom_data("pathing") == "water" and !wall_data) or (wall_data and wall_data.get_custom_data("pathing") == "wall"):
 				astar.set_point_solid(coords)
 			if wall_data and wall_data.get_custom_data("pathing") == "ramp":
 				astar.set_point_weight_scale(coords, 2)
 
 func get_center(local: Vector2):
-	var l = ground_layer
-	return l.map_to_local(l.local_to_map(local))
+	return ground_layer.map_to_local(ground_layer.local_to_map(local))
 
 func can_stand(local: Vector2) -> bool:
-	var l = ground_layer
-	var coords = l.local_to_map(local)
-	return l.get_cell_tile_data(coords) != null and not astar.is_point_solid(coords)
+	var coords = ground_layer.local_to_map(local)
+	return ground_layer.get_cell_tile_data(coords) != null and not astar.is_point_solid(coords)
 
 func can_walk(start: Vector2, end: Vector2, max_distance: int = 999999) -> bool:
 	var path_length = _weighted_path(start, end)
@@ -57,8 +55,7 @@ func get_walk_distance(start: Vector2, end: Vector2) -> int:
 	return path_length
 
 func _weighted_path(start: Vector2, end: Vector2) -> int:
-	var l = ground_layer
-	var path = astar.get_id_path(l.local_to_map(start), l.local_to_map(end)).slice(1)
+	var path = astar.get_id_path(ground_layer.local_to_map(start), ground_layer.local_to_map(end)).slice(1)
 	var result = 0
 	for id in path:
 		result += astar.get_point_weight_scale(id)
@@ -68,19 +65,34 @@ func is_vantage(origin: Vector2) -> bool:
 	var cell = wall_layer.get_cell_tile_data(wall_layer.local_to_map(origin))
 	return cell and cell.get_custom_data("pathing") == "vantage"
 
-func can_see(start: Vector2, end: Vector2, max_distance: int = 999999, obscuring_depth: int = 0) -> bool:
+func can_see(start: Vector2, end: Vector2, max_distance: int = 999999, obscuring_depth: int = 2) -> bool:
 	var distance = Vector2i( abs(local_to_map(start).x - local_to_map(end).x), abs(local_to_map(start).y - local_to_map(end).y) )
 	if distance.length() > max_distance:
 		return false
 	
-	var line = get_orthogonal_line(start, end)
+	var line = get_line(start, end)
+	
+	# walls and terrain block vision
 	if !is_vantage(start) and line.size() > obscuring_depth:
 		if obscuring_depth > 0:
 			line = line.slice(0, -obscuring_depth)
 		for point in line:
 			var wall = wall_layer.get_cell_tile_data(point)
-			if wall and wall.get_custom_data("pathing") == "wall":
+			var terrain = terrain_layer.get_cell_tile_data(point)
+			if (wall and wall.get_custom_data("pathing") == "wall") or (terrain and point != line[0]):
 				return false
+	elif is_vantage(start):
+		var walls = 0
+		var wall
+		for point in line:
+			wall = wall_layer.get_cell_tile_data(point)
+			var terrain = terrain_layer.get_cell_tile_data(point)
+			if wall and wall.get_custom_data("pathing") == "wall":
+				walls += 1
+		wall = wall_layer.get_cell_tile_data(local_to_map(end))
+		if walls > 1 and !is_vantage(end) and !(wall and wall.get_custom_data("pathing") == "wall"):
+			print(local_to_map(end), "--", is_vantage(end))
+			return false
 	
 	return true
 
@@ -149,7 +161,7 @@ func get_line(origin: Vector2, target: Vector2) -> Array[Vector2i]:
 	for i in length:
 		points.push_back(local_to_map(lerp(origin, target, i / length)))
 	
-	return points
+	return points.slice(1)
 
 func diagonal_distance(origin: Vector2, target: Vector2) -> int:
 	var dif = local_to_map(origin - target)
