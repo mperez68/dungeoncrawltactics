@@ -16,7 +16,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
-mouse_default_cursor_shape = 3
 script = ExtResource("2_gdki4")
 
 [connection signal="mouse_entered" from="Control" to="Control" method="_on_mouse_entered"]

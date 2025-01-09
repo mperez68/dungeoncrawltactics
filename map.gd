@@ -4,8 +4,8 @@ signal init_camera(origin: Vector2, limit: Vector2)
 
 var hl = preload("res://highlightrect.tscn")
 
-@onready var ground_layer = $Layer1
-@onready var wall_layer = $Layer2
+@onready var ground_layer = $Ground
+@onready var wall_layer = $Vantage
 @onready var offset = Vector2(ground_layer.tile_set.tile_size.x / 2, ground_layer.tile_set.tile_size.y / 2)
 @onready var rect = ground_layer.get_used_rect()
 
@@ -30,7 +30,7 @@ func _ready():
 			var coords = Vector2i(i, j)
 			var wall_data = wall_layer.get_cell_tile_data(coords)
 			var ground_data = ground_layer.get_cell_tile_data(coords)
-			if !ground_data or ground_data.get_custom_data("pathing") == "water":
+			if !ground_data or (ground_data.get_custom_data("pathing") == "water" and !wall_data):
 				astar.set_point_solid(coords)
 			if wall_data and wall_data.get_custom_data("pathing") == "wall":
 				astar.set_point_solid(coords)
@@ -68,15 +68,15 @@ func is_vantage(origin: Vector2) -> bool:
 	var cell = wall_layer.get_cell_tile_data(wall_layer.local_to_map(origin))
 	return cell and cell.get_custom_data("pathing") == "vantage"
 
-func can_see(start: Vector2, end: Vector2, max_distance: int = 999999) -> bool:
+func can_see(start: Vector2, end: Vector2, max_distance: int = 999999, obscuring_depth: int = 0) -> bool:
 	var distance = Vector2i( abs(local_to_map(start).x - local_to_map(end).x), abs(local_to_map(start).y - local_to_map(end).y) )
 	if distance.length() > max_distance:
 		return false
 	
-	var sight_depth = 2
 	var line = get_orthogonal_line(start, end)
-	if !is_vantage(start) and line.size() > sight_depth:
-		line = line.slice(0, -2)
+	if !is_vantage(start) and line.size() > obscuring_depth:
+		if obscuring_depth > 0:
+			line = line.slice(0, -obscuring_depth)
 		for point in line:
 			var wall = wall_layer.get_cell_tile_data(point)
 			if wall and wall.get_custom_data("pathing") == "wall":

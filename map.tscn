@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/fill.gd" id="5_ljdel"]
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="6_k0tdi"]
 
-[sub_resource type="Resource" id="Resource_jq53y"]
+[sub_resource type="Resource" id="Resource_qnt32"]
 script = ExtResource("6_k0tdi")
 type = 1
 tilemap_layer = 0
@@ -18,18 +18,18 @@ terrain = 1
 id = ""
 layer = 0
 
-[sub_resource type="Resource" id="Resource_wv8it"]
+[sub_resource type="Resource" id="Resource_uty5o"]
 script = ExtResource("5_ljdel")
-tile = SubResource("Resource_jq53y")
-expand_left = 18
+tile = SubResource("Resource_qnt32")
+expand_left = 10
 expand_top = 10
-expand_right = 18
+expand_right = 10
 expand_bottom = 10
 enabled = true
 affected_layers = Array[int]([0])
 filter_type = 0
 
-[sub_resource type="Resource" id="Resource_m0aam"]
+[sub_resource type="Resource" id="Resource_jfgi3"]
 script = ExtResource("6_k0tdi")
 type = 1
 tilemap_layer = 0
@@ -38,40 +38,43 @@ terrain = 0
 id = ""
 layer = 0
 
-[sub_resource type="Resource" id="Resource_mq7x3"]
+[sub_resource type="Resource" id="Resource_lvko5"]
 resource_name = "Settings"
 script = ExtResource("5_k7lo2")
-tile = SubResource("Resource_m0aam")
+tile = SubResource("Resource_jfgi3")
 fullness_check = 1
-fullness_percentage = 0.4
+fullness_percentage = 0.6
 constrain_world_size = true
-world_size = Vector2i(75, 75)
-max_walkers = 50
+world_size = Vector2i(50, 50)
+max_walkers = 5
 new_dir_chance = 0.5
-new_walker_chance = 0.8
-destroy_walker_chance = 0.5
+new_walker_chance = 0.05
+destroy_walker_chance = 0.05
 room_chances = {
 Vector2i(2, 2): 0.5,
 Vector2i(3, 3): 0.1
 }
-modifiers = Array[ExtResource("4_ukabr")]([SubResource("Resource_wv8it")])
+modifiers = Array[ExtResource("4_ukabr")]([SubResource("Resource_uty5o")])
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_jxr3s")
 
-[node name="Layer0" parent="." instance=ExtResource("1_2dpeh")]
+[node name="Ground" parent="." instance=ExtResource("1_2dpeh")]
 
-[node name="Layer1" parent="." instance=ExtResource("1_2dpeh")]
-
-[node name="Layer2" parent="." instance=ExtResource("1_2dpeh")]
+[node name="Vantage" parent="." instance=ExtResource("1_2dpeh")]
 z_index = 1
 
-[node name="WalkerGenerator" type="Node" parent="."]
-script = ExtResource("2_cws7t")
-settings = SubResource("Resource_mq7x3")
-starting_tile = Vector2(50, 50)
+[node name="Terrain" parent="." instance=ExtResource("1_2dpeh")]
+z_index = 2
 
 [node name="TilemapGaeaRenderer" type="Node" parent="." node_paths=PackedStringArray("tile_map_layers", "generator")]
 script = ExtResource("3_slpke")
-tile_map_layers = [NodePath("../Layer1")]
+tile_map_layers = [NodePath("../Ground")]
+terrain_gap_fix = true
 generator = NodePath("../WalkerGenerator")
+
+[node name="WalkerGenerator" type="Node" parent="."]
+script = ExtResource("2_cws7t")
+settings = SubResource("Resource_lvko5")
+starting_tile = Vector2(50, 50)
+generate_on_ready = false
