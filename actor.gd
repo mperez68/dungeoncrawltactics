@@ -55,7 +55,7 @@ func start_turn():
 	# center camera on actor if not in center of screen
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(camera, "zoom", Vector2(2, 2), 1)
+	tween.tween_property(camera, "zoom", Vector2(2, 2), 0.5)
 	if abs(position - camera.position).length() > (min(camera.get_viewport_rect().end.y / 2, camera.get_viewport_rect().end.x / 2)) / 2:
 		camera.position = position
 

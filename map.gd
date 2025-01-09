@@ -84,14 +84,20 @@ func can_see(start: Vector2, end: Vector2, max_distance: int = 999999, obscuring
 	elif is_vantage(start):
 		var walls = 0
 		var wall
+		var is_wall = false
 		for point in line:
 			wall = wall_layer.get_cell_tile_data(point)
-			var terrain = terrain_layer.get_cell_tile_data(point)
-			if wall and wall.get_custom_data("pathing") == "wall":
+			if is_vantage(ground_layer.map_to_local(point)) or (wall and wall.get_custom_data("pathing") != ""):
+				is_wall = true
+			elif is_wall:
 				walls += 1
+				is_wall = false
+		if is_wall:
+			walls += 1
+			is_wall = false
 		wall = wall_layer.get_cell_tile_data(local_to_map(end))
 		if walls > 1 and !is_vantage(end) and !(wall and wall.get_custom_data("pathing") == "wall"):
-			print(local_to_map(end), "--", is_vantage(end))
+			print(local_to_map(end), "--", walls)
 			return false
 	
 	return true
