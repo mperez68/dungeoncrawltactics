@@ -10,7 +10,7 @@ enum{ SELECT_TYPE_NONE, SELECT_TYPE_WALK, SELECT_TYPE_ATTACK }
 @onready var anim = $AnimatedSprite2D
 @onready var anim_player = $AnimationPlayer
 
-const t = preload("res://fading_text.tscn")
+const t = preload("res://ui/fading_text.tscn")
 var rng = RandomNumberGenerator.new()
 
 var WALK_RANGE = 6
@@ -19,12 +19,13 @@ var MAX_ACTIONS = 1
 var MAX_HIT_CHANCE = 0.95
 var NAME = "Actor"
 
+var index = -1
 var remaining_actions = MAX_ACTIONS
 var remaining_walk_range = WALK_RANGE
 var weapon_skill: float = 0.0
 var armor_skill: float = 0.0
 var active = false
-var hp = 5
+var hp = 3
 var select_type = SELECT_TYPE_NONE
 var facing: String = "right"
 
@@ -145,10 +146,13 @@ func attack(val: int, ws: float = 0, ap: float = 0):
 	if hp <= 0:
 		anim.play("die " + facing)
 		map.set_position_solid(position, false)
+		manager.kill(index)
 	add_child(new_text)
 
 
 func _on_mouse_entered() -> void:
+	if active:
+		return
 	$HighlightBox.visible = true
 
 func _on_mouse_exited() -> void:

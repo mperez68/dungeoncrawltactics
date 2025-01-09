@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj0idncko62mu"]
+
+[ext_resource type="Script" path="res://ui/name_card.gd" id="1_eww6m"]
+[ext_resource type="Script" path="res://addons/simple_shapes/shapes/RectangleShape.gd" id="2_pts13"]
+
+[node name="NameCard" type="CenterContainer"]
+offset_right = 75.0
+offset_bottom = 25.0
+script = ExtResource("1_eww6m")
+
+[node name="RectangleShape" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.329412)
+polygon = PackedVector2Array(0, 0, 75, 0, 75, 25, 0, 25)
+script = ExtResource("2_pts13")
+size = Vector2(75, 25)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "NAME"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
