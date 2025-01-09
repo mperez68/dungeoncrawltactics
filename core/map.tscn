@@ -34,7 +34,7 @@ script = ExtResource("6_k0tdi")
 type = 1
 tilemap_layer = 0
 terrain_set = 0
-terrain = 0
+terrain = 6
 id = ""
 layer = 0
 
@@ -69,7 +69,7 @@ z_index = 2
 
 [node name="TilemapGaeaRenderer" type="Node" parent="." node_paths=PackedStringArray("tile_map_layers", "generator")]
 script = ExtResource("3_slpke")
-tile_map_layers = [NodePath("../Ground")]
+tile_map_layers = [NodePath("../Ground"), NodePath("../Vantage"), NodePath("../Terrain")]
 terrain_gap_fix = true
 generator = NodePath("../WalkerGenerator")
 

@@ -821,7 +821,8 @@ _data = {
 "damage": SubResource("Animation_jsg65")
 }
 
-[node name="dude" type="CharacterBody2D"]
+[node name="Actor" type="CharacterBody2D"]
+z_index = 1
 y_sort_enabled = true
 input_pickable = true
 script = ExtResource("1_mqx5s")
@@ -843,6 +844,7 @@ radius = 8
 points_num = 60
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_8si4n")
 animation = &"idle right"
 autoplay = "idle right"
