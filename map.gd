@@ -75,7 +75,7 @@ func can_see(start: Vector2, end: Vector2, max_distance: int = 999999) -> bool:
 	
 	var sight_depth = 2
 	var line = get_orthogonal_line(start, end)
-	if !is_vantage(start) and line.size() < sight_depth:
+	if !is_vantage(start) and line.size() > sight_depth:
 		line = line.slice(0, -2)
 		for point in line:
 			var wall = wall_layer.get_cell_tile_data(point)
