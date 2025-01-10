@@ -25,6 +25,11 @@ var MAX_HIT_CHANCE = 0.95
 var MAX_HEALTH = 3
 var MAX_MANA = 0
 var NAME = "Actor"
+var MELEE_RANGE = 1
+var MIN_DAMAGE = 1
+var MAX_DAMAGE = 3
+var VANTAGE_BONUS = 0.2
+var ZOOM_TIME = 0.5
 
 # states
 var active = false
@@ -78,8 +83,7 @@ func start_turn():
 	# center camera on actor if not in center of screen
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(camera, "zoom", Vector2(camera.ZOOM_MAX, camera.ZOOM_MAX), 0.5)
-	#if abs(position - camera.position).length() > (min(camera.get_viewport_rect().end.y / 2, camera.get_viewport_rect().end.x / 2)) / 2:
+	tween.tween_property(camera, "zoom", Vector2(camera.ZOOM_MAX, camera.ZOOM_MAX), ZOOM_TIME)
 	camera.position = position
 
 func end_turn():
@@ -108,14 +112,14 @@ func do_action(map_coords):
 		remaining_actions -= 1
 		remaining_walk_range = 0
 		face(map_coords)
-		if ATTACK_RANGE > 1:
+		if ATTACK_RANGE > MELEE_RANGE:
 			anim.play("shoot " + facing)
 		else:
 			anim.play("swing " + facing)
 		for target in targets:
-			var vantage_bonus = 0
+			var vantage = 0
 			if map.is_vantage(position) and !map.is_vantage(target.position):
-				vantage_bonus = 0.2
+				vantage = VANTAGE_BONUS
 				var new_text = t.instantiate()
 				new_text.set_text("vantage")
 				add_child(new_text)
@@ -123,7 +127,7 @@ func do_action(map_coords):
 					chance_text.queue_free()
 					chance_text = null
 			target.face(position)
-			target.attack(rng.randi_range(1, 3), weapon_skill + vantage_bonus)
+			target.attack(rng.randi_range(MIN_DAMAGE, MAX_DAMAGE), weapon_skill + vantage)
 		select(SELECT_TYPE_NONE)
 
 
@@ -168,7 +172,7 @@ func attack(val: int, ws: float = 0, ap: float = 0, crit: float = 0.1, crit_mult
 			hp -= round(val * crit_mult)
 			anim_player.play("damage")
 			new_text.set_text(String.num(round(val * crit_mult)) + "!", new_text.TEXT_TYPE_CRITICAL)
-			new_text.scale = Vector2(1.5, 1.5)
+			new_text.scale = Vector2(crit_mult, crit_mult)
 		else:
 			hp -= val
 			anim_player.play("damage")
@@ -190,11 +194,10 @@ func _on_mouse_entered() -> void:
 	var active_actor = manager.get_active()
 	if chance_text == null and active_actor.remaining_actions > 0 and map.can_see(active_actor.position, position, active_actor.ATTACK_RANGE):
 		chance_text = t.instantiate()
-		var vantage_bonus = 0
+		var vantage = 0
 		if map.is_vantage(active_actor.position) and !map.is_vantage(position):
-			vantage_bonus = 0.2
-		chance_text.text = "% " + str((active_actor.hit_chance() + vantage_bonus) * 100)
-		chance_text.scale = Vector2(1.3, 1.3)
+			vantage = VANTAGE_BONUS
+		chance_text.text = "% " + str((active_actor.hit_chance() + vantage) * 100)
 		chance_text.pending_animation = "hover"
 		add_child(chance_text)
 
