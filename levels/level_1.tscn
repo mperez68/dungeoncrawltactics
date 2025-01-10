@@ -15,9 +15,15 @@ tile_map_data = PackedByteArray("AAAsAC4AAQAIABYAAAAsAC0AAQAIAAIAAAAsACwAAQAIABY
 tile_map_data = PackedByteArray("AAAqACoAAQAAABkAAAAgACIAAQAAABkAAAAoADMAAQAAABkAAAAnAD8AAQAAABkAAAAxADoAAQAAABkAAAA2AEUAAQAAABkAAAA6ADsAAQAAABkAAAAyAEEAAQADABcAAAA2AD0AAQAAAB4AAAAtADcAAQADABcAAAAhADcAAQADABcAAAAmADkAAQAAAB4AAAAgAC8AAQAAAB4AAAAqADYAAQAFABcAAAAkADMAAQAFABcAAAAiADoAAQAFABcAAAAnADoAAQAFABcAAAApAEAAAQAFABcAAAAyAD8AAQAFABcAAAA3AEEAAQAFABcAAAA8ADsAAQAFABcAAAA0ADgAAQAFABcAAAA+ADoAAQAFABcAAAAtADMAAQAFABcAAAAkACcAAQAFABcAAAAgACgAAQAFABcAAAAeACcAAQAFABcAAAAjACMAAQAFABcAAAAgACMAAQAFABcAAAAiACEAAQAFABcAAAAlACwAAQACAB4AAAAqAC0AAQACAB4AAAAnAC8AAQAEABsAAAA=")
 
 [node name="Actor" parent="." index="4" instance=ExtResource("2_ycbkf")]
-position = Vector2(627, 707)
+position = Vector2(627, 888)
 
 [node name="Actor2" parent="." index="5" instance=ExtResource("2_ycbkf")]
-position = Vector2(708, 731)
+position = Vector2(727, 875)
+
+[node name="Actor3" parent="." index="6" instance=ExtResource("2_ycbkf")]
+position = Vector2(597, 775)
+
+[node name="Actor4" parent="." index="7" instance=ExtResource("2_ycbkf")]
+position = Vector2(571, 850)
 
 [editable path="Map"]

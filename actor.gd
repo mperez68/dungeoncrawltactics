@@ -4,30 +4,44 @@ class_name Actor
 
 enum{ SELECT_TYPE_NONE, SELECT_TYPE_WALK, SELECT_TYPE_ATTACK }
 
+# reference
 @onready var map = $"../Map"
 @onready var camera = $"../Camera"
 @onready var manager = get_parent()
+@onready var hl = $HighlightBox
 @onready var anim = $AnimatedSprite2D
 @onready var anim_player = $AnimationPlayer
+var index = -1
 
 const t = preload("res://ui/fading_text.tscn")
 var rng = RandomNumberGenerator.new()
 
+# constants
+var BASE_HIT_CHANCE = 0.5
 var WALK_RANGE = 6
 var ATTACK_RANGE = 10
 var MAX_ACTIONS = 1
 var MAX_HIT_CHANCE = 0.95
+var MAX_HEALTH = 3
 var MAX_MANA = 0
 var NAME = "Actor"
 
-var index = -1
+# states
+var active = false
+var chance_text = null
+
+# resources
 var remaining_actions = MAX_ACTIONS
 var remaining_walk_range = WALK_RANGE
-var weapon_skill: float = 0.0
-var armor_skill: float = 0.0
-var active = false
-var hp = 3
+var hp = MAX_HEALTH
 var mp = MAX_MANA
+
+# equipment values
+var weapon_skill: float = 0.0
+var armor_piercing: float = 0.0
+var armor_skill: float = 0.0
+
+# UI
 var select_type = SELECT_TYPE_NONE
 var facing: String = "right"
 
@@ -52,12 +66,11 @@ func _input(event: InputEvent) -> void:
 			select(SELECT_TYPE_ATTACK)
 			do_action(map_coords)
 			select(temp)
-			
 
 
 func start_turn():
 	active = true
-	$ActiveCircle.visible = true
+	anim_player.play("activate")
 	remaining_walk_range = WALK_RANGE
 	remaining_actions = MAX_ACTIONS
 	map.set_position_solid(position, false)
@@ -65,15 +78,14 @@ func start_turn():
 	# center camera on actor if not in center of screen
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(camera, "zoom", Vector2(2, 2), 0.5)
+	tween.tween_property(camera, "zoom", Vector2(camera.ZOOM_MAX, camera.ZOOM_MAX), 0.5)
 	#if abs(position - camera.position).length() > (min(camera.get_viewport_rect().end.y / 2, camera.get_viewport_rect().end.x / 2)) / 2:
 	camera.position = position
 
 func end_turn():
 	active = false
-	$ActiveCircle.visible = false
 	map.clear_highlights()
-	$"..".pass_turn()
+	manager.pass_turn()
 	map.set_position_solid(position)
 
 
@@ -107,6 +119,9 @@ func do_action(map_coords):
 				var new_text = t.instantiate()
 				new_text.set_text("vantage")
 				add_child(new_text)
+				if chance_text != null:
+					chance_text.queue_free()
+					chance_text = null
 			target.face(position)
 			target.attack(rng.randi_range(1, 3), weapon_skill + vantage_bonus)
 		select(SELECT_TYPE_NONE)
@@ -142,30 +157,52 @@ func select(new_type: int):
 			select(SELECT_TYPE_NONE)
 	select_type = new_type
 
-func attack(val: int, ws: float = 0, ap: float = 0):
-	
+func hit_chance(ws: float = 0, ap: float = 0, crit: float = 0.1, crit_mult: float = 1.5) -> float:
+	return min(BASE_HIT_CHANCE + armor_skill - ap, MAX_HIT_CHANCE) - ws
+
+
+func attack(val: int, ws: float = 0, ap: float = 0, crit: float = 0.1, crit_mult: float = 1.5):
 	var new_text = t.instantiate()
-	if rng.randf() + ws > min(0.5 + armor_skill - ap, MAX_HIT_CHANCE):
-		hp -= val
-		anim_player.play("damage")
-		new_text.set_text(String.num(val), new_text.TEXT_TYPE_NEGATIVE)
+	if rng.randf() + ws > min(BASE_HIT_CHANCE + armor_skill - ap, MAX_HIT_CHANCE):
+		if rng.randf() < crit:
+			hp -= round(val * crit_mult)
+			anim_player.play("damage")
+			new_text.set_text(String.num(round(val * crit_mult)) + "!", new_text.TEXT_TYPE_CRITICAL)
+			new_text.scale = Vector2(1.5, 1.5)
+		else:
+			hp -= val
+			anim_player.play("damage")
+			new_text.set_text(String.num(val), new_text.TEXT_TYPE_NEGATIVE)
 	else:
 		anim.play("block " + facing)
 		new_text.set_text("BLOCK", new_text.TEXT_TYPE_BLOCK)
 	if hp <= 0:
 		anim.play("die " + facing)
 		map.set_position_solid(position, false)
-		manager.kill(index)
 	add_child(new_text)
 
 
 func _on_mouse_entered() -> void:
 	if active:
 		return
-	$HighlightBox.visible = true
+	# Highlight
+	hl.visible = true
+	var active_actor = manager.get_active()
+	if chance_text == null and active_actor.remaining_actions > 0 and map.can_see(active_actor.position, position, active_actor.ATTACK_RANGE):
+		chance_text = t.instantiate()
+		var vantage_bonus = 0
+		if map.is_vantage(active_actor.position) and !map.is_vantage(position):
+			vantage_bonus = 0.2
+		chance_text.text = "% " + str((active_actor.hit_chance() + vantage_bonus) * 100)
+		chance_text.scale = Vector2(1.3, 1.3)
+		chance_text.pending_animation = "hover"
+		add_child(chance_text)
 
 func _on_mouse_exited() -> void:
-	$HighlightBox.visible = false
+	hl.visible = false
+	if chance_text != null:
+		chance_text.queue_free()
+		chance_text = null
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

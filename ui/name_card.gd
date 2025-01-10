@@ -42,24 +42,6 @@ func set_actor(a: Actor):
 	else:
 		print("NULL ACTOR")
 
-func highlight(active: bool = true):
-	pass
-	#if dead_card:
-		#return
-	#if active:
-		#bg_rect.color = hl_color
-	#else:
-		#bg_rect.color = default
-
-func die(dead: bool = true):
-	pass
-	#if dead:
-		#bg_rect.color = dead_color
-		#dead_card = true
-	#else:
-		#bg_rect.color = default
-		#dead_card = false
-
 
 func _on_mouse_entered() -> void:
 	if actor:

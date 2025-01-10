@@ -50,18 +50,3 @@ func _on_node_new_turn_order(actors: Array[Actor]) -> void:
 		card.actor = actor
 		tracker.add_child(card)
 		turn_order.push_back(card)
-
-
-func _on_node_next_turn(index: int) -> void:
-	if index < turn_order.size():
-		for i in turn_order.size():
-			if i == index:
-				turn_order[i].highlight()
-			else:
-				turn_order[i].highlight(false)
-				
-
-
-func _on_node_remove_from_tracker(index: int) -> void:
-	if index < turn_order.size():
-		turn_order[index].die()

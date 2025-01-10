@@ -1,10 +1,26 @@
 extends Camera2D
 
 const PAN_SPEED = 1024
-const ZOOM_MAX = 2
+const ZOOM_MAX = 3
 const ZOOM_MIN = 1
 
 var pan_vector = Vector2(0, 0)
+var half_screen: Vector2i
+var orig: Vector2
+var lim: Vector2
+
+func _ready() -> void:
+	resize()
+	get_tree().get_root().size_changed.connect(resize)
+
+func resize():
+	half_screen = get_viewport().size / 2
+	half_screen.x /= round(zoom.x)
+	half_screen.y /= round(zoom.y)
+	limit_left = round(orig.x) - half_screen.x
+	limit_top = round(orig.y) - half_screen.y
+	limit_right = round(lim.x) + half_screen.x
+	limit_bottom = round(lim.y) + half_screen.y
 
 func _process(delta):
 	# Scroll with keyboard
@@ -23,15 +39,13 @@ func _process(delta):
 		pan_vector.y = 0
 	
 	# center within boundaries
-	var buffer = get_viewport().size / 2
-	buffer.x /= zoom.x
-	buffer.y /= zoom.y
 	position += pan_vector * delta
-	position.x = max(position.x, limit_left + buffer.x)
-	position.x = min(position.x, limit_right - buffer.x)
-	position.y = max(position.y, limit_top + buffer.y)
-	position.y = min(position.y, limit_bottom - buffer.y)
-	
+	position.x = max(position.x, limit_left + half_screen.x)
+	position.x = min(position.x, limit_right - half_screen.x)
+	position.y = max(position.y, limit_top + half_screen.y)
+	position.y = min(position.y, limit_bottom - half_screen.y)
+
+
 func _input(event):
 	# Scroll with mouse
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
@@ -51,10 +65,7 @@ func _input(event):
 
 
 func _on_map_init_camera(origin: Vector2, limit: Vector2) -> void:
-	limit_left = round(origin.x)
-	limit_top = round(origin.y)
-	limit_right = round(limit.x)
-	limit_bottom = round(limit.y)
-	position_smoothing_enabled = false
+	orig = origin
+	lim = limit
+	resize()
 	position = origin + (limit / 2)
-	position_smoothing_enabled = true

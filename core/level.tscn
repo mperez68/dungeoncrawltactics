@@ -5,7 +5,8 @@
 [ext_resource type="Script" path="res://core/camera.gd" id="3_hj4ot"]
 [ext_resource type="PackedScene" uid="uid://whyqrx8a4kgj" path="res://core/HUD.tscn" id="4_rackh"]
 
-[node name="Level" type="Node"]
+[node name="Level" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_exgqk")
 
 [node name="Map" parent="." instance=ExtResource("2_2aprj")]
@@ -13,7 +14,7 @@ script = ExtResource("1_exgqk")
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("3_hj4ot")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TurnPauseTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("4_rackh")]
@@ -21,9 +22,8 @@ visible = false
 
 [connection signal="new_turn_order" from="." to="HUD" method="_on_node_new_turn_order"]
 [connection signal="next_turn" from="." to="HUD" method="_on_node_next_turn"]
-[connection signal="remove_from_tracker" from="." to="HUD" method="_on_node_remove_from_tracker"]
 [connection signal="init_camera" from="Map" to="Camera" method="_on_map_init_camera"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TurnPauseTimer" to="." method="_on_timer_timeout"]
 [connection signal="button_pressed" from="HUD" to="." method="_on_hud_button_pressed"]
 [connection signal="end_turn" from="HUD" to="." method="_on_hud_end_turn"]
 

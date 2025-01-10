@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bosofxure0a1"]
+[gd_scene load_steps=7 format=3 uid="uid://bosofxure0a1"]
 
 [ext_resource type="Script" path="res://ui/fading_text.gd" id="1_b44bu"]
 
@@ -62,10 +62,28 @@ tracks/1/keys = {
 "values": [Vector2(0, -16), Vector2(0, -48)]
 }
 
+[sub_resource type="Animation" id="Animation_m5wje"]
+resource_name = "hover"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 2),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(0, 20), Vector2(0, 24), Vector2(0, 20), Vector2(0, 16)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_myy0x"]
 _data = {
 "RESET": SubResource("Animation_rlkbb"),
-"fade": SubResource("Animation_sfs83")
+"fade": SubResource("Animation_sfs83"),
+"hover": SubResource("Animation_m5wje")
 }
 
 [node name="FadingText" type="Node2D"]

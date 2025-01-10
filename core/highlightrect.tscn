@@ -4,7 +4,8 @@
 [ext_resource type="Script" path="res://core/highlightrect.gd" id="2_gdki4"]
 
 [node name="RectangleShape" type="Polygon2D"]
-z_index = 1
+z_index = 2
+y_sort_enabled = true
 position = Vector2(-8, -8)
 color = Color(1, 1, 0, 0.27451)
 polygon = PackedVector2Array(0, 0, 16, 0, 16, 16, 0, 16)
@@ -16,6 +17,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
+mouse_filter = 1
 script = ExtResource("2_gdki4")
 
 [connection signal="mouse_entered" from="Control" to="Control" method="_on_mouse_entered"]

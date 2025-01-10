@@ -1,10 +1,10 @@
 extends Node
 
 signal new_turn_order(actors: Array[Actor])
-signal remove_from_tracker(index: int)
 signal next_turn(index: int)
 
 @onready var map = $Map
+@onready var pause = $TurnPauseTimer
 
 var actors: Array[Actor] = []
 var active: int = -1
@@ -16,10 +16,15 @@ func _ready() -> void:
 	for i in actors.size():
 		actors[i].index = i
 	new_turn_order.emit(actors)
-	$Timer.start()
+	pause.start()
 
 func pass_turn():
-	$Timer.start()
+	pause.start()
+
+func get_active() -> Actor:
+	if !actors or active < 0 or active >= actors.size():
+		return null
+	return actors[active]
 
 func _on_timer_timeout() -> void:
 	if actors.is_empty():
@@ -47,6 +52,3 @@ func get_actors_at_position(origin: Vector2, radius:int = 0) -> Array:
 		#if grid_pos == map.local_to_map(actor.position):
 			result.push_front(actor)
 	return result
-
-func kill(index: int):
-	remove_from_tracker.emit(index)

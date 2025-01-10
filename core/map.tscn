@@ -57,6 +57,7 @@ Vector2i(3, 3): 0.1
 modifiers = Array[ExtResource("4_ukabr")]([SubResource("Resource_uty5o")])
 
 [node name="Map" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_jxr3s")
 
 [node name="Ground" parent="." instance=ExtResource("1_2dpeh")]

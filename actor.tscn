@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://dndhjrpi143t1"]
+[gd_scene load_steps=108 format=3 uid="uid://dndhjrpi143t1"]
 
 [ext_resource type="Script" path="res://actor.gd" id="1_mqx5s"]
 [ext_resource type="Texture2D" uid="uid://bwn7bhryvcjdj" path="res://png/Old Town - Citizens v0.1/Masc. Citizens/Artun/Artun.png" id="1_vvige"]
@@ -798,6 +798,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActiveCircle:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ActiveCircle:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_jsg65"]
 resource_name = "damage"
@@ -815,14 +839,43 @@ tracks/0/keys = {
 "values": [Color(0.982391, 0, 0.0395406, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_yngls"]
+resource_name = "activate"
+length = 0.66
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ActiveCircle:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.33, 0.66),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.498039), Color(1, 0, 0, 1), Color(1, 0, 0, 0.498039)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActiveCircle:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.66),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 16, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u6hrr"]
 _data = {
 "RESET": SubResource("Animation_we7pd"),
+"activate": SubResource("Animation_yngls"),
 "damage": SubResource("Animation_jsg65")
 }
 
 [node name="Actor" type="CharacterBody2D"]
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 input_pickable = true
 script = ExtResource("1_mqx5s")
@@ -836,11 +889,10 @@ script = ExtResource("3_6ct78")
 size = Vector2(16, 16)
 
 [node name="ActiveCircle" type="Polygon2D" parent="."]
-visible = false
 color = Color(1, 0, 0, 0.243137)
-polygon = PackedVector2Array(8, 0, 7.95618, 0.836228, 7.82518, 1.66329, 7.60845, 2.47214, 7.30836, 3.25389, 6.9282, 4, 6.47214, 4.70228, 5.94516, 5.35304, 5.35304, 5.94516, 4.70228, 6.47214, 4, 6.9282, 3.25389, 7.30836, 2.47214, 7.60845, 1.66329, 7.82518, 0.836228, 7.95618, 4.89843e-16, 8, -0.836228, 7.95618, -1.66329, 7.82518, -2.47214, 7.60845, -3.25389, 7.30836, -4, 6.9282, -4.70228, 6.47214, -5.35304, 5.94516, -5.94516, 5.35304, -6.47214, 4.70228, -6.9282, 4, -7.30836, 3.25389, -7.60845, 2.47214, -7.82518, 1.66329, -7.95618, 0.836228, -8, 9.79685e-16, -7.95618, -0.836228, -7.82518, -1.66329, -7.60845, -2.47214, -7.30836, -3.25389, -6.9282, -4, -6.47214, -4.70228, -5.94516, -5.35304, -5.35304, -5.94516, -4.70228, -6.47214, -4, -6.9282, -3.25389, -7.30836, -2.47214, -7.60845, -1.66329, -7.82518, -0.836228, -7.95618, -1.46953e-15, -8, 0.836228, -7.95618, 1.66329, -7.82518, 2.47214, -7.60845, 3.25389, -7.30836, 4, -6.9282, 4.70228, -6.47214, 5.35304, -5.94516, 5.94516, -5.35304, 6.47214, -4.70228, 6.9282, -4, 7.30836, -3.25389, 7.60845, -2.47214, 7.82518, -1.66329, 7.95618, -0.836228)
+polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 script = ExtResource("3_bf10c")
-radius = 8
+radius = 0
 points_num = 60
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

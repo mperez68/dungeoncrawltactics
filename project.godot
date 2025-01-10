@@ -19,3 +19,7 @@ config/icon="res://icon.svg"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gaea/plugin.cfg", "res://addons/simple_shapes/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
