@@ -18,33 +18,34 @@ var rng = RandomNumberGenerator.new()
 
 # constants
 var BASE_HIT_CHANCE = 0.5
-var WALK_RANGE = 6
-var ATTACK_RANGE = 10
-var MAX_ACTIONS = 1
 var MAX_HIT_CHANCE = 0.95
-var MAX_HEALTH = 3
-var MAX_MANA = 0
-var NAME = "Actor"
-var MELEE_RANGE = 1
-var MIN_DAMAGE = 1
-var MAX_DAMAGE = 3
 var VANTAGE_BONUS = 0.2
 var ZOOM_TIME = 0.5
+# unique constants
+@export var NAME = "Actor"
+@export var WALK_RANGE = 6
+@export var MAX_ACTIONS = 1
+@export var MAX_HEALTH = 3
+@export var MAX_MANA = 0
 
 # states
 var active = false
 var chance_text = null
 
-# resources
-var remaining_actions = MAX_ACTIONS
-var remaining_walk_range = WALK_RANGE
-var hp = MAX_HEALTH
-var mp = MAX_MANA
-
 # equipment values
 var weapon_skill: float = 0.0
 var armor_piercing: float = 0.0
 var armor_skill: float = 0.0
+var attack_range: int = 10
+var melee_range: int = 1
+var min_damage: int = 1
+var max_damage: int = 3
+
+# resources -- onready to get current export values
+@onready var remaining_actions = MAX_ACTIONS
+@onready var remaining_walk_range = WALK_RANGE
+@onready var hp = MAX_HEALTH
+@onready var mp = MAX_MANA
 
 # UI
 var select_type = SELECT_TYPE_NONE
@@ -103,7 +104,7 @@ func do_action(map_coords):
 		select(SELECT_TYPE_NONE)
 	
 	# Attack
-	if select_type == SELECT_TYPE_ATTACK and map.can_see(position, map_coords, ATTACK_RANGE):
+	if select_type == SELECT_TYPE_ATTACK and map.can_see(position, map_coords, attack_range):
 		# shoot if valid targets
 		var targets = manager.get_actors_at_position(map_coords)
 		# break if invalid attack
@@ -112,7 +113,7 @@ func do_action(map_coords):
 		remaining_actions -= 1
 		remaining_walk_range = 0
 		face(map_coords)
-		if ATTACK_RANGE > MELEE_RANGE:
+		if attack_range > melee_range:
 			anim.play("shoot " + facing)
 		else:
 			anim.play("swing " + facing)
@@ -127,7 +128,7 @@ func do_action(map_coords):
 					chance_text.queue_free()
 					chance_text = null
 			target.face(position)
-			target.attack(rng.randi_range(MIN_DAMAGE, MAX_DAMAGE), weapon_skill + vantage)
+			target.attack(rng.randi_range(min_damage, max_damage), weapon_skill + vantage)
 		select(SELECT_TYPE_NONE)
 
 
@@ -151,7 +152,7 @@ func select(new_type: int):
 		SELECT_TYPE_ATTACK:
 			if remaining_actions <= 0:
 				return
-			map.draw_range(position, ATTACK_RANGE, false)
+			map.draw_range(position, attack_range, false)
 		SELECT_TYPE_NONE:
 			if is_exhausted():
 				end_turn()
@@ -192,7 +193,7 @@ func _on_mouse_entered() -> void:
 	# Highlight
 	hl.visible = true
 	var active_actor = manager.get_active()
-	if chance_text == null and active_actor.remaining_actions > 0 and map.can_see(active_actor.position, position, active_actor.ATTACK_RANGE):
+	if chance_text == null and active_actor and active_actor.remaining_actions > 0 and map.can_see(active_actor.position, position, active_actor.attack_range):
 		chance_text = t.instantiate()
 		var vantage = 0
 		if map.is_vantage(active_actor.position) and !map.is_vantage(position):

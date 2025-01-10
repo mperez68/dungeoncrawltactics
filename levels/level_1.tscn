@@ -16,14 +16,19 @@ tile_map_data = PackedByteArray("AAAqACoAAQAAABkAAAAgACIAAQAAABkAAAAoADMAAQAAABk
 
 [node name="Actor" parent="." index="4" instance=ExtResource("2_ycbkf")]
 position = Vector2(627, 888)
+NAME = "Tank"
+MAX_HEALTH = 5
 
 [node name="Actor2" parent="." index="5" instance=ExtResource("2_ycbkf")]
 position = Vector2(727, 875)
+MAX_MANA = 1
 
 [node name="Actor3" parent="." index="6" instance=ExtResource("2_ycbkf")]
 position = Vector2(597, 775)
+NAME = "Good Guy"
 
 [node name="Actor4" parent="." index="7" instance=ExtResource("2_ycbkf")]
 position = Vector2(571, 850)
+NAME = "Bad Guy"
 
 [editable path="Map"]
