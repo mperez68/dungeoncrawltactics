@@ -47,7 +47,6 @@ func _on_node_new_turn_order(actors: Array[Actor]) -> void:
 		turn_order.clear()
 	for actor in actors:
 		var card = name_card.instantiate()
-		card.set_text(actor.NAME)
 		card.actor = actor
 		tracker.add_child(card)
 		turn_order.push_back(card)

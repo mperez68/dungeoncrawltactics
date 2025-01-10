@@ -17,6 +17,7 @@ var WALK_RANGE = 6
 var ATTACK_RANGE = 10
 var MAX_ACTIONS = 1
 var MAX_HIT_CHANCE = 0.95
+var MAX_MANA = 0
 var NAME = "Actor"
 
 var index = -1
@@ -26,6 +27,7 @@ var weapon_skill: float = 0.0
 var armor_skill: float = 0.0
 var active = false
 var hp = 3
+var mp = MAX_MANA
 var select_type = SELECT_TYPE_NONE
 var facing: String = "right"
 
@@ -41,9 +43,16 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	# Mouse events
-	if event is InputEventMouse and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if event is InputEventMouse:
 		var map_coords = ((event.position - (camera.get_viewport_rect().end / 2))/ camera.zoom) + camera.position
-		do_action(map_coords)
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			do_action(map_coords)
+		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			var temp = select_type
+			select(SELECT_TYPE_ATTACK)
+			do_action(map_coords)
+			select(temp)
+			
 
 
 func start_turn():
@@ -112,7 +121,7 @@ func is_exhausted() -> bool:
 	return result
 
 func select(new_type: int):
-	if select_type == new_type:
+	if select_type == new_type and select_type != SELECT_TYPE_NONE:
 		select(SELECT_TYPE_NONE)
 		return
 	match new_type:
