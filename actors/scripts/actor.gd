@@ -15,6 +15,7 @@ enum{ SELECT_TYPE_NONE, SELECT_TYPE_WALK, SELECT_TYPE_ATTACK }
 const t = preload("res://ui/fading_text.tscn")
 var rng = RandomNumberGenerator.new()
 var index = -1
+var sig: bool = false
 
 
 # constants
@@ -39,7 +40,7 @@ var chance_text = null
 @export var weapon_skill: float = 0.1
 @export var armor_piercing: float = 0.0
 @export var armor_skill: float = 0.1
-@export var attack_range: int = 10
+@export var attack_range: int = 1
 @export var melee_range: int = 1
 @export var min_damage: int = 1
 @export var max_damage: int = 3
@@ -96,10 +97,16 @@ func start_turn():
 	remaining_actions = MAX_ACTIONS
 	map.set_position_solid(position, false)
 	# center camera on actor if not in center of screen
+	center_screen()
+
+func center_screen(target: Vector2 = Vector2(-666, -666)):
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(camera, "zoom", Vector2(camera.ZOOM_MAX, camera.ZOOM_MAX), ZOOM_TIME)
-	camera.position = position
+	var pos = position
+	if target != Vector2(-666, -666):
+		pos = (pos + target) / 2
+	camera.position = pos
 
 func end_turn():
 	if remaining_actions > 0:
@@ -108,8 +115,8 @@ func end_turn():
 		add_child(pass_text)
 	active = false
 	map.clear_highlights()
-	manager.pass_turn()
 	map.set_position_solid(position)
+	manager.pass_turn()
 	
 func is_exhausted() -> bool:
 	var result = true
@@ -178,7 +185,7 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 
 # private methods
 func _do_action_grid(map_coords: Vector2i) -> bool:
-	return _do_action(map.local_to_map(map_coords))
+	return _do_action(map.ground_layer.map_to_local(map_coords))
 	
 func _do_action(map_coords: Vector2) -> bool:
 	# Walk

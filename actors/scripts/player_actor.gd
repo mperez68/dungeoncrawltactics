@@ -1,5 +1,10 @@
 extends Actor
 
+class_name PlayerActor
+
+func _ready():
+	super()
+	sig = true
 
 # Inputs
 func _input(event: InputEvent) -> void:

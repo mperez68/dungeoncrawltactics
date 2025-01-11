@@ -48,6 +48,24 @@ func can_walk(start: Vector2, end: Vector2, max_distance: int = 999999) -> bool:
 	var path_length = _weighted_path(start, end)
 	return path_length > 0 and path_length <= max_distance
 
+func can_approach(start: Vector2, end: Vector2, max_distance: int = 999999) -> bool:
+	astar.set_point_solid(local_to_map(end), false)
+	var path_length = _weighted_path(start, end)
+	astar.set_point_solid(local_to_map(end))
+	return path_length > 0 and path_length <= max_distance
+
+func get_step_towards(start: Vector2, end: Vector2) -> Vector2:
+	astar.set_point_solid(local_to_map(end), false)
+	var ret = null
+	
+	var path = astar.get_id_path(local_to_map(start), local_to_map(end))
+	if path.size() > 0:
+		ret = path[1]
+	
+	astar.set_point_solid(local_to_map(end))
+	return ret
+	
+
 func get_walk_distance(start: Vector2, end: Vector2) -> int:
 	var path_length = _weighted_path(start, end)
 	if path_length == 0:

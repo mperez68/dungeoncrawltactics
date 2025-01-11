@@ -19,12 +19,6 @@ tile_map_data = PackedByteArray("AAAqACoAAQAAABkAAAAgACIAAQAAABkAAAAoADMAAQAAABk
 position = Vector2(748, 825)
 
 [node name="NPCActor" parent="." index="5" instance=ExtResource("3_2f3lw")]
-position = Vector2(650, 839)
-
-[node name="NPCActor2" parent="." index="6" instance=ExtResource("3_2f3lw")]
-position = Vector2(706, 887)
-
-[node name="NPCActor3" parent="." index="7" instance=ExtResource("3_2f3lw")]
-position = Vector2(683, 802)
+position = Vector2(648, 838)
 
 [editable path="Map"]

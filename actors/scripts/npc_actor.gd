@@ -1,5 +1,7 @@
 extends Actor
 
+class_name NPCActor
+
 # reference
 @onready var action_pause = $ActionPause
 
@@ -7,6 +9,8 @@ extends Actor
 # public methods
 func start_turn():
 	super()
+	action_pause.start()
+	await action_pause.timeout
 	while _ai_turn():
 		action_pause.start()
 		await action_pause.timeout
@@ -28,18 +32,20 @@ func _ai_turn() -> bool:
 	while(target_index == index or manager.actors[target_index].hp <= 0):
 		target_index = randi_range(0, manager.actors.size() - 1)
 	var target = manager.actors[target_index]
-	print(target.hp)
 	
 	# shoot; if can't, move: if can't, do nothing
-	if remaining_actions > 0 and map.can_see(position, target.position):
+	if remaining_actions > 0 and map.can_see(position, target.position, attack_range):
 		if select_type == SELECT_TYPE_ATTACK:
-			remaining_actions -= 1
 			_do_action(target.position)
 		else:
 			select(SELECT_TYPE_ATTACK)
+			center_screen(target.position)
 	elif remaining_walk_range > 0:
-		#print(remaining_walk_range, " ", target.hp)
-		remaining_walk_range -= 1
+		if map.can_approach(position, target.position):
+			select(SELECT_TYPE_WALK)
+			_do_action_grid(map.get_step_towards(position, target.position))
+		else:
+			ret = false
 	else:
 		ret = false
 	
