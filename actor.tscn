@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://dndhjrpi143t1"]
+[gd_scene load_steps=109 format=3 uid="uid://dndhjrpi143t1"]
 
 [ext_resource type="Script" path="res://actor.gd" id="1_mqx5s"]
 [ext_resource type="Texture2D" uid="uid://bwn7bhryvcjdj" path="res://png/Old Town - Citizens v0.1/Masc. Citizens/Artun/Artun.png" id="1_vvige"]
@@ -823,22 +823,6 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_jsg65"]
-resource_name = "damage"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.982391, 0, 0.0395406, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_yngls"]
 resource_name = "activate"
 length = 0.66
@@ -867,10 +851,43 @@ tracks/1/keys = {
 "values": [0, 16, 0]
 }
 
+[sub_resource type="Animation" id="Animation_jsg65"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.982391, 0, 0.0395406, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_smeww"]
+resource_name = "block"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 1, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u6hrr"]
 _data = {
 "RESET": SubResource("Animation_we7pd"),
 "activate": SubResource("Animation_yngls"),
+"block": SubResource("Animation_smeww"),
 "damage": SubResource("Animation_jsg65")
 }
 

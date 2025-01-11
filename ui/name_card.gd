@@ -36,11 +36,11 @@ func _process(_delta: float) -> void:
 		else:
 			hp_bar.max_value = actor.MAX_HEALTH
 			hp_bar.value = actor.hp
-			hp_text.text = str(actor.MAX_HEALTH, " / ", actor.hp)
+			hp_text.text = str(actor.hp, " / ", actor.MAX_HEALTH)
 			if actor.MAX_MANA > 0:
 				mp_bar.max_value = actor.MAX_MANA
 				mp_bar.value = actor.mp
-				mp_text.text = str(actor.MAX_MANA, " / ", actor.mp)
+				mp_text.text = str(actor.mp, " / ", actor.MAX_MANA)
 			elif mp_bar.visible or mp_text.visible:
 				mp_text.visible = false
 				mp_bar.visible = false

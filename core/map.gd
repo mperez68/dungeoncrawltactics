@@ -65,6 +65,22 @@ func is_vantage(origin: Vector2) -> bool:
 	var cell = wall_layer.get_cell_tile_data(wall_layer.local_to_map(origin))
 	return cell and cell.get_custom_data("pathing") == "vantage"
 
+func get_cover(origin: Vector2, target: Vector2) -> float:
+	var line = get_line(origin, target)
+	if line.size() < 2:
+		return 0
+	var cell = terrain_layer.get_cell_tile_data(line[line.size() - 1])
+	var cell_text = ""
+	if cell:
+		cell_text = cell.get_custom_data("cover")
+	var ret = 0
+	match cell_text:
+		"light":
+			ret = 0.1
+		"heavy":
+			ret = 0.2
+	return ret
+
 func can_see(start: Vector2, end: Vector2, max_distance: int = 999999, obscuring_depth: int = 2) -> bool:
 	var distance = Vector2i( abs(local_to_map(start).x - local_to_map(end).x), abs(local_to_map(start).y - local_to_map(end).y) )
 	if distance.length() > max_distance:
