@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c187qv1d60rfk"]
+
+[ext_resource type="PackedScene" uid="uid://dndhjrpi143t1" path="res://actors/actor.tscn" id="1_4b14x"]
+[ext_resource type="SpriteFrames" uid="uid://cdb4cu0m6tk22" path="res://actors/scripts/PlayerActor.tres" id="2_grf5k"]
+[ext_resource type="Script" path="res://actors/scripts/player_actor.gd" id="2_pk1l8"]
+
+[node name="PlayerActor" instance=ExtResource("1_4b14x")]
+script = ExtResource("2_pk1l8")
+weapon_skill = 0.3
+min_damage = 2
+max_damage = 4
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = ExtResource("2_grf5k")

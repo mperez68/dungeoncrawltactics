@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="TacStratSandbox"
+config/name="dungeon crawl"
 config/tags=PackedStringArray("framework")
 run/main_scene="res://levels/level_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")

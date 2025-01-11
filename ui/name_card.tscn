@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bj0idncko62mu"]
 
-[ext_resource type="Script" path="res://ui/name_card.gd" id="1_eww6m"]
+[ext_resource type="Script" path="res://ui/scripts/name_card.gd" id="1_eww6m"]
 [ext_resource type="Script" path="res://addons/simple_shapes/shapes/RectangleShape.gd" id="2_pts13"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7hdvr"]

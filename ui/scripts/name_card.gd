@@ -11,8 +11,8 @@ class_name NameCard
 
 var default
 var hl_color = Color.BLACK
-var dead_color = Color.DARK_RED
-var select_color = Color("005d0054")
+var dead_color = Color(0.545, 0, 0, 0.588)
+var select_color = Color(0, 0.564, 0, 0.435)
 var dead_card = false
 var actor: Actor
 

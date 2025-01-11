@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://whyqrx8a4kgj"]
 
 [ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="1_f6ymn"]
-[ext_resource type="Script" path="res://core/hud.gd" id="1_wi46d"]
+[ext_resource type="Script" path="res://core/scripts/hud.gd" id="1_wi46d"]
 [ext_resource type="PackedScene" uid="uid://bj0idncko62mu" path="res://ui/name_card.tscn" id="3_y2gvo"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_hpbpr"]

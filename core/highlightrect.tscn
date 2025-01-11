@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ck4c55m1k3v60"]
 
 [ext_resource type="Script" path="res://addons/simple_shapes/shapes/RectangleShape.gd" id="1_us80s"]
-[ext_resource type="Script" path="res://core/highlightrect.gd" id="2_gdki4"]
+[ext_resource type="Script" path="res://core/scripts/highlightrect.gd" id="2_gdki4"]
 
 [node name="RectangleShape" type="Polygon2D"]
 z_index = 2

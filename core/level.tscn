@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dmb0v06707pab"]
 
-[ext_resource type="Script" path="res://core/level.gd" id="1_exgqk"]
+[ext_resource type="Script" path="res://core/scripts/level.gd" id="1_exgqk"]
 [ext_resource type="PackedScene" uid="uid://xjcnpf3inm4w" path="res://core/map.tscn" id="2_2aprj"]
-[ext_resource type="Script" path="res://core/camera.gd" id="3_hj4ot"]
+[ext_resource type="Script" path="res://core/scripts/camera.gd" id="3_hj4ot"]
 [ext_resource type="PackedScene" uid="uid://whyqrx8a4kgj" path="res://core/HUD.tscn" id="4_rackh"]
 
 [node name="Level" type="Node2D"]

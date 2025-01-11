@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://041oyenf8e7r"]
+[gd_scene load_steps=4 format=4 uid="uid://041oyenf8e7r"]
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_6vo4r"]
-[ext_resource type="PackedScene" uid="uid://dndhjrpi143t1" path="res://actor.tscn" id="2_ycbkf"]
+[ext_resource type="PackedScene" uid="uid://n48nfh5h0ujh" path="res://actors/npc_actor.tscn" id="3_2f3lw"]
+[ext_resource type="PackedScene" uid="uid://c187qv1d60rfk" path="res://actors/player_actor.tscn" id="3_p6dn4"]
 
 [node name="Level" instance=ExtResource("1_6vo4r")]
 
@@ -14,24 +15,16 @@ tile_map_data = PackedByteArray("AAAsAC4AAQAIABYAAAAsAC0AAQAIAAIAAAAsACwAAQAIABY
 [node name="Terrain" parent="Map" index="2"]
 tile_map_data = PackedByteArray("AAAqACoAAQAAABkAAAAgACIAAQAAABkAAAAoADMAAQAAABkAAAAnAD8AAQAAABkAAAAxADoAAQAAABkAAAA2AEUAAQAAABkAAAA6ADsAAQAAABkAAAAyAEEAAQADABcAAAA2AD0AAQAAAB4AAAAtADcAAQADABcAAAAhADcAAQADABcAAAAmADkAAQAAAB4AAAAgAC8AAQAAAB4AAAAqADYAAQAFABcAAAAkADMAAQAFABcAAAAiADoAAQAFABcAAAAnADoAAQAFABcAAAApAEAAAQAFABcAAAAyAD8AAQAFABcAAAA3AEEAAQAFABcAAAA8ADsAAQAFABcAAAA0ADgAAQAFABcAAAA+ADoAAQAFABcAAAAtADMAAQAFABcAAAAkACcAAQAFABcAAAAgACgAAQAFABcAAAAeACcAAQAFABcAAAAjACMAAQAFABcAAAAgACMAAQAFABcAAAAiACEAAQAFABcAAAAlACwAAQACAB4AAAAqAC0AAQACAB4AAAAnAC8AAQAEABsAAAAqADAAAQAEAB0AAAA=")
 
-[node name="Actor" parent="." index="4" instance=ExtResource("2_ycbkf")]
-position = Vector2(646, 836)
-NAME = "Tank"
-MAX_HEALTH = 5
-armor_skill = 0.3
+[node name="PlayerActor" parent="." index="4" instance=ExtResource("3_p6dn4")]
+position = Vector2(748, 825)
 
-[node name="Actor2" parent="." index="5" instance=ExtResource("2_ycbkf")]
-position = Vector2(680, 715)
-NAME = "Nerd"
-MAX_MANA = 1
+[node name="NPCActor" parent="." index="5" instance=ExtResource("3_2f3lw")]
+position = Vector2(650, 839)
 
-[node name="Actor3" parent="." index="6" instance=ExtResource("2_ycbkf")]
-position = Vector2(631, 743)
-NAME = "Good Guy"
+[node name="NPCActor2" parent="." index="6" instance=ExtResource("3_2f3lw")]
+position = Vector2(706, 887)
 
-[node name="Actor4" parent="." index="7" instance=ExtResource("2_ycbkf")]
-position = Vector2(687, 832)
-NAME = "Bad Guy"
-armor_piercing = 0.5
+[node name="NPCActor3" parent="." index="7" instance=ExtResource("3_2f3lw")]
+position = Vector2(683, 802)
 
 [editable path="Map"]

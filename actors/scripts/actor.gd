@@ -36,7 +36,7 @@ var chance_text = null
 @export var MAX_HEALTH = 3
 @export var MAX_MANA = 0
 # equipment values
-var weapon_skill: float = 0.1
+@export var weapon_skill: float = 0.1
 @export var armor_piercing: float = 0.0
 @export var armor_skill: float = 0.1
 @export var attack_range: int = 10
@@ -68,22 +68,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 # Inputs
-func _input(event: InputEvent) -> void:
-	# No actions can be done while not active actor
-	if !active:
-		return
-	
-	# Mouse events
-	if event is InputEventMouse:
-		var map_coords = ((event.position - (camera.get_viewport_rect().end / 2))/ camera.zoom) + camera.position
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			_do_action(map_coords)
-		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-			var temp = select_type
-			select(SELECT_TYPE_ATTACK)
-			_do_action(map_coords)
-			select(temp)
-
 func _on_mouse_entered() -> void:
 	# Break here if not the active actor or active actor return null
 	var active_actor = manager.get_active()
@@ -111,7 +95,6 @@ func start_turn():
 	remaining_walk_range = WALK_RANGE
 	remaining_actions = MAX_ACTIONS
 	map.set_position_solid(position, false)
-	select(SELECT_TYPE_WALK)
 	# center camera on actor if not in center of screen
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
@@ -119,6 +102,10 @@ func start_turn():
 	camera.position = position
 
 func end_turn():
+	if remaining_actions > 0:
+		var pass_text = t.instantiate()
+		pass_text.set_text("PASS")
+		add_child(pass_text)
 	active = false
 	map.clear_highlights()
 	manager.pass_turn()
@@ -166,17 +153,17 @@ func hit_chance(attacker: Actor) -> float:		## Chance to hit this actor, given a
 func get_damage(crit: bool = false) -> int:		## Retrieves a random damage value within this actors range.
 	return rng.randi_range(min_damage, max_damage) * max(1, (int(crit) * crit_multiplier))
 
-func select(new_type: int):						## Change the selection type if active player.
+func select(new_type: int) -> bool:					## Change the selection type if active player.
 	if select_type == new_type or !active:
-		return
+		return false
 	match new_type:
 		SELECT_TYPE_WALK:
 			if remaining_walk_range <= 0:
-				return
+				return false
 			map.draw_range(position, remaining_walk_range)
 		SELECT_TYPE_ATTACK:
 			if remaining_actions <= 0:
-				return
+				return false
 			map.draw_range(position, attack_range, false)
 		SELECT_TYPE_NONE:
 			if is_exhausted():
@@ -184,12 +171,16 @@ func select(new_type: int):						## Change the selection type if active player.
 			else:
 				map.clear_highlights()
 		_:
-			return
+			return false
 	select_type = new_type
+	return true
 
 
 # private methods
-func _do_action(map_coords):
+func _do_action_grid(map_coords: Vector2i) -> bool:
+	return _do_action(map.local_to_map(map_coords))
+	
+func _do_action(map_coords: Vector2) -> bool:
 	# Walk
 	if select_type == SELECT_TYPE_WALK and map.can_walk(position, map_coords, remaining_walk_range):
 		remaining_walk_range -= map.get_walk_distance(position, map_coords)
@@ -199,12 +190,12 @@ func _do_action(map_coords):
 		select(SELECT_TYPE_NONE)
 	
 	# Attack
-	if select_type == SELECT_TYPE_ATTACK and map.can_see(position, map_coords, attack_range):
+	elif select_type == SELECT_TYPE_ATTACK and map.can_see(position, map_coords, attack_range):
 		# shoot if valid targets
 		var targets = manager.get_actors_at_position(map_coords)
 		# break if invalid attack targets
 		if targets.is_empty() or targets.has(self):
-			return
+			return false
 		remaining_actions -= 1
 		remaining_walk_range = 0
 		_face(map_coords)
@@ -222,6 +213,9 @@ func _do_action(map_coords):
 			target.attack(self)
 		# Reset selection
 		select(SELECT_TYPE_NONE)
+	else:
+		return false
+	return true
 
 func _face(target: Vector2):
 	var dif = map.local_to_map(position) - map.local_to_map(target)

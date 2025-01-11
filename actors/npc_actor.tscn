@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://n48nfh5h0ujh"]
+
+[ext_resource type="PackedScene" uid="uid://dndhjrpi143t1" path="res://actors/actor.tscn" id="1_vxx1s"]
+[ext_resource type="Script" path="res://actors/scripts/npc_actor.gd" id="2_urfe5"]
+[ext_resource type="SpriteFrames" uid="uid://bkf68oan8jm3v" path="res://actors/scripts/npc_actor.tres" id="3_qws2y"]
+
+[node name="NPCActor" instance=ExtResource("1_vxx1s")]
+script = ExtResource("2_urfe5")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = ExtResource("3_qws2y")
+
+[node name="ActionPause" type="Timer" parent="." index="5"]
+wait_time = 0.75
