@@ -17,8 +17,8 @@ var dead_card = false
 var actor: Actor
 
 func _process(_delta: float) -> void:
-	name_text.text = actor.NAME
 	if actor and !dead_card:
+		name_text.text = actor.NAME
 		if actor.active:
 			bg_rect.color = hl_color
 		elif actor.hl.visible:

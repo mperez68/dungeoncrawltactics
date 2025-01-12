@@ -108,16 +108,16 @@ layout_mode = 2
 [node name="NameCard4" parent="TurnTracker" instance=ExtResource("3_y2gvo")]
 layout_mode = 2
 
-[node name="CenterContainer" type="HFlowContainer" parent="."]
+[node name="DebugUI" type="HFlowContainer" parent="."]
 visible = false
 offset_right = 220.0
 offset_bottom = 40.0
 
-[node name="CursorLocation" type="Label" parent="CenterContainer"]
+[node name="CursorLocation" type="Label" parent="DebugUI"]
 layout_mode = 2
 text = "(0, 0)"
 
-[node name="CursorVantage" type="Label" parent="CenterContainer"]
+[node name="CursorVantage" type="Label" parent="DebugUI"]
 layout_mode = 2
 text = "
 "

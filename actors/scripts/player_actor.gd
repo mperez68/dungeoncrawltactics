@@ -2,12 +2,9 @@ extends Actor
 
 class_name PlayerActor
 
-func _ready():
-	super()
-	sig = true
 
 # Inputs
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	# No actions can be done while not active actor
 	if !active:
 		return

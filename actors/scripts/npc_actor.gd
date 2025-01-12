@@ -5,6 +5,10 @@ class_name NPCActor
 # reference
 @onready var action_pause = $ActionPause
 
+# constants
+const PAUSE_SHORT = 0.3
+const PAUSE_LONG = 1
+
 
 # public methods
 func start_turn():
@@ -12,7 +16,10 @@ func start_turn():
 	action_pause.start()
 	await action_pause.timeout
 	while _ai_turn():
-		action_pause.start()
+		if select_type == SELECT_TYPE_WALK:
+			action_pause.start(PAUSE_SHORT)
+		else:
+			action_pause.start(PAUSE_LONG)
 		await action_pause.timeout
 	end_turn()
 
@@ -42,8 +49,10 @@ func _ai_turn() -> bool:
 			center_screen(target.position)
 	elif remaining_walk_range > 0:
 		if map.can_approach(position, target.position):
-			select(SELECT_TYPE_WALK)
-			_do_action_grid(map.get_step_towards(position, target.position))
+			if select_type != SELECT_TYPE_WALK:
+				select(SELECT_TYPE_WALK)
+			elif _do_action_grid(map.get_step_towards(position, target.position)):
+				center_screen(position)
 		else:
 			ret = false
 	else:

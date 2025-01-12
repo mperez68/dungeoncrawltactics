@@ -15,7 +15,6 @@ enum{ SELECT_TYPE_NONE, SELECT_TYPE_WALK, SELECT_TYPE_ATTACK }
 const t = preload("res://ui/fading_text.tscn")
 var rng = RandomNumberGenerator.new()
 var index = -1
-var sig: bool = false
 
 
 # constants
@@ -36,6 +35,9 @@ var chance_text = null
 @export var MAX_ACTIONS = 1
 @export var MAX_HEALTH = 3
 @export var MAX_MANA = 0
+@export var is_sig: bool = false
+@export var is_actor: bool = true
+@export var corporeal: bool = true
 # equipment values
 @export var weapon_skill: float = 0.1
 @export var armor_piercing: float = 0.0
@@ -45,6 +47,9 @@ var chance_text = null
 @export var min_damage: int = 1
 @export var max_damage: int = 3
 @export var crit_multiplier: float = 1.5
+
+# equipment
+var inventory = []
 
 # resources -- onready to get current export values
 @onready var remaining_actions = MAX_ACTIONS
@@ -61,7 +66,10 @@ var facing: String = "right"
 func _ready() -> void:
 	# center on tile
 	position = map.get_center(position)
-	map.set_position_solid(position)
+	
+	# Set solid in pathfinding
+	if corporeal:
+		map.set_position_solid(position)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation.contains("shoot") or anim.animation.contains("swing") or anim.animation.contains("block"):
@@ -72,7 +80,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_mouse_entered() -> void:
 	# Break here if not the active actor or active actor return null
 	var active_actor = manager.get_active()
-	if active or !active_actor or hp <= 0:
+	if !is_actor or active or !active_actor or hp <= 0:
 		return
 	# Highlight with hit chance if this actor is in range of the active actor
 	hl.visible = true
@@ -93,20 +101,13 @@ func _on_mouse_exited() -> void:
 func start_turn():
 	active = true
 	anim_player.play("activate")
+	# reset values
 	remaining_walk_range = WALK_RANGE
 	remaining_actions = MAX_ACTIONS
+	# fix astar pathing
 	map.set_position_solid(position, false)
-	# center camera on actor if not in center of screen
+	# UI
 	center_screen()
-
-func center_screen(target: Vector2 = Vector2(-666, -666)):
-	var tween = get_tree().create_tween()
-	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(camera, "zoom", Vector2(camera.ZOOM_MAX, camera.ZOOM_MAX), ZOOM_TIME)
-	var pos = position
-	if target != Vector2(-666, -666):
-		pos = (pos + target) / 2
-	camera.position = pos
 
 func end_turn():
 	if remaining_actions > 0:
@@ -125,6 +126,15 @@ func is_exhausted() -> bool:
 	if remaining_actions > 0:
 		result = false
 	return result
+
+func center_screen(target: Vector2 = Vector2(-666, -666)):
+	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(camera, "zoom", Vector2(camera.ZOOM_MAX, camera.ZOOM_MAX), ZOOM_TIME)
+	var pos = position
+	if target != Vector2(-666, -666):
+		pos = (pos + target) / 2
+	camera.position = pos
 
 func attack(attacker: Actor):					## Attack vs. this player.
 	var damage_text = t.instantiate()
@@ -195,6 +205,14 @@ func _do_action(map_coords: Vector2) -> bool:
 		anim.play("idle " + facing)
 		position = map.get_center(map_coords)
 		select(SELECT_TYPE_NONE)
+		if remaining_walk_range > 0:
+			select(SELECT_TYPE_WALK)
+		# pickup non-actors
+		if is_sig:
+			var non = manager.remove_non_actors_at_position(map_coords)
+			for a in non:
+				inventory.push_back(true)
+			
 	
 	# Attack
 	elif select_type == SELECT_TYPE_ATTACK and map.can_see(position, map_coords, attack_range):

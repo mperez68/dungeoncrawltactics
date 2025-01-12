@@ -6,6 +6,7 @@
 
 [node name="NPCActor" instance=ExtResource("1_vxx1s")]
 script = ExtResource("2_urfe5")
+NAME = "NPC"
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("3_qws2y")

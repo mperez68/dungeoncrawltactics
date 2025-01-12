@@ -1,28 +1,29 @@
 extends Camera2D
 
+# Constants
 const PAN_SPEED = 1024
 const ZOOM_MAX = 3
 const ZOOM_MIN = 1
 
-var pan_vector = Vector2(0, 0)
+# Screen size variables
 var half_screen: Vector2i
 var orig: Vector2
 var lim: Vector2
 
-func _ready() -> void:
-	resize()
-	get_tree().get_root().size_changed.connect(resize)
+# UI control
+var scroll_enabled: bool = false
 
-func resize():
-	half_screen = get_viewport().size / 2
-	half_screen.x /= round(zoom.x)
-	half_screen.y /= round(zoom.y)
-	limit_left = round(orig.x) - half_screen.x
-	limit_top = round(orig.y) - half_screen.y
-	limit_right = round(lim.x) + half_screen.x
-	limit_bottom = round(lim.y) + half_screen.y
+# Engine
+func _ready() -> void:
+	_resize()
+	get_tree().get_root().size_changed.connect(_resize)
 
 func _process(delta):
+	# Break if scrolling disabled
+	if !scroll_enabled:
+		return
+	
+	var pan_vector = Vector2(0, 0)
 	# Scroll with keyboard
 	if Input.is_action_pressed("ui_left"):
 		pan_vector.x = -PAN_SPEED
@@ -45,8 +46,11 @@ func _process(delta):
 	position.y = max(position.y, limit_top + half_screen.y)
 	position.y = min(position.y, limit_bottom - half_screen.y)
 
-
 func _input(event):
+	# Break if scrolling disabled
+	if !scroll_enabled:
+		return
+	
 	# Scroll with mouse
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
 		position -= (event.relative * 1 / zoom)
@@ -64,8 +68,23 @@ func _input(event):
 		zoom = Vector2(result, result)
 
 
+# Private Methods
+func _resize():
+	half_screen = get_viewport().size / 2
+	half_screen.x /= round(zoom.x)
+	half_screen.y /= round(zoom.y)
+	limit_left = round(orig.x) - half_screen.x
+	limit_top = round(orig.y) - half_screen.y
+	limit_right = round(lim.x) + half_screen.x
+	limit_bottom = round(lim.y) + half_screen.y
+
+
+# Signals
 func _on_map_init_camera(origin: Vector2, limit: Vector2) -> void:
 	orig = origin
 	lim = limit
-	resize()
+	_resize()
 	position = origin + (limit / 2)
+
+func _on_level_enable_ui(enable: bool) -> void:
+	scroll_enabled = enable
