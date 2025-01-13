@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://xjcnpf3inm4w"]
+[gd_scene load_steps=13 format=3 uid="uid://xjcnpf3inm4w"]
 
 [ext_resource type="PackedScene" uid="uid://bymhruklcupm" path="res://core/layer.tscn" id="1_2dpeh"]
 [ext_resource type="Script" path="res://core/scripts/map.gd" id="1_jxr3s"]
@@ -29,27 +29,6 @@ enabled = true
 affected_layers = Array[int]([0])
 filter_type = 0
 
-[sub_resource type="Resource" id="Resource_aw116"]
-script = ExtResource("6_k0tdi")
-type = 0
-tilemap_layer = 3
-source_id = 0
-atlas_coord = Vector2i(8, 28)
-alternative_tile = 0
-id = ""
-layer = 0
-
-[sub_resource type="Resource" id="Resource_ohjep"]
-script = ExtResource("5_ljdel")
-tile = SubResource("Resource_aw116")
-expand_left = 1
-expand_top = 1
-expand_right = 1
-expand_bottom = 1
-enabled = true
-affected_layers = Array[int]([0])
-filter_type = 0
-
 [sub_resource type="Resource" id="Resource_jfgi3"]
 script = ExtResource("6_k0tdi")
 type = 1
@@ -75,7 +54,7 @@ room_chances = {
 Vector2i(2, 2): 0.5,
 Vector2i(3, 3): 0.1
 }
-modifiers = Array[ExtResource("4_ukabr")]([SubResource("Resource_uty5o"), SubResource("Resource_ohjep")])
+modifiers = Array[ExtResource("4_ukabr")]([SubResource("Resource_uty5o")])
 
 [node name="Map" type="Node2D"]
 y_sort_enabled = true
@@ -90,12 +69,13 @@ z_index = 1
 z_index = 2
 
 [node name="FogOfWar" parent="." instance=ExtResource("1_2dpeh")]
+visible = false
 self_modulate = Color(1, 1, 1, 0.784314)
 z_index = 2
 
 [node name="TilemapGaeaRenderer" type="Node" parent="." node_paths=PackedStringArray("tile_map_layers", "generator")]
 script = ExtResource("3_slpke")
-tile_map_layers = [NodePath("../Ground"), NodePath("../Vantage"), NodePath("../Terrain")]
+tile_map_layers = [NodePath("../Ground"), NodePath("../Vantage"), NodePath("../Terrain"), NodePath("../FogOfWar")]
 terrain_gap_fix = true
 generator = NodePath("../WalkerGenerator")
 

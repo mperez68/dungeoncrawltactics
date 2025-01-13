@@ -20,14 +20,16 @@ func start_turn():
 		end_turn()
 		return
 	super()
-	action_pause.start()
-	await action_pause.timeout
-	while _ai_turn():
-		if select_type == SELECT_TYPE_WALK:
-			action_pause.start(PAUSE_SHORT)
-		else:
-			action_pause.start(PAUSE_LONG)
+	if visible:
+		action_pause.start()
 		await action_pause.timeout
+	while _ai_turn():
+		if visible and select_type == SELECT_TYPE_WALK:
+			action_pause.start(PAUSE_SHORT)
+			await action_pause.timeout
+		elif visible:
+			action_pause.start(PAUSE_LONG)
+			await action_pause.timeout
 	end_turn()
 
 func target_find() -> bool:
@@ -39,15 +41,20 @@ func target_find() -> bool:
 	else:
 		for actor in manager.actors:
 			var temp = map.get_walk_distance(position, actor.position, true)
-			if map.can_see(position, actor.position, aggro_range) and temp < distance and temp > 0:
+			if actor.hp > 0 and actor.is_sig and map.can_see(position, actor.position, aggro_range) and temp < distance and temp > 0:
 				distance = temp
 				target = actor
 				ret = true
+	if !ret:
+		target = null
 	return ret
 
 # private methods
 func _ai_turn() -> bool:
 	var ret = true
+	# Find new target if current target is dead
+	if target and target.hp <= 0:
+		target_find()
 	
 	# shoot; if can't, move: if can't, do nothing
 	if target and remaining_actions > 0 and map.can_see(position, target.position, attack_range):

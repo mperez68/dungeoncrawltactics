@@ -16,38 +16,22 @@ var active: int = -1
 
 # engine
 func _ready() -> void:
+	# populate actors lists
 	for child in find_children("*", "Actor"):
 		if child.is_actor:
 			actors.push_front(child)
 		else:
 			non_actors.push_front(child)
+	# Shuffle, assign their index in actor node
 	actors.shuffle()
 	for i in actors.size():
 		actors[i].index = i
+	# Transmit to HUD
 	new_turn_order.emit(actors)
-	pause.start()
-	enable_ui.emit(false)
+	
+	pass_turn()
 
 func _on_timer_timeout() -> void:
-	match is_conflict():
-		1:
-			print("all enemies killed")
-		-1:
-			print("player loses")
-			enable_ui.emit(false)
-			end_dialog.dialog_text = "YOU DIED"
-			end_dialog.visible = true
-			return
-		
-	if actors.is_empty():
-		enable_ui.emit(false)
-		end_dialog.dialog_text = "NOBODY LIVED"
-		end_dialog.visible = true
-	
-	while(true):
-		active = (active + 1) % actors.size()
-		if actors[active].hp > 0:
-			break
 	enable_ui.emit(get_active().is_sig)
 	actors[active].start_turn()
 
@@ -63,7 +47,35 @@ func _on_hud_end_turn() -> void:
 # public methods
 func pass_turn():
 	enable_ui.emit(false)
-	pause.start()
+	# End game if all enemies or allies are killed
+	match is_conflict():
+		1:
+			enable_ui.emit(false)
+			end_dialog.dialog_text = "ALL ENEMIES SLAIN, YOU CAN LEAVE SAFELY"
+			end_dialog.visible = true
+			return
+		-1:
+			print("player loses")
+			enable_ui.emit(false)
+			end_dialog.dialog_text = "YOU DIED"
+			end_dialog.visible = true
+			return
+	# Edge case, no actors
+	if actors.is_empty():
+		enable_ui.emit(false)
+		end_dialog.dialog_text = "NOBODY LIVED"
+		end_dialog.visible = true
+		return
+	# Iterate through actors list until a living actor is found
+	while(true):
+		active = (active + 1) % actors.size()
+		if actors[active].hp > 0:
+			break
+	
+	if (actors[active].target_find()):
+		pause.start()
+	else:
+		_on_timer_timeout()
 
 func get_active() -> Actor:
 	if !actors or active < 0 or active >= actors.size():

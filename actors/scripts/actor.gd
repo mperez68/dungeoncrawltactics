@@ -117,12 +117,14 @@ func start_turn():
 		center_screen()
 
 func end_turn():
+	active = false
+	map.clear_highlights()
+	# Notification for passing turn with remaining actions
 	if remaining_actions > 0:
 		var pass_text = t.instantiate()
 		pass_text.set_text("PASS")
 		add_child(pass_text)
-	active = false
-	map.clear_highlights()
+	# fix astar pathing
 	map.set_position_solid(position)
 	manager.pass_turn()
 
