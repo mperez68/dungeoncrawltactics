@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_6vo4r"]
 [ext_resource type="PackedScene" uid="uid://n48nfh5h0ujh" path="res://actors/npc_actor.tscn" id="3_2f3lw"]
-[ext_resource type="PackedScene" uid="uid://c187qv1d60rfk" path="res://actors/player_actor.tscn" id="3_p6dn4"]
 [ext_resource type="PackedScene" uid="uid://c2spim5vs7yq" path="res://actors/non_actor.tscn" id="4_kdvfo"]
+[ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/soldier.tscn" id="5_koxfm"]
 [ext_resource type="PackedScene" uid="uid://c23cuvv8ykc1d" path="res://core/objectiverect.tscn" id="5_se2jw"]
 
 [node name="Level" instance=ExtResource("1_6vo4r")]
@@ -25,64 +25,52 @@ tile_map_data = PackedByteArray("AAAPAA8AAAAIABwAAAAPABAAAAAIABwAAAAPABEAAAAIABw
 [node name="HUD" parent="." index="3"]
 debug = true
 
-[node name="ObjectiveRect" parent="." index="4" instance=ExtResource("5_se2jw")]
+[node name="ObjectiveRect" parent="." index="5" instance=ExtResource("5_se2jw")]
 position = Vector2(1072, 722)
 
-[node name="ObjectiveRect2" parent="." index="5" instance=ExtResource("5_se2jw")]
+[node name="ObjectiveRect2" parent="." index="6" instance=ExtResource("5_se2jw")]
 position = Vector2(912, 722)
 
-[node name="ObjectiveRect3" parent="." index="6" instance=ExtResource("5_se2jw")]
+[node name="ObjectiveRect3" parent="." index="7" instance=ExtResource("5_se2jw")]
 position = Vector2(1201, 622)
 
-[node name="ObjectiveRect4" parent="." index="7" instance=ExtResource("5_se2jw")]
+[node name="ObjectiveRect4" parent="." index="8" instance=ExtResource("5_se2jw")]
 position = Vector2(1071, 531)
 
-[node name="ObjectiveRect5" parent="." index="8" instance=ExtResource("5_se2jw")]
+[node name="ObjectiveRect5" parent="." index="9" instance=ExtResource("5_se2jw")]
 position = Vector2(960, 534)
 
-[node name="NonActor" parent="." index="9" instance=ExtResource("4_kdvfo")]
+[node name="NonActor" parent="." index="10" instance=ExtResource("4_kdvfo")]
 position = Vector2(865, 1023)
 
-[node name="PlayerActor" parent="." index="10" instance=ExtResource("3_p6dn4")]
-position = Vector2(829, 626)
-NAME = "Hero"
-weapon_skill = 0.3
-armor_piercing = 0.1
-armor_skill = 0.2
-min_damage = 2
-max_damage = 4
-
-[node name="PlayerActor2" parent="." index="11" instance=ExtResource("3_p6dn4")]
-position = Vector2(829, 647)
-NAME = "Hero"
-weapon_skill = 0.3
-armor_piercing = 0.1
-armor_skill = 0.2
-min_damage = 2
-max_damage = 4
-
-[node name="NPCActor" parent="." index="12" instance=ExtResource("3_2f3lw")]
+[node name="NPCActor" parent="." index="11" instance=ExtResource("3_2f3lw")]
 position = Vector2(615, 756)
 NAME = "Bandit"
 
-[node name="NPCActor2" parent="." index="13" instance=ExtResource("3_2f3lw")]
+[node name="NPCActor2" parent="." index="12" instance=ExtResource("3_2f3lw")]
 position = Vector2(668, 630)
 NAME = "Bandit"
 
-[node name="NPCActor3" parent="." index="14" instance=ExtResource("3_2f3lw")]
+[node name="NPCActor3" parent="." index="13" instance=ExtResource("3_2f3lw")]
 position = Vector2(596, 695)
 NAME = "Bandit"
 
-[node name="NPCActor4" parent="." index="15" instance=ExtResource("3_2f3lw")]
+[node name="NPCActor4" parent="." index="14" instance=ExtResource("3_2f3lw")]
 position = Vector2(867, 1005)
 NAME = "Bandit"
 
-[node name="NPCActor5" parent="." index="16" instance=ExtResource("3_2f3lw")]
+[node name="NPCActor5" parent="." index="15" instance=ExtResource("3_2f3lw")]
 position = Vector2(847, 1021)
 NAME = "Bandit"
 
-[node name="NPCActor6" parent="." index="17" instance=ExtResource("3_2f3lw")]
+[node name="NPCActor6" parent="." index="16" instance=ExtResource("3_2f3lw")]
 position = Vector2(868, 1039)
 NAME = "Bandit"
+
+[node name="Soldier" parent="." index="17" instance=ExtResource("5_koxfm")]
+position = Vector2(812, 630)
+
+[node name="Soldier2" parent="." index="18" instance=ExtResource("5_koxfm")]
+position = Vector2(810, 612)
 
 [editable path="Map"]
