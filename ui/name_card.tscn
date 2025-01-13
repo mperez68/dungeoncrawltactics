@@ -1,42 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj0idncko62mu"]
+[gd_scene load_steps=3 format=3 uid="uid://bj0idncko62mu"]
 
 [ext_resource type="Script" path="res://ui/scripts/name_card.gd" id="1_eww6m"]
-[ext_resource type="Script" path="res://addons/simple_shapes/shapes/RectangleShape.gd" id="2_pts13"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7hdvr"]
 font_size = 12
 
-[node name="NameCard" type="CenterContainer"]
-custom_minimum_size = Vector2(0, 100)
-anchors_preset = -1
-anchor_right = 0.065
-anchor_bottom = 0.15
-offset_right = 0.119995
-offset_bottom = 2.8
+[node name="NameCard" type="MarginContainer"]
+custom_minimum_size = Vector2(65, 0)
+offset_right = 60.0
+offset_bottom = 97.0
 script = ExtResource("1_eww6m")
 
-[node name="RectangleShape" type="Polygon2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
 color = Color(0, 0, 0, 0.329412)
-polygon = PackedVector2Array(0, 0, 75, 0, 75, 100, 0, 100)
-script = ExtResource("2_pts13")
-size = Vector2(75, 100)
 
-[node name="VFlowContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 10
+
+[node name="VFlowContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Name" type="Label" parent="VFlowContainer"]
+[node name="Name" type="Label" parent="MarginContainer/VFlowContainer"]
 layout_mode = 2
 text = "NAME"
 horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="HPValues" type="Label" parent="VFlowContainer"]
+[node name="HPValues" type="Label" parent="MarginContainer/VFlowContainer"]
 layout_mode = 2
 text = "HP"
 label_settings = SubResource("LabelSettings_7hdvr")
 horizontal_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="VFlowContainer"]
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/VFlowContainer"]
 self_modulate = Color(0, 1, 0, 1)
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
@@ -45,13 +47,13 @@ step = 1.0
 value = 2.0
 show_percentage = false
 
-[node name="MPValues" type="Label" parent="VFlowContainer"]
+[node name="MPValues" type="Label" parent="MarginContainer/VFlowContainer"]
 layout_mode = 2
 text = "MP"
 label_settings = SubResource("LabelSettings_7hdvr")
 horizontal_alignment = 1
 
-[node name="MPBar" type="ProgressBar" parent="VFlowContainer"]
+[node name="MPBar" type="ProgressBar" parent="MarginContainer/VFlowContainer"]
 self_modulate = Color(0.115084, 0.351773, 1, 1)
 custom_minimum_size = Vector2(60, 12)
 layout_mode = 2

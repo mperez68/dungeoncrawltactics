@@ -3,6 +3,8 @@ extends Node
 signal new_turn_order(actors: Array[Actor])
 signal enable_ui(enable: bool)
 
+# References
+@onready var end_dialog = $EndGameDialog
 @onready var map = $Map
 @onready var pause = $TurnPauseTimer
 
@@ -32,6 +34,9 @@ func _on_timer_timeout() -> void:
 			print("all enemies killed")
 		-1:
 			print("player loses")
+			enable_ui.emit(false)
+			end_dialog.dialog_text = "YOU DIED"
+			end_dialog.visible = true
 			return
 		
 	if actors.is_empty():
@@ -89,6 +94,10 @@ func remove_non_actors_at_position(origin: Vector2) -> Array[Actor]:
 
 func add_objective(objective: Vector2):
 	objectives.push_back(objective)
+
+func end_game():
+	enable_ui.emit(false)
+	end_dialog.visible = true
 
 # private methods
 func is_conflict() -> int:

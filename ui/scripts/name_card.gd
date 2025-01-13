@@ -1,13 +1,13 @@
-extends CenterContainer
+extends Container
 
 class_name NameCard
 
-@onready var bg_rect = $RectangleShape
-@onready var name_text = $VFlowContainer/Name
-@onready var hp_bar = $VFlowContainer/HPBar
-@onready var hp_text = $VFlowContainer/HPValues
-@onready var mp_bar = $VFlowContainer/MPBar
-@onready var mp_text = $VFlowContainer/MPValues
+@onready var bg_rect = $ColorRect
+@onready var name_text = $MarginContainer/VFlowContainer/Name
+@onready var hp_bar = $MarginContainer/VFlowContainer/HPBar
+@onready var hp_text = $MarginContainer/VFlowContainer/HPValues
+@onready var mp_bar = $MarginContainer/VFlowContainer/MPBar
+@onready var mp_text = $MarginContainer/VFlowContainer/MPValues
 
 var default
 var hl_color = Color.BLACK
