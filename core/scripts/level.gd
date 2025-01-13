@@ -8,6 +8,10 @@ signal enable_ui(enable: bool)
 @onready var map = $Map
 @onready var pause = $TurnPauseTimer
 
+# Constants
+const PAUSE_LONG: float = 1
+const PAUSE_SHORT: float = 0.1
+
 var actors: Array[Actor] = []
 var non_actors: Array[Actor] = []
 var objectives: Array[Vector2] = []
@@ -19,7 +23,7 @@ func _ready() -> void:
 	# populate actors lists
 	for child in find_children("*", "Actor"):
 		if child.is_actor:
-			actors.push_front(child)
+			actors.push_back(child)
 		else:
 			non_actors.push_front(child)
 	# Shuffle, assign their index in actor node
@@ -46,6 +50,8 @@ func _on_hud_end_turn() -> void:
 
 # public methods
 func pass_turn():
+	if !pause.is_stopped():
+		return
 	enable_ui.emit(false)
 	# End game if all enemies or allies are killed
 	match is_conflict():
@@ -67,15 +73,14 @@ func pass_turn():
 		end_dialog.visible = true
 		return
 	# Iterate through actors list until a living actor is found
-	while(true):
+	active = (active + 1) % actors.size()
+	while (actors[active].hp <= 0):
 		active = (active + 1) % actors.size()
-		if actors[active].hp > 0:
-			break
 	
-	if (actors[active].target_find()):
-		pause.start()
+	if (actors[active].visible):
+		pause.start(PAUSE_LONG)
 	else:
-		_on_timer_timeout()
+		pause.start(PAUSE_SHORT)
 
 func get_active() -> Actor:
 	if !actors or active < 0 or active >= actors.size():

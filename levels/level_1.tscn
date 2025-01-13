@@ -46,22 +46,18 @@ position = Vector2(865, 1023)
 [node name="PlayerActor" parent="." index="10" instance=ExtResource("3_p6dn4")]
 position = Vector2(829, 626)
 NAME = "Hero"
-MAX_HEALTH = 5
 weapon_skill = 0.3
 armor_piercing = 0.1
 armor_skill = 0.2
-attack_range = 5
 min_damage = 2
 max_damage = 4
 
 [node name="PlayerActor2" parent="." index="11" instance=ExtResource("3_p6dn4")]
 position = Vector2(829, 647)
 NAME = "Hero"
-MAX_HEALTH = 5
 weapon_skill = 0.3
 armor_piercing = 0.1
 armor_skill = 0.2
-attack_range = 5
 min_damage = 2
 max_damage = 4
 

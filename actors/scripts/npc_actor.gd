@@ -16,9 +16,6 @@ const PAUSE_LONG = 1
 
 # public methods
 func start_turn():
-	if !target_find():
-		end_turn()
-		return
 	super()
 	if visible:
 		action_pause.start()
@@ -36,7 +33,7 @@ func target_find() -> bool:
 	var ret = false
 	var distance = 9999
 	
-	if target:
+	if target and target.hp > 0:
 		ret = true
 	else:
 		for actor in manager.actors:
@@ -69,6 +66,8 @@ func _ai_turn() -> bool:
 				select(SELECT_TYPE_WALK)
 			elif _do_action_grid(map.get_step_towards(position, target.position)):
 				center_screen(position)
+			else:
+				ret = false
 		else:
 			ret = false
 	else:

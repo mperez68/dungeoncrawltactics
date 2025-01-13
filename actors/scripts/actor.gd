@@ -198,6 +198,7 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 		SELECT_TYPE_NONE:
 			if is_exhausted():
 				end_turn()
+				return false
 			else:
 				map.clear_highlights()
 		_:
