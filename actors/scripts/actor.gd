@@ -118,7 +118,7 @@ func end_turn():
 	map.clear_highlights()
 	map.set_position_solid(position)
 	manager.pass_turn()
-	
+
 func is_exhausted() -> bool:
 	var result = true
 	if remaining_walk_range > 0:
@@ -194,36 +194,41 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 
 
 # private methods
-func _do_action_grid(map_coords: Vector2i) -> bool:
-	return _do_action(map.ground_layer.map_to_local(map_coords))
+func _do_action_grid(click_position: Vector2i) -> bool:
+	return _do_action(map.ground_layer.map_to_local(click_position))
 	
-func _do_action(map_coords: Vector2) -> bool:
+func _do_action(click_position: Vector2) -> bool:
 	# Walk
-	if select_type == SELECT_TYPE_WALK and map.can_walk(position, map_coords, remaining_walk_range):
-		remaining_walk_range -= map.get_walk_distance(position, map_coords)
-		_face(map_coords)
-		anim.play("idle " + facing)
-		position = map.get_center(map_coords)
+	if select_type == SELECT_TYPE_WALK and map.can_walk(position, click_position, remaining_walk_range):
+		remaining_walk_range -= map.get_walk_distance(position, click_position)
+		# Player Characters and Ally NPC unique
+		if is_sig:
+			# pickup non-actors
+			for pos in map.get_walk_path(position, click_position):
+				var non = manager.remove_non_actors_at_position(map.map_to_local(pos))
+				for a in non:
+					inventory.push_back(true)
+					print (inventory)
+		# move actor
 		select(SELECT_TYPE_NONE)
+		_face(click_position)
+		anim.play("idle " + facing)
+		position = map.get_center(click_position)
+			
 		if remaining_walk_range > 0:
 			select(SELECT_TYPE_WALK)
-		# pickup non-actors
-		if is_sig:
-			var non = manager.remove_non_actors_at_position(map_coords)
-			for a in non:
-				inventory.push_back(true)
-			
 	
 	# Attack
-	elif select_type == SELECT_TYPE_ATTACK and map.can_see(position, map_coords, attack_range):
+	elif select_type == SELECT_TYPE_ATTACK and map.can_see(position, click_position, attack_range):
 		# shoot if valid targets
-		var targets = manager.get_actors_at_position(map_coords)
+		var targets = manager.get_actors_at_position(click_position)
 		# break if invalid attack targets
 		if targets.is_empty() or targets.has(self):
 			return false
 		remaining_actions -= 1
-		remaining_walk_range = 0
-		_face(map_coords)
+		if remaining_actions <= 0:
+			remaining_walk_range = 0
+		_face(click_position)
 		# range or melee animation
 		if attack_range > melee_range:
 			anim.play("shoot " + facing)
@@ -238,8 +243,12 @@ func _do_action(map_coords: Vector2) -> bool:
 			target.attack(self)
 		# Reset selection
 		select(SELECT_TYPE_NONE)
+	
+	# Pass
 	else:
 		return false
+	
+	# Loop
 	return true
 
 func _face(target: Vector2):

@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://whyqrx8a4kgj"]
 
-[ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="1_f6ymn"]
-[ext_resource type="Script" path="res://core/scripts/hud.gd" id="1_wi46d"]
-[ext_resource type="PackedScene" uid="uid://bj0idncko62mu" path="res://ui/name_card.tscn" id="3_y2gvo"]
+[ext_resource type="Script" path="res://ui/scripts/hud.gd" id="1_8vc0h"]
+[ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="2_ebkg2"]
+[ext_resource type="PackedScene" uid="uid://bj0idncko62mu" path="res://ui/name_card.tscn" id="3_ijptt"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_hpbpr"]
 device = -1
@@ -13,7 +13,7 @@ unicode = 119
 events = [SubResource("InputEventKey_hpbpr")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gubex"]
-atlas = ExtResource("1_f6ymn")
+atlas = ExtResource("2_ebkg2")
 region = Rect2(48, 560, 16, 16)
 
 [sub_resource type="InputEventKey" id="InputEventKey_u651a"]
@@ -26,7 +26,7 @@ unicode = 97
 events = [SubResource("InputEventKey_u651a")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_deyin"]
-atlas = ExtResource("1_f6ymn")
+atlas = ExtResource("2_ebkg2")
 region = Rect2(48, 544, 16, 16)
 
 [sub_resource type="InputEventKey" id="InputEventKey_fl8xf"]
@@ -44,11 +44,11 @@ unicode = 101
 events = [SubResource("InputEventKey_fl8xf"), SubResource("InputEventKey_oss6c")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvmt5"]
-atlas = ExtResource("1_f6ymn")
+atlas = ExtResource("2_ebkg2")
 region = Rect2(48, 657, 16, 16)
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_wi46d")
+script = ExtResource("1_8vc0h")
 
 [node name="ActionBar" type="HFlowContainer" parent="."]
 anchors_preset = -1
@@ -96,16 +96,16 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="NameCard" parent="TurnTracker" instance=ExtResource("3_y2gvo")]
+[node name="NameCard" parent="TurnTracker" instance=ExtResource("3_ijptt")]
 layout_mode = 2
 
-[node name="NameCard2" parent="TurnTracker" instance=ExtResource("3_y2gvo")]
+[node name="NameCard2" parent="TurnTracker" instance=ExtResource("3_ijptt")]
 layout_mode = 2
 
-[node name="NameCard3" parent="TurnTracker" instance=ExtResource("3_y2gvo")]
+[node name="NameCard3" parent="TurnTracker" instance=ExtResource("3_ijptt")]
 layout_mode = 2
 
-[node name="NameCard4" parent="TurnTracker" instance=ExtResource("3_y2gvo")]
+[node name="NameCard4" parent="TurnTracker" instance=ExtResource("3_ijptt")]
 layout_mode = 2
 
 [node name="DebugUI" type="HFlowContainer" parent="."]

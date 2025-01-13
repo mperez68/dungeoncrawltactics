@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dndhjrpi143t1"]
+[gd_scene load_steps=12 format=3 uid="uid://dndhjrpi143t1"]
 
 [ext_resource type="Script" path="res://actors/scripts/actor.gd" id="1_mqx5s"]
 [ext_resource type="Script" path="res://addons/simple_shapes/shapes/RectangleShape.gd" id="3_6ct78"]
 [ext_resource type="Script" path="res://addons/simple_shapes/shapes/CircleShape.gd" id="3_bf10c"]
 [ext_resource type="SpriteFrames" uid="uid://bfwjw33jhspk" path="res://actors/scripts/Actor.tres" id="4_2sewj"]
+[ext_resource type="Script" path="res://ui/scripts/end_game_dialog.gd" id="5_76eom"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2vrl"]
 size = Vector2(16, 16)
@@ -151,6 +152,15 @@ libraries = {
 "": SubResource("AnimationLibrary_u6hrr")
 }
 
+[node name="EndGameDialog" type="AcceptDialog" parent="."]
+auto_translate_mode = 1
+title = "GAME OVER"
+initial_position = 1
+size = Vector2i(282, 100)
+dialog_text = "TREASURE LOOTED SUCCESSFULLY"
+script = ExtResource("5_76eom")
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="confirmed" from="EndGameDialog" to="EndGameDialog" method="_on_confirmed"]

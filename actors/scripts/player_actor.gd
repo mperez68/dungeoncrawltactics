@@ -35,3 +35,13 @@ func select(new_type: int) -> bool:
 			SELECT_TYPE_ATTACK:
 				map.draw_range(position, attack_range, false)
 	return ret
+
+func _do_action(click_position: Vector2) -> bool:
+	var ret = super(click_position)
+	
+	# calculate objectives
+	for objective in manager.objectives:
+		if ret and map.local_to_map(position) == map.local_to_map(objective) and !inventory.is_empty() and inventory[0]:
+			$EndGameDialog.visible = true
+	
+	return ret

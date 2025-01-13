@@ -2,23 +2,25 @@ extends Node2D
 
 signal init_camera(origin: Vector2, limit: Vector2)
 
+# References
 var hl = preload("res://core/highlightrect.tscn")
-
 @onready var ground_layer = $Ground
 @onready var wall_layer = $Vantage
 @onready var terrain_layer = $Terrain
+
+# Map Size
 @onready var offset = Vector2(ground_layer.tile_set.tile_size.x / 2, ground_layer.tile_set.tile_size.y / 2)
 @onready var rect = ground_layer.get_used_rect()
+@onready var tilemap_size = rect.end
 
+# Variables
 var astar = AStarGrid2D.new()
 var highlights = []
-var tilemap_size
 
 func _ready():
 	init_camera.emit(rect.position * ground_layer.tile_set.tile_size, rect.end * ground_layer.tile_set.tile_size)
 	
 	# Astar init
-	tilemap_size = rect.end
 	astar.region = Rect2i(Vector2i.ZERO , tilemap_size)
 	astar.cell_size = ground_layer.get_tile_set().tile_size
 	astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_EUCLIDEAN
@@ -55,16 +57,34 @@ func can_approach(start: Vector2, end: Vector2, max_distance: int = 999999) -> b
 	return path_length > 0 and path_length <= max_distance
 
 func get_step_towards(start: Vector2, end: Vector2) -> Vector2:
-	astar.set_point_solid(local_to_map(end), false)
+	var solid = astar.is_point_solid(local_to_map(end))
+	if solid:
+		astar.set_point_solid(local_to_map(end), false)
+		
 	var ret = null
 	
 	var path = astar.get_id_path(local_to_map(start), local_to_map(end))
 	if path.size() > 0:
 		ret = path[1]
 	
-	astar.set_point_solid(local_to_map(end))
-	return ret
+	if solid:
+		astar.set_point_solid(local_to_map(end))
 	
+	return ret
+
+func get_walk_path(start: Vector2, end: Vector2) -> Array[Vector2i]:
+	var solid = false
+	var end_map = local_to_map(end)
+	if astar.is_point_solid(end_map):
+		solid = true
+		astar.set_point_solid(end_map, false)
+		
+	var ret = astar.get_id_path(local_to_map(start), end_map)
+	
+	if solid:
+		astar.set_point_solid(end_map)
+	
+	return ret
 
 func get_walk_distance(start: Vector2, end: Vector2) -> int:
 	var path_length = _weighted_path(start, end)
@@ -140,6 +160,9 @@ func set_position_solid(local: Vector2, solid: bool = true):
 
 func local_to_map(local: Vector2):
 	return ground_layer.local_to_map(local)
+	
+func map_to_local(map: Vector2i):
+	return ground_layer.map_to_local(map)
 
 func draw_range(origin: Vector2, max_distance: int = 999999, walking: bool = true):
 	if walking and !can_stand(origin):

@@ -8,6 +8,7 @@ signal enable_ui(enable: bool)
 
 var actors: Array[Actor] = []
 var non_actors: Array[Actor] = []
+var objectives: Array[Vector2] = []
 var active: int = -1
 
 
@@ -28,18 +29,19 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	match is_conflict():
 		1:
-			print("player wins")
+			print("all enemies killed")
 		-1:
 			print("player loses")
-		0:
-			if actors.is_empty():
-				print("game over")
-			while(true):
-				active = (active + 1) % actors.size()
-				if actors[active].hp > 0:
-					break
-			enable_ui.emit(get_active().is_sig)
-			actors[active].start_turn()
+			return
+		
+	if actors.is_empty():
+		print("game over")
+	while(true):
+		active = (active + 1) % actors.size()
+		if actors[active].hp > 0:
+			break
+	enable_ui.emit(get_active().is_sig)
+	actors[active].start_turn()
 
 
 # UI
@@ -85,9 +87,11 @@ func remove_non_actors_at_position(origin: Vector2) -> Array[Actor]:
 	
 	return result
 
+func add_objective(objective: Vector2):
+	objectives.push_back(objective)
+
 # private methods
 func is_conflict() -> int:
-	var ret = 0
 	var sig_ct = 0
 	var insig_ct = 0
 	
