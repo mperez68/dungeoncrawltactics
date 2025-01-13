@@ -79,7 +79,7 @@ func get_walk_path(start: Vector2, end: Vector2) -> Array[Vector2i]:
 		solid = true
 		astar.set_point_solid(end_map, false)
 		
-	var ret = astar.get_id_path(local_to_map(start), end_map)
+	var ret = astar.get_id_path(local_to_map(start), end_map).slice(1)
 	
 	if solid:
 		astar.set_point_solid(end_map)
@@ -93,7 +93,7 @@ func get_walk_distance(start: Vector2, end: Vector2) -> int:
 	return path_length
 
 func _weighted_path(start: Vector2, end: Vector2) -> int:
-	var path = astar.get_id_path(ground_layer.local_to_map(start), ground_layer.local_to_map(end)).slice(1)
+	var path = get_walk_path(start, end)
 	var result = 0
 	for id in path:
 		result += astar.get_point_weight_scale(id)

@@ -40,7 +40,10 @@ func _on_timer_timeout() -> void:
 			return
 		
 	if actors.is_empty():
-		print("game over")
+		enable_ui.emit(false)
+		end_dialog.dialog_text = "NOBODY LIVED"
+		end_dialog.visible = true
+	
 	while(true):
 		active = (active + 1) % actors.size()
 		if actors[active].hp > 0:

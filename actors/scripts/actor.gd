@@ -192,6 +192,8 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 	select_type = new_type
 	return true
 
+func target_find() -> bool:
+	return true
 
 # private methods
 func _do_action_grid(click_position: Vector2i) -> bool:

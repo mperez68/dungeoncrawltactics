@@ -35,14 +35,15 @@ position = Vector2(1071, 531)
 [node name="ObjectiveRect5" parent="." index="8" instance=ExtResource("5_se2jw")]
 position = Vector2(960, 534)
 
-[node name="PlayerActor" parent="." index="9" instance=ExtResource("3_p6dn4")]
+[node name="NonActor" parent="." index="9" instance=ExtResource("4_kdvfo")]
+position = Vector2(657, 677)
+
+[node name="PlayerActor" parent="." index="10" instance=ExtResource("3_p6dn4")]
 position = Vector2(679, 711)
 NAME = "Hero"
 
-[node name="NonActor" parent="." index="10" instance=ExtResource("4_kdvfo")]
-position = Vector2(657, 677)
-
 [node name="NPCActor" parent="." index="11" instance=ExtResource("3_2f3lw")]
 position = Vector2(615, 756)
+NAME = "Bandit"
 
 [editable path="Map"]
