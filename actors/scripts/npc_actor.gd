@@ -38,7 +38,7 @@ func target_find() -> bool:
 		ret = true
 	else:
 		for actor in manager.actors:
-			var temp = map.get_walk_distance(position, actor.position)
+			var temp = map.get_walk_distance(position, actor.position, true)
 			if map.can_see(position, actor.position, aggro_range) and temp < distance and temp > 0:
 				distance = temp
 				target = actor

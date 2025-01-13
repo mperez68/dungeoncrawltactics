@@ -25,7 +25,9 @@ func _process(_delta: float) -> void:
 			bg_rect.color = select_color
 		else:
 			bg_rect.color = default
-		
+			
+		visible = actor.visible
+			
 		if actor.hp <= 0:
 			bg_rect.color = dead_color
 			hp_text.visible = false

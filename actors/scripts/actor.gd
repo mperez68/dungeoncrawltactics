@@ -31,6 +31,7 @@ var chance_text = null
 
 # unique constants
 @export var NAME = "Actor"
+@export var SIGHT_RANGE = 10
 @export var WALK_RANGE = 6
 @export var MAX_ACTIONS = 1
 @export var MAX_HEALTH = 3
@@ -66,6 +67,11 @@ var facing: String = "right"
 func _ready() -> void:
 	# center on tile
 	position = map.get_center(position)
+	
+	if is_sig:
+		_clear_fog(position, SIGHT_RANGE)
+	elif map.is_in_fog(position):
+		visible = false
 	
 	# Set solid in pathfinding
 	if corporeal:
@@ -107,7 +113,8 @@ func start_turn():
 	# fix astar pathing
 	map.set_position_solid(position, false)
 	# UI
-	center_screen()
+	if target_find():
+		center_screen()
 
 func end_turn():
 	if remaining_actions > 0:
@@ -128,6 +135,8 @@ func is_exhausted() -> bool:
 	return result
 
 func center_screen(target: Vector2 = Vector2(-666, -666)):
+	if !visible:
+		return
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(camera, "zoom", Vector2(camera.ZOOM_MAX, camera.ZOOM_MAX), ZOOM_TIME)
@@ -177,11 +186,13 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 		SELECT_TYPE_WALK:
 			if remaining_walk_range <= 0:
 				return false
-			map.draw_range(position, remaining_walk_range)
+			if visible:
+				map.draw_range(position, remaining_walk_range)
 		SELECT_TYPE_ATTACK:
 			if remaining_actions <= 0:
 				return false
-			map.draw_range(position, attack_range, false)
+			if visible:
+				map.draw_range(position, attack_range, false)
 		SELECT_TYPE_NONE:
 			if is_exhausted():
 				end_turn()
@@ -198,15 +209,31 @@ func target_find() -> bool:
 # private methods
 func _do_action_grid(click_position: Vector2i) -> bool:
 	return _do_action(map.ground_layer.map_to_local(click_position))
-	
+
+func _clear_fog(origin: Vector2, radius: int):
+	map.clear_fog(origin, radius)
+	for actor in manager.actors:
+		if actor.visible and map.is_in_fog(actor.position):
+			actor.visible = false
+		elif !actor.visible and !map.is_in_fog(actor.position):
+			actor.visible = true
+	for actor in manager.non_actors:
+		if actor.visible and map.is_in_fog(actor.position):
+			actor.visible = false
+		elif !actor.visible and !map.is_in_fog(actor.position):
+			actor.visible = true
+
 func _do_action(click_position: Vector2) -> bool:
 	# Walk
 	if select_type == SELECT_TYPE_WALK and map.can_walk(position, click_position, remaining_walk_range):
 		remaining_walk_range -= map.get_walk_distance(position, click_position)
 		# Player Characters and Ally NPC unique
 		if is_sig:
-			# pickup non-actors
+			# Iterate along walking path taken
 			for pos in map.get_walk_path(position, click_position):
+				# clear fog of war
+				_clear_fog(map.map_to_local(pos), SIGHT_RANGE)
+				# pickup non-actors
 				var non = manager.remove_non_actors_at_position(map.map_to_local(pos))
 				for a in non:
 					inventory.push_back(true)
@@ -216,7 +243,12 @@ func _do_action(click_position: Vector2) -> bool:
 		_face(click_position)
 		anim.play("idle " + facing)
 		position = map.get_center(click_position)
-			
+		# fog of war visibility
+		if !is_sig and map.is_in_fog(position) and visible:
+			visible = false
+		elif !is_sig and !map.is_in_fog(position) and !visible:
+			visible = true
+		
 		if remaining_walk_range > 0:
 			select(SELECT_TYPE_WALK)
 	

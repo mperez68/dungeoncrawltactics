@@ -7,6 +7,7 @@ var hl = preload("res://core/highlightrect.tscn")
 @onready var ground_layer = $Ground
 @onready var wall_layer = $Vantage
 @onready var terrain_layer = $Terrain
+@onready var fog_layer = $FogOfWar
 
 # Map Size
 @onready var offset = Vector2(ground_layer.tile_set.tile_size.x / 2, ground_layer.tile_set.tile_size.y / 2)
@@ -19,6 +20,7 @@ var highlights = []
 
 func _ready():
 	init_camera.emit(rect.position * ground_layer.tile_set.tile_size, rect.end * ground_layer.tile_set.tile_size)
+	fog_layer.visible = true
 	
 	# Astar init
 	astar.region = Rect2i(Vector2i.ZERO , tilemap_size)
@@ -72,10 +74,10 @@ func get_step_towards(start: Vector2, end: Vector2) -> Vector2:
 	
 	return ret
 
-func get_walk_path(start: Vector2, end: Vector2) -> Array[Vector2i]:
+func get_walk_path(start: Vector2, end: Vector2, clear_solid_at_location: bool = false) -> Array[Vector2i]:
 	var solid = false
 	var end_map = local_to_map(end)
-	if astar.is_point_solid(end_map):
+	if astar.is_point_solid(end_map) and clear_solid_at_location:
 		solid = true
 		astar.set_point_solid(end_map, false)
 		
@@ -86,14 +88,14 @@ func get_walk_path(start: Vector2, end: Vector2) -> Array[Vector2i]:
 	
 	return ret
 
-func get_walk_distance(start: Vector2, end: Vector2) -> int:
-	var path_length = _weighted_path(start, end)
+func get_walk_distance(start: Vector2, end: Vector2, clear_solid_at_location: bool = false) -> int:
+	var path_length = _weighted_path(start, end, clear_solid_at_location)
 	if path_length == 0:
 		return -1
 	return path_length
 
-func _weighted_path(start: Vector2, end: Vector2) -> int:
-	var path = get_walk_path(start, end)
+func _weighted_path(start: Vector2, end: Vector2, clear_solid_at_location: bool = false) -> int:
+	var path = get_walk_path(start, end, clear_solid_at_location)
 	var result = 0
 	for id in path:
 		result += astar.get_point_weight_scale(id)
@@ -173,7 +175,8 @@ func draw_range(origin: Vector2, max_distance: int = 999999, walking: bool = tru
 	for i in range(local_to_map(origin).x -  max_distance, local_to_map(origin).x + max_distance + 1):
 		for j in range(local_to_map(origin).y -  max_distance, local_to_map(origin).y +  max_distance + 1):
 			var target_global = ground_layer.map_to_local(Vector2i(i, j))
-			if (walking and can_walk(origin, target_global, max_distance)) or (!walking and can_see(origin, target_global, max_distance)):
+			
+			if !fog_layer.get_cell_tile_data(local_to_map(target_global)) and ((walking and can_walk(origin, target_global, max_distance)) or (!walking and can_see(origin, target_global, max_distance))):
 				var temp = hl.instantiate()
 				temp.position = target_global - offset
 				add_child(temp)
@@ -183,6 +186,17 @@ func clear_highlights():
 	for h in highlights:
 		h.queue_free()
 	highlights = []
+
+func clear_fog(origin: Vector2, radius: int):
+	var origin_grid = local_to_map(origin)
+	for i in range(origin_grid.x - radius, origin_grid.x + radius + 1):
+		for j in range(origin_grid.y - radius, origin_grid.y + radius + 1):
+			var coords = Vector2i(i, j)
+			if can_see(origin, map_to_local(coords), radius):
+				fog_layer.set_cell(coords, -1)
+
+func is_in_fog(origin: Vector2) -> bool:
+	return fog_layer.get_cell_tile_data(local_to_map(origin)) and true
 
 # util
 func get_orthogonal_line(origin: Vector2, target: Vector2) -> Array[Vector2i]:

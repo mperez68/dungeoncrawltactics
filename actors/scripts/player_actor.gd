@@ -17,8 +17,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			var temp = select_type
 			select(SELECT_TYPE_ATTACK)
-			_do_action(map_coords)
-			select(temp)
+			if _do_action(map_coords):
+				select(temp)
+			else:
+				select(SELECT_TYPE_NONE)
 
 
 # public methods
