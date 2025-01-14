@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://041oyenf8e7r"]
+[gd_scene load_steps=8 format=4 uid="uid://041oyenf8e7r"]
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_6vo4r"]
 [ext_resource type="PackedScene" uid="uid://n48nfh5h0ujh" path="res://actors/npc_actor.tscn" id="3_2f3lw"]
 [ext_resource type="PackedScene" uid="uid://c2spim5vs7yq" path="res://actors/non_actor.tscn" id="4_kdvfo"]
 [ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/soldier.tscn" id="5_koxfm"]
 [ext_resource type="PackedScene" uid="uid://c23cuvv8ykc1d" path="res://core/objectiverect.tscn" id="5_se2jw"]
+[ext_resource type="PackedScene" uid="uid://ddtt0nhtx1f8t" path="res://actors/archer.tscn" id="6_5jw6s"]
+[ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/wizard.tscn" id="7_v1skg"]
 
 [node name="Level" instance=ExtResource("1_6vo4r")]
 
@@ -70,7 +72,10 @@ NAME = "Bandit"
 [node name="Soldier" parent="." index="17" instance=ExtResource("5_koxfm")]
 position = Vector2(812, 630)
 
-[node name="Soldier2" parent="." index="18" instance=ExtResource("5_koxfm")]
-position = Vector2(810, 612)
+[node name="Archer" parent="." index="18" instance=ExtResource("6_5jw6s")]
+position = Vector2(811, 612)
+
+[node name="Wizard" parent="." index="19" instance=ExtResource("7_v1skg")]
+position = Vector2(811, 649)
 
 [editable path="Map"]

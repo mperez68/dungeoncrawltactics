@@ -1,9 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj0idncko62mu"]
+[gd_scene load_steps=11 format=3 uid="uid://bj0idncko62mu"]
 
 [ext_resource type="Script" path="res://ui/scripts/name_card.gd" id="1_eww6m"]
+[ext_resource type="LabelSettings" uid="uid://nkl8bfdq4k7b" path="res://ui/scripts/name_card.tres" id="2_qrebw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7hdvr"]
-font_size = 12
+[sub_resource type="Gradient" id="Gradient_yfycj"]
+colors = PackedColorArray(0, 0, 0, 0.392157, 1, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nulgl"]
+gradient = SubResource("Gradient_yfycj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j5spj"]
+texture = SubResource("GradientTexture1D_nulgl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6a16"]
+bg_color = Color(0, 0.749434, 0, 1)
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="Gradient" id="Gradient_5bm5h"]
+colors = PackedColorArray(0.434379, 0.000131012, 0.434376, 0.392157, 0, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0a1dn"]
+gradient = SubResource("Gradient_5bm5h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cgkfj"]
+texture = SubResource("GradientTexture1D_0a1dn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7xe3"]
+bg_color = Color(0.00994824, 0.238797, 1, 1)
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
 
 [node name="NameCard" type="MarginContainer"]
 custom_minimum_size = Vector2(65, 0)
@@ -27,21 +53,25 @@ layout_mode = 2
 alignment = 1
 
 [node name="Name" type="Label" parent="MarginContainer/VFlowContainer"]
+custom_minimum_size = Vector2(100, 16)
 layout_mode = 2
 text = "NAME"
+label_settings = ExtResource("2_qrebw")
 horizontal_alignment = 1
-autowrap_mode = 2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HPValues" type="Label" parent="MarginContainer/VFlowContainer"]
 layout_mode = 2
 text = "HP"
-label_settings = SubResource("LabelSettings_7hdvr")
+label_settings = ExtResource("2_qrebw")
 horizontal_alignment = 1
 
 [node name="HPBar" type="ProgressBar" parent="MarginContainer/VFlowContainer"]
-self_modulate = Color(0, 1, 0, 1)
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_j5spj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e6a16")
 max_value = 3.0
 step = 1.0
 value = 2.0
@@ -50,13 +80,14 @@ show_percentage = false
 [node name="MPValues" type="Label" parent="MarginContainer/VFlowContainer"]
 layout_mode = 2
 text = "MP"
-label_settings = SubResource("LabelSettings_7hdvr")
+label_settings = ExtResource("2_qrebw")
 horizontal_alignment = 1
 
 [node name="MPBar" type="ProgressBar" parent="MarginContainer/VFlowContainer"]
-self_modulate = Color(0.115084, 0.351773, 1, 1)
 custom_minimum_size = Vector2(60, 12)
 layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_cgkfj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t7xe3")
 max_value = 3.0
 step = 1.0
 value = 2.0

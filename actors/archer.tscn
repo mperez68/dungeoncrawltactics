@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddtt0nhtx1f8t"]
+
+[ext_resource type="PackedScene" uid="uid://c187qv1d60rfk" path="res://actors/player_actor.tscn" id="1_64yr1"]
+[ext_resource type="Script" path="res://actors/scripts/archer.gd" id="2_qn3s4"]
+[ext_resource type="SpriteFrames" uid="uid://cr5vo6mligeq3" path="res://actors/scripts/Archer.tres" id="3_22d7y"]
+
+[node name="Archer" instance=ExtResource("1_64yr1")]
+script = ExtResource("2_qn3s4")
+NAME = "Actor"
+SIGHT_RANGE = 12
+WALK_RANGE = 7
+MAX_ACTIONS = 2
+MAX_HEALTH = 5
+weapon_skill = 0.2
+armor_piercing = 0.2
+armor_skill = 0.2
+attack_range = 8
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = ExtResource("3_22d7y")
+animation = &"idle down"
