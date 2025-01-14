@@ -22,6 +22,11 @@ func _process(_delta: float) -> void:
 		name_text.text = actor.NAME
 		if actor.active:
 			bg_rect.color = hl_color
+			for i in actor.spell_book.size():
+				if actor.spell_book[i].mana_cost > actor.mp and hud.spell_buttons[i].disabled == false:
+					hud.spell_buttons[i].disabled = true
+				else:
+					hud.spell_buttons[i].disabled = false
 		elif actor.hl.visible:
 			bg_rect.color = select_color
 		else:
