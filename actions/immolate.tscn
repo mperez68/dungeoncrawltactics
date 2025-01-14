@@ -1,0 +1,114 @@
+[gd_scene load_steps=16 format=3 uid="uid://ct2kb626kkjkg"]
+
+[ext_resource type="Script" path="res://actions/scripts/immolate.gd" id="1_beskw"]
+[ext_resource type="Texture2D" uid="uid://nbtp5eua8hnb" path="res://png/Magical Effects/Large_Fire_28x28.png" id="1_bt5s8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f7ym"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(0, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wvdc"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(28, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrjkw"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(56, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr38k"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(84, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arha6"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(0, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwnm7"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(28, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yafhd"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(56, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq07e"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(84, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v167a"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(0, 56, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lavek"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(28, 56, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umdc4"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(56, 56, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13y1s"]
+atlas = ExtResource("1_bt5s8")
+region = Rect2(84, 56, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b8iq8"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f7ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wvdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrjkw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr38k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arha6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwnm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yafhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq07e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v167a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lavek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umdc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13y1s")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}]
+
+[node name="Immolate" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_b8iq8")
+autoplay = "default"
+script = ExtResource("1_beskw")
+weapon_skill = 0.5
+spell_piercing = 0.5
+attack_range = 8
+max_damage = 5
+crit_multiplier = 2.0
+crit_modifier = 0.2
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

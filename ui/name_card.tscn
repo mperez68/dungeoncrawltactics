@@ -50,10 +50,11 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VFlowContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Name" type="Label" parent="MarginContainer/VFlowContainer"]
-custom_minimum_size = Vector2(100, 16)
+custom_minimum_size = Vector2(120, 16)
 layout_mode = 2
 text = "NAME"
 label_settings = ExtResource("2_qrebw")
@@ -70,6 +71,7 @@ horizontal_alignment = 1
 [node name="HPBar" type="ProgressBar" parent="MarginContainer/VFlowContainer"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxTexture_j5spj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_e6a16")
 max_value = 3.0
@@ -86,6 +88,7 @@ horizontal_alignment = 1
 [node name="MPBar" type="ProgressBar" parent="MarginContainer/VFlowContainer"]
 custom_minimum_size = Vector2(60, 12)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxTexture_cgkfj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_t7xe3")
 max_value = 3.0

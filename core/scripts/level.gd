@@ -2,6 +2,7 @@ extends Node
 
 signal new_turn_order(actors: Array[Actor])
 signal enable_ui(enable: bool)
+signal inc_turn_counter(turn: int)
 
 # References
 @onready var end_dialog = $EndGameDialog
@@ -16,6 +17,7 @@ var actors: Array[Actor] = []
 var non_actors: Array[Actor] = []
 var objectives: Array[Vector2] = []
 var active: int = -1
+var turn_counter = 0
 
 
 # engine
@@ -47,6 +49,18 @@ func _on_hud_button_pressed(select_type: int) -> void:
 func _on_hud_end_turn() -> void:
 	actors[active].end_turn()
 
+func _on_hud_spell_pressed(spell: int) -> void:
+	actors[active].spell_pointer = spell
+	actors[active].select(Actor.SELECT_TYPE_SPELL)
+
+func _on_hud_ability_pressed(ability: int) -> void:
+	actors[active].ability_pointer = ability
+	actors[active].select(Actor.SELECT_TYPE_ABILITY)
+
+func _on_hud_inventory_pressed(item: int) -> void:
+	actors[active].inventory_pointer = item
+	actors[active].select(Actor.SELECT_TYPE_INVENTORY)
+
 
 # public methods
 func pass_turn():
@@ -73,9 +87,13 @@ func pass_turn():
 		end_dialog.visible = true
 		return
 	# Iterate through actors list until a living actor is found
-	active = (active + 1) % actors.size()
-	while (actors[active].hp <= 0):
+	while(true):
 		active = (active + 1) % actors.size()
+		if active == 0:
+			turn_counter += 1
+			inc_turn_counter.emit(turn_counter)
+		if (actors[active].hp > 0):
+			break
 	
 	if (actors[active].visible):
 		pause.start(PAUSE_LONG)

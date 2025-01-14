@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://whyqrx8a4kgj"]
+[gd_scene load_steps=16 format=3 uid="uid://whyqrx8a4kgj"]
 
 [ext_resource type="Script" path="res://ui/scripts/hud.gd" id="1_8vc0h"]
 [ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="2_ebkg2"]
@@ -47,6 +47,15 @@ events = [SubResource("InputEventKey_fl8xf"), SubResource("InputEventKey_oss6c")
 atlas = ExtResource("2_ebkg2")
 region = Rect2(48, 657, 16, 16)
 
+[sub_resource type="LabelSettings" id="LabelSettings_obf6k"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fk0fb"]
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_8vc0h")
 
@@ -60,6 +69,38 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 alignment = 1
+
+[node name="Spell0" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Spell1" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Spell2" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Spell3" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
 
 [node name="Walk" type="TextureButton" parent="ActionBar"]
 custom_minimum_size = Vector2(64, 64)
@@ -89,12 +130,39 @@ texture_normal = SubResource("AtlasTexture_fvmt5")
 stretch_mode = 0
 
 [node name="TurnTracker" type="VFlowContainer" parent="."]
-anchors_preset = 9
+anchors_preset = -1
+anchor_right = 0.198
 anchor_bottom = 1.0
-offset_right = 75.0
+offset_right = -153.096
 grow_vertical = 2
 mouse_filter = 2
 alignment = 1
+
+[node name="TurnCountCard" type="MarginContainer" parent="TurnTracker"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="TurnTracker/TurnCountCard"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.529412)
+
+[node name="VFlowContainer" type="VBoxContainer" parent="TurnTracker/TurnCountCard"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+alignment = 1
+
+[node name="TurnLabel" type="Label" parent="TurnTracker/TurnCountCard/VFlowContainer"]
+layout_mode = 2
+text = "turn:"
+label_settings = SubResource("LabelSettings_obf6k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnCount" type="Label" parent="TurnTracker/TurnCountCard/VFlowContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_fk0fb")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NameCard" parent="TurnTracker" instance=ExtResource("3_ijptt")]
 layout_mode = 2
@@ -137,6 +205,10 @@ layout_mode = 2
 text = "
 "
 
+[connection signal="pressed" from="ActionBar/Spell0" to="." method="_on_spell_pressed" binds= [0]]
+[connection signal="pressed" from="ActionBar/Spell1" to="." method="_on_spell_pressed" binds= [1]]
+[connection signal="pressed" from="ActionBar/Spell2" to="." method="_on_spell_pressed" binds= [2]]
+[connection signal="pressed" from="ActionBar/Spell3" to="." method="_on_spell_pressed" binds= [3]]
 [connection signal="pressed" from="ActionBar/Walk" to="." method="_on_pressed" binds= [1]]
 [connection signal="pressed" from="ActionBar/Attack" to="." method="_on_pressed" binds= [2]]
 [connection signal="pressed" from="ActionBar/EndTurn" to="." method="_end_turn_pressed"]

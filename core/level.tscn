@@ -34,8 +34,11 @@ script = ExtResource("5_txawa")
 [connection signal="new_turn_order" from="." to="HUD" method="_on_node_new_turn_order"]
 [connection signal="init_camera" from="Map" to="Camera" method="_on_map_init_camera"]
 [connection signal="timeout" from="TurnPauseTimer" to="." method="_on_timer_timeout"]
+[connection signal="ability_pressed" from="HUD" to="." method="_on_hud_ability_pressed"]
 [connection signal="button_pressed" from="HUD" to="." method="_on_hud_button_pressed"]
 [connection signal="end_turn" from="HUD" to="." method="_on_hud_end_turn"]
+[connection signal="inventory_pressed" from="HUD" to="." method="_on_hud_inventory_pressed"]
+[connection signal="spell_pressed" from="HUD" to="." method="_on_hud_spell_pressed"]
 [connection signal="confirmed" from="EndGameDialog" to="EndGameDialog" method="_on_confirmed"]
 
 [editable path="Map"]

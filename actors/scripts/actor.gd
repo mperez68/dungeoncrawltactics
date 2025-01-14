@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 class_name Actor
 
-enum{ SELECT_TYPE_NONE, SELECT_TYPE_WALK, SELECT_TYPE_ATTACK }
+enum{ SELECT_TYPE_NONE, SELECT_TYPE_WALK, SELECT_TYPE_ATTACK, SELECT_TYPE_SPELL, SELECT_TYPE_ABILITY, SELECT_TYPE_INVENTORY }
 
+signal update_hud(is_active: bool)
 
 # reference
 @onready var map = $"../Map"
@@ -18,12 +19,12 @@ var index = -1
 
 
 # constants
-var MIN_HIT_CHANCE = 0.05
-var BASE_HIT_CHANCE = 0.5
-var MAX_HIT_CHANCE = 0.95
-var BASE_CRIT_CHANCE = 0.05
-var VANTAGE_BONUS = 0.2
-var ZOOM_TIME = 0.5
+const MIN_HIT_CHANCE = 0.05
+const BASE_HIT_CHANCE = 0.5
+const MAX_HIT_CHANCE = 0.95
+const BASE_CRIT_CHANCE = 0.05
+const VANTAGE_BONUS = 0.2
+const ZOOM_TIME = 0.5
 
 # states
 var active = false
@@ -41,16 +42,24 @@ var chance_text = null
 @export var corporeal: bool = true
 # equipment values
 @export var weapon_skill: float = 0.1
+@export var spell_skill: float = 0
 @export var armor_piercing: float = 0.0
 @export var armor_skill: float = 0.1
+@export var magic_resist: float = 0
 @export var attack_range: int = 1
 @export var melee_range: int = 1
 @export var min_damage: int = 1
 @export var max_damage: int = 3
+@export var crit_modifier: float = 0
 @export var crit_multiplier: float = 1.5
 
 # equipment
+var spell_book: Array[Spell] = []
+var spell_pointer: int = -1
+var abilities = []
+var ability_pointer: int = -1
 var inventory = []
+var inventory_pointer: int = -1
 
 # resources -- onready to get current export values
 @onready var remaining_actions = MAX_ACTIONS
@@ -85,14 +94,20 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 # Inputs
 func _on_mouse_entered() -> void:
 	# Break here if not the active actor or active actor return null
-	var active_actor = manager.get_active()
-	if !is_actor or active or !active_actor or hp <= 0:
+	var active_actor: Actor = manager.get_active()
+	if !is_actor or !active_actor or hp <= 0:
 		return
 	# Highlight with hit chance if this actor is in range of the active actor
 	hl.visible = true
-	if chance_text == null and active_actor.remaining_actions > 0 and map.can_see(active_actor.position, position, active_actor.attack_range):
+	var targetting_range = active_actor.attack_range
+	if active_actor.select_type == Actor.SELECT_TYPE_SPELL:
+		targetting_range = active_actor.spell_book[active_actor.spell_pointer].attack_range
+	if !is_sig and chance_text == null and active_actor.remaining_actions > 0 and map.can_see(active_actor.position, position, targetting_range):
 		chance_text = t.instantiate()
-		chance_text.text = str(hit_chance(active_actor) * 100) + "%"
+		var targetting_chance = hit_chance(active_actor)
+		if active_actor.select_type == Actor.SELECT_TYPE_SPELL:
+			targetting_chance = active_actor.spell_book[active_actor.spell_pointer].hit_chance(active_actor, self)
+		chance_text.text = str(targetting_chance * 100) + "%"
 		chance_text.pending_animation = "hover"
 		add_child(chance_text)
 
@@ -106,6 +121,7 @@ func _on_mouse_exited() -> void:
 # public methods
 func start_turn():
 	active = true
+	update_hud.emit(active)
 	anim_player.play("activate")
 	# reset values
 	remaining_walk_range = WALK_RANGE
@@ -118,6 +134,7 @@ func start_turn():
 
 func end_turn():
 	active = false
+	update_hud.emit(active)
 	map.clear_highlights()
 	# Notification for passing turn with remaining actions
 	if remaining_actions > 0:
@@ -152,7 +169,7 @@ func attack(attacker: Actor):					## Attack vs. this player.
 	if rng.randf() < hit_chance(attacker):
 		var damage: int
 		var text_type = damage_text.TEXT_TYPE_NEGATIVE
-		if rng.randf() < attacker.BASE_CRIT_CHANCE:
+		if rng.randf() < attacker.BASE_CRIT_CHANCE + attacker.crit_modifier:
 			damage = attacker.get_damage(true)
 			text_type = damage_text.TEXT_TYPE_CRITICAL
 			damage_text.scale = Vector2.ONE * attacker.crit_multiplier
@@ -185,6 +202,12 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 	if select_type == new_type or !active:
 		return false
 	match new_type:
+		SELECT_TYPE_NONE:
+			if is_exhausted():
+				end_turn()
+				return false
+			else:
+				map.clear_highlights()
 		SELECT_TYPE_WALK:
 			if remaining_walk_range <= 0:
 				return false
@@ -195,12 +218,21 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 				return false
 			if visible:
 				map.draw_range(position, attack_range, false)
-		SELECT_TYPE_NONE:
-			if is_exhausted():
-				end_turn()
+		SELECT_TYPE_SPELL:
+			if remaining_actions <= 0 or !Util.is_in_range(spell_pointer, spell_book) or mp < spell_book[spell_pointer].mana_cost:
 				return false
-			else:
-				map.clear_highlights()
+			if visible:
+				map.draw_range(position, spell_book[spell_pointer].attack_range, false)
+		SELECT_TYPE_ABILITY:
+			if remaining_actions <= 0 or !Util.is_in_range(ability_pointer, abilities):
+				return false
+			if visible:
+				map.draw_range(position, abilities[ability_pointer].attack_range, false)
+		SELECT_TYPE_INVENTORY:
+			if remaining_actions <= 0 or !Util.is_in_range(inventory_pointer, inventory):
+				return false
+			if visible:
+				map.draw_range(position, inventory[inventory_pointer].attack_range, false)
 		_:
 			return false
 	select_type = new_type
@@ -278,6 +310,33 @@ func _do_action(click_position: Vector2) -> bool:
 				chance_text = null
 			target._face(position)
 			target.attack(self)
+		# Reset selection
+		select(SELECT_TYPE_NONE)
+	
+	# Spellcast
+	elif select_type == SELECT_TYPE_SPELL and map.can_see(position, click_position, spell_book[spell_pointer].attack_range) and mp >= spell_book[spell_pointer].mana_cost:
+		# shoot if valid targets
+		var targets = manager.get_actors_at_position(click_position)
+		# break if invalid attack targets
+		if targets.is_empty() or targets.has(self):
+			return false
+		remaining_actions -= 1
+		mp -= spell_book[spell_pointer].mana_cost
+		if remaining_actions <= 0:
+			remaining_walk_range = 0
+		_face(click_position)
+		# range or melee animation
+		if spell_book[spell_pointer].attack_range > melee_range:
+			anim.play("shoot " + facing)
+		else:
+			anim.play("swing " + facing)
+		# Attack all targets
+		for target in targets:
+			if chance_text != null:
+				chance_text.queue_free()
+				chance_text = null
+			target._face(position)
+			spell_book[spell_pointer].attack(self, target)
 		# Reset selection
 		select(SELECT_TYPE_NONE)
 	

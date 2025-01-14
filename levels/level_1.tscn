@@ -50,7 +50,7 @@ position = Vector2(615, 756)
 NAME = "Bandit"
 
 [node name="NPCActor2" parent="." index="12" instance=ExtResource("3_2f3lw")]
-position = Vector2(668, 630)
+position = Vector2(652, 647)
 NAME = "Bandit"
 
 [node name="NPCActor3" parent="." index="13" instance=ExtResource("3_2f3lw")]
@@ -70,12 +70,24 @@ position = Vector2(868, 1039)
 NAME = "Bandit"
 
 [node name="Soldier" parent="." index="17" instance=ExtResource("5_koxfm")]
-position = Vector2(812, 630)
+position = Vector2(836, 629)
 
 [node name="Archer" parent="." index="18" instance=ExtResource("6_5jw6s")]
-position = Vector2(811, 612)
+position = Vector2(835, 611)
 
 [node name="Wizard" parent="." index="19" instance=ExtResource("7_v1skg")]
-position = Vector2(811, 649)
+position = Vector2(835, 648)
+
+[connection signal="inc_turn_counter" from="." to="HUD" method="_on_level_inc_turn_counter"]
+[connection signal="update_hud" from="NonActor" to="NonActor" method="_on_update_hud"]
+[connection signal="update_hud" from="NPCActor" to="NPCActor" method="_on_update_hud"]
+[connection signal="update_hud" from="NPCActor2" to="NPCActor2" method="_on_update_hud"]
+[connection signal="update_hud" from="NPCActor3" to="NPCActor3" method="_on_update_hud"]
+[connection signal="update_hud" from="NPCActor4" to="NPCActor4" method="_on_update_hud"]
+[connection signal="update_hud" from="NPCActor5" to="NPCActor5" method="_on_update_hud"]
+[connection signal="update_hud" from="NPCActor6" to="NPCActor6" method="_on_update_hud"]
+[connection signal="update_hud" from="Soldier" to="Soldier" method="_on_update_hud"]
+[connection signal="update_hud" from="Archer" to="Archer" method="_on_update_hud"]
+[connection signal="update_hud" from="Wizard" to="Wizard" method="_on_update_hud"]
 
 [editable path="Map"]
