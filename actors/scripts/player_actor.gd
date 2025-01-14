@@ -2,6 +2,10 @@ extends Actor
 
 class_name PlayerActor
 
+# References
+@onready var input_timer = $InputTimer
+
+
 # Inputs
 func _unhandled_input(event: InputEvent) -> void:
 	# No actions can be done while not active actor
@@ -12,8 +16,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		var map_coords = ((event.position - (camera.get_viewport_rect().end / 2))/ camera.zoom) + camera.position
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			input_timer.start()
+			await input_timer.timeout
 			_do_action(map_coords)
 		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			input_timer.start()
+			await input_timer.timeout
 			var temp = select_type
 			select(SELECT_TYPE_ATTACK)
 			if _do_action(map_coords):

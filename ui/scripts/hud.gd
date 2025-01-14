@@ -82,3 +82,11 @@ func _end_turn_pressed() -> void:
 
 func _on_spell_pressed(spell_index: int) -> void:
 	spell_pressed.emit(spell_index)
+
+
+func _on_ability_pressed(ability_index: int) -> void:
+	ability_pressed.emit(ability_index)
+
+
+func _on_equipment_pressed(equipment_index: int) -> void:
+	inventory_pressed.emit(equipment_index)

@@ -17,19 +17,20 @@ class_name Spell
 @export var max_damage: int = 2
 @export var crit_multiplier: float = 1
 @export var crit_modifier: float = 0
+@export var missile: bool = false
 
 var rng = RandomNumberGenerator.new()
 const t = preload("res://ui/fading_text.tscn")
 
-func effect(target: Actor, crit: bool):
+func effect(_target: Actor, _crit: bool):
 	pass # No Effect, override this method
 
 func hit_chance(attacker: Actor, target: Actor) -> float:		## Chance to hit this actor, given attacker node.
 	# Armor Piercing only shreds armor, can't shred armor that isn't there ¯\_(ツ)_/¯
 	var armor_total = max(target.magic_resist - spell_piercing, 0)
-	var vantage = (int(target.map.is_vantage(attacker.position)) - int(target.map.is_vantage(target.position))) * (Actor.VANTAGE_BONUS / 2)
-	var cover = target.map.get_cover(attacker.position, target.position) / 2
-	return clamp(Actor.BASE_HIT_CHANCE + attacker.spell_skill - target.magic_resist + vantage - cover, Actor.MIN_HIT_CHANCE, Actor.MAX_HIT_CHANCE)
+	var vantage = (int(target.map.is_vantage(attacker.position)) - int(target.map.is_vantage(target.position))) * Actor.VANTAGE_BONUS
+	var cover = target.map.get_cover(attacker.position, target.position)
+	return clamp(Actor.BASE_HIT_CHANCE + attacker.spell_skill - armor_total + ((vantage - cover) * int(missile)), Actor.MIN_HIT_CHANCE, Actor.MAX_HIT_CHANCE)
 
 func get_damage(crit: bool = false) -> int:						## Retrieves a random damage value within this actors range.
 	return rng.randi_range(min_damage, max_damage) * max(1, (int(crit) * crit_multiplier))

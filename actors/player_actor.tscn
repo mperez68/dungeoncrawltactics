@@ -12,3 +12,7 @@ attack_range = 3
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_grf5k")
+
+[node name="InputTimer" type="Timer" parent="." index="5"]
+wait_time = 0.1
+one_shot = true

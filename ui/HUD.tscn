@@ -70,6 +70,46 @@ grow_vertical = 0
 mouse_filter = 2
 alignment = 1
 
+[node name="Equipment0" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Equipment1" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Equipment2" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Equipment3" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Equipment4" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
 [node name="Spell0" type="TextureButton" parent="ActionBar"]
 visible = false
 custom_minimum_size = Vector2(64, 64)
@@ -95,6 +135,54 @@ mouse_default_cursor_shape = 2
 stretch_mode = 0
 
 [node name="Spell3" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Spell4" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Ability0" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Ability1" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Ability2" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Ability3" type="TextureButton" parent="ActionBar"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Spell"
+mouse_default_cursor_shape = 2
+stretch_mode = 0
+
+[node name="Ability4" type="TextureButton" parent="ActionBar"]
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -205,10 +293,21 @@ layout_mode = 2
 text = "
 "
 
+[connection signal="pressed" from="ActionBar/Equipment0" to="." method="_on_equipment_pressed" binds= [0]]
+[connection signal="pressed" from="ActionBar/Equipment1" to="." method="_on_equipment_pressed" binds= [1]]
+[connection signal="pressed" from="ActionBar/Equipment2" to="." method="_on_equipment_pressed" binds= [2]]
+[connection signal="pressed" from="ActionBar/Equipment3" to="." method="_on_equipment_pressed" binds= [3]]
+[connection signal="pressed" from="ActionBar/Equipment4" to="." method="_on_equipment_pressed" binds= [4]]
 [connection signal="pressed" from="ActionBar/Spell0" to="." method="_on_spell_pressed" binds= [0]]
 [connection signal="pressed" from="ActionBar/Spell1" to="." method="_on_spell_pressed" binds= [1]]
 [connection signal="pressed" from="ActionBar/Spell2" to="." method="_on_spell_pressed" binds= [2]]
 [connection signal="pressed" from="ActionBar/Spell3" to="." method="_on_spell_pressed" binds= [3]]
+[connection signal="pressed" from="ActionBar/Spell4" to="." method="_on_spell_pressed" binds= [4]]
+[connection signal="pressed" from="ActionBar/Ability0" to="." method="_on_ability_pressed" binds= [0]]
+[connection signal="pressed" from="ActionBar/Ability1" to="." method="_on_ability_pressed" binds= [1]]
+[connection signal="pressed" from="ActionBar/Ability2" to="." method="_on_ability_pressed" binds= [2]]
+[connection signal="pressed" from="ActionBar/Ability3" to="." method="_on_ability_pressed" binds= [3]]
+[connection signal="pressed" from="ActionBar/Ability4" to="." method="_on_ability_pressed" binds= [4]]
 [connection signal="pressed" from="ActionBar/Walk" to="." method="_on_pressed" binds= [1]]
 [connection signal="pressed" from="ActionBar/Attack" to="." method="_on_pressed" binds= [2]]
 [connection signal="pressed" from="ActionBar/EndTurn" to="." method="_end_turn_pressed"]
