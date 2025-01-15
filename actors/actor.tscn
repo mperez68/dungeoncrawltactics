@@ -151,6 +151,14 @@ libraries = {
 "": SubResource("AnimationLibrary_u6hrr")
 }
 
+[node name="InputTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="ActionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

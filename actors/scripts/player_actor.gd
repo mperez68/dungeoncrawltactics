@@ -2,9 +2,6 @@ extends Actor
 
 class_name PlayerActor
 
-# References
-@onready var input_timer = $InputTimer
-
 
 # Inputs
 func _unhandled_input(event: InputEvent) -> void:
@@ -18,13 +15,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			input_timer.start()
 			await input_timer.timeout
-			_do_action(map_coords)
+			await _do_action(map_coords)
 		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			input_timer.start()
 			await input_timer.timeout
 			var temp = select_type
 			select(SELECT_TYPE_ATTACK)
-			if _do_action(map_coords):
+			if await _do_action(map_coords):
 				select(temp)
 			else:
 				select(SELECT_TYPE_NONE)
@@ -35,10 +32,17 @@ func start_turn():
 	super()
 	select(SELECT_TYPE_WALK)
 
+func select(new_type: int) -> bool:
+	var ret = super(new_type)
+	match new_type:
+		SELECT_TYPE_NONE:
+			if is_exhausted():
+				end_turn()
+	return ret
 
 # Private methods
 func _do_action(click_position: Vector2) -> bool:
-	var ret = super(click_position)
+	var ret = await super(click_position)
 	
 	# calculate objectives
 	for objective in manager.objectives:

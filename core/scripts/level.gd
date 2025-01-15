@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	enable_ui.emit(get_active().is_sig)
-	actors[active].start_turn()
+	await actors[active].start_turn()
 
 
 # UI
@@ -86,6 +86,9 @@ func pass_turn():
 		end_dialog.dialog_text = "NOBODY LIVED"
 		end_dialog.visible = true
 		return
+	var time = PAUSE_LONG
+	if !actors[active].visible:
+		time = PAUSE_SHORT
 	# Iterate through actors list until a living actor is found
 	while(true):
 		active = (active + 1) % actors.size()
@@ -95,15 +98,18 @@ func pass_turn():
 		if (actors[active].hp > 0):
 			break
 	
-	if (actors[active].visible):
-		pause.start(PAUSE_LONG)
-	else:
-		pause.start(PAUSE_SHORT)
+	pause.start(time)
 
 func get_active() -> Actor:
 	if !actors or active < 0 or active >= actors.size():
 		return null
 	return actors[active]
+
+func get_all_actors() -> Array[Actor]:
+	var ret: Array[Actor] = []
+	ret.append_array(actors)
+	ret.append_array(non_actors)
+	return ret
 
 func get_actors_at_position(origin: Vector2, radius:int = 0) -> Array:
 	var result = []

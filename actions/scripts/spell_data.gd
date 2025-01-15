@@ -35,10 +35,10 @@ func hit_chance(attacker: Actor, target: Actor) -> float:		## Chance to hit this
 func get_damage(crit: bool = false) -> int:						## Retrieves a random damage value within this actors range.
 	return rng.randi_range(min_damage, max_damage) * max(1, (int(crit) * crit_multiplier))
 
-func attack(attacker: Actor, target: Actor):					## Attack vs. this player.
+func attack(attacker: Actor, target: Actor) -> int:				## Attack vs. this player.
 	var damage_text = t.instantiate()
+	var damage: int = 0
 	if rng.randf() < hit_chance(attacker, target):
-		var damage: int
 		var text_type = damage_text.TEXT_TYPE_NEGATIVE
 		if rng.randf() < attacker.BASE_CRIT_CHANCE + attacker.crit_modifier:
 			damage = attacker.get_damage(true)
@@ -62,6 +62,7 @@ func attack(attacker: Actor, target: Actor):					## Attack vs. this player.
 	target.add_child(self)
 	play("hit")
 	target.add_child(damage_text)
+	return damage
 
 
 # Engine

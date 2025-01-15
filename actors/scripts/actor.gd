@@ -13,6 +13,8 @@ signal update_hud(is_active: bool)
 @onready var hl = $HighlightBox
 @onready var anim = $AnimatedSprite2D
 @onready var anim_player = $AnimationPlayer
+@onready var input_timer = $InputTimer
+@onready var action_timer = $ActionTimer
 const t = preload("res://ui/fading_text.tscn")
 var rng = RandomNumberGenerator.new()
 var index = -1
@@ -29,6 +31,7 @@ const ZOOM_TIME = 0.5
 # states
 var active = false
 var chance_text = null
+var debug = false
 
 # unique constants
 @export var NAME = "Actor"
@@ -133,6 +136,8 @@ func start_turn():
 		center_screen()
 
 func end_turn():
+	if !action_timer.is_stopped:
+		await action_timer.timeout
 	active = false
 	update_hud.emit(active)
 	map.clear_highlights()
@@ -164,10 +169,16 @@ func center_screen(target: Vector2 = Vector2(-666, -666)):
 		pos = (pos + target) / 2
 	camera.position = pos
 
-func attack(attacker: Actor):					## Attack vs. this player.
+func attack(attacker: Actor) -> int:				## Attack vs. this player.
+	var is_hidden = map.is_in_fog(attacker.position)
+	# reveal temporarily if hidden
+	if is_hidden:
+		_clear_fog(attacker.position, 0)
+		center_screen((position + attacker.position) / 2)
+	
 	var damage_text = t.instantiate()
+	var damage: int = 0
 	if rng.randf() < hit_chance(attacker):
-		var damage: int
 		var text_type = damage_text.TEXT_TYPE_NEGATIVE
 		if rng.randf() < attacker.BASE_CRIT_CHANCE + attacker.crit_modifier:
 			damage = attacker.get_damage(true)
@@ -187,6 +198,13 @@ func attack(attacker: Actor):					## Attack vs. this player.
 		anim.play("die " + facing)
 		map.set_position_solid(position, false)
 	add_child(damage_text)
+	
+	if is_hidden:
+		action_timer.start()
+		await action_timer.timeout
+		_set_fog(attacker.position, 0)
+	
+	return damage
 
 func hit_chance(attacker: Actor) -> float:		## Chance to hit this actor, given attacker node.
 	# Armor Piercing only shreds armor, can't shred armor that isn't there ¯\_(ツ)_/¯
@@ -204,10 +222,8 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 	match new_type:
 		SELECT_TYPE_NONE:
 			if is_exhausted():
-				end_turn()
 				return false
-			else:
-				map.clear_highlights()
+			map.clear_highlights()
 		SELECT_TYPE_WALK:
 			if remaining_walk_range <= 0:
 				return false
@@ -242,21 +258,22 @@ func target_find() -> bool:
 	return true
 
 # private methods
-func _do_action_grid(click_position: Vector2i) -> bool:
-	return _do_action(map.ground_layer.map_to_local(click_position))
+func _set_fog(origin: Vector2, radius: int):
+	map.set_fog(origin, radius)
+	for actor in manager.get_all_actors():
+		if actor.visible and map.is_in_fog(actor.position):
+			actor.visible = false
 
 func _clear_fog(origin: Vector2, radius: int):
 	map.clear_fog(origin, radius)
-	for actor in manager.actors:
+	for actor in manager.get_all_actors():
 		if actor.visible and map.is_in_fog(actor.position):
 			actor.visible = false
 		elif !actor.visible and !map.is_in_fog(actor.position):
 			actor.visible = true
-	for actor in manager.non_actors:
-		if actor.visible and map.is_in_fog(actor.position):
-			actor.visible = false
-		elif !actor.visible and !map.is_in_fog(actor.position):
-			actor.visible = true
+
+func _do_action_grid(click_position: Vector2i) -> bool:
+	return await _do_action(map.ground_layer.map_to_local(click_position))
 
 func _do_action(click_position: Vector2) -> bool:
 	# Walk
@@ -288,7 +305,7 @@ func _do_action(click_position: Vector2) -> bool:
 			select(SELECT_TYPE_WALK)
 	
 	# Attack
-	elif select_type == SELECT_TYPE_ATTACK and map.can_see(position, click_position, attack_range):
+	elif select_type == SELECT_TYPE_ATTACK and map.can_see(position, click_position, attack_range) and remaining_actions > 0:
 		# shoot if valid targets
 		var targets = manager.get_actors_at_position(click_position)
 		# break if invalid attack targets
@@ -309,12 +326,12 @@ func _do_action(click_position: Vector2) -> bool:
 				chance_text.queue_free()
 				chance_text = null
 			target._face(position)
-			target.attack(self)
+			await target.attack(self)
 		# Reset selection
 		select(SELECT_TYPE_NONE)
 	
 	# Spellcast
-	elif select_type == SELECT_TYPE_SPELL and map.can_see(position, click_position, spell_book[spell_pointer].attack_range) and mp >= spell_book[spell_pointer].mana_cost:
+	elif select_type == SELECT_TYPE_SPELL and map.can_see(position, click_position, spell_book[spell_pointer].attack_range) and mp >= spell_book[spell_pointer].mana_cost and remaining_actions > 0:
 		# shoot if valid targets
 		var targets = manager.get_actors_at_position(click_position)
 		# break if invalid attack targets

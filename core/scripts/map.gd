@@ -14,6 +14,9 @@ var hl = preload("res://core/highlightrect.tscn")
 @onready var rect = ground_layer.get_used_rect()
 @onready var tilemap_size = rect.end
 
+# Constants
+const ATLAS_FOG = Vector2i(8, 28)
+
 # Variables
 var astar = AStarGrid2D.new()
 var highlights = []
@@ -52,10 +55,16 @@ func can_walk(start: Vector2, end: Vector2, max_distance: int = 999999) -> bool:
 	var path_length = _weighted_path(start, end)
 	return path_length > 0 and path_length <= max_distance
 
-func can_approach(start: Vector2, end: Vector2, max_distance: int = 999999) -> bool:
-	astar.set_point_solid(local_to_map(end), false)
-	var path_length = _weighted_path(start, end)
-	astar.set_point_solid(local_to_map(end))
+func can_approach(start: Vector2, end: Vector2, max_distance: int = 999999, can_approach_solid: bool = false) -> bool:
+	var solid = false
+	if astar.is_point_solid(local_to_map(end)) and can_approach_solid:
+		solid = true
+		astar.set_point_solid(local_to_map(end), false)
+	
+	var path_length = _weighted_path(start, end, can_approach_solid)
+	
+	if solid:
+		astar.set_point_solid(local_to_map(end))
 	return path_length > 0 and path_length <= max_distance
 
 func get_step_towards(start: Vector2, end: Vector2) -> Vector2:
@@ -75,8 +84,8 @@ func get_step_towards(start: Vector2, end: Vector2) -> Vector2:
 	return ret
 
 func get_walk_path(start: Vector2, end: Vector2, clear_solid_at_location: bool = false) -> Array[Vector2i]:
-	var solid = false
 	var end_map = local_to_map(end)
+	var solid = false
 	if astar.is_point_solid(end_map) and clear_solid_at_location:
 		solid = true
 		astar.set_point_solid(end_map, false)
@@ -187,6 +196,14 @@ func clear_highlights():
 		h.queue_free()
 	highlights = []
 
+func set_fog(origin: Vector2, radius: int):
+	var origin_grid = local_to_map(origin)
+	for i in range(origin_grid.x - radius, origin_grid.x + radius + 1):
+		for j in range(origin_grid.y - radius, origin_grid.y + radius + 1):
+			var coords = Vector2i(i, j)
+			if can_see(origin, map_to_local(coords), radius):
+				fog_layer.set_cell(coords, 0, ATLAS_FOG)
+
 func clear_fog(origin: Vector2, radius: int):
 	var origin_grid = local_to_map(origin)
 	for i in range(origin_grid.x - radius, origin_grid.x + radius + 1):
@@ -238,6 +255,26 @@ func get_line(origin: Vector2, target: Vector2) -> Array[Vector2i]:
 		points.push_back(local_to_map(lerp(origin, target, i / length)))
 	
 	return points.slice(1)
+
+func get_line_at_range(origin: Vector2, target: Vector2, sight_range: int) -> Array[Vector2i]:
+	var points: Array[Vector2i] = []
+	
+	var length: float = diagonal_distance(origin, target)
+	for i in length:
+		points.push_back(local_to_map(lerp(origin, target, i / length)))
+	
+	if points.size() < sight_range + 1:
+		var f: Array[Vector2i] = []
+		return f
+	
+	return points.slice(1, -sight_range + 1)
+
+func get_nearest_tile(origin: Vector2, target: Vector2, sight_range: int = 9999) -> Vector2:
+	var line = get_orthogonal_line(origin, target)
+	for point in line:
+		if can_walk(origin, map_to_local(point)) and can_see(map_to_local(point), target, sight_range):
+			return point
+	return Vector2.ZERO
 
 func diagonal_distance(origin: Vector2, target: Vector2) -> int:
 	var dif = local_to_map(origin - target)

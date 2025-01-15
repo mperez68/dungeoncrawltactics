@@ -11,6 +11,3 @@ NAME = "NPC"
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("3_qws2y")
-
-[node name="ActionPause" type="Timer" parent="." index="5"]
-wait_time = 0.75
