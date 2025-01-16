@@ -14,7 +14,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjem"]
 noise_type = 3
-seed = 1032160347
+seed = 1558689444
 frequency = 0.0229
 
 [sub_resource type="Resource" id="Resource_o28eu"]
@@ -102,27 +102,28 @@ tile = SubResource("Resource_ukgk5")
 min = 0.25
 max = 1.0
 
-[sub_resource type="Resource" id="Resource_rorxm"]
+[sub_resource type="Resource" id="Resource_33eu1"]
 script = ExtResource("6_k0tdi")
-type = 1
+type = 0
 tilemap_layer = 3
-terrain_set = 3
-terrain = 4
+source_id = 5
+atlas_coord = Vector2i(9, 14)
+alternative_tile = 0
 id = ""
 layer = 2
 
-[sub_resource type="Resource" id="Resource_moj6c"]
+[sub_resource type="Resource" id="Resource_gpir0"]
 resource_name = "Fog"
 script = ExtResource("8_rqf68")
 title = "Fog"
-tile = SubResource("Resource_rorxm")
+tile = SubResource("Resource_33eu1")
 min = -1.0
 max = 1.0
 
 [sub_resource type="Resource" id="Resource_jy54x"]
 resource_name = "Settings"
 script = ExtResource("7_17ymy")
-tiles = Array[ExtResource("8_rqf68")]([SubResource("Resource_8dlix"), SubResource("Resource_4wi6b"), SubResource("Resource_t3jsl"), SubResource("Resource_ot6v2"), SubResource("Resource_7cfog"), SubResource("Resource_moj6c")])
+tiles = Array[ExtResource("8_rqf68")]([SubResource("Resource_8dlix"), SubResource("Resource_4wi6b"), SubResource("Resource_t3jsl"), SubResource("Resource_ot6v2"), SubResource("Resource_7cfog"), SubResource("Resource_gpir0")])
 noise = SubResource("FastNoiseLite_nfjem")
 infinite = false
 world_size = Vector2i(64, 64)
