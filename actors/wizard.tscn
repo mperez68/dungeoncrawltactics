@@ -9,6 +9,7 @@ script = ExtResource("2_novfk")
 NAME = "Actor"
 SIGHT_RANGE = 8
 MAX_MANA = 8
+magic_resist = 0.2
 attack_range = 1
 
 [node name="AnimatedSprite2D" parent="." index="2"]

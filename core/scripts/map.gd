@@ -85,6 +85,10 @@ func get_step_towards(start: Vector2, end: Vector2) -> Vector2:
 
 func get_walk_path(start: Vector2, end: Vector2, clear_solid_at_location: bool = false) -> Array[Vector2i]:
 	var end_map = local_to_map(end)
+	
+	if !astar.is_in_boundsv(end_map):
+		return []
+	
 	var solid = false
 	if astar.is_point_solid(end_map) and clear_solid_at_location:
 		solid = true

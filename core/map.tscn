@@ -1,19 +1,104 @@
-[gd_scene load_steps=13 format=3 uid="uid://xjcnpf3inm4w"]
+[gd_scene load_steps=26 format=3 uid="uid://xjcnpf3inm4w"]
 
 [ext_resource type="PackedScene" uid="uid://bymhruklcupm" path="res://core/layer.tscn" id="1_2dpeh"]
 [ext_resource type="Script" path="res://core/scripts/map.gd" id="1_jxr3s"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator.gd" id="2_cws7t"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="3_slpke"]
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="4_jl8dd"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="4_ukabr"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/walker_generator/walker_generator_settings.gd" id="5_k7lo2"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/fill.gd" id="5_ljdel"]
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="6_k0tdi"]
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="7_17ymy"]
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="8_rqf68"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjem"]
+seed = 1267124558
+frequency = 0.0252
+
+[sub_resource type="Resource" id="Resource_o28eu"]
+script = ExtResource("6_k0tdi")
+type = 1
+tilemap_layer = 0
+terrain_set = 1
+terrain = 0
+id = ""
+layer = 0
+
+[sub_resource type="Resource" id="Resource_8dlix"]
+resource_name = "Water"
+script = ExtResource("8_rqf68")
+title = "Water"
+tile = SubResource("Resource_o28eu")
+min = -1.0
+max = 0.1
+
+[sub_resource type="Resource" id="Resource_elach"]
+script = ExtResource("6_k0tdi")
+type = 1
+tilemap_layer = 0
+terrain_set = 1
+terrain = 1
+id = ""
+layer = 0
+
+[sub_resource type="Resource" id="Resource_4wi6b"]
+resource_name = "Sand"
+script = ExtResource("8_rqf68")
+title = "Sand"
+tile = SubResource("Resource_elach")
+min = 0.1
+max = 0.2
+
+[sub_resource type="Resource" id="Resource_h7xho"]
+script = ExtResource("6_k0tdi")
+type = 1
+tilemap_layer = 0
+terrain_set = 1
+terrain = 2
+id = ""
+layer = 0
+
+[sub_resource type="Resource" id="Resource_t3jsl"]
+resource_name = "Grass"
+script = ExtResource("8_rqf68")
+title = "Grass"
+tile = SubResource("Resource_h7xho")
+min = 0.2
+max = 0.45
+
+[sub_resource type="Resource" id="Resource_ho7r5"]
+script = ExtResource("6_k0tdi")
+type = 1
+tilemap_layer = 0
+terrain_set = 1
+terrain = 3
+id = ""
+layer = 0
+
+[sub_resource type="Resource" id="Resource_ot6v2"]
+resource_name = "Rocks"
+script = ExtResource("8_rqf68")
+title = "Rocks"
+tile = SubResource("Resource_ho7r5")
+min = 0.45
+max = 1.0
+
+[sub_resource type="Resource" id="Resource_jy54x"]
+resource_name = "Settings"
+script = ExtResource("7_17ymy")
+tiles = Array[ExtResource("8_rqf68")]([SubResource("Resource_8dlix"), SubResource("Resource_4wi6b"), SubResource("Resource_t3jsl"), SubResource("Resource_ot6v2")])
+noise = SubResource("FastNoiseLite_nfjem")
+infinite = false
+world_size = Vector2i(64, 64)
+falloff_enabled = false
+modifiers = Array[ExtResource("4_ukabr")]([])
 
 [sub_resource type="Resource" id="Resource_qnt32"]
 script = ExtResource("6_k0tdi")
 type = 1
 tilemap_layer = 0
-terrain_set = 0
+terrain_set = 1
 terrain = 1
 id = ""
 layer = 0
@@ -33,8 +118,8 @@ filter_type = 0
 script = ExtResource("6_k0tdi")
 type = 1
 tilemap_layer = 0
-terrain_set = 0
-terrain = 6
+terrain_set = 1
+terrain = 0
 id = ""
 layer = 0
 
@@ -77,7 +162,12 @@ z_index = 2
 script = ExtResource("3_slpke")
 tile_map_layers = [NodePath("../Ground"), NodePath("../Vantage"), NodePath("../Terrain"), NodePath("../FogOfWar")]
 terrain_gap_fix = true
-generator = NodePath("../WalkerGenerator")
+generator = NodePath("../NoiseGenerator")
+
+[node name="NoiseGenerator" type="Node" parent="."]
+script = ExtResource("4_jl8dd")
+settings = SubResource("Resource_jy54x")
+generate_on_ready = false
 
 [node name="WalkerGenerator" type="Node" parent="."]
 script = ExtResource("2_cws7t")
