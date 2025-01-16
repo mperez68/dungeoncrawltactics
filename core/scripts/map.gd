@@ -15,7 +15,7 @@ var hl = preload("res://core/highlightrect.tscn")
 @onready var tilemap_size = rect.end
 
 # Constants
-const ATLAS_FOG = Vector2i(8, 28)
+const ATLAS_FOG = Vector2i(1, 16)
 
 # Variables
 var astar = AStarGrid2D.new()
@@ -201,17 +201,19 @@ func clear_highlights():
 	highlights = []
 
 func set_fog(origin: Vector2, radius: int):
+	var buffer = 2
 	var origin_grid = local_to_map(origin)
-	for i in range(origin_grid.x - radius, origin_grid.x + radius + 1):
-		for j in range(origin_grid.y - radius, origin_grid.y + radius + 1):
+	for i in range(origin_grid.x - radius - buffer, origin_grid.x + radius + buffer):
+		for j in range(origin_grid.y - radius - buffer, origin_grid.y + radius + buffer):
 			var coords = Vector2i(i, j)
 			if can_see(origin, map_to_local(coords), radius):
-				fog_layer.set_cell(coords, 0, ATLAS_FOG)
+				fog_layer.set_cell(coords, 5, ATLAS_FOG)
 
 func clear_fog(origin: Vector2, radius: int):
+	var buffer = 2
 	var origin_grid = local_to_map(origin)
-	for i in range(origin_grid.x - radius, origin_grid.x + radius + 1):
-		for j in range(origin_grid.y - radius, origin_grid.y + radius + 1):
+	for i in range(origin_grid.x - radius - buffer, origin_grid.x + radius + buffer):
+		for j in range(origin_grid.y - radius - buffer, origin_grid.y + radius + buffer):
 			var coords = Vector2i(i, j)
 			if can_see(origin, map_to_local(coords), radius):
 				fog_layer.set_cell(coords, -1)
