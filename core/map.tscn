@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://xjcnpf3inm4w"]
+[gd_scene load_steps=30 format=3 uid="uid://xjcnpf3inm4w"]
 
 [ext_resource type="PackedScene" uid="uid://bymhruklcupm" path="res://core/layer.tscn" id="1_2dpeh"]
 [ext_resource type="Script" path="res://core/scripts/map.gd" id="1_jxr3s"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="8_rqf68"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjem"]
-seed = 1267124558
+seed = 2065125812
 frequency = 0.0252
 
 [sub_resource type="Resource" id="Resource_o28eu"]
@@ -84,10 +84,45 @@ tile = SubResource("Resource_ho7r5")
 min = 0.45
 max = 1.0
 
+[sub_resource type="Resource" id="Resource_ukgk5"]
+script = ExtResource("6_k0tdi")
+type = 1
+tilemap_layer = 1
+terrain_set = 2
+terrain = 0
+id = ""
+layer = 1
+
+[sub_resource type="Resource" id="Resource_7cfog"]
+resource_name = "Vantage"
+script = ExtResource("8_rqf68")
+title = "Vantage"
+tile = SubResource("Resource_ukgk5")
+min = 0.5
+max = 1.0
+
+[sub_resource type="Resource" id="Resource_rorxm"]
+script = ExtResource("6_k0tdi")
+type = 0
+tilemap_layer = 3
+source_id = 0
+atlas_coord = Vector2i(8, 28)
+alternative_tile = 0
+id = ""
+layer = 2
+
+[sub_resource type="Resource" id="Resource_moj6c"]
+resource_name = "Fog"
+script = ExtResource("8_rqf68")
+title = "Fog"
+tile = SubResource("Resource_rorxm")
+min = -1.0
+max = 1.0
+
 [sub_resource type="Resource" id="Resource_jy54x"]
 resource_name = "Settings"
 script = ExtResource("7_17ymy")
-tiles = Array[ExtResource("8_rqf68")]([SubResource("Resource_8dlix"), SubResource("Resource_4wi6b"), SubResource("Resource_t3jsl"), SubResource("Resource_ot6v2")])
+tiles = Array[ExtResource("8_rqf68")]([SubResource("Resource_8dlix"), SubResource("Resource_4wi6b"), SubResource("Resource_t3jsl"), SubResource("Resource_ot6v2"), SubResource("Resource_7cfog"), SubResource("Resource_moj6c")])
 noise = SubResource("FastNoiseLite_nfjem")
 infinite = false
 world_size = Vector2i(64, 64)
