@@ -7,25 +7,7 @@
 [node name="PlayerActor" instance=ExtResource("1_4b14x")]
 script = ExtResource("2_pk1l8")
 NAME = "Player"
-SIGHT_RANGE = 10
-WALK_RANGE = 6
-MAX_ACTIONS = 1
-MAX_HEALTH = 3
-MAX_MANA = 0
 is_sig = true
-is_actor = true
-corporeal = true
-weapon_skill = 0.1
-spell_skill = 0.0
-armor_piercing = 0.0
-armor_skill = 0.1
-magic_resist = 0.0
-attack_range = 3
-melee_range = 1
-min_damage = 1
-max_damage = 3
-crit_modifier = 0.0
-crit_multiplier = 1.5
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_grf5k")

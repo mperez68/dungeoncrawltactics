@@ -15,7 +15,7 @@ var hl = preload("res://core/highlightrect.tscn")
 @onready var tilemap_size = rect.end
 
 # Constants
-const ATLAS_FOG = Vector2i(1, 16)
+const ATLAS_FOG = Vector2i(9, 14)
 
 # Variables
 var astar = AStarGrid2D.new()

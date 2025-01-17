@@ -4,13 +4,11 @@
 [ext_resource type="SpriteFrames" uid="uid://cbbch13g6rrsf" path="res://actors/scripts/Cutpurse.tres" id="2_a2gj6"]
 
 [node name="Cutpurse" instance=ExtResource("1_5h14d")]
-aggro_range = 6
+aggro_range = 8
 NAME = "Pirate Cutpurse"
-SIGHT_RANGE = 6
 MAX_HEALTH = 2
 weapon_skill = 0.2
 max_damage = 2
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_a2gj6")
-animation = &"idle down"

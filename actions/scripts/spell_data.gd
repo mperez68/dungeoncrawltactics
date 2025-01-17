@@ -10,7 +10,6 @@ class_name Spell
 @export var texture_click_mask: CompressedTexture2D = preload("res://png/spell_tile.png")
 # spell values
 @export var mana_cost: int = 1
-@export var weapon_skill: float = 0.1
 @export var spell_piercing: float
 @export var attack_range: int = 1
 @export var min_damage: int = 1
@@ -27,7 +26,7 @@ func effect(_target: Actor, _crit: bool):
 
 func hit_chance(attacker: Actor, target: Actor) -> float:		## Chance to hit this actor, given attacker node.
 	# Armor Piercing only shreds armor, can't shred armor that isn't there ¯\_(ツ)_/¯
-	var armor_total = max(target.magic_resist - spell_piercing, 0)
+	var armor_total = max(target.magic_resist - attacker.spell_piercing  - spell_piercing, 0)
 	var vantage = (int(target.map.is_vantage(attacker.position)) - int(target.map.is_vantage(target.position))) * Actor.VANTAGE_BONUS
 	var cover = target.map.get_cover(attacker.position, target.position)
 	return clamp(Actor.BASE_HIT_CHANCE + attacker.spell_skill - armor_total + ((vantage - cover) * int(missile)), Actor.MIN_HIT_CHANCE, Actor.MAX_HIT_CHANCE)

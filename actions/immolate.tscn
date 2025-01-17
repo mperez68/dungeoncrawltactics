@@ -104,7 +104,6 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_b8iq8")
 autoplay = "default"
 script = ExtResource("1_beskw")
-weapon_skill = 0.5
 spell_piercing = 0.5
 attack_range = 8
 max_damage = 5

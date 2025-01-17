@@ -6,16 +6,13 @@
 
 [node name="Archer" instance=ExtResource("1_64yr1")]
 script = ExtResource("2_qn3s4")
-NAME = "Actor"
-SIGHT_RANGE = 12
-WALK_RANGE = 7
-MAX_ACTIONS = 2
+SIGHT_RANGE = 11
 MAX_HEALTH = 5
 weapon_skill = 0.2
 armor_piercing = 0.2
 armor_skill = 0.2
 attack_range = 8
+max_damage = 2
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("3_22d7y")
-animation = &"idle down"

@@ -6,12 +6,11 @@
 
 [node name="Wizard" instance=ExtResource("1_le3ou")]
 script = ExtResource("2_novfk")
-NAME = "Actor"
-SIGHT_RANGE = 8
 MAX_MANA = 8
+spell_skill = 0.1
 magic_resist = 0.2
-attack_range = 1
+attack_range = 3
+max_damage = 1
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_lirpd")
-animation = &"idle down"

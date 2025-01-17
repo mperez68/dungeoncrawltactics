@@ -6,12 +6,10 @@
 
 [node name="Soldier" instance=ExtResource("1_6cafq")]
 script = ExtResource("2_a5wm4")
-NAME = "Actor"
 MAX_HEALTH = 8
 weapon_skill = 0.3
-armor_skill = 0.3
-attack_range = 1
+armor_skill = 0.2
+min_damage = 2
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_xt7by")
-animation = &"idle down"

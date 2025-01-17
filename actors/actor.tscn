@@ -139,7 +139,7 @@ points_num = 60
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = ExtResource("4_2sewj")
-animation = &"idle right"
+animation = &"idle down"
 autoplay = "idle right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

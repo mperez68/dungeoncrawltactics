@@ -4,11 +4,11 @@
 [ext_resource type="SpriteFrames" uid="uid://oi3n3pxeislc" path="res://actors/scripts/Bandit.tres" id="2_72xdp"]
 
 [node name="Bandit" instance=ExtResource("1_d5q76")]
+aggro_range = 8
 NAME = "Pirate Bandit"
-MAX_HEALTH = 2
+MAX_HEALTH = 1
 attack_range = 8
-max_damage = 2
+max_damage = 1
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_72xdp")
-animation = &"idle down"

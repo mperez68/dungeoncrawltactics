@@ -36,7 +36,7 @@ var debug = false
 # unique constants
 @export var NAME = "Actor"
 @export var SIGHT_RANGE = 10
-@export var WALK_RANGE = 6
+@export var WALK_RANGE = 8
 @export var MAX_ACTIONS = 1
 @export var MAX_HEALTH = 3
 @export var MAX_MANA = 0
@@ -44,10 +44,11 @@ var debug = false
 @export var is_actor: bool = true
 @export var corporeal: bool = true
 # equipment values
-@export var weapon_skill: float = 0.1
+@export var weapon_skill: float = 0
 @export var spell_skill: float = 0
 @export var armor_piercing: float = 0.0
-@export var armor_skill: float = 0.1
+@export var spell_piercing: float = 0.0
+@export var armor_skill: float = 0
 @export var magic_resist: float = 0
 @export var attack_range: int = 1
 @export var melee_range: int = 1
