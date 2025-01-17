@@ -23,25 +23,31 @@ func _process(_delta: float) -> void:
 		if actor.active:
 			bg_rect.color = hl_color
 			# Populate spells
-			for i in actor.spell_book.size():
-				if actor.spell_book[i].mana_cost > actor.mp and hud.spell_buttons[i].disabled == false:
+			for i in hud.spell_buttons.size():
+				if i < actor.spell_book.size() and actor.spell_book[i].mana_cost > actor.mp and hud.spell_buttons[i].disabled == false:
 					hud.spell_buttons[i].disabled = true
 					hud.spell_buttons[i].focus_mode = Button.FOCUS_NONE
 					hud.spell_buttons[i].self_modulate = hud.BUTTON_DISABLE_COLOR
-				else:
+				elif i < actor.spell_book.size():
 					hud.spell_buttons[i].disabled = false
 					hud.spell_buttons[i].focus_mode = Button.FOCUS_CLICK
 					hud.spell_buttons[i].self_modulate = hud.BUTTON_DEFAULT_COLOR
+				elif i >= actor.spell_book.size():
+					hud.spell_buttons[i].visible = false
 			# Populate abilities
-			for i in actor.abilities.size():
-				if actor.remaining_actions <= 0 and hud.ability_buttons[i].disabled == false:
+			for i in hud.ability_buttons.size():
+				if i < actor.abilities.size() and hud.ability_buttons[i].disabled == false and (actor.remaining_actions <= 0 or actor.abilities[i].remaining_cooldown > 0):
+					hud.ability_buttons[i].visible = true
 					hud.ability_buttons[i].disabled = true
 					hud.ability_buttons[i].focus_mode = Button.FOCUS_NONE
 					hud.ability_buttons[i].self_modulate = hud.BUTTON_DISABLE_COLOR
-				elif actor.remaining_actions > 0:
+				elif i < actor.abilities.size() and actor.remaining_actions > 0 and actor.abilities[i].remaining_cooldown <= 0:
+					hud.ability_buttons[i].visible = true
 					hud.ability_buttons[i].disabled = false
 					hud.ability_buttons[i].focus_mode = Button.FOCUS_CLICK
 					hud.ability_buttons[i].self_modulate = hud.BUTTON_DEFAULT_COLOR
+				elif i >= actor.abilities.size():
+					hud.ability_buttons[i].visible = false
 			
 		elif actor.hl.visible:
 			bg_rect.color = select_color

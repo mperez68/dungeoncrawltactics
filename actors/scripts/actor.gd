@@ -60,7 +60,7 @@ var debug = false
 # equipment
 var spell_book: Array[Spell] = []
 var spell_pointer: int = -1
-var abilities: Array[Ability] = [ preload("res://actions/dash.tscn").instantiate() ]
+var abilities: Array[Ability] = []
 var ability_pointer: int = -1
 var inventory = []
 var inventory_pointer: int = -1
@@ -135,6 +135,8 @@ func start_turn():
 	# UI
 	if target_find():
 		center_screen()
+	for ability in abilities:
+		ability.countdown()
 
 func end_turn():
 	if !action_timer.is_stopped:
@@ -272,7 +274,7 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 			if visible:
 				map.draw_range(position, spell_book[spell_pointer].attack_range, false)
 		SELECT_TYPE_ABILITY:
-			if remaining_actions <= 0 or !Util.is_in_range(ability_pointer, abilities):
+			if remaining_actions <= 0 or !Util.is_in_range(ability_pointer, abilities) or abilities[ability_pointer].remaining_cooldown > 0:
 				return false
 			if visible:
 				abilities[ability_pointer].effect(self, map)

@@ -74,7 +74,7 @@ alignment = 1
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Equipment"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -82,7 +82,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Equipment"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -90,7 +90,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Equipment"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -98,7 +98,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Equipment"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -106,7 +106,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Equipment"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -154,7 +154,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Ability"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -162,7 +162,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Ability"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -170,7 +170,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Ability"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -178,7 +178,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Ability"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 
@@ -186,7 +186,7 @@ stretch_mode = 0
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "Spell"
+tooltip_text = "Ability"
 mouse_default_cursor_shape = 2
 stretch_mode = 0
 

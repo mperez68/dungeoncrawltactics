@@ -11,11 +11,12 @@ enum type{ NO_TARGET, POSITION, SINGLE_TARGET, MULTI_TARGET }
 @export var texture_disabled: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var texture_focused: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var texture_click_mask: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
-
 @export var ability_type: type = type.NO_TARGET
+@export var cooldown: int = 3
 
 var rng = RandomNumberGenerator.new()
 var map: Map
+var remaining_cooldown: int = 0
 const t = preload("res://ui/fading_text.tscn")
 
 func effect(user: Actor, map: Map = null, target: Variant = null) -> bool:
@@ -34,6 +35,7 @@ func effect(user: Actor, map: Map = null, target: Variant = null) -> bool:
 			ret = _effect_actor_array(user, target)
 		_:
 			ret = false
+	remaining_cooldown = cooldown * int(ret)
 	return ret
 
 func _effect_no_target(user: Actor) -> bool:
@@ -52,6 +54,10 @@ func _effect_actor_array(user: Actor, target: Variant) -> bool:
 	print(user, "::", target, " :: ACTOR ARRAY, NOT DEFINED")
 	return false
 
+func countdown():
+	if remaining_cooldown > 0:
+		remaining_cooldown -= 1
+	
 
 # Engine
 func _on_animation_finished() -> void:
