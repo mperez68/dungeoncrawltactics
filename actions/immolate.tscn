@@ -1,7 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct2kb626kkjkg"]
+[gd_scene load_steps=19 format=3 uid="uid://ct2kb626kkjkg"]
 
 [ext_resource type="Script" path="res://actions/scripts/immolate.gd" id="1_beskw"]
 [ext_resource type="Texture2D" uid="uid://nbtp5eua8hnb" path="res://png/Magical Effects/Large_Fire_28x28.png" id="1_bt5s8"]
+[ext_resource type="Texture2D" uid="uid://hyn2gsskwu2a" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Icons/tile000.png" id="3_g4w3f"]
+[ext_resource type="Texture2D" uid="uid://cibh083prghoj" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Icons/tile000pressed.png" id="4_4exw4"]
+[ext_resource type="Texture2D" uid="uid://bhjareaxyb2b3" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Icons/tile000hover.png" id="5_bw6f7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5f7ym"]
 atlas = ExtResource("1_bt5s8")
@@ -104,6 +107,12 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_b8iq8")
 autoplay = "default"
 script = ExtResource("1_beskw")
+NAME = "Immolate"
+texture_normal = ExtResource("3_g4w3f")
+texture_pressed = ExtResource("4_4exw4")
+texture_hover = ExtResource("5_bw6f7")
+texture_disabled = ExtResource("3_g4w3f")
+texture_focused = ExtResource("4_4exw4")
 spell_piercing = 0.5
 attack_range = 8
 max_damage = 5

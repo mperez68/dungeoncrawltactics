@@ -1,8 +1,7 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://dywyn137ss6wd"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://dywyn137ss6wd"]
 
 [ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="1_e7so6"]
 [ext_resource type="Texture2D" uid="uid://uuwx3ht835jr" path="res://png/Forest_v2.png" id="2_bp4rm"]
-[ext_resource type="Texture2D" uid="uid://xjltdj47ov71" path="res://png/top-down interior v2.png" id="3_hxb8p"]
 [ext_resource type="Texture2D" uid="uid://dtbdmlxgu8tcg" path="res://png/island/tileset_island.png" id="4_20b7y"]
 [ext_resource type="Texture2D" uid="uid://c1qqudascvekr" path="res://png/island/tileset_islandVantage.png" id="5_qdbmq"]
 [ext_resource type="Texture2D" uid="uid://crvndt24fdd0q" path="res://png/island/Island2.png" id="6_3lwqx"]
@@ -1794,7 +1793,6 @@ texture = ExtResource("2_bp4rm")
 6:45/0/terrains_peering_bit/left_side = 4
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ik1vp"]
-texture = ExtResource("3_hxb8p")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

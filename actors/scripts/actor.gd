@@ -60,7 +60,7 @@ var debug = false
 # equipment
 var spell_book: Array[Spell] = []
 var spell_pointer: int = -1
-var abilities = []
+var abilities: Array[Ability] = [ preload("res://actions/dash.tscn").instantiate() ]
 var ability_pointer: int = -1
 var inventory = []
 var inventory_pointer: int = -1
@@ -170,6 +170,37 @@ func center_screen(target: Vector2 = Vector2(-666, -666)):
 		pos = (pos + target) / 2
 	camera.position = pos
 
+func walk(click_position: Vector2, walk_range: int = remaining_walk_range) -> bool:
+	if map.can_walk(position, click_position, walk_range):
+		remaining_walk_range -= map.get_walk_distance(position, click_position)
+		# Player Characters and Ally NPC unique
+		if is_sig:
+			# Iterate along walking path taken
+			for pos in map.get_walk_path(position, click_position):
+				# clear fog of war
+				_clear_fog(map.map_to_local(pos), SIGHT_RANGE)
+				# pickup non-actors
+				var non = manager.remove_non_actors_at_position(map.map_to_local(pos))
+				for a in non:
+					inventory.push_back(true)
+					print (inventory)
+		# move actor
+		select(SELECT_TYPE_NONE)
+		_face(click_position)
+		anim.play("idle " + facing)
+		position = map.get_center(click_position)
+		# fog of war visibility
+		if !is_sig and map.is_in_fog(position) and visible:
+			visible = false
+		elif !is_sig and !map.is_in_fog(position) and !visible:
+			visible = true
+		
+		if remaining_walk_range > 0:
+			select(SELECT_TYPE_WALK)
+		return true
+	else:
+		return false
+
 func attack(attacker: Actor) -> int:				## Attack vs. this player.
 	var is_hidden = map.is_in_fog(attacker.position)
 	# reveal temporarily if hidden
@@ -244,7 +275,7 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 			if remaining_actions <= 0 or !Util.is_in_range(ability_pointer, abilities):
 				return false
 			if visible:
-				map.draw_range(position, abilities[ability_pointer].attack_range, false)
+				abilities[ability_pointer].effect(self, map)
 		SELECT_TYPE_INVENTORY:
 			if remaining_actions <= 0 or !Util.is_in_range(inventory_pointer, inventory):
 				return false
@@ -278,89 +309,71 @@ func _do_action_grid(click_position: Vector2i) -> bool:
 
 func _do_action(click_position: Vector2) -> bool:
 	# Walk
-	if select_type == SELECT_TYPE_WALK and map.can_walk(position, click_position, remaining_walk_range):
-		remaining_walk_range -= map.get_walk_distance(position, click_position)
-		# Player Characters and Ally NPC unique
-		if is_sig:
-			# Iterate along walking path taken
-			for pos in map.get_walk_path(position, click_position):
-				# clear fog of war
-				_clear_fog(map.map_to_local(pos), SIGHT_RANGE)
-				# pickup non-actors
-				var non = manager.remove_non_actors_at_position(map.map_to_local(pos))
-				for a in non:
-					inventory.push_back(true)
-					print (inventory)
-		# move actor
-		select(SELECT_TYPE_NONE)
-		_face(click_position)
-		anim.play("idle " + facing)
-		position = map.get_center(click_position)
-		# fog of war visibility
-		if !is_sig and map.is_in_fog(position) and visible:
-			visible = false
-		elif !is_sig and !map.is_in_fog(position) and !visible:
-			visible = true
-		
-		if remaining_walk_range > 0:
-			select(SELECT_TYPE_WALK)
+	match select_type:
+		SELECT_TYPE_WALK:
+			walk(click_position)
 	
 	# Attack
-	elif select_type == SELECT_TYPE_ATTACK and map.can_see(position, click_position, attack_range) and remaining_actions > 0:
-		# shoot if valid targets
-		var targets = manager.get_actors_at_position(click_position)
-		# break if invalid attack targets
-		if targets.is_empty() or targets.has(self):
-			return false
-		remaining_actions -= 1
-		if remaining_actions <= 0:
-			remaining_walk_range = 0
-		_face(click_position)
-		# range or melee animation
-		if attack_range > melee_range:
-			anim.play("shoot " + facing)
-		else:
-			anim.play("swing " + facing)
-		# Attack all targets
-		for target in targets:
-			if chance_text != null:
-				chance_text.queue_free()
-				chance_text = null
-			target._face(position)
-			await target.attack(self)
-		# Reset selection
-		select(SELECT_TYPE_NONE)
+		SELECT_TYPE_ATTACK when (map.can_see(position, click_position, attack_range) and remaining_actions > 0):
+			# shoot if valid targets
+			var targets = manager.get_actors_at_position(click_position)
+			# break if invalid attack targets
+			if targets.is_empty() or targets.has(self):
+				return false
+			remaining_actions -= 1
+			if remaining_actions <= 0:
+				remaining_walk_range = 0
+			_face(click_position)
+			# range or melee animation
+			if attack_range > melee_range:
+				anim.play("shoot " + facing)
+			else:
+				anim.play("swing " + facing)
+			# Attack all targets
+			for target in targets:
+				if chance_text != null:
+					chance_text.queue_free()
+					chance_text = null
+				target._face(position)
+				await target.attack(self)
+			# Reset selection
+			select(SELECT_TYPE_NONE)
 	
-	# Spellcast
-	elif select_type == SELECT_TYPE_SPELL and map.can_see(position, click_position, spell_book[spell_pointer].attack_range) and mp >= spell_book[spell_pointer].mana_cost and remaining_actions > 0:
-		# shoot if valid targets
-		var targets = manager.get_actors_at_position(click_position)
-		# break if invalid attack targets
-		if targets.is_empty() or targets.has(self):
-			return false
-		remaining_actions -= 1
-		mp -= spell_book[spell_pointer].mana_cost
-		if remaining_actions <= 0:
-			remaining_walk_range = 0
-		_face(click_position)
-		# range or melee animation
-		if spell_book[spell_pointer].attack_range > melee_range:
-			anim.play("shoot " + facing)
-		else:
-			anim.play("swing " + facing)
-		# Attack all targets
-		for target in targets:
-			if chance_text != null:
-				chance_text.queue_free()
-				chance_text = null
-			target._face(position)
-			spell_book[spell_pointer].attack(self, target)
-		# Reset selection
-		select(SELECT_TYPE_NONE)
+		# Spellcast
+		SELECT_TYPE_SPELL when (map.can_see(position, click_position, spell_book[spell_pointer].attack_range) and mp >= spell_book[spell_pointer].mana_cost and remaining_actions > 0):
+			# shoot if valid targets
+			var targets = manager.get_actors_at_position(click_position)
+			# break if invalid attack targets
+			if targets.is_empty() or targets.has(self):
+				return false
+			remaining_actions -= 1
+			mp -= spell_book[spell_pointer].mana_cost
+			if remaining_actions <= 0:
+				remaining_walk_range = 0
+			_face(click_position)
+			# range or melee animation
+			if spell_book[spell_pointer].attack_range > melee_range:
+				anim.play("shoot " + facing)
+			else:
+				anim.play("swing " + facing)
+			# Attack all targets
+			for target in targets:
+				if chance_text != null:
+					chance_text.queue_free()
+					chance_text = null
+				target._face(position)
+				spell_book[spell_pointer].attack(self, target)
+			# Reset selection
+			select(SELECT_TYPE_NONE)
 	
+		# Ability
+		SELECT_TYPE_ABILITY:
+			remaining_actions -= int(abilities[ability_pointer].effect(self, map, click_position))
+			# Reset selection
+			select(SELECT_TYPE_NONE)
 	# Pass
-	else:
-		return false
+		_:
+			return false
 	
 	# Loop
 	return true

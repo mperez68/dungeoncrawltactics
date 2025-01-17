@@ -2,12 +2,13 @@ extends AnimatedSprite2D
 
 class_name Spell
 
-@export var texture_normal: CompressedTexture2D = preload("res://png/spell_tile.png")
-@export var texture_pressed: CompressedTexture2D = preload("res://png/spell_tile.png")
-@export var texture_hover: CompressedTexture2D = preload("res://png/spell_tile.png")
-@export var texture_disabled: CompressedTexture2D = preload("res://png/spell_tile.png")
-@export var texture_focused: CompressedTexture2D = preload("res://png/spell_tile.png")
-@export var texture_click_mask: CompressedTexture2D = preload("res://png/spell_tile.png")
+@export var NAME: String = "Spell"
+@export var texture_normal: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
+@export var texture_pressed: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
+@export var texture_hover: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
+@export var texture_disabled: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
+@export var texture_focused: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
+@export var texture_click_mask: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 # spell values
 @export var mana_cost: int = 1
 @export var spell_piercing: float

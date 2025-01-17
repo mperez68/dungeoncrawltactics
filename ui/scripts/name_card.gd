@@ -22,11 +22,27 @@ func _process(_delta: float) -> void:
 		name_text.text = actor.NAME
 		if actor.active:
 			bg_rect.color = hl_color
+			# Populate spells
 			for i in actor.spell_book.size():
 				if actor.spell_book[i].mana_cost > actor.mp and hud.spell_buttons[i].disabled == false:
 					hud.spell_buttons[i].disabled = true
+					hud.spell_buttons[i].focus_mode = Button.FOCUS_NONE
+					hud.spell_buttons[i].self_modulate = hud.BUTTON_DISABLE_COLOR
 				else:
 					hud.spell_buttons[i].disabled = false
+					hud.spell_buttons[i].focus_mode = Button.FOCUS_CLICK
+					hud.spell_buttons[i].self_modulate = hud.BUTTON_DEFAULT_COLOR
+			# Populate abilities
+			for i in actor.abilities.size():
+				if actor.remaining_actions <= 0 and hud.ability_buttons[i].disabled == false:
+					hud.ability_buttons[i].disabled = true
+					hud.ability_buttons[i].focus_mode = Button.FOCUS_NONE
+					hud.ability_buttons[i].self_modulate = hud.BUTTON_DISABLE_COLOR
+				elif actor.remaining_actions > 0:
+					hud.ability_buttons[i].disabled = false
+					hud.ability_buttons[i].focus_mode = Button.FOCUS_CLICK
+					hud.ability_buttons[i].self_modulate = hud.BUTTON_DEFAULT_COLOR
+			
 		elif actor.hl.visible:
 			bg_rect.color = select_color
 		else:
@@ -58,16 +74,28 @@ func _ready() -> void:
 
 func update_hud(is_active: bool):
 	# Update HUD
+	if !actor.is_sig:
+		return
+	# Spells
 	for i in actor.spell_book.size():
-		hud.spell_buttons[i].visible = is_active
 		if is_active:
+			hud.spell_buttons[i].visible = is_active
 			hud.spell_buttons[i].texture_normal = actor.spell_book[i].texture_normal
 			hud.spell_buttons[i].texture_pressed = actor.spell_book[i].texture_pressed
 			hud.spell_buttons[i].texture_hover = actor.spell_book[i].texture_hover
 			hud.spell_buttons[i].texture_disabled = actor.spell_book[i].texture_disabled
 			hud.spell_buttons[i].texture_focused = actor.spell_book[i].texture_focused
 			hud.spell_buttons[i].texture_click_mask = actor.spell_book[i].texture_click_mask
-			
+	# Abilities
+	for i in actor.abilities.size():
+		if is_active:
+			hud.ability_buttons[i].visible = is_active
+			hud.ability_buttons[i].texture_normal = actor.abilities[i].texture_normal
+			hud.ability_buttons[i].texture_pressed = actor.abilities[i].texture_pressed
+			hud.ability_buttons[i].texture_hover = actor.abilities[i].texture_hover
+			hud.ability_buttons[i].texture_disabled = actor.abilities[i].texture_disabled
+			hud.ability_buttons[i].texture_focused = actor.abilities[i].texture_focused
+			hud.ability_buttons[i].texture_click_mask = actor.abilities[i].texture_click_mask
 
 func set_actor(a: Actor):
 	if a:

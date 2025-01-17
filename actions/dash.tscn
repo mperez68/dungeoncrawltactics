@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmmhgf61x1hfy"]
+
+[ext_resource type="Script" path="res://actions/dash.gd" id="1_kvbp1"]
+[ext_resource type="Texture2D" uid="uid://b7qrrvkhsivqt" path="res://png/spells/dash_tile.png" id="2_3sejf"]
+[ext_resource type="Texture2D" uid="uid://dmn31goq7vn1s" path="res://png/spells/dash_tile_pressed.png" id="3_t8mys"]
+[ext_resource type="Texture2D" uid="uid://br1bn3yq6n0ea" path="res://png/spells/dash_tile_hover.png" id="4_7nsgt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f3gkr"]
+
+[node name="Dash" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_f3gkr")
+script = ExtResource("1_kvbp1")
+texture_normal = ExtResource("2_3sejf")
+texture_pressed = ExtResource("3_t8mys")
+texture_hover = ExtResource("4_7nsgt")
+texture_disabled = ExtResource("2_3sejf")
+texture_focused = ExtResource("3_t8mys")
+ability_type = 1

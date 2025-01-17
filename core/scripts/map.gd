@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Map
+
 signal init_camera(origin: Vector2, limit: Vector2)
 
 # References
