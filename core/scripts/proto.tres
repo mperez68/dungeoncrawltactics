@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://dywyn137ss6wd"]
+[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://dywyn137ss6wd"]
 
 [ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="1_e7so6"]
 [ext_resource type="Texture2D" uid="uid://uuwx3ht835jr" path="res://png/Forest_v2.png" id="2_bp4rm"]
 [ext_resource type="Texture2D" uid="uid://dtbdmlxgu8tcg" path="res://png/island/tileset_island.png" id="4_20b7y"]
 [ext_resource type="Texture2D" uid="uid://c1qqudascvekr" path="res://png/island/tileset_islandVantage.png" id="5_qdbmq"]
 [ext_resource type="Texture2D" uid="uid://crvndt24fdd0q" path="res://png/island/Island2.png" id="6_3lwqx"]
+[ext_resource type="Texture2D" uid="uid://frt0dpig7y17" path="res://png/boat.png" id="6_afvl3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qm6cg"]
 texture = ExtResource("1_e7so6")
@@ -7455,6 +7456,13 @@ texture = ExtResource("6_3lwqx")
 9:14/0 = 0
 10:14/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1433o"]
+texture = ExtResource("6_afvl3")
+0:0/size_in_atlas = Vector2i(4, 2)
+0:0/0 = 0
+0:2/size_in_atlas = Vector2i(4, 2)
+0:2/0 = 0
+
 [resource]
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grass"
@@ -7502,3 +7510,4 @@ sources/2 = SubResource("TileSetAtlasSource_ik1vp")
 sources/3 = SubResource("TileSetAtlasSource_ugm0h")
 sources/4 = SubResource("TileSetAtlasSource_q1ows")
 sources/5 = SubResource("TileSetAtlasSource_ppnqi")
+sources/6 = SubResource("TileSetAtlasSource_1433o")

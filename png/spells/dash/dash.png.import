@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deeytaih16v5r"
-path="res://.godot/imported/spell_tile.png-52775bdb74d671a4803535ea55cff04f.ctex"
+uid="uid://cj88dqdi0m6io"
+path="res://.godot/imported/dash.png-be7c265a4a6290863db02e8f6db9913b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://png/spells/spell_tile.png"
-dest_files=["res://.godot/imported/spell_tile.png-52775bdb74d671a4803535ea55cff04f.ctex"]
+source_file="res://png/spells/dash/dash.png"
+dest_files=["res://.godot/imported/dash.png-be7c265a4a6290863db02e8f6db9913b.ctex"]
 
 [params]
 

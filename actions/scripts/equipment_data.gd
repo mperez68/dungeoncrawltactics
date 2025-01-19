@@ -1,10 +1,10 @@
 extends AnimatedSprite2D
 
-class_name Ability
+class_name Equipment
 
 enum type{ NO_TARGET, POSITION, SINGLE_TARGET, MULTI_TARGET }
 
-@export var NAME: String = "Ability"
+@export var NAME: String = "Equipment"
 @export var texture_normal: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var texture_pressed: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var texture_hover: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
@@ -12,14 +12,15 @@ enum type{ NO_TARGET, POSITION, SINGLE_TARGET, MULTI_TARGET }
 @export var texture_focused: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var texture_click_mask: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var ability_type: type = type.NO_TARGET
-@export var cooldown: int = 3
 
 var rng = RandomNumberGenerator.new()
 var map: Map
-var remaining_cooldown: int = 0
+@export var count: int = 1
 const t = preload("res://ui/fading_text.tscn")
 
 func effect(user: Actor, map_in: Map = null, target: Variant = null) -> bool:
+	if count <= 0:
+		return false
 	map = map_in
 	var ret : bool = true
 	match ability_type:
@@ -35,7 +36,7 @@ func effect(user: Actor, map_in: Map = null, target: Variant = null) -> bool:
 			ret = _effect_actor_array(user, target)
 		_:
 			ret = false
-	remaining_cooldown = cooldown * int(ret)
+	count -= int(ret)
 	return ret
 
 func _effect_no_target(user: Actor) -> bool:
@@ -54,10 +55,6 @@ func _effect_actor_array(user: Actor, target: Variant) -> bool:
 	print(user, "::", target, " :: ACTOR ARRAY, NOT DEFINED")
 	return false
 
-func countdown():
-	if remaining_cooldown > 0:
-		remaining_cooldown -= 1
-	
 
 # Engine
 func _on_animation_finished() -> void:

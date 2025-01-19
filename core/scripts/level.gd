@@ -64,6 +64,7 @@ func _on_hud_inventory_pressed(item: int) -> void:
 
 # public methods
 func pass_turn():
+	map.clear_highlights()
 	if !pause.is_stopped():
 		return
 	enable_ui.emit(false)

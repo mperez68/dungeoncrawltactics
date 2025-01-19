@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cshdyrw1ovtum"
-path="res://.godot/imported/dash_tile_disabled.png-878aa24e6b754987e2843e64f897f441.ctex"
+uid="uid://bdctmpoa5k1mm"
+path="res://.godot/imported/dash_disabled.png-69faaee96d738f4d3d08798b54438ba6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://png/spells/dash_tile_disabled.png"
-dest_files=["res://.godot/imported/dash_tile_disabled.png-878aa24e6b754987e2843e64f897f441.ctex"]
+source_file="res://png/spells/dash/dash_disabled.png"
+dest_files=["res://.godot/imported/dash_disabled.png-69faaee96d738f4d3d08798b54438ba6.ctex"]
 
 [params]
 

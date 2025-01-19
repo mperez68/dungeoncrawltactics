@@ -62,7 +62,7 @@ var spell_book: Array[Spell] = []
 var spell_pointer: int = -1
 var abilities: Array[Ability] = []
 var ability_pointer: int = -1
-var inventory = []
+var inventory: Array[Equipment] = [ preload("res://actions/healing_potion.tscn").instantiate() ]
 var inventory_pointer: int = -1
 
 # resources -- onready to get current export values
@@ -137,13 +137,13 @@ func start_turn():
 		center_screen()
 	for ability in abilities:
 		ability.countdown()
+	select(SELECT_TYPE_NONE)
 
 func end_turn():
 	if !action_timer.is_stopped:
 		await action_timer.timeout
 	active = false
 	update_hud.emit(active)
-	map.clear_highlights()
 	# Notification for passing turn with remaining actions
 	if remaining_actions > 0:
 		var pass_text = t.instantiate()
@@ -187,7 +187,6 @@ func walk(click_position: Vector2, walk_range: int = remaining_walk_range) -> bo
 					inventory.push_back(true)
 					print (inventory)
 		# move actor
-		select(SELECT_TYPE_NONE)
 		_face(click_position)
 		anim.play("idle " + facing)
 		position = map.get_center(click_position)
@@ -197,6 +196,7 @@ func walk(click_position: Vector2, walk_range: int = remaining_walk_range) -> bo
 		elif !is_sig and !map.is_in_fog(position) and !visible:
 			visible = true
 		
+		select(SELECT_TYPE_NONE)
 		if remaining_walk_range > 0:
 			select(SELECT_TYPE_WALK)
 		return true
@@ -240,6 +240,26 @@ func attack(attacker: Actor) -> int:				## Attack vs. this player.
 	
 	return damage
 
+func heal(min_heal: int, max_heal: int, crit_heal_modifier: float = 0, crit_heal_multiplier: float = 1.5) -> int:				## Heal vs. this player.
+	
+	var heal_text = t.instantiate()
+	var healing: int = 0
+	var text_type = heal_text.TEXT_TYPE_POSITIVE
+	if rng.randf() < BASE_CRIT_CHANCE + crit_heal_modifier:
+		healing = get_healing(min_heal, max_heal, true, crit_heal_multiplier)
+		heal_text.scale = Vector2.ONE * crit_heal_modifier
+	else:
+		healing = get_damage()
+	heal_text.set_text(str(healing), text_type)
+	anim_player.play("damage")
+	hp += healing
+	add_child(heal_text)
+	
+	return healing
+
+func get_healing(min_heal: int, max_heal: int, crit: bool = false, crit_heal_multiplier: float = 1.5):
+	return rng.randi_range(min_heal, max_heal) * max(1, (int(crit) * crit_heal_multiplier))
+
 func hit_chance(attacker: Actor) -> float:		## Chance to hit this actor, given attacker node.
 	# Armor Piercing only shreds armor, can't shred armor that isn't there ¯\_(ツ)_/¯
 	var armor_total = max(armor_skill - attacker.armor_piercing, 0)
@@ -277,12 +297,18 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 			if remaining_actions <= 0 or !Util.is_in_range(ability_pointer, abilities) or abilities[ability_pointer].remaining_cooldown > 0:
 				return false
 			if visible:
-				abilities[ability_pointer].effect(self, map)
+				var ret = abilities[ability_pointer].effect(self, map)
+				remaining_actions -= int(ret)
+				if ret:
+					select(SELECT_TYPE_NONE)
 		SELECT_TYPE_INVENTORY:
-			if remaining_actions <= 0 or !Util.is_in_range(inventory_pointer, inventory):
+			if remaining_actions <= 0 or !Util.is_in_range(inventory_pointer, inventory) or inventory[inventory_pointer].count <= 0:
 				return false
 			if visible:
-				map.draw_range(position, inventory[inventory_pointer].attack_range, false)
+				var ret = inventory[inventory_pointer].effect(self)
+				remaining_actions -= int(ret)
+				if ret:
+					select(SELECT_TYPE_NONE)
 		_:
 			return false
 	select_type = new_type
@@ -371,6 +397,12 @@ func _do_action(click_position: Vector2) -> bool:
 		# Ability
 		SELECT_TYPE_ABILITY:
 			remaining_actions -= int(abilities[ability_pointer].effect(self, map, click_position))
+			# Reset selection
+			select(SELECT_TYPE_NONE)
+	
+		# Equipment
+		SELECT_TYPE_INVENTORY:
+			remaining_actions -= int(inventory[inventory_pointer].effect(self, map, click_position))
 			# Reset selection
 			select(SELECT_TYPE_NONE)
 	# Pass

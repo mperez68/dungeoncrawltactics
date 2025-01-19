@@ -27,11 +27,9 @@ func _process(_delta: float) -> void:
 				if i < actor.spell_book.size() and actor.spell_book[i].mana_cost > actor.mp and hud.spell_buttons[i].disabled == false:
 					hud.spell_buttons[i].disabled = true
 					hud.spell_buttons[i].focus_mode = Button.FOCUS_NONE
-					hud.spell_buttons[i].self_modulate = hud.BUTTON_DISABLE_COLOR
 				elif i < actor.spell_book.size():
 					hud.spell_buttons[i].disabled = false
 					hud.spell_buttons[i].focus_mode = Button.FOCUS_CLICK
-					hud.spell_buttons[i].self_modulate = hud.BUTTON_DEFAULT_COLOR
 				elif i >= actor.spell_book.size():
 					hud.spell_buttons[i].visible = false
 			# Populate abilities
@@ -40,14 +38,24 @@ func _process(_delta: float) -> void:
 					hud.ability_buttons[i].visible = true
 					hud.ability_buttons[i].disabled = true
 					hud.ability_buttons[i].focus_mode = Button.FOCUS_NONE
-					hud.ability_buttons[i].self_modulate = hud.BUTTON_DISABLE_COLOR
 				elif i < actor.abilities.size() and actor.remaining_actions > 0 and actor.abilities[i].remaining_cooldown <= 0:
 					hud.ability_buttons[i].visible = true
 					hud.ability_buttons[i].disabled = false
 					hud.ability_buttons[i].focus_mode = Button.FOCUS_CLICK
-					hud.ability_buttons[i].self_modulate = hud.BUTTON_DEFAULT_COLOR
 				elif i >= actor.abilities.size():
 					hud.ability_buttons[i].visible = false
+			# Populate Equipment
+			for i in hud.inventory_buttons.size():
+				if i < actor.inventory.size() and hud.inventory_buttons[i].disabled == false and (actor.remaining_actions <= 0 or actor.inventory[i].count <= 0):
+					hud.inventory_buttons[i].visible = true
+					hud.inventory_buttons[i].disabled = true
+					hud.inventory_buttons[i].focus_mode = Button.FOCUS_NONE
+				elif i < actor.inventory.size() and actor.remaining_actions > 0 and actor.inventory[i].count > 0:
+					hud.inventory_buttons[i].visible = true
+					hud.inventory_buttons[i].disabled = false
+					hud.inventory_buttons[i].focus_mode = Button.FOCUS_CLICK
+				elif i >= actor.inventory.size():
+					hud.inventory_buttons[i].visible = false
 			
 		elif actor.hl.visible:
 			bg_rect.color = select_color
@@ -102,6 +110,16 @@ func update_hud(is_active: bool):
 			hud.ability_buttons[i].texture_disabled = actor.abilities[i].texture_disabled
 			hud.ability_buttons[i].texture_focused = actor.abilities[i].texture_focused
 			hud.ability_buttons[i].texture_click_mask = actor.abilities[i].texture_click_mask
+	# Equipment
+	for i in actor.inventory.size():
+		if is_active:
+			hud .inventory_buttons[i].visible = is_active
+			hud.inventory_buttons[i].texture_normal = actor.inventory[i].texture_normal
+			hud.inventory_buttons[i].texture_pressed = actor.inventory[i].texture_pressed
+			hud.inventory_buttons[i].texture_hover = actor.inventory[i].texture_hover
+			hud.inventory_buttons[i].texture_disabled = actor.inventory[i].texture_disabled
+			hud.inventory_buttons[i].texture_focused = actor.inventory[i].texture_focused
+			hud.inventory_buttons[i].texture_click_mask = actor.inventory[i].texture_click_mask
 
 func set_actor(a: Actor):
 	if a:

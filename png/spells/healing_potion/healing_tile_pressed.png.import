@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7qrrvkhsivqt"
-path="res://.godot/imported/dash_tile.png-07e424b3ed8fffa854ca58cb3b6610fb.ctex"
+uid="uid://csagpjgdtyf7"
+path="res://.godot/imported/healing_tile_pressed.png-de6032c2530f6f6b77bddd82ada3077e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://png/spells/dash_tile.png"
-dest_files=["res://.godot/imported/dash_tile.png-07e424b3ed8fffa854ca58cb3b6610fb.ctex"]
+source_file="res://png/spells/healing_potion/healing_tile_pressed.png"
+dest_files=["res://.godot/imported/healing_tile_pressed.png-de6032c2530f6f6b77bddd82ada3077e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1bn3yq6n0ea"
-path="res://.godot/imported/dash_tile_hover.png-c53b1cef3a82b9cc2e90fd596b4b2d92.ctex"
+uid="uid://frt0dpig7y17"
+path="res://.godot/imported/boat.png-f2df45641753fe030259f17488204d13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://png/spells/dash_tile_hover.png"
-dest_files=["res://.godot/imported/dash_tile_hover.png-c53b1cef3a82b9cc2e90fd596b4b2d92.ctex"]
+source_file="res://png/boat.png"
+dest_files=["res://.godot/imported/boat.png-f2df45641753fe030259f17488204d13.ctex"]
 
 [params]
 

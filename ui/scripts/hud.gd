@@ -19,7 +19,7 @@ var name_card = preload("res://ui/name_card.tscn")
 @onready var all_buttons = $ActionBar.get_children()
 @onready var spell_buttons = find_children("*Spell*")
 @onready var ability_buttons = find_children("*Ability*")
-@onready var inventory_buttons = find_children("*Inventory*")
+@onready var inventory_buttons = find_children("*Equipment*")
 # debug references
 @onready var debug_ui = $DebugUI
 @onready var location_text = $DebugUI/CursorLocation

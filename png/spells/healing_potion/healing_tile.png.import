@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deeytaih16v5r"
-path="res://.godot/imported/spell_tile.png-52775bdb74d671a4803535ea55cff04f.ctex"
+uid="uid://hqkr188deqkm"
+path="res://.godot/imported/healing_tile.png-d3c22f531ccd228f6f7fb04135011c81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://png/spells/spell_tile.png"
-dest_files=["res://.godot/imported/spell_tile.png-52775bdb74d671a4803535ea55cff04f.ctex"]
+source_file="res://png/spells/healing_potion/healing_tile.png"
+dest_files=["res://.godot/imported/healing_tile.png-d3c22f531ccd228f6f7fb04135011c81.ctex"]
 
 [params]
 
