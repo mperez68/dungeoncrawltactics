@@ -24,10 +24,10 @@ func _process(_delta: float) -> void:
 			bg_rect.color = hl_color
 			# Populate spells
 			for i in hud.spell_buttons.size():
-				if i < actor.spell_book.size() and actor.spell_book[i].mana_cost > actor.mp and hud.spell_buttons[i].disabled == false:
+				if i < actor.spell_book.size() and (actor.spell_book[i].mana_cost > actor.mp or actor.remaining_actions <= 0) and hud.spell_buttons[i].disabled == false:
 					hud.spell_buttons[i].disabled = true
 					hud.spell_buttons[i].focus_mode = Button.FOCUS_NONE
-				elif i < actor.spell_book.size():
+				elif i < actor.spell_book.size() and actor.spell_book[i].mana_cost <= actor.mp and actor.remaining_actions > 0:
 					hud.spell_buttons[i].disabled = false
 					hud.spell_buttons[i].focus_mode = Button.FOCUS_CLICK
 				elif i >= actor.spell_book.size():

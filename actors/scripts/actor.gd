@@ -251,7 +251,7 @@ func heal(min_heal: int, max_heal: int, crit_heal_modifier: float = 0, crit_heal
 		healing = get_healing(min_heal, max_heal, true, crit_heal_multiplier)
 		heal_text.scale = Vector2.ONE * crit_heal_modifier
 	else:
-		healing = get_damage()
+		healing = randi_range(min_heal, max_heal)
 	if MAX_HEALTH - hp < healing:
 		healing = MAX_HEALTH - hp
 	heal_text.set_text(str(healing), text_type)
@@ -260,6 +260,18 @@ func heal(min_heal: int, max_heal: int, crit_heal_modifier: float = 0, crit_heal
 	add_child(heal_text)
 	
 	return healing
+
+func restore(min_restore: int, max_restore: int):
+	var restore_text = t.instantiate()
+	var restoration: int = 0
+	var text_type = restore_text.TEXT_TYPE_POSITIVE
+	restoration = randi_range(min_restore, max_restore)
+	if MAX_MANA - mp < restoration:
+		restoration = MAX_MANA - mp
+	restore_text.set_text(str(restoration), text_type)
+	anim_player.play("block")
+	mp = min(mp + restoration, MAX_MANA)
+	add_child(restore_text)
 
 func get_healing(min_heal: int, max_heal: int, crit: bool = false, crit_heal_multiplier: float = 1.5):
 	return rng.randi_range(min_heal, max_heal) * max(1, (int(crit) * crit_heal_multiplier))

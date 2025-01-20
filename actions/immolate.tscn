@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://ct2kb626kkjkg"]
+[gd_scene load_steps=21 format=3 uid="uid://ct2kb626kkjkg"]
 
 [ext_resource type="Script" path="res://actions/scripts/immolate.gd" id="1_beskw"]
 [ext_resource type="Texture2D" uid="uid://nbtp5eua8hnb" path="res://png/Magical Effects/Large_Fire_28x28.png" id="1_bt5s8"]
-[ext_resource type="Texture2D" uid="uid://hyn2gsskwu2a" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Icons/tile000.png" id="3_g4w3f"]
-[ext_resource type="Texture2D" uid="uid://cibh083prghoj" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Icons/tile000pressed.png" id="4_4exw4"]
-[ext_resource type="Texture2D" uid="uid://bhjareaxyb2b3" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Icons/tile000hover.png" id="5_bw6f7"]
+[ext_resource type="Texture2D" uid="uid://0okyskgf3ygq" path="res://png/spells/immolate/immolate.png" id="3_msm2q"]
+[ext_resource type="Texture2D" uid="uid://2ox7lj5xbvks" path="res://png/spells/immolate/immolate_pressed.png" id="4_1yrq2"]
+[ext_resource type="Texture2D" uid="uid://cwnc0exs0yapa" path="res://png/spells/immolate/immolate_hover.png" id="5_d0kwg"]
+[ext_resource type="Texture2D" uid="uid://vewwjbjl43uq" path="res://png/spells/immolate/immolate_disable.png" id="6_ou7pu"]
+[ext_resource type="Texture2D" uid="uid://c0e2t8regitla" path="res://png/spells/immolate/immolate_focus.png" id="7_qt0q1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5f7ym"]
 atlas = ExtResource("1_bt5s8")
@@ -108,11 +110,11 @@ sprite_frames = SubResource("SpriteFrames_b8iq8")
 autoplay = "default"
 script = ExtResource("1_beskw")
 NAME = "Immolate"
-texture_normal = ExtResource("3_g4w3f")
-texture_pressed = ExtResource("4_4exw4")
-texture_hover = ExtResource("5_bw6f7")
-texture_disabled = ExtResource("3_g4w3f")
-texture_focused = ExtResource("4_4exw4")
+texture_normal = ExtResource("3_msm2q")
+texture_pressed = ExtResource("4_1yrq2")
+texture_hover = ExtResource("5_d0kwg")
+texture_disabled = ExtResource("6_ou7pu")
+texture_focused = ExtResource("7_qt0q1")
 spell_piercing = 0.5
 attack_range = 8
 max_damage = 5
