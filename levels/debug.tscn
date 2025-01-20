@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://bpqmbj4pgwhq6"]
+[gd_scene load_steps=7 format=4 uid="uid://bpqmbj4pgwhq6"]
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_luhky"]
 [ext_resource type="PackedScene" uid="uid://ddtt0nhtx1f8t" path="res://actors/player/archer.tscn" id="2_xbb4o"]
-[ext_resource type="PackedScene" uid="uid://mnhv4rq231mp" path="res://actors/pickups/equipment_actor.tscn" id="4_1nuqe"]
+[ext_resource type="PackedScene" uid="uid://t0r6wrtidn3k" path="res://actors/pickups/treasure_actor.tscn" id="4_1nuqe"]
 [ext_resource type="PackedScene" uid="uid://c5fx23uvfao56" path="res://actors/mobs/bandit.tscn" id="4_dlf47"]
 [ext_resource type="PackedScene" uid="uid://c23cuvv8ykc1d" path="res://core/objectiverect.tscn" id="5_jly2k"]
+[ext_resource type="PackedScene" uid="uid://wv7qssdfp7hn" path="res://actors/pickups/health_potion_actor.tscn" id="6_noi4l"]
 
 [node name="Debug" instance=ExtResource("1_luhky")]
 
@@ -23,10 +24,13 @@ position = Vector2(393, 406)
 [node name="Bandit" parent="." index="6" instance=ExtResource("4_dlf47")]
 position = Vector2(359, 169)
 
-[node name="EquipmentActor" parent="." index="7" instance=ExtResource("4_1nuqe")]
-position = Vector2(441, 406)
-
-[node name="ObjectiveRect" parent="." index="8" instance=ExtResource("5_jly2k")]
+[node name="ObjectiveRect" parent="." index="7" instance=ExtResource("5_jly2k")]
 position = Vector2(464, 400)
+
+[node name="TreasureActor" parent="." index="8" instance=ExtResource("4_1nuqe")]
+position = Vector2(422, 406)
+
+[node name="HealthPotionActor" parent="." index="9" instance=ExtResource("6_noi4l")]
+position = Vector2(419, 426)
 
 [editable path="Map"]

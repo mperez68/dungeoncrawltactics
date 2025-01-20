@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://mnhv4rq231mp"]
+
+[ext_resource type="PackedScene" uid="uid://c2spim5vs7yq" path="res://actors/non_actor.tscn" id="1_ui5ul"]
+[ext_resource type="Script" path="res://actors/pickups/scripts/equipment_actor.gd" id="2_q2mpe"]
+[ext_resource type="PackedScene" uid="uid://b1pqqbeai4dvp" path="res://actors/pickups/treasure_data.tscn" id="3_mtmpj"]
+[ext_resource type="Script" path="res://actions/scripts/equipment_data.gd" id="4_nyai0"]
+
+[node name="PickupActor" instance=ExtResource("1_ui5ul")]
+script = ExtResource("2_q2mpe")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+frame_progress = 0.0
+
+[node name="Data" parent="." index="7" instance=ExtResource("3_mtmpj")]
+script = ExtResource("4_nyai0")
