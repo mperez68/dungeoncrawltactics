@@ -2,6 +2,7 @@ extends Actor
 
 class_name PlayerActor
 
+var can_embark = false
 
 # Inputs
 func _unhandled_input(event: InputEvent) -> void:
@@ -49,8 +50,10 @@ func _do_action(click_position: Vector2) -> bool:
 	
 	var obj_cell = map.obj_layer.get_cell_tile_data(map.local_to_map(click_position))
 	if ret and obj_cell and map.local_to_map(position) == map.local_to_map(click_position):
-		for item in inventory:
-			if item.NAME == "Treasure":
-				manager.end_game()
+		can_embark = true
+	else:
+		can_embark = false
+	
+	update_hud.emit(active)
 	
 	return ret

@@ -1,8 +1,27 @@
-[gd_scene load_steps=16 format=3 uid="uid://whyqrx8a4kgj"]
+[gd_scene load_steps=32 format=3 uid="uid://whyqrx8a4kgj"]
 
 [ext_resource type="Script" path="res://ui/scripts/hud.gd" id="1_8vc0h"]
-[ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="2_ebkg2"]
+[ext_resource type="Texture2D" uid="uid://c78mvo8ei4dhh" path="res://png/spells/move/move.png" id="2_or86n"]
+[ext_resource type="Texture2D" uid="uid://55y3q21lf8bo" path="res://png/spells/move/move_pressed.png" id="3_7hu1n"]
 [ext_resource type="PackedScene" uid="uid://bj0idncko62mu" path="res://ui/name_card.tscn" id="3_ijptt"]
+[ext_resource type="Texture2D" uid="uid://dyknfnxvsav7g" path="res://png/spells/move/move_hover.png" id="4_hx4gb"]
+[ext_resource type="Texture2D" uid="uid://brai11eomca1e" path="res://png/spells/move/move_disabled.png" id="5_xa8pi"]
+[ext_resource type="Texture2D" uid="uid://dlfcwggw2pvak" path="res://png/spells/move/move_focus.png" id="6_a2aqs"]
+[ext_resource type="Texture2D" uid="uid://ccn5gh2j5q06h" path="res://png/spells/attack/attack.png" id="7_teo4p"]
+[ext_resource type="Texture2D" uid="uid://dqhoig8dv3qay" path="res://png/spells/attack/attack_pressed.png" id="8_0f8lb"]
+[ext_resource type="Texture2D" uid="uid://fhbu4fhh4jeg" path="res://png/spells/attack/attack_hover.png" id="9_8qrxh"]
+[ext_resource type="Texture2D" uid="uid://bux5fc17w5o3r" path="res://png/spells/attack/attack_disabled.png" id="10_dcunf"]
+[ext_resource type="Texture2D" uid="uid://xbuth5sxd8eg" path="res://png/spells/attack/attack_focus.png" id="11_j6prk"]
+[ext_resource type="Texture2D" uid="uid://duejvyygi0v35" path="res://png/spells/pass_turn/pass.png" id="12_bwnss"]
+[ext_resource type="Texture2D" uid="uid://diaunkpjrs8ve" path="res://png/spells/pass_turn/pass_pressed.png" id="13_xfns1"]
+[ext_resource type="Texture2D" uid="uid://dgm6e2e3e4b7u" path="res://png/spells/pass_turn/pass_hover.png" id="14_6lm3i"]
+[ext_resource type="Texture2D" uid="uid://blyl7mh5x2h2d" path="res://png/spells/pass_turn/pass_disable.png" id="15_svgbv"]
+[ext_resource type="Texture2D" uid="uid://xhbvxl36yp41" path="res://png/spells/pass_turn/pass_focus.png" id="16_srwfu"]
+[ext_resource type="Texture2D" uid="uid://cr21jssxpg2oh" path="res://png/spells/embark/embark.png" id="17_4ukt7"]
+[ext_resource type="Texture2D" uid="uid://b6xy0q1dgi5nd" path="res://png/spells/embark/embark_pressed.png" id="18_a317t"]
+[ext_resource type="Texture2D" uid="uid://ds7n3orsy0doh" path="res://png/spells/embark/embark_hover.png" id="19_lgag5"]
+[ext_resource type="Texture2D" uid="uid://d18iwjjvviwpg" path="res://png/spells/embark/embark_disabled.png" id="20_hucfa"]
+[ext_resource type="Texture2D" uid="uid://crl28pqj8uf44" path="res://png/spells/embark/embark_focus.png" id="21_gh3cb"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_hpbpr"]
 device = -1
@@ -12,10 +31,6 @@ unicode = 119
 [sub_resource type="Shortcut" id="Shortcut_pflqt"]
 events = [SubResource("InputEventKey_hpbpr")]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gubex"]
-atlas = ExtResource("2_ebkg2")
-region = Rect2(48, 560, 16, 16)
-
 [sub_resource type="InputEventKey" id="InputEventKey_u651a"]
 device = -1
 pressed = true
@@ -24,10 +39,6 @@ unicode = 97
 
 [sub_resource type="Shortcut" id="Shortcut_fvsj0"]
 events = [SubResource("InputEventKey_u651a")]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_deyin"]
-atlas = ExtResource("2_ebkg2")
-region = Rect2(48, 544, 16, 16)
 
 [sub_resource type="InputEventKey" id="InputEventKey_fl8xf"]
 device = -1
@@ -42,10 +53,6 @@ unicode = 101
 
 [sub_resource type="Shortcut" id="Shortcut_xwxsu"]
 events = [SubResource("InputEventKey_fl8xf"), SubResource("InputEventKey_oss6c")]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fvmt5"]
-atlas = ExtResource("2_ebkg2")
-region = Rect2(48, 657, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_obf6k"]
 outline_size = 4
@@ -196,7 +203,11 @@ layout_mode = 2
 tooltip_text = "Walk"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_pflqt")
-texture_normal = SubResource("AtlasTexture_gubex")
+texture_normal = ExtResource("2_or86n")
+texture_pressed = ExtResource("3_7hu1n")
+texture_hover = ExtResource("4_hx4gb")
+texture_disabled = ExtResource("5_xa8pi")
+texture_focused = ExtResource("6_a2aqs")
 stretch_mode = 0
 
 [node name="Attack" type="TextureButton" parent="ActionBar"]
@@ -205,7 +216,11 @@ layout_mode = 2
 tooltip_text = "Attack"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_fvsj0")
-texture_normal = SubResource("AtlasTexture_deyin")
+texture_normal = ExtResource("7_teo4p")
+texture_pressed = ExtResource("8_0f8lb")
+texture_hover = ExtResource("9_8qrxh")
+texture_disabled = ExtResource("10_dcunf")
+texture_focused = ExtResource("11_j6prk")
 stretch_mode = 0
 
 [node name="EndTurn" type="TextureButton" parent="ActionBar"]
@@ -214,7 +229,24 @@ layout_mode = 2
 tooltip_text = "End Turn"
 mouse_default_cursor_shape = 2
 shortcut = SubResource("Shortcut_xwxsu")
-texture_normal = SubResource("AtlasTexture_fvmt5")
+texture_normal = ExtResource("12_bwnss")
+texture_pressed = ExtResource("13_xfns1")
+texture_hover = ExtResource("14_6lm3i")
+texture_disabled = ExtResource("15_svgbv")
+texture_focused = ExtResource("16_srwfu")
+stretch_mode = 0
+
+[node name="Embark" type="TextureButton" parent="ActionBar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "End Turn"
+mouse_default_cursor_shape = 2
+disabled = true
+texture_normal = ExtResource("17_4ukt7")
+texture_pressed = ExtResource("18_a317t")
+texture_hover = ExtResource("19_lgag5")
+texture_disabled = ExtResource("20_hucfa")
+texture_focused = ExtResource("21_gh3cb")
 stretch_mode = 0
 
 [node name="TurnTracker" type="VFlowContainer" parent="."]
@@ -311,3 +343,4 @@ text = "
 [connection signal="pressed" from="ActionBar/Walk" to="." method="_on_pressed" binds= [1]]
 [connection signal="pressed" from="ActionBar/Attack" to="." method="_on_pressed" binds= [2]]
 [connection signal="pressed" from="ActionBar/EndTurn" to="." method="_end_turn_pressed"]
+[connection signal="pressed" from="ActionBar/Embark" to="." method="_on_embark_pressed"]

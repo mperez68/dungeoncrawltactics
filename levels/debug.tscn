@@ -23,13 +23,16 @@ tile_map_data = PackedByteArray("AAAAAAAABQAJAA4AAAAAAAEABQAJAA4AAAAAAAIABQAJAA4
 [node name="Archer" parent="." index="5" instance=ExtResource("2_xbb4o")]
 position = Vector2(393, 406)
 
-[node name="Bandit" parent="." index="6" instance=ExtResource("4_dlf47")]
+[node name="Archer2" parent="." index="6" instance=ExtResource("2_xbb4o")]
+position = Vector2(425, 375)
+
+[node name="Bandit" parent="." index="7" instance=ExtResource("4_dlf47")]
 position = Vector2(359, 169)
 
-[node name="TreasureActor" parent="." index="7" instance=ExtResource("4_1nuqe")]
+[node name="TreasureActor" parent="." index="8" instance=ExtResource("4_1nuqe")]
 position = Vector2(422, 406)
 
-[node name="HealthPotionActor" parent="." index="8" instance=ExtResource("6_noi4l")]
+[node name="HealthPotionActor" parent="." index="9" instance=ExtResource("6_noi4l")]
 position = Vector2(419, 426)
 
 [editable path="Map"]

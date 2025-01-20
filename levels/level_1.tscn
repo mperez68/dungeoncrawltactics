@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://b171kc0uxk88j"]
+[gd_scene load_steps=10 format=4 uid="uid://b171kc0uxk88j"]
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_6vo4r"]
 [ext_resource type="PackedScene" uid="uid://ddtt0nhtx1f8t" path="res://actors/player/archer.tscn" id="2_n6k8k"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://nutiksihwkf8" path="res://actors/mobs/cutpurse.tscn" id="4_wknx3"]
 [ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/player/soldier.tscn" id="5_iunfl"]
 [ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/player/wizard.tscn" id="6_3octv"]
+[ext_resource type="PackedScene" uid="uid://t0r6wrtidn3k" path="res://actors/pickups/treasure_actor.tscn" id="8_futap"]
 [ext_resource type="PackedScene" uid="uid://c23cuvv8ykc1d" path="res://core/objectiverect.tscn" id="8_jtiop"]
+[ext_resource type="PackedScene" uid="uid://wv7qssdfp7hn" path="res://actors/pickups/health_potion_actor.tscn" id="9_mcvju"]
 
 [node name="Level" instance=ExtResource("1_6vo4r")]
 
@@ -65,100 +67,81 @@ position = Vector2(708, 264)
 position = Vector2(760, 200)
 
 [node name="Bandit14" parent="." index="18" instance=ExtResource("3_b2byl")]
-position = Vector2(811, 259)
+position = Vector2(797, 198)
 
-[node name="Bandit15" parent="." index="19" instance=ExtResource("3_b2byl")]
-position = Vector2(792, 312)
-
-[node name="Bandit16" parent="." index="20" instance=ExtResource("3_b2byl")]
-position = Vector2(842, 374)
-
-[node name="Bandit17" parent="." index="21" instance=ExtResource("3_b2byl")]
+[node name="Bandit17" parent="." index="19" instance=ExtResource("3_b2byl")]
 position = Vector2(776, 375)
 
-[node name="Cutpurse" parent="." index="22" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse" parent="." index="20" instance=ExtResource("4_wknx3")]
 position = Vector2(264, 710)
 
-[node name="Cutpurse4" parent="." index="23" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse4" parent="." index="21" instance=ExtResource("4_wknx3")]
 position = Vector2(438, 646)
 
-[node name="Cutpurse5" parent="." index="24" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse5" parent="." index="22" instance=ExtResource("4_wknx3")]
 position = Vector2(425, 566)
 
-[node name="Cutpurse6" parent="." index="25" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse6" parent="." index="23" instance=ExtResource("4_wknx3")]
 position = Vector2(425, 536)
 
-[node name="Cutpurse7" parent="." index="26" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse7" parent="." index="24" instance=ExtResource("4_wknx3")]
 position = Vector2(537, 567)
 
-[node name="Cutpurse9" parent="." index="27" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse9" parent="." index="25" instance=ExtResource("4_wknx3")]
 position = Vector2(536, 598)
 
-[node name="Cutpurse10" parent="." index="28" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse10" parent="." index="26" instance=ExtResource("4_wknx3")]
 position = Vector2(199, 565)
 
-[node name="Cutpurse11" parent="." index="29" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse11" parent="." index="27" instance=ExtResource("4_wknx3")]
 position = Vector2(155, 598)
 
-[node name="Cutpurse2" parent="." index="30" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse2" parent="." index="28" instance=ExtResource("4_wknx3")]
 position = Vector2(291, 747)
 
-[node name="Cutpurse3" parent="." index="31" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse3" parent="." index="29" instance=ExtResource("4_wknx3")]
 position = Vector2(232, 743)
 
-[node name="Cutpurse13" parent="." index="32" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse13" parent="." index="30" instance=ExtResource("4_wknx3")]
 position = Vector2(601, 328)
 
-[node name="Cutpurse19" parent="." index="33" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse19" parent="." index="31" instance=ExtResource("4_wknx3")]
 position = Vector2(552, 423)
 
-[node name="Cutpurse20" parent="." index="34" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse20" parent="." index="32" instance=ExtResource("4_wknx3")]
 position = Vector2(553, 440)
 
-[node name="Cutpurse14" parent="." index="35" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse14" parent="." index="33" instance=ExtResource("4_wknx3")]
 position = Vector2(506, 309)
 
-[node name="Cutpurse15" parent="." index="36" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse15" parent="." index="34" instance=ExtResource("4_wknx3")]
 position = Vector2(649, 278)
 
-[node name="Cutpurse16" parent="." index="37" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse16" parent="." index="35" instance=ExtResource("4_wknx3")]
 position = Vector2(809, 312)
 
-[node name="Cutpurse17" parent="." index="38" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse17" parent="." index="36" instance=ExtResource("4_wknx3")]
 position = Vector2(808, 375)
 
-[node name="Cutpurse18" parent="." index="39" instance=ExtResource("4_wknx3")]
-position = Vector2(857, 392)
-
-[node name="ObjectiveRect" parent="." index="40" instance=ExtResource("8_jtiop")]
+[node name="ObjectiveRect" parent="." index="37" instance=ExtResource("8_jtiop")]
 position = Vector2(786, 672)
 
-[node name="Treasure2" parent="." index="41"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(167, 582)
-armor_skill = 0.5
-script = null
+[node name="TreasureActor" parent="." index="38" instance=ExtResource("8_futap")]
+position = Vector2(805, 246)
 
-[node name="Treasure3" parent="." index="42"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(774, 200)
-armor_skill = 0.5
-script = null
+[node name="TreasureActor3" parent="." index="39" instance=ExtResource("8_futap")]
+position = Vector2(181, 600)
+
+[node name="TreasureActor4" parent="." index="40" instance=ExtResource("8_futap")]
+position = Vector2(789, 262)
+
+[node name="HealthPotionActor" parent="." index="41" instance=ExtResource("9_mcvju")]
+position = Vector2(550, 570)
+
+[node name="HealthPotionActor2" parent="." index="42" instance=ExtResource("9_mcvju")]
+position = Vector2(536, 422)
+
+[node name="HealthPotionActor3" parent="." index="43" instance=ExtResource("9_mcvju")]
+position = Vector2(491, 311)
 
 [editable path="Map"]

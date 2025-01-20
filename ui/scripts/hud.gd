@@ -6,6 +6,7 @@ signal button_pressed(select_type: int)
 signal spell_pressed(spell: int)
 signal ability_pressed(ability: int)
 signal inventory_pressed(item: int)
+signal embark_active
 signal end_turn
 
 var name_card = preload("res://ui/name_card.tscn")
@@ -20,6 +21,8 @@ var name_card = preload("res://ui/name_card.tscn")
 @onready var spell_buttons = find_children("*Spell*")
 @onready var ability_buttons = find_children("*Ability*")
 @onready var inventory_buttons = find_children("*Equipment*")
+@onready var embark_button = $ActionBar/Embark
+@onready var walk_button = $ActionBar/Walk
 # debug references
 @onready var debug_ui = $DebugUI
 @onready var location_text = $DebugUI/CursorLocation
@@ -90,3 +93,7 @@ func _on_ability_pressed(ability_index: int) -> void:
 
 func _on_equipment_pressed(equipment_index: int) -> void:
 	inventory_pressed.emit(equipment_index)
+
+
+func _on_embark_pressed() -> void:
+	embark_active.emit()

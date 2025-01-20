@@ -11,11 +11,10 @@ signal inc_turn_counter(turn: int)
 
 # Constants
 const PAUSE_LONG: float = 1
-const PAUSE_SHORT: float = 0.1
 
 var actors: Array[Actor] = []
 var non_actors: Array[Actor] = []
-var objectives: Array[Vector2] = []
+var embarked: Array[Actor] = []
 var active: int = -1
 var turn_counter = 0
 
@@ -63,6 +62,13 @@ func _on_hud_inventory_pressed(item: int) -> void:
 	actors[active].inventory_pointer = item
 	actors[active].select(Actor.SELECT_TYPE_INVENTORY)
 
+func _on_hud_embark_active() -> void:
+	embarked.push_back(actors[active])
+	remove_child(actors[active])
+	actors.remove_at(active)
+	active -= 1
+	pass_turn()
+
 
 # public methods
 func pass_turn():
@@ -78,9 +84,14 @@ func pass_turn():
 			end_dialog.visible = true
 			return
 		-1:
-			print("player loses")
 			enable_ui.emit(false)
-			end_dialog.dialog_text = "YOU DIED"
+			if embarked.is_empty():
+				end_dialog.dialog_text = "NO SURVIVORS ESCAPED."
+			else:
+				end_dialog.dialog_text = "ADVENTURERS HAVE DEPARTED WITH:\n"
+				for actor in embarked:
+					for item in actor.inventory:
+						end_dialog.dialog_text = end_dialog.dialog_text + (item.NAME) + "\n"
 			end_dialog.visible = true
 			return
 	# Edge case, no actors
@@ -89,9 +100,9 @@ func pass_turn():
 		end_dialog.dialog_text = "NOBODY LIVED"
 		end_dialog.visible = true
 		return
-	var time = PAUSE_LONG
+	var delay = true
 	if !actors[active].visible:
-		time = PAUSE_SHORT
+		delay = false
 	# Iterate through actors list until a living actor is found
 	while(true):
 		active = (active + 1) % actors.size()
@@ -101,7 +112,10 @@ func pass_turn():
 		if (actors[active].hp > 0):
 			break
 	
-	pause.start(time)
+	if delay:
+		pause.start(PAUSE_LONG)
+	else:
+		_on_timer_timeout()
 
 func get_active() -> Actor:
 	if !actors or active < 0 or active >= actors.size():
@@ -139,9 +153,6 @@ func remove_non_actors_at_position(origin: Vector2) -> Array[Actor]:
 			non_actors.remove_at(i)
 	
 	return result
-
-func add_objective(objective: Vector2):
-	objectives.push_back(objective)
 
 func end_game():
 	enable_ui.emit(false)

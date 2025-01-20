@@ -11,7 +11,7 @@ class_name NameCard
 @onready var hud: HUD = get_parent().get_parent()
 
 var default
-var hl_color = Color.BLACK
+var hl_color = Color(0, 0, 1, 0.435)
 var dead_color = Color(0.545, 0, 0, 0.588)
 var select_color = Color(0, 0.564, 0, 0.435)
 var dead_card = false
@@ -120,6 +120,20 @@ func update_hud(is_active: bool):
 			hud.inventory_buttons[i].texture_disabled = actor.inventory[i].data.texture_disabled
 			hud.inventory_buttons[i].texture_focused = actor.inventory[i].data.texture_focused
 			hud.inventory_buttons[i].texture_click_mask = actor.inventory[i].data.texture_click_mask
+	# Embark
+	if actor.can_embark:
+		hud.embark_button.disabled = false
+		hud.embark_button.focus_mode = Button.FOCUS_CLICK
+	else:
+		hud.embark_button.disabled = true
+		hud.embark_button.focus_mode = Button.FOCUS_NONE
+	# Movement
+	if actor.remaining_walk_range > 0:
+		hud.walk_button.disabled = false
+		hud.walk_button.focus_mode = Button.FOCUS_CLICK
+	else:
+		hud.walk_button.disabled = true
+		hud.walk_button.focus_mode = Button.FOCUS_NONE
 
 func set_actor(a: Actor):
 	if a:

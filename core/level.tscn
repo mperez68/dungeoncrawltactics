@@ -36,6 +36,7 @@ script = ExtResource("5_txawa")
 [connection signal="timeout" from="TurnPauseTimer" to="." method="_on_timer_timeout"]
 [connection signal="ability_pressed" from="HUD" to="." method="_on_hud_ability_pressed"]
 [connection signal="button_pressed" from="HUD" to="." method="_on_hud_button_pressed"]
+[connection signal="embark_active" from="HUD" to="." method="_on_hud_embark_active"]
 [connection signal="end_turn" from="HUD" to="." method="_on_hud_end_turn"]
 [connection signal="inventory_pressed" from="HUD" to="." method="_on_hud_inventory_pressed"]
 [connection signal="spell_pressed" from="HUD" to="." method="_on_hud_spell_pressed"]
