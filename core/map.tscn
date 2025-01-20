@@ -199,12 +199,12 @@ z_index = 3
 visible = false
 z_index = 3
 
-[node name="Lowlights" type="TileMapLayer" parent="."]
+[node name="Highlights" type="TileMapLayer" parent="."]
 z_index = 4
 y_sort_enabled = true
 tile_set = ExtResource("3_vmkiw")
 
-[node name="Highlights" type="TileMapLayer" parent="."]
+[node name="Focus" type="TileMapLayer" parent="."]
 z_index = 5
 y_sort_enabled = true
 tile_set = ExtResource("3_vmkiw")

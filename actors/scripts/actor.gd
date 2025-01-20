@@ -243,7 +243,6 @@ func attack(attacker: Actor) -> int:				## Attack vs. this player.
 	return damage
 
 func heal(min_heal: int, max_heal: int, crit_heal_modifier: float = 0, crit_heal_multiplier: float = 1.5) -> int:				## Heal vs. this player.
-	
 	var heal_text = t.instantiate()
 	var healing: int = 0
 	var text_type = heal_text.TEXT_TYPE_POSITIVE
@@ -255,7 +254,7 @@ func heal(min_heal: int, max_heal: int, crit_heal_modifier: float = 0, crit_heal
 	if MAX_HEALTH - hp < healing:
 		healing = MAX_HEALTH - hp
 	heal_text.set_text(str(healing), text_type)
-	anim_player.play("damage")
+	anim_player.play("heal")
 	hp = min(hp + healing, MAX_HEALTH)
 	add_child(heal_text)
 	

@@ -25,6 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				select(temp)
 			else:
 				select(SELECT_TYPE_NONE)
+	if event is InputEventMouseMotion:
+		var map_coords = ((event.position - (camera.get_viewport_rect().end / 2))/ camera.zoom) + camera.position
+		map.draw_focus(map_coords)
 
 
 # public methods
@@ -44,9 +47,10 @@ func select(new_type: int) -> bool:
 func _do_action(click_position: Vector2) -> bool:
 	var ret = await super(click_position)
 	
-	# calculate objectives
-	for objective in manager.objectives:
-		if ret and map.local_to_map(position) == map.local_to_map(objective) and !inventory.is_empty() and inventory[0].NAME == "Treasure":
-			manager.end_game()
+	var obj_cell = map.obj_layer.get_cell_tile_data(map.local_to_map(click_position))
+	if ret and obj_cell and map.local_to_map(position) == map.local_to_map(click_position):
+		for item in inventory:
+			if item.NAME == "Treasure":
+				manager.end_game()
 	
 	return ret

@@ -10,6 +10,9 @@ var hl = preload("res://core/highlightrect.tscn")
 @onready var wall_layer = $Vantage
 @onready var terrain_layer = $Terrain
 @onready var fog_layer = $FogOfWar
+@onready var obj_layer = $Objectives
+@onready var highlight_layer = $Highlights
+@onready var focus_layer = $Focus
 
 # Map Size
 @onready var offset = Vector2(ground_layer.tile_set.tile_size.x / 2, ground_layer.tile_set.tile_size.y / 2)
@@ -187,20 +190,31 @@ func draw_range(origin: Vector2, max_distance: int = 999999, walking: bool = tru
 	
 	# repopulate highlights
 	clear_highlights()
+	var new_hl: Array[Vector2i] = []
 	for i in range(local_to_map(origin).x -  max_distance, local_to_map(origin).x + max_distance + 1):
 		for j in range(local_to_map(origin).y -  max_distance, local_to_map(origin).y +  max_distance + 1):
 			var target_global = ground_layer.map_to_local(Vector2i(i, j))
 			
 			if !fog_layer.get_cell_tile_data(local_to_map(target_global)) and ((walking and can_walk(origin, target_global, max_distance)) or (!walking and can_see(origin, target_global, max_distance))):
-				var temp = hl.instantiate()
-				temp.position = target_global - offset
-				add_child(temp)
-				highlights.push_front(temp)
+				new_hl.push_front(local_to_map(target_global - offset))
+	
+	highlight_layer.set_cells_terrain_connect(new_hl, 0, 0)
+
+func draw_focus(origin: Vector2, radius: int = 0):
+	focus_layer.clear()
+	var new_focus: Array[Vector2i] = []
+	var highlight_hover = highlight_layer.get_cell_tile_data(local_to_map(origin))
+	if highlight_hover != null:
+		for i in range(local_to_map(origin).x -  radius, local_to_map(origin).x + radius + 1):
+			for j in range(local_to_map(origin).y -  radius, local_to_map(origin).y +  radius + 1):
+				var target_global = ground_layer.map_to_local(Vector2i(i, j))
+				if can_see(origin, target_global, radius):
+					new_focus.push_front(local_to_map(target_global - offset))
+		focus_layer.set_cells_terrain_connect(new_focus, 0, 1)
 
 func clear_highlights():
-	for h in highlights:
-		h.queue_free()
-	highlights = []
+	highlight_layer.clear()
+	focus_layer.clear()
 
 func set_fog(origin: Vector2, radius: int):
 	var buffer = 2
