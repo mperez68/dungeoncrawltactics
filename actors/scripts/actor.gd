@@ -318,6 +318,7 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 		_:
 			return false
 	select_type = new_type
+	update_hud.emit(active)
 	return true
 
 func target_find() -> bool:

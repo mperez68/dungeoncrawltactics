@@ -12,7 +12,7 @@
 [node name="HealthPotionActor" instance=ExtResource("1_lfst4")]
 NAME = "Health Potion"
 
-[node name="AnimatedSprite2D" parent="." index="2"]
+[node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = ExtResource("2_2vkoo")
 
 [node name="Data" parent="." index="7"]

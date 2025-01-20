@@ -11,5 +11,5 @@ weapon_skill = 0.3
 armor_skill = 0.2
 min_damage = 2
 
-[node name="AnimatedSprite2D" parent="." index="2"]
+[node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = ExtResource("2_xt7by")

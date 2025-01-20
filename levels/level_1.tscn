@@ -180,4 +180,7 @@ position = Vector2(663, 280)
 [node name="MediumTreasureActor11" parent="." index="53" instance=ExtResource("10_5ilat")]
 position = Vector2(728, 166)
 
+[node name="HealthPotionActor4" parent="." index="54" instance=ExtResource("9_mcvju")]
+position = Vector2(841, 632)
+
 [editable path="Map"]
