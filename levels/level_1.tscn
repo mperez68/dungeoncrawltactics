@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://b171kc0uxk88j"]
+[gd_scene load_steps=8 format=4 uid="uid://b171kc0uxk88j"]
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_6vo4r"]
-[ext_resource type="PackedScene" uid="uid://ddtt0nhtx1f8t" path="res://actors/archer.tscn" id="2_n6k8k"]
-[ext_resource type="PackedScene" uid="uid://c5fx23uvfao56" path="res://actors/bandit.tscn" id="3_b2byl"]
-[ext_resource type="PackedScene" uid="uid://nutiksihwkf8" path="res://actors/cutpurse.tscn" id="4_wknx3"]
-[ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/soldier.tscn" id="5_iunfl"]
-[ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/wizard.tscn" id="6_3octv"]
-[ext_resource type="PackedScene" uid="uid://chcyts1138ak8" path="res://actors/treasure_actor.tscn" id="8_ccarr"]
+[ext_resource type="PackedScene" uid="uid://ddtt0nhtx1f8t" path="res://actors/player/archer.tscn" id="2_n6k8k"]
+[ext_resource type="PackedScene" uid="uid://c5fx23uvfao56" path="res://actors/mobs/bandit.tscn" id="3_b2byl"]
+[ext_resource type="PackedScene" uid="uid://nutiksihwkf8" path="res://actors/mobs/cutpurse.tscn" id="4_wknx3"]
+[ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/player/soldier.tscn" id="5_iunfl"]
+[ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/player/wizard.tscn" id="6_3octv"]
 [ext_resource type="PackedScene" uid="uid://c23cuvv8ykc1d" path="res://core/objectiverect.tscn" id="8_jtiop"]
 
 [node name="Level" instance=ExtResource("1_6vo4r")]
@@ -134,16 +133,32 @@ position = Vector2(857, 392)
 [node name="ObjectiveRect" parent="." index="40" instance=ExtResource("8_jtiop")]
 position = Vector2(786, 672)
 
-[node name="Treasure" parent="." index="41" instance=ExtResource("8_ccarr")]
-position = Vector2(819, 630)
-armor_skill = 0.5
-
-[node name="Treasure2" parent="." index="42" instance=ExtResource("8_ccarr")]
+[node name="Treasure2" parent="." index="41"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(167, 582)
 armor_skill = 0.5
+script = null
 
-[node name="Treasure3" parent="." index="43" instance=ExtResource("8_ccarr")]
+[node name="Treasure3" parent="." index="42"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(774, 200)
 armor_skill = 0.5
+script = null
 
 [editable path="Map"]

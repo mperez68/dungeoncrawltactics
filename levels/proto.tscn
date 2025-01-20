@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_6vo4r"]
 [ext_resource type="PackedScene" uid="uid://c2spim5vs7yq" path="res://actors/non_actor.tscn" id="4_kdvfo"]
-[ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/soldier.tscn" id="5_koxfm"]
+[ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/player/soldier.tscn" id="5_koxfm"]
 [ext_resource type="PackedScene" uid="uid://c23cuvv8ykc1d" path="res://core/objectiverect.tscn" id="5_se2jw"]
-[ext_resource type="PackedScene" uid="uid://ddtt0nhtx1f8t" path="res://actors/archer.tscn" id="6_5jw6s"]
-[ext_resource type="PackedScene" uid="uid://c5fx23uvfao56" path="res://actors/bandit.tscn" id="7_ltg8u"]
-[ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/wizard.tscn" id="7_v1skg"]
-[ext_resource type="PackedScene" uid="uid://nutiksihwkf8" path="res://actors/cutpurse.tscn" id="8_lgrnf"]
+[ext_resource type="PackedScene" uid="uid://ddtt0nhtx1f8t" path="res://actors/player/archer.tscn" id="6_5jw6s"]
+[ext_resource type="PackedScene" uid="uid://c5fx23uvfao56" path="res://actors/mobs/bandit.tscn" id="7_ltg8u"]
+[ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/player/wizard.tscn" id="7_v1skg"]
+[ext_resource type="PackedScene" uid="uid://nutiksihwkf8" path="res://actors/mobs/cutpurse.tscn" id="8_lgrnf"]
 
 [node name="Level" instance=ExtResource("1_6vo4r")]
 

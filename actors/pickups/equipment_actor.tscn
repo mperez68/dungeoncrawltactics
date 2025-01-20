@@ -1,0 +1,27 @@
+[gd_scene load_steps=10 format=3 uid="uid://mnhv4rq231mp"]
+
+[ext_resource type="PackedScene" uid="uid://c2spim5vs7yq" path="res://actors/non_actor.tscn" id="1_ui5ul"]
+[ext_resource type="Script" path="res://actors/pickups/scripts/equipment_actor.gd" id="2_q2mpe"]
+[ext_resource type="SpriteFrames" uid="uid://58rrbo1s1l7x" path="res://actors/scripts/large_treasure.tres" id="3_gafok"]
+[ext_resource type="PackedScene" uid="uid://b1pqqbeai4dvp" path="res://actors/pickups/treasure_data.tscn" id="3_mtmpj"]
+[ext_resource type="Texture2D" uid="uid://w7hesl7q3ejg" path="res://png/spells/treasure/large_treasure.png" id="4_kji7c"]
+[ext_resource type="Texture2D" uid="uid://b36fem7x1imuv" path="res://png/spells/treasure/large_treasure_pressed.png" id="5_w00wf"]
+[ext_resource type="Texture2D" uid="uid://coeuu8jgfld5s" path="res://png/spells/treasure/large_treasure_hover.png" id="6_brqjh"]
+[ext_resource type="Texture2D" uid="uid://ccejsgtiqvoxj" path="res://png/spells/treasure/large_treasure_disabled.png" id="7_sdvar"]
+[ext_resource type="Texture2D" uid="uid://duv7yhuypl1cu" path="res://png/spells/treasure/large_treasure_focused.png" id="8_swo5q"]
+
+[node name="EquipmentActor" instance=ExtResource("1_ui5ul")]
+script = ExtResource("2_q2mpe")
+NAME = "Treasure"
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = ExtResource("3_gafok")
+frame_progress = 0.0
+
+[node name="TreasureData" parent="." index="7" instance=ExtResource("3_mtmpj")]
+texture_normal = ExtResource("4_kji7c")
+texture_pressed = ExtResource("5_w00wf")
+texture_hover = ExtResource("6_brqjh")
+texture_disabled = ExtResource("7_sdvar")
+texture_focused = ExtResource("8_swo5q")
+ability_type = 1

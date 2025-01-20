@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5fx23uvfao56"]
 
-[ext_resource type="PackedScene" uid="uid://n48nfh5h0ujh" path="res://actors/npc_actor.tscn" id="1_d5q76"]
+[ext_resource type="PackedScene" uid="uid://n48nfh5h0ujh" path="res://actors/mobs/npc_actor.tscn" id="1_d5q76"]
 [ext_resource type="SpriteFrames" uid="uid://oi3n3pxeislc" path="res://actors/scripts/Bandit.tres" id="2_72xdp"]
 
 [node name="Bandit" instance=ExtResource("1_d5q76")]

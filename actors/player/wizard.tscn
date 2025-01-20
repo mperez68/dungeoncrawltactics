@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwlpntyf16f30"]
 
-[ext_resource type="PackedScene" uid="uid://c187qv1d60rfk" path="res://actors/player_actor.tscn" id="1_le3ou"]
+[ext_resource type="PackedScene" uid="uid://c187qv1d60rfk" path="res://actors/player/player_actor.tscn" id="1_le3ou"]
 [ext_resource type="SpriteFrames" uid="uid://ctiykgfg3wsfu" path="res://actors/scripts/Wizard.tres" id="2_lirpd"]
 [ext_resource type="Script" path="res://actors/scripts/wizard.gd" id="2_novfk"]
 

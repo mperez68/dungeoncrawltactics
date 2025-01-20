@@ -62,7 +62,7 @@ var spell_book: Array[Spell] = []
 var spell_pointer: int = -1
 var abilities: Array[Ability] = []
 var ability_pointer: int = -1
-var inventory: Array[Equipment] = []
+var inventory: Array[EquipmentActor] = []
 var inventory_pointer: int = -1
 
 # resources -- onready to get current export values
@@ -184,8 +184,10 @@ func walk(click_position: Vector2, walk_range: int = remaining_walk_range) -> bo
 				# pickup non-actors
 				var non: Array[Actor] = manager.remove_non_actors_at_position(map.map_to_local(pos))
 				for a in non:
-					inventory.push_back(preload("res://actions/large_treasure.tscn").instantiate())
-					update_hud.emit(active)
+					if (a.data.count <= 0):
+						a.data.count = 1
+					inventory.push_back(a)
+				update_hud.emit(active)
 		# move actor
 		_face(click_position)
 		anim.play("idle " + facing)
@@ -302,14 +304,13 @@ func select(new_type: int) -> bool:					## Change the selection type if active p
 				if ret:
 					select(SELECT_TYPE_NONE)
 		SELECT_TYPE_INVENTORY:
-			if remaining_actions <= 0 or !Util.is_in_range(inventory_pointer, inventory) or inventory[inventory_pointer].count <= 0:
+			if remaining_actions <= 0 or !Util.is_in_range(inventory_pointer, inventory) or inventory[inventory_pointer].data.count <= 0:
 				return false
 			if visible:
 				var ret = inventory[inventory_pointer].effect(self, map)
 				remaining_actions -= int(ret)
 				if ret:
-					if inventory[inventory_pointer].count <= 0:
-						inventory[inventory_pointer].queue_free()
+					if inventory[inventory_pointer].data.count <= 0:
 						inventory.remove_at(inventory_pointer)
 					select(SELECT_TYPE_NONE)
 		_:
@@ -406,8 +407,7 @@ func _do_action(click_position: Vector2) -> bool:
 		# Equipment
 		SELECT_TYPE_INVENTORY:
 			remaining_actions -= int(inventory[inventory_pointer].effect(self, map, click_position))
-			if inventory[inventory_pointer].count <= 0:
-				inventory[inventory_pointer].queue_free()
+			if inventory[inventory_pointer].data.count <= 0:
 				inventory.remove_at(inventory_pointer)
 			# Reset selection
 			select(SELECT_TYPE_NONE)

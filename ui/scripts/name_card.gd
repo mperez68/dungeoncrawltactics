@@ -46,11 +46,11 @@ func _process(_delta: float) -> void:
 					hud.ability_buttons[i].visible = false
 			# Populate Equipment
 			for i in hud.inventory_buttons.size():
-				if i < actor.inventory.size() and hud.inventory_buttons[i].disabled == false and (actor.remaining_actions <= 0 or actor.inventory[i].count <= 0):
+				if i < actor.inventory.size() and hud.inventory_buttons[i].disabled == false and (actor.remaining_actions <= 0 or actor.inventory[i].data.count <= 0):
 					hud.inventory_buttons[i].visible = true
 					hud.inventory_buttons[i].disabled = true
 					hud.inventory_buttons[i].focus_mode = Button.FOCUS_NONE
-				elif i < actor.inventory.size() and actor.remaining_actions > 0 and actor.inventory[i].count > 0:
+				elif i < actor.inventory.size() and actor.remaining_actions > 0 and actor.inventory[i].data.count > 0:
 					hud.inventory_buttons[i].visible = true
 					hud.inventory_buttons[i].disabled = false
 					hud.inventory_buttons[i].focus_mode = Button.FOCUS_CLICK
@@ -114,12 +114,12 @@ func update_hud(is_active: bool):
 	for i in actor.inventory.size():
 		if is_active:
 			hud .inventory_buttons[i].visible = is_active
-			hud.inventory_buttons[i].texture_normal = actor.inventory[i].texture_normal
-			hud.inventory_buttons[i].texture_pressed = actor.inventory[i].texture_pressed
-			hud.inventory_buttons[i].texture_hover = actor.inventory[i].texture_hover
-			hud.inventory_buttons[i].texture_disabled = actor.inventory[i].texture_disabled
-			hud.inventory_buttons[i].texture_focused = actor.inventory[i].texture_focused
-			hud.inventory_buttons[i].texture_click_mask = actor.inventory[i].texture_click_mask
+			hud.inventory_buttons[i].texture_normal = actor.inventory[i].data.texture_normal
+			hud.inventory_buttons[i].texture_pressed = actor.inventory[i].data.texture_pressed
+			hud.inventory_buttons[i].texture_hover = actor.inventory[i].data.texture_hover
+			hud.inventory_buttons[i].texture_disabled = actor.inventory[i].data.texture_disabled
+			hud.inventory_buttons[i].texture_focused = actor.inventory[i].data.texture_focused
+			hud.inventory_buttons[i].texture_click_mask = actor.inventory[i].data.texture_click_mask
 
 func set_actor(a: Actor):
 	if a:

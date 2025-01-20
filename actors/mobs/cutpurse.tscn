@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://nutiksihwkf8"]
 
-[ext_resource type="PackedScene" uid="uid://n48nfh5h0ujh" path="res://actors/npc_actor.tscn" id="1_5h14d"]
+[ext_resource type="PackedScene" uid="uid://n48nfh5h0ujh" path="res://actors/mobs/npc_actor.tscn" id="1_5h14d"]
 [ext_resource type="SpriteFrames" uid="uid://cbbch13g6rrsf" path="res://actors/scripts/Cutpurse.tres" id="2_a2gj6"]
 
 [node name="Cutpurse" instance=ExtResource("1_5h14d")]

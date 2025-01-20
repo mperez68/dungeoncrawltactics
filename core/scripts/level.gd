@@ -129,12 +129,13 @@ func get_non_actors_at_position(origin: Vector2) -> Array[Actor]:
 	
 	return result
 
+## Removes from array but does not free
 func remove_non_actors_at_position(origin: Vector2) -> Array[Actor]:
 	var result: Array[Actor] = []
 	for i in range(non_actors.size() - 1, -1, -1):
 		if map.local_to_map(origin) == map.local_to_map(non_actors[i].position):
-			result.push_back(non_actors[i].duplicate())
-			non_actors[i].queue_free()
+			result.push_back(non_actors[i])
+			remove_child(non_actors[i])
 			non_actors.remove_at(i)
 	
 	return result

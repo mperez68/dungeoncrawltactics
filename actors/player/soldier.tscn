@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://deydm0w4x2rfe"]
 
-[ext_resource type="PackedScene" uid="uid://c187qv1d60rfk" path="res://actors/player_actor.tscn" id="1_6cafq"]
+[ext_resource type="PackedScene" uid="uid://c187qv1d60rfk" path="res://actors/player/player_actor.tscn" id="1_6cafq"]
 [ext_resource type="Script" path="res://actors/scripts/soldier.gd" id="2_a5wm4"]
 [ext_resource type="SpriteFrames" uid="uid://b53s00lktp8ku" path="res://actors/scripts/Soldier.tres" id="2_xt7by"]
 
