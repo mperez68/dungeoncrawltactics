@@ -85,7 +85,7 @@ func aggro(aggro_target: Actor, primary_aggro: bool = true):
 		action_timer.start()
 		await action_timer.timeout
 	var aggro_text = t.instantiate()
-	aggro_text.set_text("AGGRO", aggro_text.TEXT_TYPE_NEGATIVE)
+	aggro_text.set_text("!!!", aggro_text.TEXT_TYPE_NEGATIVE)
 	add_child(aggro_text)
 	# Aggro nearby units
 	if primary_aggro:

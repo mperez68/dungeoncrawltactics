@@ -29,16 +29,24 @@ position = Vector2(393, 406)
 position = Vector2(565, 486)
 patrol_route = Array[Vector2i]([Vector2i(31, 33), Vector2i(39, 27)])
 
-[node name="TreasureActor" parent="." index="7" instance=ExtResource("4_1nuqe")]
+[node name="Bandit2" parent="." index="7" instance=ExtResource("4_dlf47")]
+position = Vector2(583, 502)
+patrol_route = Array[Vector2i]([Vector2i(31, 33), Vector2i(39, 27)])
+
+[node name="Bandit3" parent="." index="8" instance=ExtResource("4_dlf47")]
+position = Vector2(570, 505)
+patrol_route = Array[Vector2i]([Vector2i(31, 33), Vector2i(39, 27)])
+
+[node name="TreasureActor" parent="." index="9" instance=ExtResource("4_1nuqe")]
 position = Vector2(422, 406)
 
-[node name="MediumTreasureActor" parent="." index="8" instance=ExtResource("5_pdiac")]
+[node name="MediumTreasureActor" parent="." index="10" instance=ExtResource("5_pdiac")]
 position = Vector2(438, 405)
 
-[node name="MediumTreasureActor2" parent="." index="9" instance=ExtResource("6_g5f5p")]
+[node name="MediumTreasureActor2" parent="." index="11" instance=ExtResource("6_g5f5p")]
 position = Vector2(437, 425)
 
-[node name="Wizard" parent="." index="10" instance=ExtResource("7_ek0i6")]
+[node name="Wizard" parent="." index="12" instance=ExtResource("7_ek0i6")]
 position = Vector2(395, 422)
 
 [editable path="Map"]

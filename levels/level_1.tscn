@@ -54,6 +54,7 @@ position = Vector2(489, 325)
 
 [node name="Bandit19" parent="." index="13" instance=ExtResource("3_b2byl")]
 position = Vector2(536, 440)
+patrol_route = Array[Vector2i]([Vector2i(24, 25), Vector2i(43, 31)])
 
 [node name="Bandit10" parent="." index="14" instance=ExtResource("3_b2byl")]
 position = Vector2(470, 311)
@@ -99,18 +100,22 @@ position = Vector2(155, 598)
 
 [node name="Cutpurse2" parent="." index="28" instance=ExtResource("4_wknx3")]
 position = Vector2(291, 747)
+patrol_route = Array[Vector2i]([Vector2i(15, 49), Vector2i(32, 49), Vector2i(39, 43)])
 
 [node name="Cutpurse3" parent="." index="29" instance=ExtResource("4_wknx3")]
 position = Vector2(232, 743)
+patrol_route = Array[Vector2i]([Vector2i(15, 49), Vector2i(32, 49), Vector2i(39, 43)])
 
 [node name="Cutpurse13" parent="." index="30" instance=ExtResource("4_wknx3")]
 position = Vector2(601, 328)
 
 [node name="Cutpurse19" parent="." index="31" instance=ExtResource("4_wknx3")]
 position = Vector2(552, 423)
+patrol_route = Array[Vector2i]([Vector2i(24, 25), Vector2i(43, 31)])
 
 [node name="Cutpurse20" parent="." index="32" instance=ExtResource("4_wknx3")]
 position = Vector2(553, 440)
+patrol_route = Array[Vector2i]([Vector2i(24, 25), Vector2i(43, 31)])
 
 [node name="Cutpurse14" parent="." index="33" instance=ExtResource("4_wknx3")]
 position = Vector2(506, 309)
