@@ -252,9 +252,11 @@ func heal(min_heal: int, max_heal: int, crit_heal_modifier: float = 0, crit_heal
 		heal_text.scale = Vector2.ONE * crit_heal_modifier
 	else:
 		healing = get_damage()
+	if MAX_HEALTH - hp < healing:
+		healing = MAX_HEALTH - hp
 	heal_text.set_text(str(healing), text_type)
 	anim_player.play("damage")
-	hp += healing
+	hp = min(hp + healing, MAX_HEALTH)
 	add_child(heal_text)
 	
 	return healing
