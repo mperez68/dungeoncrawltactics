@@ -1,6 +1,7 @@
 extends Equipment
 
 var target_range: int = 2
+@export var value: int = 1
 
 func _effect_vector(user: Actor, target: Vector2) -> bool:
 	if target == Vector2.ZERO:

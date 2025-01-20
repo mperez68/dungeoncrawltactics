@@ -1,0 +1,25 @@
+[gd_scene load_steps=9 format=3 uid="uid://xqfpwfotvndm"]
+
+[ext_resource type="PackedScene" uid="uid://mnhv4rq231mp" path="res://actors/pickups/pickup_actor.tscn" id="1_5uely"]
+[ext_resource type="SpriteFrames" uid="uid://bn6rj0ptq267d" path="res://actors/scripts/small_treasure.tres" id="2_uwisw"]
+[ext_resource type="Script" path="res://actors/pickups/scripts/treasure.gd" id="3_ltv6c"]
+[ext_resource type="Texture2D" uid="uid://w7hesl7q3ejg" path="res://png/spells/treasure/large_treasure.png" id="4_pj4cc"]
+[ext_resource type="Texture2D" uid="uid://b36fem7x1imuv" path="res://png/spells/treasure/large_treasure_pressed.png" id="5_vt476"]
+[ext_resource type="Texture2D" uid="uid://coeuu8jgfld5s" path="res://png/spells/treasure/large_treasure_hover.png" id="6_5asrw"]
+[ext_resource type="Texture2D" uid="uid://ccejsgtiqvoxj" path="res://png/spells/treasure/large_treasure_disabled.png" id="7_ni8ur"]
+[ext_resource type="Texture2D" uid="uid://duv7yhuypl1cu" path="res://png/spells/treasure/large_treasure_focused.png" id="8_s0ytp"]
+
+[node name="MediumTreasureActor" instance=ExtResource("1_5uely")]
+NAME = "Small Treasure (+1)"
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = ExtResource("2_uwisw")
+
+[node name="Data" parent="." index="7"]
+script = ExtResource("3_ltv6c")
+texture_normal = ExtResource("4_pj4cc")
+texture_pressed = ExtResource("5_vt476")
+texture_hover = ExtResource("6_5asrw")
+texture_disabled = ExtResource("7_ni8ur")
+texture_focused = ExtResource("8_s0ytp")
+ability_type = 1

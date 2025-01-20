@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nutiksihwkf8" path="res://actors/mobs/cutpurse.tscn" id="4_wknx3"]
 [ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/player/soldier.tscn" id="5_iunfl"]
 [ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/player/wizard.tscn" id="6_3octv"]
-[ext_resource type="PackedScene" uid="uid://t0r6wrtidn3k" path="res://actors/pickups/treasure_actor.tscn" id="8_futap"]
+[ext_resource type="PackedScene" uid="uid://t0r6wrtidn3k" path="res://actors/pickups/large_treasure_actor.tscn" id="8_futap"]
 [ext_resource type="PackedScene" uid="uid://c23cuvv8ykc1d" path="res://core/objectiverect.tscn" id="8_jtiop"]
 [ext_resource type="PackedScene" uid="uid://wv7qssdfp7hn" path="res://actors/pickups/health_potion_actor.tscn" id="9_mcvju"]
 

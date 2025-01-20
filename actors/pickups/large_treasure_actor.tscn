@@ -2,21 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://mnhv4rq231mp" path="res://actors/pickups/pickup_actor.tscn" id="1_yqvjl"]
 [ext_resource type="SpriteFrames" uid="uid://58rrbo1s1l7x" path="res://actors/scripts/large_treasure.tres" id="3_gafok"]
-[ext_resource type="Script" path="res://actions/scripts/large_treasure.gd" id="3_po0qp"]
+[ext_resource type="Script" path="res://actors/pickups/scripts/treasure.gd" id="3_po0qp"]
 [ext_resource type="Texture2D" uid="uid://w7hesl7q3ejg" path="res://png/spells/treasure/large_treasure.png" id="4_kji7c"]
 [ext_resource type="Texture2D" uid="uid://b36fem7x1imuv" path="res://png/spells/treasure/large_treasure_pressed.png" id="5_w00wf"]
 [ext_resource type="Texture2D" uid="uid://coeuu8jgfld5s" path="res://png/spells/treasure/large_treasure_hover.png" id="6_brqjh"]
 [ext_resource type="Texture2D" uid="uid://ccejsgtiqvoxj" path="res://png/spells/treasure/large_treasure_disabled.png" id="7_sdvar"]
 [ext_resource type="Texture2D" uid="uid://duv7yhuypl1cu" path="res://png/spells/treasure/large_treasure_focused.png" id="8_swo5q"]
 
-[node name="TreasureActor" instance=ExtResource("1_yqvjl")]
-NAME = "Treasure"
+[node name="LargeTreasureActor" instance=ExtResource("1_yqvjl")]
+NAME = "Large Treasure (+5)"
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("3_gafok")
 
 [node name="Data" parent="." index="7"]
 script = ExtResource("3_po0qp")
+value = 5
 texture_normal = ExtResource("4_kji7c")
 texture_pressed = ExtResource("5_w00wf")
 texture_hover = ExtResource("6_brqjh")

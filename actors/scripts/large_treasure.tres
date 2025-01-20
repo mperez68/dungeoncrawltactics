@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="1_djgmd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4t061"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_22lmw"]
 atlas = ExtResource("1_djgmd")
 region = Rect2(160, 544, 16, 16)
 
@@ -10,7 +10,7 @@ region = Rect2(160, 544, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4t061")
+"texture": SubResource("AtlasTexture_22lmw")
 }],
 "loop": true,
 "name": &"default",
