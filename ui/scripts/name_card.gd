@@ -139,6 +139,7 @@ func set_actor(a: Actor):
 	if a:
 		actor = a
 		a.update_hud.connect(update_hud)
+		a.remove_card.connect(queue_free)
 	else:
 		print("NULL ACTOR")
 

@@ -2,6 +2,9 @@ extends Actor
 
 class_name NPCActor
 
+# references
+@onready var aggro_highlight = $AggroRadius
+
 
 # constants
 const PAUSE_SHORT = 0.3
@@ -10,6 +13,24 @@ const PAUSE_LONG = 1
 # Variables
 @export var target: Actor = null
 @export var aggro_range: int = 10
+@export var patrol_route: Array[Vector2i] = []
+var patrol_pointer = 0
+
+# engine
+func _ready() -> void:
+	super()
+	aggro_highlight.radius = 16 * aggro_range
+
+func _on_mouse_entered() -> void:
+	super()
+	
+	if hp > 0 and target == null:
+		aggro_highlight.visible = true
+
+func _on_mouse_exited() -> void:
+	super()
+	
+	aggro_highlight.visible = false
 
 
 # public methods
@@ -25,6 +46,12 @@ func start_turn():
 	end_turn()
 
 func target_find() -> bool:
+	if hp <= 0:
+		return false
+	
+	if target and target.get_parent() == null:
+		target = null
+	
 	var ret = false
 	var distance = 9999
 	var best_target: Actor = target
@@ -49,13 +76,22 @@ func target_find() -> bool:
 		is_aggro = false
 	return ret
 
-func aggro(aggro_target: Actor):
+func aggro(aggro_target: Actor, primary_aggro: bool = true):
+	if hp <= 0:
+		return
+	# Assign new target
 	target = aggro_target
-	action_timer.start()
-	await action_timer.timeout
+	if primary_aggro:
+		action_timer.start()
+		await action_timer.timeout
 	var aggro_text = t.instantiate()
 	aggro_text.set_text("AGGRO", aggro_text.TEXT_TYPE_NEGATIVE)
 	add_child(aggro_text)
+	# Aggro nearby units
+	if primary_aggro:
+		for actor in manager.actors:
+			if actor != self and !actor.is_sig and map.can_see(actor.position, position, actor.aggro_range / 2):
+				actor.aggro(aggro_target, false)
 
 func attack(attacker: Actor) -> int:
 	var ret =  await super(attacker)
@@ -74,13 +110,14 @@ func _ai_turn() -> bool:
 	if target and target.hp <= 0:
 		target_find()
 	
-	# shoot; if can't, move: if can't, do nothing
+	# shoot target
 	if target and remaining_actions > 0 and map.can_see(position, target.position, attack_range):
 		if select_type == SELECT_TYPE_ATTACK:
 			await _do_action(target.position)
 		else:
 			select(SELECT_TYPE_ATTACK)
 			center_screen(target.position)
+	# move towards range of target
 	elif target and remaining_walk_range > 0:
 		var beeline_point = map.get_nearest_tile(position, target.position, attack_range)
 		
@@ -101,10 +138,29 @@ func _ai_turn() -> bool:
 				ret = false
 		else:
 			ret = false
+	# patrol
+	elif patrol_route.size() > 1 and remaining_walk_range > 0:
+		if map.local_to_map(position) == patrol_route[patrol_pointer]:
+			patrol_pointer = (patrol_pointer + 1) % patrol_route.size()
+		elif !map.can_approach(position, map.map_to_local(patrol_route[patrol_pointer]), 9999) and map.can_see(position, patrol_route[patrol_pointer], aggro_range / 2):
+			patrol_pointer = (patrol_pointer + 1) % patrol_route.size()
+		else:
+			if select_type != SELECT_TYPE_WALK:
+				select(SELECT_TYPE_WALK)
+			elif await _do_action_grid(map.get_step_towards(position, map.map_to_local(patrol_route[patrol_pointer]))):
+				center_screen(position)
+	# If no valid actions, pass turn
 	else:
 		ret = false
 	
 	# break loop if no actions remaining
 	if remaining_actions + remaining_walk_range <= 0:
 		ret = false
+	return ret
+
+func walk(click_position: Vector2, walk_range: int = remaining_walk_range) -> bool:
+	var ret = super(click_position, walk_range)
+	
+	target_find()
+	
 	return ret

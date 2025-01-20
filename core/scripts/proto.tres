@@ -6962,10 +6962,10 @@ texture = ExtResource("6_3lwqx")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1433o"]
 texture = ExtResource("6_afvl3")
-0:0/size_in_atlas = Vector2i(4, 2)
+0:0/size_in_atlas = Vector2i(4, 4)
 0:0/0 = 0
-0:2/size_in_atlas = Vector2i(4, 2)
-0:2/0 = 0
+4:0/size_in_atlas = Vector2i(4, 4)
+4:0/0 = 0
 
 [resource]
 terrain_set_0/mode = 0

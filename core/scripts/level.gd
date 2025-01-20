@@ -63,6 +63,7 @@ func _on_hud_inventory_pressed(item: int) -> void:
 	actors[active].select(Actor.SELECT_TYPE_INVENTORY)
 
 func _on_hud_embark_active() -> void:
+	actors[active].remove_card.emit()
 	embarked.push_back(actors[active])
 	remove_child(actors[active])
 	actors.remove_at(active)
@@ -80,7 +81,13 @@ func pass_turn():
 	match is_conflict():
 		1:
 			enable_ui.emit(false)
-			end_dialog.dialog_text = "ALL ENEMIES SLAIN, YOU CAN LEAVE SAFELY"
+			end_dialog.dialog_text = "ALL ENEMIES SLAIN, YOU CAN LEAVE SAFELY WITH:\n"
+			var players = actors
+			players.append_array(embarked)
+			for actor in players:
+				if actor.is_sig:
+					for item in actor.inventory:
+						end_dialog.dialog_text = end_dialog.dialog_text + (item.NAME) + "\n"
 			end_dialog.visible = true
 			return
 		-1:

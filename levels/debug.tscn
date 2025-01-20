@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bpqmbj4pgwhq6"]
+[gd_scene load_steps=8 format=4 uid="uid://bpqmbj4pgwhq6"]
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_luhky"]
 [ext_resource type="PackedScene" uid="uid://ddtt0nhtx1f8t" path="res://actors/player/archer.tscn" id="2_xbb4o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5fx23uvfao56" path="res://actors/mobs/bandit.tscn" id="4_dlf47"]
 [ext_resource type="PackedScene" uid="uid://xqfpwfotvndm" path="res://actors/pickups/small_treasure_actor.tscn" id="5_pdiac"]
 [ext_resource type="PackedScene" uid="uid://c62l10la6vmsm" path="res://actors/pickups/medium_treasure_actor.tscn" id="6_g5f5p"]
+[ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/player/wizard.tscn" id="7_ek0i6"]
 
 [node name="Debug" instance=ExtResource("1_luhky")]
 
@@ -24,19 +25,20 @@ tile_map_data = PackedByteArray("AAAAAAAABQAJAA4AAAAAAAEABQAJAA4AAAAAAAIABQAJAA4
 [node name="Archer" parent="." index="5" instance=ExtResource("2_xbb4o")]
 position = Vector2(393, 406)
 
-[node name="Archer2" parent="." index="6" instance=ExtResource("2_xbb4o")]
-position = Vector2(425, 375)
+[node name="Bandit" parent="." index="6" instance=ExtResource("4_dlf47")]
+position = Vector2(565, 486)
+patrol_route = Array[Vector2i]([Vector2i(31, 33), Vector2i(39, 27)])
 
-[node name="Bandit" parent="." index="7" instance=ExtResource("4_dlf47")]
-position = Vector2(359, 169)
-
-[node name="TreasureActor" parent="." index="8" instance=ExtResource("4_1nuqe")]
+[node name="TreasureActor" parent="." index="7" instance=ExtResource("4_1nuqe")]
 position = Vector2(422, 406)
 
-[node name="MediumTreasureActor" parent="." index="9" instance=ExtResource("5_pdiac")]
+[node name="MediumTreasureActor" parent="." index="8" instance=ExtResource("5_pdiac")]
 position = Vector2(438, 405)
 
-[node name="MediumTreasureActor2" parent="." index="10" instance=ExtResource("6_g5f5p")]
+[node name="MediumTreasureActor2" parent="." index="9" instance=ExtResource("6_g5f5p")]
 position = Vector2(437, 425)
+
+[node name="Wizard" parent="." index="10" instance=ExtResource("7_ek0i6")]
+position = Vector2(395, 422)
 
 [editable path="Map"]

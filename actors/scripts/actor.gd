@@ -5,6 +5,7 @@ class_name Actor
 enum{ SELECT_TYPE_NONE, SELECT_TYPE_WALK, SELECT_TYPE_ATTACK, SELECT_TYPE_SPELL, SELECT_TYPE_ABILITY, SELECT_TYPE_INVENTORY }
 
 signal update_hud(is_active: bool)
+signal remove_card
 
 # reference
 @onready var map = $"../Map"

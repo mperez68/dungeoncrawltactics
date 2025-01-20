@@ -62,6 +62,8 @@ func attack(attacker: Actor, target: Actor) -> int:				## Attack vs. this player
 	target.add_child(self)
 	play("hit")
 	target.add_child(damage_text)
+	if !target.is_sig and target.target == null and target.hp > 0:
+		target.aggro(attacker)
 	return damage
 
 
