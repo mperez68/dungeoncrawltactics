@@ -6,14 +6,14 @@
 
 [node name="NonActor" instance=ExtResource("1_h4x7w")]
 script = ExtResource("2_ql31q")
+equipment = null
 NAME = "Non Actor"
+SIGHT_RANGE = 0
 WALK_RANGE = 0
 MAX_ACTIONS = 0
 MAX_HEALTH = 0
 is_actor = false
 corporeal = false
-weapon_skill = 0.0
-armor_skill = 0.5
 attack_range = 0
 melee_range = 0
 min_damage = 0

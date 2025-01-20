@@ -12,6 +12,7 @@ enum type{ NO_TARGET, POSITION, SINGLE_TARGET, MULTI_TARGET }
 @export var texture_focused: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var texture_click_mask: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var ability_type: type = type.NO_TARGET
+@export var node: PackedScene
 
 var rng = RandomNumberGenerator.new()
 var map: Map
@@ -31,8 +32,12 @@ func effect(user: Actor, map_in: Map = null, target: Variant = null) -> bool:
 				target = Vector2.ZERO
 			ret = _effect_vector(user, target)
 		type.SINGLE_TARGET:
+			if target == null:
+				target = preload("res://actors/scripts/Actor.tres").instantiate()
 			ret = _effect_actor(user, target)
 		type.MULTI_TARGET:
+			if target == null:
+				target = [  ]
 			ret = _effect_actor_array(user, target)
 		_:
 			ret = false

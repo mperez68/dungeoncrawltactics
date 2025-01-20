@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nutiksihwkf8" path="res://actors/cutpurse.tscn" id="4_wknx3"]
 [ext_resource type="PackedScene" uid="uid://deydm0w4x2rfe" path="res://actors/soldier.tscn" id="5_iunfl"]
 [ext_resource type="PackedScene" uid="uid://bwlpntyf16f30" path="res://actors/wizard.tscn" id="6_3octv"]
-[ext_resource type="PackedScene" uid="uid://c2spim5vs7yq" path="res://actors/non_actor.tscn" id="7_gji81"]
+[ext_resource type="PackedScene" uid="uid://chcyts1138ak8" path="res://actors/treasure_actor.tscn" id="8_ccarr"]
 [ext_resource type="PackedScene" uid="uid://c23cuvv8ykc1d" path="res://core/objectiverect.tscn" id="8_jtiop"]
 
 [node name="Level" instance=ExtResource("1_6vo4r")]
@@ -33,7 +33,7 @@ position = Vector2(907, 631)
 position = Vector2(887, 645)
 
 [node name="Wizard" parent="." index="7" instance=ExtResource("6_3octv")]
-position = Vector2(888, 661)
+position = Vector2(869, 678)
 
 [node name="Bandit4" parent="." index="8" instance=ExtResource("3_b2byl")]
 position = Vector2(328, 569)
@@ -131,13 +131,19 @@ position = Vector2(808, 375)
 [node name="Cutpurse18" parent="." index="39" instance=ExtResource("4_wknx3")]
 position = Vector2(857, 392)
 
-[node name="NonActor" parent="." index="40" instance=ExtResource("7_gji81")]
-position = Vector2(185, 584)
-
-[node name="NonActor2" parent="." index="41" instance=ExtResource("7_gji81")]
-position = Vector2(778, 231)
-
-[node name="ObjectiveRect" parent="." index="42" instance=ExtResource("8_jtiop")]
+[node name="ObjectiveRect" parent="." index="40" instance=ExtResource("8_jtiop")]
 position = Vector2(786, 672)
+
+[node name="Treasure" parent="." index="41" instance=ExtResource("8_ccarr")]
+position = Vector2(819, 630)
+armor_skill = 0.5
+
+[node name="Treasure2" parent="." index="42" instance=ExtResource("8_ccarr")]
+position = Vector2(167, 582)
+armor_skill = 0.5
+
+[node name="Treasure3" parent="." index="43" instance=ExtResource("8_ccarr")]
+position = Vector2(774, 200)
+armor_skill = 0.5
 
 [editable path="Map"]

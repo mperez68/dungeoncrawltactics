@@ -9,6 +9,7 @@
 
 [node name="HealingPotion" type="AnimatedSprite2D"]
 script = ExtResource("1_06p21")
+NAME = "Healing Potion"
 texture_normal = ExtResource("2_gvsdx")
 texture_pressed = ExtResource("3_3synx")
 texture_hover = ExtResource("4_uvscd")

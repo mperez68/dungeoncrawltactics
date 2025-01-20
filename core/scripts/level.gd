@@ -32,6 +32,8 @@ func _ready() -> void:
 	actors.shuffle()
 	for i in actors.size():
 		actors[i].index = i
+	for i in non_actors.size():
+		non_actors[i].index = i
 	# Transmit to HUD
 	new_turn_order.emit(actors)
 	
@@ -131,7 +133,7 @@ func remove_non_actors_at_position(origin: Vector2) -> Array[Actor]:
 	var result: Array[Actor] = []
 	for i in range(non_actors.size() - 1, -1, -1):
 		if map.local_to_map(origin) == map.local_to_map(non_actors[i].position):
-			result.push_back(non_actors[i])
+			result.push_back(non_actors[i].duplicate())
 			non_actors[i].queue_free()
 			non_actors.remove_at(i)
 	

@@ -1,0 +1,2 @@
+extends NonActor
+class_name TreasureActor

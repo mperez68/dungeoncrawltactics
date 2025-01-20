@@ -46,7 +46,7 @@ func _do_action(click_position: Vector2) -> bool:
 	
 	# calculate objectives
 	for objective in manager.objectives:
-		if ret and map.local_to_map(position) == map.local_to_map(objective) and !inventory.is_empty() and inventory[0]:
+		if ret and map.local_to_map(position) == map.local_to_map(objective) and !inventory.is_empty() and inventory[0].NAME == "Treasure":
 			manager.end_game()
 	
 	return ret
