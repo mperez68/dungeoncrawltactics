@@ -1,6 +1,7 @@
 extends ItemList
 
 signal send_to_loadout(actor: MenuActor)
+signal update_selected_actor(actor: MenuActor)
 
 var roster: Array[MenuActor] = []
 
@@ -28,3 +29,7 @@ func _on_loadout_send_to_roster(actor: MenuActor) -> void:
 func _add(actor: MenuActor):
 	roster.push_back(actor)
 	add_item(actor.actor_name) #TODO add icon
+
+
+func _on_item_selected(index: int) -> void:
+	update_selected_actor.emit(roster[index])

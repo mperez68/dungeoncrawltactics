@@ -36,6 +36,10 @@ window/size/always_on_top=true
 
 enabled=PackedStringArray("res://addons/gaea/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/simple_shapes/plugin.cfg")
 
+[gui]
+
+timers/tooltip_delay_sec=0.0
+
 [internationalization]
 
 locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_menus_template/base/translations/menus_translations.fr.translation")
