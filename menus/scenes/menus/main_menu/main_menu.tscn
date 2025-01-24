@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://jvdt84a0w2ht"]
+
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_7bt0m"]
+[ext_resource type="Script" path="res://menus/scenes/menus/main_menu/main_menu.gd" id="2_mcvso"]
+[ext_resource type="PackedScene" uid="uid://bq1an0omho6nf" path="res://menus/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_2g2ot"]
+[ext_resource type="PackedScene" uid="uid://cui5sreinibsv" path="res://menus/scenes/credits/credits.tscn" id="4_jbj7g"]
+
+[node name="MainMenu" instance=ExtResource("1_7bt0m")]
+script = ExtResource("2_mcvso")
+game_scene_path = "res://levels/level_1.tscn"
+options_packed_scene = ExtResource("3_2g2ot")
+credits_packed_scene = ExtResource("4_jbj7g")
+
+[node name="BackgroundMusicPlayer" parent="." index="1"]
+bus = &"Master"
+
+[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
+text = "Dungeon Crawl"
+
+[node name="SubTitleLabel" parent="MenuContainer/SubTitleMargin/SubTitleContainer" index="0"]
+text = "It's a Prototype!"

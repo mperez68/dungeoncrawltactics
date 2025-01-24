@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8fra62fgpohs"]
+
+[ext_resource type="PackedScene" uid="uid://b2numvphf2kau" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/video/video_options_menu.tscn" id="1_n1vvi"]
+[ext_resource type="Script" path="res://menus/scenes/menus/options_menu/video/video_options_menu.gd" id="2_1lgvi"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="3_4maru"]
+[ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="3_tuudd"]
+[ext_resource type="Script" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/toggle_option_control_windowed.gd" id="4_v0jrc"]
+
+[node name="Video" instance=ExtResource("1_n1vvi")]
+script = ExtResource("2_1lgvi")
+
+[node name="WindowedControl" parent="VBoxContainer" index="1" instance=ExtResource("3_4maru")]
+layout_mode = 2
+script = ExtResource("4_v0jrc")
+
+[node name="OptionLabel" parent="VBoxContainer/WindowedControl" index="0"]
+text = "Windowed :"
+
+[node name="CheckButton" parent="VBoxContainer/WindowedControl" index="1"]
+button_pressed = true
+
+[node name="ResolutionControl" parent="VBoxContainer" index="2"]
+property_type = 6
+
+[node name="AntiAliasingControl" parent="VBoxContainer" index="3" instance=ExtResource("3_tuudd")]
+layout_mode = 2
+lock_titles = true
+option_values = [0, 1, 2, 3]
+option_titles = Array[String](["Disabled (Fastest)", "2x", "4x", "8x (Slowest)"])
+option_name = "Anti-Aliasing"
+option_section = 3
+key = "Anti-aliasing"
+section = "VideoSettings"
+property_type = 2
+default_value = 0
+
+[connection signal="setting_changed" from="VBoxContainer/WindowedControl" to="." method="_on_fullscreen_control_setting_changed"]
+[connection signal="toggled" from="VBoxContainer/WindowedControl/CheckButton" to="VBoxContainer/WindowedControl" method="_on_windowed_button_toggled"]
+
+[editable path="VBoxContainer/WindowedControl"]

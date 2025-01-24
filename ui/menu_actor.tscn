@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc5b7pg8m8wfs"]
+
+[ext_resource type="SpriteFrames" uid="uid://bfwjw33jhspk" path="res://actors/scripts/Actor.tres" id="1_qsdtb"]
+[ext_resource type="Script" path="res://ui/scripts/menu_actor.gd" id="2_550cd"]
+
+[node name="MenuActor" type="AnimatedSprite2D"]
+z_index = 3
+y_sort_enabled = true
+sprite_frames = ExtResource("1_qsdtb")
+animation = &"idle down"
+autoplay = "idle down"
+frame_progress = 0.480098
+script = ExtResource("2_550cd")

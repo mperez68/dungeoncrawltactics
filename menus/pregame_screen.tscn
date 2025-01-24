@@ -1,0 +1,289 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs24q0scmjvkt"]
+
+[ext_resource type="Script" path="res://menus/pregame_screen.gd" id="1_38080"]
+[ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="1_nittt"]
+[ext_resource type="Theme" uid="uid://chostgya2bpdy" path="res://ui/scripts/menu_theme.tres" id="2_0ojvl"]
+[ext_resource type="Texture2D" uid="uid://ysonugtqgw7f" path="res://icon.svg" id="3_o3baq"]
+[ext_resource type="Script" path="res://menus/roster.gd" id="5_5pafm"]
+[ext_resource type="PackedScene" uid="uid://dp8ycwgvty7gk" path="res://ui/menu_level.tscn" id="5_efm55"]
+[ext_resource type="Texture2D" uid="uid://deeytaih16v5r" path="res://png/spells/spell_tile.png" id="6_0po4e"]
+[ext_resource type="Script" path="res://menus/loadout.gd" id="6_k66q8"]
+
+[node name="PregameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_38080")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MenuBox" type="NinePatchRect" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_nittt")
+region_rect = Rect2(0, 0, 56, 56)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_0ojvl")
+
+[node name="Body" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel"]
+layout_mode = 2
+alignment = 1
+
+[node name="Header" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Header"]
+layout_mode = 2
+text = "Choose Your Party"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fill" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Fill"]
+layout_mode = 2
+text = "New Members"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewButtons" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Fill"]
+layout_mode = 2
+alignment = 1
+
+[node name="Soldier" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Soldier"
+
+[node name="Archer" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Archer"
+
+[node name="Wizard" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Wizard"
+
+[node name="Loadout" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="RosterContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer"]
+layout_mode = 2
+text = "Roster"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Roster" type="ItemList" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer"]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 2
+theme = ExtResource("2_0ojvl")
+max_text_lines = 2
+auto_height = true
+item_count = 5
+item_0/text = "Dwalin"
+item_0/icon = ExtResource("3_o3baq")
+item_1/text = "Balin"
+item_1/icon = ExtResource("3_o3baq")
+item_2/text = "Kili"
+item_2/icon = ExtResource("3_o3baq")
+item_3/text = "Fili"
+item_3/icon = ExtResource("3_o3baq")
+item_4/text = "Dori"
+item_4/icon = ExtResource("3_o3baq")
+script = ExtResource("5_5pafm")
+
+[node name="AddToLoadout" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer"]
+layout_mode = 2
+text = "--->"
+
+[node name="LoadoutContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer"]
+layout_mode = 2
+text = "Selected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Loadout" type="ItemList" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme = ExtResource("2_0ojvl")
+max_text_lines = 2
+auto_height = true
+item_count = 3
+item_0/text = "Nori"
+item_0/icon = ExtResource("3_o3baq")
+item_1/text = "Ori"
+item_1/icon = ExtResource("3_o3baq")
+item_2/text = "Oin"
+item_2/icon = ExtResource("3_o3baq")
+script = ExtResource("6_k66q8")
+
+[node name="RemoveFromLoadout" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer"]
+layout_mode = 2
+text = "<---"
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=26][u]Character Name[/u][/font_size]"
+scroll_active = false
+
+[node name="Class" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=22]Class[/font_size]"
+scroll_active = false
+
+[node name="Abilities" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=18]Abilities:[/font_size]"
+scroll_active = false
+
+[node name="AbilityList" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Ability1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Ability2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Ability3" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Ability4" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Ability5" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Spells" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=18]Spells:[/font_size]"
+scroll_active = false
+
+[node name="SpellList" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spell1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Spell2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Spell3" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Spell4" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Spell5" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(280, 708)
+render_target_update_mode = 4
+
+[node name="MenuLevel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport" instance=ExtResource("5_efm55")]
+
+[node name="Bottom" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Bottom"]
+layout_mode = 2
+theme = ExtResource("2_0ojvl")
+text = "START"
+
+[connection signal="deselect_loadout" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_pregame_screen_deselect_loadout"]
+[connection signal="deselect_roster" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_deselect_roster"]
+[connection signal="loadout_to_roster" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_pregame_screen_loadout_to_roster"]
+[connection signal="new_actor" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_new_actor"]
+[connection signal="roster_to_loadout" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_roster_to_loadout"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Soldier" to="." method="_on_add_pressed" binds= ["soldier"]]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Archer" to="." method="_on_add_pressed" binds= ["archer"]]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Wizard" to="." method="_on_add_pressed" binds= ["wizard"]]
+[connection signal="item_activated" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="." method="_on_roster_item_activated"]
+[connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="." method="_on_roster_item_selected"]
+[connection signal="send_to_loadout" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_roster_send_to_loadout"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/AddToLoadout" to="." method="_on_add_to_loadout_pressed"]
+[connection signal="add_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport/MenuLevel" method="add_actor"]
+[connection signal="item_activated" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="." method="_on_loadout_item_activated"]
+[connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="." method="_on_loadout_item_selected"]
+[connection signal="remove_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport/MenuLevel" method="remove_actor"]
+[connection signal="send_to_roster" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_loadout_send_to_roster"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/RemoveFromLoadout" to="." method="_on_remove_from_loadout_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/Button" to="." method="_on_start_pressed"]

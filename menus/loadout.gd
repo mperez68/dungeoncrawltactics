@@ -1,0 +1,27 @@
+extends ItemList
+
+signal send_to_roster(actor: MenuActor)
+signal add_actor(actor: MenuActor)
+signal remove_actor(index: int)
+
+var loadout: Array[MenuActor] = []
+
+func _ready() -> void:
+	clear()
+
+func _on_pregame_screen_deselect_loadout() -> void:
+	deselect_all()
+
+
+func _on_pregame_screen_loadout_to_roster(index: int) -> void:
+	if range(loadout.size()).has(index):
+		send_to_roster.emit(loadout[index])
+		loadout.remove_at(index)
+		remove_item(index)
+		remove_actor.emit(index)
+
+
+func _on_roster_send_to_loadout(actor: MenuActor) -> void:
+	loadout.push_back(actor)
+	add_item(actor.actor_name) #TODO add icon
+	add_actor.emit(actor)
