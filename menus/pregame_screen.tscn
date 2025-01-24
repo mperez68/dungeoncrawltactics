@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cs24q0scmjvkt"]
+[gd_scene load_steps=11 format=3 uid="uid://cs24q0scmjvkt"]
 
 [ext_resource type="Script" path="res://menus/pregame_screen.gd" id="1_38080"]
 [ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="1_nittt"]
 [ext_resource type="Theme" uid="uid://chostgya2bpdy" path="res://ui/scripts/menu_theme.tres" id="2_0ojvl"]
 [ext_resource type="Texture2D" uid="uid://ysonugtqgw7f" path="res://icon.svg" id="3_o3baq"]
+[ext_resource type="Script" path="res://menus/new_buttons.gd" id="4_hyjev"]
 [ext_resource type="Script" path="res://menus/roster.gd" id="5_5pafm"]
 [ext_resource type="PackedScene" uid="uid://dp8ycwgvty7gk" path="res://ui/menu_level.tscn" id="5_efm55"]
 [ext_resource type="Texture2D" uid="uid://deeytaih16v5r" path="res://png/spells/spell_tile.png" id="6_0po4e"]
@@ -72,6 +73,7 @@ vertical_alignment = 1
 [node name="NewButtons" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Fill"]
 layout_mode = 2
 alignment = 1
+script = ExtResource("4_hyjev")
 
 [node name="Soldier" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons"]
 custom_minimum_size = Vector2(150, 0)
@@ -257,7 +259,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(280, 708)
+size = Vector2i(280, 700)
 render_target_update_mode = 4
 
 [node name="MenuLevel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport" instance=ExtResource("5_efm55")]
@@ -271,14 +273,17 @@ layout_mode = 2
 theme = ExtResource("2_0ojvl")
 text = "START"
 
+[connection signal="add_actor" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_add_actor"]
 [connection signal="deselect_loadout" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_pregame_screen_deselect_loadout"]
 [connection signal="deselect_roster" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_deselect_roster"]
 [connection signal="loadout_to_roster" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_pregame_screen_loadout_to_roster"]
-[connection signal="new_actor" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_new_actor"]
 [connection signal="roster_to_loadout" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_roster_to_loadout"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Soldier" to="." method="_on_add_pressed" binds= ["soldier"]]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Soldier" to="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons" method="_on_button_pressed" binds= ["soldier"]]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Archer" to="." method="_on_add_pressed" binds= ["archer"]]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Archer" to="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons" method="_on_button_pressed" binds= ["archer"]]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Wizard" to="." method="_on_add_pressed" binds= ["wizard"]]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Wizard" to="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons" method="_on_button_pressed" binds= ["wizard"]]
 [connection signal="item_activated" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="." method="_on_roster_item_activated"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="." method="_on_roster_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_item_selected"]
@@ -289,6 +294,7 @@ text = "START"
 [connection signal="item_activated" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="." method="_on_loadout_item_activated"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="." method="_on_loadout_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_item_selected"]
+[connection signal="lock_loadout" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_loadout_lock_loadout"]
 [connection signal="remove_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport/MenuLevel" method="remove_actor"]
 [connection signal="send_to_roster" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_loadout_send_to_roster"]
 [connection signal="update_selected_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="update_actor"]

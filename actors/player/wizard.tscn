@@ -12,5 +12,5 @@ magic_resist = 0.2
 attack_range = 3
 max_damage = 1
 
-[node name="AnimatedSprite2D" parent="." index="2"]
+[node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = ExtResource("2_lirpd")

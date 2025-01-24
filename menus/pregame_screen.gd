@@ -1,6 +1,6 @@
 extends Control
 
-signal new_actor(actor: MenuActor)
+signal add_actor(actor: MenuActor)
 signal roster_to_loadout(index: int)
 signal loadout_to_roster(index: int)
 signal deselect_roster
@@ -10,19 +10,7 @@ var roster_selection: int = -1
 var loadout_selection: int = -1
 
 func _on_add_pressed(player_class: String) -> void:
-	var arg: MenuActor.Type = MenuActor.Type.DEFAULT
-	var actor: MenuActor
-	match player_class:
-		"soldier":
-			arg = MenuActor.Type.SOLDIER
-		"archer":
-			arg = MenuActor.Type.ARCHER
-		"wizard":
-			arg = MenuActor.Type.WIZARD
-	actor = preload("res://ui/menu_actor.tscn").instantiate()
-	actor.init(arg)
-	
-	new_actor.emit(actor)
+	add_actor.emit(CharacterList.get_menu_actor(CharacterList.add_actor(player_class)))
 
 
 func _on_start_pressed() -> void:

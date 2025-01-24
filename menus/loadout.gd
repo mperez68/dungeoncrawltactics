@@ -4,6 +4,7 @@ signal send_to_roster(actor: MenuActor)
 signal add_actor(actor: MenuActor)
 signal remove_actor(index: int)
 signal update_selected_actor(actor: MenuActor)
+signal lock_loadout(is_locked: int)
 
 var loadout: Array[MenuActor] = []
 
@@ -20,12 +21,16 @@ func _on_pregame_screen_loadout_to_roster(index: int) -> void:
 		loadout.remove_at(index)
 		remove_item(index)
 		remove_actor.emit(index)
+		if loadout.size() < 3:
+			lock_loadout.emit(false)
 
 
 func _on_roster_send_to_loadout(actor: MenuActor) -> void:
 	loadout.push_back(actor)
 	add_item(actor.actor_name) #TODO add icon
 	add_actor.emit(actor)
+	if loadout.size() >= 3:
+		lock_loadout.emit(true)
 
 
 func _on_item_selected(index: int) -> void:

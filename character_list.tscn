@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dil2o21uygfms"]
+
+[ext_resource type="Script" path="res://character_list.gd" id="1_f6thq"]
+
+[node name="CharacterList" type="Node"]
+script = ExtResource("1_f6thq")

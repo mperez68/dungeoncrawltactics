@@ -9,5 +9,5 @@ y_sort_enabled = true
 sprite_frames = ExtResource("1_qsdtb")
 animation = &"idle down"
 autoplay = "idle down"
-frame_progress = 0.480098
+frame_progress = 0.404312
 script = ExtResource("2_550cd")

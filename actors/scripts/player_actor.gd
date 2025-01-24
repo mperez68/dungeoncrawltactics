@@ -4,6 +4,12 @@ class_name PlayerActor
 
 var can_embark = false
 
+# Engine
+func _ready() -> void:
+	if NAME == "Player":
+		gen_name()
+	super()
+
 # Inputs
 func _unhandled_input(event: InputEvent) -> void:
 	# No actions can be done while not active actor
@@ -32,6 +38,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 # public methods
+func gen_name():
+	NAME = "Player"
+
 func start_turn():
 	super()
 	select(SELECT_TYPE_WALK)

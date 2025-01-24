@@ -1,4 +1,38 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://chostgya2bpdy"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://chostgya2bpdy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpb53"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.136104, 7.37754e-07, 0.00176131, 1)
+skew = Vector2(0.15, 0)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e62n6"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.466667, 0, 0.0196078, 1)
+skew = Vector2(0.15, 0)
+border_width_left = 12
+border_width_top = 1
+border_width_right = 12
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42psv"]
 content_margin_left = 8.0
@@ -12,6 +46,16 @@ border_width_top = 1
 border_width_right = 4
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow5di"]
+bg_color = Color(0.300626, 1.6214e-06, 0.00781853, 1)
+skew = Vector2(0.15, 0)
+border_width_left = 2
+border_width_right = 2
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -44,8 +88,10 @@ font_names = PackedStringArray("Century Gothic")
 
 [resource]
 default_font = SubResource("SystemFont_d0mpo")
-default_font_size = 36
+default_font_size = 32
+Button/styles/disabled = SubResource("StyleBoxFlat_kpb53")
+Button/styles/hover = SubResource("StyleBoxFlat_e62n6")
 Button/styles/normal = SubResource("StyleBoxFlat_42psv")
-Button/styles/pressed = null
+Button/styles/pressed = SubResource("StyleBoxFlat_ow5di")
 ItemList/styles/panel = SubResource("StyleBoxFlat_8nv3s")
 PanelContainer/styles/panel = SubResource("StyleBoxEmpty_271mu")
