@@ -1,6 +1,7 @@
 extends Node
 
 var all_actors: Array[PlayerActor] = []
+var final_loadout: Array[PlayerActor] = []
 
 # Save to local data on mission completion
 
@@ -28,6 +29,6 @@ func get_menu_actor(index: int) -> MenuActor:
 			arg = MenuActor.Type.ARCHER
 		elif all_actors[index] is Wizard:
 			arg = MenuActor.Type.WIZARD
-		actor.init(arg)
+		actor.init(arg, all_actors[index])
 		actor.actor_name = all_actors[index].NAME
 	return actor

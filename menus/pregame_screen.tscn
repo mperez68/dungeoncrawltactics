@@ -1,15 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://cs24q0scmjvkt"]
+[gd_scene load_steps=13 format=3 uid="uid://cs24q0scmjvkt"]
 
 [ext_resource type="Script" path="res://menus/pregame_screen.gd" id="1_38080"]
 [ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="1_nittt"]
 [ext_resource type="Theme" uid="uid://chostgya2bpdy" path="res://ui/scripts/menu_theme.tres" id="2_0ojvl"]
 [ext_resource type="Texture2D" uid="uid://ysonugtqgw7f" path="res://icon.svg" id="3_o3baq"]
 [ext_resource type="Script" path="res://menus/new_buttons.gd" id="4_hyjev"]
+[ext_resource type="Texture2D" uid="uid://cbiu2mjwpyo8i" path="res://png/spells/currency.png" id="4_jn0ei"]
 [ext_resource type="Script" path="res://menus/roster.gd" id="5_5pafm"]
 [ext_resource type="PackedScene" uid="uid://dp8ycwgvty7gk" path="res://ui/menu_level.tscn" id="5_efm55"]
 [ext_resource type="Texture2D" uid="uid://deeytaih16v5r" path="res://png/spells/spell_tile.png" id="6_0po4e"]
 [ext_resource type="Script" path="res://menus/loadout.gd" id="6_k66q8"]
 [ext_resource type="Script" path="res://menus/info_panel.gd" id="7_n7afs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xisnd"]
+font_size = 20
 
 [node name="PregameScreen" type="Control"]
 layout_mode = 3
@@ -64,11 +68,21 @@ vertical_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Fill"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Fill"]
 layout_mode = 2
-text = "New Members"
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Fill/HBoxContainer"]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_xisnd")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CurrencyIcon" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Fill/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_jn0ei")
+expand_mode = 2
 
 [node name="NewButtons" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Fill"]
 layout_mode = 2
@@ -273,6 +287,11 @@ layout_mode = 2
 theme = ExtResource("2_0ojvl")
 text = "START"
 
+[node name="BackButton" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Bottom"]
+layout_mode = 2
+theme = ExtResource("2_0ojvl")
+text = "BACK TO MENU"
+
 [connection signal="add_actor" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_add_actor"]
 [connection signal="deselect_loadout" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_pregame_screen_deselect_loadout"]
 [connection signal="deselect_roster" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_deselect_roster"]
@@ -299,4 +318,5 @@ text = "START"
 [connection signal="send_to_roster" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_loadout_send_to_roster"]
 [connection signal="update_selected_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="update_actor"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/RemoveFromLoadout" to="." method="_on_remove_from_loadout_pressed"]
-[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/Button" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_start_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/BackButton" to="." method="_on_back_button_pressed"]

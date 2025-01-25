@@ -136,12 +136,8 @@ func update_hud(is_active: bool):
 		hud.walk_button.focus_mode = Button.FOCUS_NONE
 	# Set focus
 	match actor.select_type:
-		Actor.SELECT_TYPE_WALK:
-			hud.walk_button.grab_focus()
 		Actor.SELECT_TYPE_ATTACK:
 			hud.attack_button.grab_focus()
-		Actor.SELECT_TYPE_NONE:
-			hud.counter.grab_focus()
 
 func set_actor(a: Actor):
 	if a:

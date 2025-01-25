@@ -11,6 +11,7 @@ signal inc_turn_counter(turn: int)
 
 # Constants
 const PAUSE_LONG: float = 1
+@export var STARTING_POSITIONS: Array[Vector2i] = [ Vector2i.ZERO, Vector2i.ZERO, Vector2i.ZERO ]
 
 var actors: Array[Actor] = []
 var non_actors: Array[Actor] = []
@@ -21,8 +22,14 @@ var turn_counter = 0
 
 # engine
 func _ready() -> void:
+	# Deploy player characters
+	for i in CharacterList.final_loadout.size():
+		CharacterList.final_loadout[i].position = map.map_to_local(STARTING_POSITIONS[i])
+		CharacterList.final_loadout[i].request_ready()
+		add_child(CharacterList.final_loadout[i])
+	
 	# populate actors lists
-	for child in find_children("*", "Actor"):
+	for child in find_children("*", "Actor", true, false):
 		if child.is_actor:
 			actors.push_back(child)
 		else:

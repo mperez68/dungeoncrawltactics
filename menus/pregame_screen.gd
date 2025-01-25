@@ -13,10 +13,6 @@ func _on_add_pressed(player_class: String) -> void:
 	add_actor.emit(CharacterList.get_menu_actor(CharacterList.add_actor(player_class)))
 
 
-func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://levels/level_1.tscn")
-
-
 func _on_roster_item_selected(index: int) -> void:
 	roster_selection = index
 	loadout_selection = -1
@@ -59,3 +55,7 @@ func _on_loadout_item_activated(index: int) -> void:
 	loadout_to_roster.emit(index)
 	loadout_selection = -1
 	roster_selection = -1
+
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://menus/scenes/menus/main_menu/main_menu_with_animations.tscn")

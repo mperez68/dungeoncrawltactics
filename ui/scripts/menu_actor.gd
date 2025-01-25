@@ -7,8 +7,10 @@ enum Type { SOLDIER, ARCHER, WIZARD, DEFAULT }
 var type: Type = Type.DEFAULT
 var actor_name: String = "Actor"
 var actor_class: String = "None"
+var actor_reference: PlayerActor
 
-func init(type_in: Type) -> void:
+func init(type_in: Type, original_actor: PlayerActor) -> void:
+	actor_reference = original_actor
 	type = type_in
 	match type:
 		Type.SOLDIER:

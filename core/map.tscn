@@ -197,15 +197,15 @@ z_index = 3
 
 [node name="FogOfWar" parent="." instance=ExtResource("1_2dpeh")]
 visible = false
-z_index = 3
+z_index = 4
 
 [node name="Highlights" type="TileMapLayer" parent="."]
-z_index = 4
+z_index = 5
 y_sort_enabled = true
 tile_set = ExtResource("3_vmkiw")
 
 [node name="Focus" type="TileMapLayer" parent="."]
-z_index = 5
+z_index = 6
 y_sort_enabled = true
 tile_set = ExtResource("3_vmkiw")
 

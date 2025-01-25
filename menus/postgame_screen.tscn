@@ -1,0 +1,232 @@
+[gd_scene load_steps=12 format=3 uid="uid://connattinkaxg"]
+
+[ext_resource type="Script" path="res://menus/postgame_screen.gd" id="1_k362q"]
+[ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="2_ya1na"]
+[ext_resource type="Theme" uid="uid://chostgya2bpdy" path="res://ui/scripts/menu_theme.tres" id="3_mxc55"]
+[ext_resource type="Texture2D" uid="uid://ysonugtqgw7f" path="res://icon.svg" id="5_28ych"]
+[ext_resource type="Script" path="res://menus/return.gd" id="5_qyfnw"]
+[ext_resource type="Texture2D" uid="uid://cj88dqdi0m6io" path="res://png/spells/dash/dash.png" id="8_5gsuk"]
+[ext_resource type="Script" path="res://menus/info_panel.gd" id="8_eu4j0"]
+[ext_resource type="Texture2D" uid="uid://0okyskgf3ygq" path="res://png/spells/immolate/immolate.png" id="9_4f7jd"]
+[ext_resource type="Texture2D" uid="uid://deeytaih16v5r" path="res://png/spells/spell_tile.png" id="9_wbhxi"]
+[ext_resource type="Script" path="res://menus/options.gd" id="10_0i5ng"]
+[ext_resource type="Script" path="res://menus/selection_tooltip.gd" id="11_0rrc8"]
+
+[node name="PostgameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k362q")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MenuBox" type="NinePatchRect" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_ya1na")
+region_rect = Rect2(0, 0, 56, 56)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_mxc55")
+
+[node name="Body" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel"]
+layout_mode = 2
+alignment = 1
+
+[node name="Header" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Header"]
+layout_mode = 2
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Loadout" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="LoadoutContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
+layout_mode = 2
+
+[node name="Return" type="ItemList" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme = ExtResource("3_mxc55")
+max_text_lines = 2
+auto_height = true
+item_count = 3
+item_0/text = "Nori"
+item_0/icon = ExtResource("5_28ych")
+item_1/text = "Ori"
+item_1/icon = ExtResource("5_28ych")
+item_2/text = "Oin"
+item_2/icon = ExtResource("5_28ych")
+script = ExtResource("5_qyfnw")
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("8_eu4j0")
+
+[node name="Name" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=26][u]Character Name[/u][/font_size]"
+scroll_active = false
+
+[node name="Class" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=22]Class[/font_size]"
+scroll_active = false
+
+[node name="Abilities" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=18]Abilities:[/font_size]"
+scroll_active = false
+
+[node name="AbilityList" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Ability1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "NONE"
+texture = ExtResource("9_wbhxi")
+
+[node name="Ability2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Ability3" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Ability4" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Ability5" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Spells" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=18]Spells:[/font_size]"
+scroll_active = false
+
+[node name="SpellList" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spell1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Spell2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Spell3" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Spell4" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Spell5" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="OptionsContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
+layout_mode = 2
+
+[node name="Options" type="ItemList" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer"]
+custom_minimum_size = Vector2(300, 600)
+layout_mode = 2
+theme = ExtResource("3_mxc55")
+max_text_lines = 2
+auto_height = true
+item_count = 2
+item_0/text = "New Ability"
+item_0/icon = ExtResource("8_5gsuk")
+item_1/text = "New Spell"
+item_1/icon = ExtResource("9_4f7jd")
+script = ExtResource("10_0i5ng")
+
+[node name="SelectionTooltip" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
+layout_mode = 2
+script = ExtResource("11_0rrc8")
+
+[node name="Title" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Selection Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip"]
+layout_mode = 2
+
+[node name="Bottom" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body"]
+layout_mode = 2
+alignment = 1
+
+[node name="NewRunButton" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Bottom"]
+layout_mode = 2
+theme = ExtResource("3_mxc55")
+text = "NEW RUN"
+
+[node name="BackButton" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Bottom"]
+layout_mode = 2
+theme = ExtResource("3_mxc55")
+text = "BACK TO MENU"
+
+[connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_return_item_selected"]
+[connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_return_item_selected"]
+[connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_item_selected"]
+[connection signal="option_tooltip" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip" method="_on_options_option_tooltip"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/NewRunButton" to="." method="_on_new_run_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/BackButton" to="." method="_on_menu_button_pressed"]

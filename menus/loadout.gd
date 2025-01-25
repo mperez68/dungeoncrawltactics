@@ -35,3 +35,10 @@ func _on_roster_send_to_loadout(actor: MenuActor) -> void:
 
 func _on_item_selected(index: int) -> void:
 	update_selected_actor.emit(loadout[index])
+
+
+func _on_start_pressed() -> void:
+	CharacterList.final_loadout.clear()
+	for actor in loadout:
+		CharacterList.final_loadout.push_back(actor.actor_reference)
+	get_tree().change_scene_to_file("res://levels/level_1.tscn")
