@@ -57,8 +57,7 @@ func attack(attacker: Actor, target: Actor) -> int:				## Attack vs. this player
 		target.anim_player.play("block")
 	# Die if below 0 HP
 	if target.hp <= 0:
-		target.anim.play("die " + target.facing)
-		target.map.set_position_solid(target.position, false)
+		target.die()
 	target.add_child(self)
 	play("hit")
 	target.add_child(damage_text)

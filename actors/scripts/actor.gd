@@ -232,8 +232,7 @@ func attack(attacker: Actor) -> int:				## Attack vs. this player.
 		anim_player.play("block")
 	# Die if below 0 HP
 	if hp <= 0:
-		anim.play("die " + facing)
-		map.set_position_solid(position, false)
+		die()
 	add_child(damage_text)
 	
 	if is_hidden:
@@ -242,6 +241,10 @@ func attack(attacker: Actor) -> int:				## Attack vs. this player.
 		_set_fog(attacker.position, 0)
 	
 	return damage
+
+func die():
+	anim.play("die " + facing)
+	map.set_position_solid(position, false)
 
 func heal(min_heal: int, max_heal: int, crit_heal_modifier: float = 0, crit_heal_multiplier: float = 1.5) -> int:				## Heal vs. this player.
 	var heal_text = t.instantiate()

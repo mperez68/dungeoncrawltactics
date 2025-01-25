@@ -30,6 +30,9 @@ tile_map_data = PackedByteArray("AAAAAAAABQAJAA4AAAAAAAEABQAJAA4AAAAAAAIABQAJAA4
 [node name="HUD" parent="." index="3"]
 debug = true
 
+[node name="EndGameDialog" parent="." index="4"]
+ok_button_text = "RETURN"
+
 [node name="Bandit4" parent="." index="5" instance=ExtResource("3_b2byl")]
 position = Vector2(328, 569)
 

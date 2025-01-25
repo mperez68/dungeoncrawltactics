@@ -101,6 +101,7 @@ func pass_turn():
 			enable_ui.emit(false)
 			if embarked.is_empty():
 				end_dialog.dialog_text = "NO SURVIVORS ESCAPED."
+				end_dialog.fail_state = true
 			else:
 				end_dialog.dialog_text = "ADVENTURERS HAVE DEPARTED WITH:\n"
 				for actor in embarked:

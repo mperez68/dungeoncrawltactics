@@ -55,6 +55,13 @@ func select(new_type: int) -> bool:
 	return ret
 
 # Private methods
+func die():
+	super()
+	for i in CharacterList.all_actors.size():
+		if CharacterList.all_actors[i] == self:
+			CharacterList.all_actors.remove_at(i)
+			return
+
 func _do_action(click_position: Vector2) -> bool:
 	var ret = await super(click_position)
 	_update_embark_status()
