@@ -121,7 +121,6 @@ alignment = 1
 [node name="Ability1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "NONE"
 texture = ExtResource("9_wbhxi")
 
 [node name="Ability2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
@@ -224,8 +223,9 @@ layout_mode = 2
 theme = ExtResource("3_mxc55")
 text = "BACK TO MENU"
 
+[connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" method="_on_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_return_item_selected"]
-[connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_return_item_selected"]
+[connection signal="update_actor_panel" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_update_selected_actor"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_item_selected"]
 [connection signal="option_tooltip" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip" method="_on_options_option_tooltip"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/NewRunButton" to="." method="_on_new_run_button_pressed"]

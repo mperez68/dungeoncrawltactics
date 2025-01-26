@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cs24q0scmjvkt"]
+[gd_scene load_steps=15 format=3 uid="uid://cs24q0scmjvkt"]
 
 [ext_resource type="Script" path="res://menus/pregame_screen.gd" id="1_38080"]
 [ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="1_nittt"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://deeytaih16v5r" path="res://png/spells/spell_tile.png" id="6_0po4e"]
 [ext_resource type="Script" path="res://menus/loadout.gd" id="6_k66q8"]
 [ext_resource type="Script" path="res://menus/info_panel.gd" id="7_n7afs"]
+[ext_resource type="Texture2D" uid="uid://cj88dqdi0m6io" path="res://png/spells/dash/dash.png" id="10_gwwxl"]
+[ext_resource type="Texture2D" uid="uid://0okyskgf3ygq" path="res://png/spells/immolate/immolate.png" id="12_5r1qq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xisnd"]
 font_size = 20
@@ -206,8 +208,7 @@ alignment = 1
 [node name="Ability1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-tooltip_text = "NONE"
-texture = ExtResource("6_0po4e")
+texture = ExtResource("10_gwwxl")
 
 [node name="Ability2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/AbilityList"]
 custom_minimum_size = Vector2(64, 64)
@@ -243,7 +244,7 @@ alignment = 1
 [node name="Spell1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("6_0po4e")
+texture = ExtResource("12_5r1qq")
 
 [node name="Spell2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/SpellList"]
 custom_minimum_size = Vector2(64, 64)
@@ -307,7 +308,7 @@ text = "BACK TO MENU"
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="." method="_on_roster_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_item_selected"]
 [connection signal="send_to_loadout" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_roster_send_to_loadout"]
-[connection signal="update_selected_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="update_actor"]
+[connection signal="update_selected_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_update_selected_actor"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/AddToLoadout" to="." method="_on_add_to_loadout_pressed"]
 [connection signal="add_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport/MenuLevel" method="add_actor"]
 [connection signal="item_activated" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="." method="_on_loadout_item_activated"]
@@ -316,7 +317,7 @@ text = "BACK TO MENU"
 [connection signal="lock_loadout" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_loadout_lock_loadout"]
 [connection signal="remove_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport/MenuLevel" method="remove_actor"]
 [connection signal="send_to_roster" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_loadout_send_to_roster"]
-[connection signal="update_selected_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="update_actor"]
+[connection signal="update_selected_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_update_selected_actor"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/RemoveFromLoadout" to="." method="_on_remove_from_loadout_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/Button" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_start_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/BackButton" to="." method="_on_back_button_pressed"]

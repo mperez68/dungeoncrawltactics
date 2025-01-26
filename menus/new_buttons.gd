@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func _on_button_pressed(button_class: String) -> void:
 	# only one new character a round
-	soldier_button.disabled = true
-	archer_button.disabled = true
-	wizard_button.disabled = true
+	#soldier_button.disabled = true
+	#archer_button.disabled = true
+	#wizard_button.disabled = true
+	pass

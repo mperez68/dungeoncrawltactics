@@ -2,8 +2,7 @@ extends PlayerActor
 
 class_name Wizard
 
-func _ready() -> void:
-	super()
+func init_specials():
 	spell_book.push_front(preload("res://actions/immolate.tscn").instantiate())
 	
 func gen_name():

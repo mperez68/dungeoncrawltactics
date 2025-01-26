@@ -7,6 +7,9 @@ enum Type { SOLDIER, ARCHER, WIZARD, DEFAULT }
 var type: Type = Type.DEFAULT
 var actor_name: String = "Actor"
 var actor_class: String = "None"
+var abilities: Array[Ability] = []
+var spells: Array[Spell] = []
+var inventory: Array[EquipmentActor] = []
 var actor_reference: PlayerActor
 
 func init(type_in: Type, original_actor: PlayerActor) -> void:
@@ -25,6 +28,10 @@ func init(type_in: Type, original_actor: PlayerActor) -> void:
 			sprite_frames = preload("res://actors/scripts/Wizard.tres")
 			actor_name = "a nerdy guy"
 			actor_class = "Wizard"
+	abilities = original_actor.abilities
+	spells = original_actor.spell_book
+	inventory = original_actor.inventory
+	
 
 func _ready() -> void:
 	play("idle down")

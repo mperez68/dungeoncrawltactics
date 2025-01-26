@@ -12,6 +12,7 @@
 [node name="Dash" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_f3gkr")
 script = ExtResource("1_kvbp1")
+NAME = "Dash"
 texture_normal = ExtResource("2_jenwc")
 texture_pressed = ExtResource("3_vlnnl")
 texture_hover = ExtResource("4_svkur")

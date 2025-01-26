@@ -6,9 +6,10 @@ var can_embark = false
 
 # Engine
 func _ready() -> void:
+	super()
+	active = false
 	if NAME == "Player":
 		gen_name()
-	super()
 
 # Inputs
 func _unhandled_input(event: InputEvent) -> void:
@@ -40,6 +41,9 @@ func _unhandled_input(event: InputEvent) -> void:
 # public methods
 func gen_name():
 	NAME = "Player"
+
+func init_specials():
+	pass
 
 func start_turn():
 	super()

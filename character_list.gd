@@ -15,6 +15,7 @@ func add_actor(actor_class: String) -> int:
 		"wizard":
 			actor = preload("res://actors/player/wizard.tscn").instantiate()
 	actor.gen_name()
+	actor.init_specials()
 	all_actors.push_front(actor)
 	return 0	# index of added actor
 
@@ -31,4 +32,18 @@ func get_menu_actor(index: int) -> MenuActor:
 			arg = MenuActor.Type.WIZARD
 		actor.init(arg, all_actors[index])
 		actor.actor_name = all_actors[index].NAME
+	return actor
+
+func get_menu_actor_from_player_actor(player_actor: PlayerActor) -> MenuActor:
+	var arg: MenuActor.Type = MenuActor.Type.DEFAULT
+	var actor: MenuActor
+	actor = preload("res://ui/menu_actor.tscn").instantiate()
+	if player_actor is Soldier:	# I hate this, make it a match statement if possible
+		arg = MenuActor.Type.SOLDIER
+	elif player_actor is Archer:
+		arg = MenuActor.Type.ARCHER
+	elif player_actor is Wizard:
+		arg = MenuActor.Type.WIZARD
+	actor.init(arg, player_actor)
+	actor.actor_name = player_actor.NAME
 	return actor
