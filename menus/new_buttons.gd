@@ -6,14 +6,18 @@ extends HBoxContainer
 
 
 func _ready() -> void:
-	# TODO get options from singleton
-	soldier_button.disabled = false
-	archer_button.disabled = false
-	wizard_button.disabled = false
+	update_options()
 
-func _on_button_pressed(button_class: String) -> void:
-	# only one new character a round
-	#soldier_button.disabled = true
-	#archer_button.disabled = true
-	#wizard_button.disabled = true
-	pass
+func _on_button_pressed(_button_class: String) -> void:
+	update_options()
+
+func update_options():
+	if CharacterList.total_treasure >= 3:
+		soldier_button.disabled = false
+		archer_button.disabled = false
+		wizard_button.disabled = false
+	else:
+		soldier_button.disabled = true
+		archer_button.disabled = true
+		wizard_button.disabled = true
+		

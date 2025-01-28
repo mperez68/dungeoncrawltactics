@@ -2,8 +2,13 @@ extends Node
 
 var all_actors: Array[PlayerActor] = []
 var final_loadout: Array[PlayerActor] = []
-
+var total_treasure: int = 5
 # Save to local data on mission completion
+
+var generic_options: Array[Node] = [ preload("res://actors/pickups/health_potion_actor.tscn").instantiate(), preload("res://actors/pickups/mana_potion_actor.tscn").instantiate() ]
+var soldier_options: Array[Node] = []
+var archer_options: Array[Node] = [ preload("res://actions/dash.tscn").instantiate() ]
+var wizard_options: Array[Node] = [ preload("res://actions/immolate.tscn").instantiate() ]
 
 func add_actor(actor_class: String) -> int:
 	var actor: PlayerActor

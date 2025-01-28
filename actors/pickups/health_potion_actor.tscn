@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://y3nsxhtwguig" path="res://png/spells/healing_potion/healing_potion_focused.png" id="7_vp4vm"]
 
 [node name="HealthPotionActor" instance=ExtResource("1_lfst4")]
+texture_normal = ExtResource("3_3bxvy")
 NAME = "Health Potion"
 
 [node name="AnimatedSprite2D" parent="." index="3"]
@@ -17,6 +18,9 @@ sprite_frames = ExtResource("2_2vkoo")
 
 [node name="Data" parent="." index="7"]
 script = ExtResource("3_vl8oh")
+NAME = "Health Potion"
+description = "1 action. Heal 2-3 HP."
+treasure_cost = 5
 texture_normal = ExtResource("3_3bxvy")
 texture_pressed = ExtResource("4_8xhdu")
 texture_hover = ExtResource("5_g6tgu")

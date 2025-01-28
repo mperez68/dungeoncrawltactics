@@ -99,14 +99,24 @@ func pass_turn():
 			return
 		-1:
 			enable_ui.emit(false)
+			var starting_treasure = CharacterList.total_treasure
 			if embarked.is_empty():
 				end_dialog.dialog_text = "NO SURVIVORS ESCAPED."
 				end_dialog.fail_state = true
 			else:
 				end_dialog.dialog_text = "ADVENTURERS HAVE DEPARTED WITH:\n"
 				for actor in embarked:
+					var temp_inventory = []
 					for item in actor.inventory:
+						if item.NAME.contains("Treasure"):
+							CharacterList.total_treasure += item.data.value
+						else:
+							temp_inventory.push_back(item)
 						end_dialog.dialog_text = end_dialog.dialog_text + (item.NAME) + "\n"
+					actor.inventory.clear()
+					for item in temp_inventory:
+						actor.inventory.push_back(item)
+			end_dialog.dialog_text = end_dialog.dialog_text + "+" +  str(CharacterList.total_treasure - starting_treasure) + "\n" + "TOTAL: " + str(CharacterList.total_treasure)
 			end_dialog.visible = true
 			return
 	# Edge case, no actors

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs24q0scmjvkt"]
+[gd_scene load_steps=16 format=3 uid="uid://cs24q0scmjvkt"]
 
 [ext_resource type="Script" path="res://menus/pregame_screen.gd" id="1_38080"]
 [ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="1_nittt"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://menus/info_panel.gd" id="7_n7afs"]
 [ext_resource type="Texture2D" uid="uid://cj88dqdi0m6io" path="res://png/spells/dash/dash.png" id="10_gwwxl"]
 [ext_resource type="Texture2D" uid="uid://0okyskgf3ygq" path="res://png/spells/immolate/immolate.png" id="12_5r1qq"]
+[ext_resource type="Texture2D" uid="uid://dgkwn68tal51o" path="res://png/spells/healing_potion/healing_potion.png" id="13_e6lak"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xisnd"]
 font_size = 20
@@ -266,6 +267,42 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("6_0po4e")
 
+[node name="Inventory" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=18]Inventory:[/font_size]"
+scroll_active = false
+
+[node name="ItemsList" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Item1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("13_e6lak")
+
+[node name="Item2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Item3" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Item4" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
+[node name="Item5" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_0po4e")
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
@@ -292,6 +329,20 @@ text = "START"
 layout_mode = 2
 theme = ExtResource("2_0ojvl")
 text = "BACK TO MENU"
+
+[node name="Treasure" type="HFlowContainer" parent="."]
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 320.0
+offset_bottom = 90.0
+
+[node name="TreasureText" type="Label" parent="Treasure"]
+layout_mode = 2
+text = "Treasure: "
+
+[node name="TreasureValue" type="Label" parent="Treasure"]
+layout_mode = 2
+text = "??"
 
 [connection signal="add_actor" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_add_actor"]
 [connection signal="deselect_loadout" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_pregame_screen_deselect_loadout"]

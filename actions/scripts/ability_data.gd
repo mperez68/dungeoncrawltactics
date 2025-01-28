@@ -5,6 +5,8 @@ class_name Ability
 enum type{ NO_TARGET, POSITION, SINGLE_TARGET, MULTI_TARGET }
 
 @export var NAME: String = "Ability"
+@export var description: String = "text"
+@export var treasure_cost: int = 1
 @export var texture_normal: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var texture_pressed: CompressedTexture2D = preload("res://png/spells/spell_tile.png")
 @export var texture_hover: CompressedTexture2D = preload("res://png/spells/spell_tile.png")

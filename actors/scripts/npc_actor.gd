@@ -142,7 +142,7 @@ func _ai_turn() -> bool:
 	elif patrol_route.size() > 1 and remaining_walk_range > 0:
 		if map.local_to_map(position) == patrol_route[patrol_pointer]:
 			patrol_pointer = (patrol_pointer + 1) % patrol_route.size()
-		elif !map.can_approach(position, map.map_to_local(patrol_route[patrol_pointer]), 9999) and map.can_see(position, patrol_route[patrol_pointer], aggro_range / 2):
+		elif !map.can_approach(position, map.map_to_local(patrol_route[patrol_pointer]), 9999) and map.can_see(position, patrol_route[patrol_pointer], int(aggro_range / 2)):
 			patrol_pointer = (patrol_pointer + 1) % patrol_route.size()
 		else:
 			if select_type != SELECT_TYPE_WALK:

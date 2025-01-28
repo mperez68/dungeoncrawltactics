@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://mnhv4rq231mp"]
+[gd_scene load_steps=6 format=3 uid="uid://mnhv4rq231mp"]
 
 [ext_resource type="PackedScene" uid="uid://c2spim5vs7yq" path="res://actors/non_actor.tscn" id="1_ui5ul"]
 [ext_resource type="Script" path="res://actors/pickups/scripts/equipment_actor.gd" id="2_q2mpe"]
+[ext_resource type="Texture2D" uid="uid://deeytaih16v5r" path="res://png/spells/spell_tile.png" id="3_3oe66"]
 [ext_resource type="PackedScene" uid="uid://b1pqqbeai4dvp" path="res://actors/pickups/treasure_data.tscn" id="3_mtmpj"]
 [ext_resource type="Script" path="res://actors/pickups/scripts/equipment_data.gd" id="4_nyai0"]
 
 [node name="PickupActor" instance=ExtResource("1_ui5ul")]
 script = ExtResource("2_q2mpe")
+texture_normal = ExtResource("3_3oe66")
 
-[node name="AnimatedSprite2D" parent="." index="2"]
+[node name="AggroRadius" parent="." index="0"]
+polygon = PackedVector2Array(8, 0, 7.84628, 1.56072, 7.39104, 3.06147, 6.65176, 4.44456, 5.65685, 5.65685, 4.44456, 6.65176, 3.06147, 7.39104, 1.56072, 7.84628, 4.89843e-16, 8, -1.56072, 7.84628, -3.06147, 7.39104, -4.44456, 6.65176, -5.65685, 5.65685, -6.65176, 4.44456, -7.39104, 3.06147, -7.84628, 1.56072, -8, 9.79685e-16, -7.84628, -1.56072, -7.39104, -3.06147, -6.65176, -4.44456, -5.65685, -5.65685, -4.44456, -6.65176, -3.06147, -7.39104, -1.56072, -7.84628, -1.46953e-15, -8, 1.56072, -7.84628, 3.06147, -7.39104, 4.44456, -6.65176, 5.65685, -5.65685, 6.65176, -4.44456, 7.39104, -3.06147, 7.84628, -1.56072)
+
+[node name="AnimatedSprite2D" parent="." index="3"]
 frame_progress = 0.0
 
 [node name="Data" parent="." index="7" instance=ExtResource("3_mtmpj")]

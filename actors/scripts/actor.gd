@@ -35,7 +35,7 @@ var chance_text = null
 var debug = false
 
 # unique constants
-@export var NAME = "Actor"
+@export var NAME: String = "Actor"
 @export var SIGHT_RANGE = 10
 @export var WALK_RANGE = 8
 @export var MAX_ACTIONS = 1

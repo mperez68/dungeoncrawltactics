@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://connattinkaxg"]
+[gd_scene load_steps=14 format=3 uid="uid://connattinkaxg"]
 
 [ext_resource type="Script" path="res://menus/postgame_screen.gd" id="1_k362q"]
 [ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="2_ya1na"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://deeytaih16v5r" path="res://png/spells/spell_tile.png" id="9_wbhxi"]
 [ext_resource type="Script" path="res://menus/options.gd" id="10_0i5ng"]
 [ext_resource type="Script" path="res://menus/selection_tooltip.gd" id="11_0rrc8"]
+[ext_resource type="Texture2D" uid="uid://cbiu2mjwpyo8i" path="res://png/spells/currency.png" id="12_ropgu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tibod"]
+font_size = 20
 
 [node name="PostgameScreen" type="Control"]
 layout_mode = 3
@@ -179,6 +183,42 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("9_wbhxi")
 
+[node name="Inventory" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=18]Inventory:[/font_size]"
+scroll_active = false
+
+[node name="ItemsList" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Item1" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Item2" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Item3" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Item4" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
+[node name="Item5" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/ItemsList"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_wbhxi")
+
 [node name="OptionsContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
 layout_mode = 2
 
@@ -206,8 +246,29 @@ text = "Selection Info"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip"]
 layout_mode = 2
+alignment = 1
+
+[node name="CostText" type="Label" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_tibod")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrencyIcon" type="TextureRect" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_ropgu")
+expand_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip/PanelContainer"]
+layout_mode = 2
+bbcode_enabled = true
 
 [node name="Bottom" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body"]
 layout_mode = 2
@@ -223,10 +284,26 @@ layout_mode = 2
 theme = ExtResource("3_mxc55")
 text = "BACK TO MENU"
 
+[node name="Treasure" type="HFlowContainer" parent="."]
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 320.0
+offset_bottom = 90.0
+
+[node name="TreasureText" type="Label" parent="Treasure"]
+layout_mode = 2
+text = "Treasure: "
+
+[node name="TreasureValue" type="Label" parent="Treasure"]
+layout_mode = 2
+text = "??"
+
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" method="_on_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_return_item_selected"]
 [connection signal="update_actor_panel" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_update_selected_actor"]
+[connection signal="item_activated" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_item_activated"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_item_selected"]
 [connection signal="option_tooltip" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip" method="_on_options_option_tooltip"]
+[connection signal="update_actor_panel" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_update_selected_actor"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/NewRunButton" to="." method="_on_new_run_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/BackButton" to="." method="_on_menu_button_pressed"]

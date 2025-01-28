@@ -13,6 +13,8 @@
 sprite_frames = SubResource("SpriteFrames_f3gkr")
 script = ExtResource("1_kvbp1")
 NAME = "Dash"
+description = "1 action. Move 3 tiles."
+treasure_cost = 5
 texture_normal = ExtResource("2_jenwc")
 texture_pressed = ExtResource("3_vlnnl")
 texture_hover = ExtResource("4_svkur")
