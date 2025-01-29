@@ -84,7 +84,7 @@ position = Vector2(425, 536)
 position = Vector2(537, 567)
 
 [node name="Cutpurse9" parent="." index="22" instance=ExtResource("4_wknx3")]
-position = Vector2(536, 598)
+position = Vector2(550, 585)
 
 [node name="Cutpurse10" parent="." index="23" instance=ExtResource("4_wknx3")]
 position = Vector2(199, 565)

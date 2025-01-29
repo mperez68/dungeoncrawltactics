@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bf50xoy4msh4g"
+path="res://.godot/imported/MAGSpel_ Weird Magic, Fire Spell Launch, Metallic Resonance_Ocular Sounds_Magic Spells_The Complete Fantasy Collection.wav-b7bd17cd4879f5fbcb333ef80a39272b.sample"
+
+[deps]
+
+source_file="res://sfx/MAGSpel_ Weird Magic, Fire Spell Launch, Metallic Resonance_Ocular Sounds_Magic Spells_The Complete Fantasy Collection.wav"
+dest_files=["res://.godot/imported/MAGSpel_ Weird Magic, Fire Spell Launch, Metallic Resonance_Ocular Sounds_Magic Spells_The Complete Fantasy Collection.wav-b7bd17cd4879f5fbcb333ef80a39272b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

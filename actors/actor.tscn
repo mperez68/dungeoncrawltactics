@@ -1,9 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dndhjrpi143t1"]
+[gd_scene load_steps=17 format=3 uid="uid://dndhjrpi143t1"]
 
 [ext_resource type="Script" path="res://actors/scripts/actor.gd" id="1_mqx5s"]
 [ext_resource type="Script" path="res://addons/simple_shapes/shapes/RectangleShape.gd" id="3_6ct78"]
 [ext_resource type="Script" path="res://addons/simple_shapes/shapes/CircleShape.gd" id="3_bf10c"]
 [ext_resource type="SpriteFrames" uid="uid://bfwjw33jhspk" path="res://actors/scripts/Actor.tres" id="4_2sewj"]
+[ext_resource type="AudioStream" uid="uid://b73r2eq3see14" path="res://sfx/WEAPSwrd_Sword Stroke Whoosh, Fast, Mid High_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav" id="5_kdlsq"]
+[ext_resource type="AudioStream" uid="uid://d20617r4bdwc5" path="res://sfx/WEAPArro_Whoosh And Bow, High Velocity, Arrows Planted_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav" id="6_imo13"]
+[ext_resource type="AudioStream" uid="uid://bf50xoy4msh4g" path="res://sfx/MAGSpel_ Weird Magic, Fire Spell Launch, Metallic Resonance_Ocular Sounds_Magic Spells_The Complete Fantasy Collection.wav" id="7_aqy4k"]
+[ext_resource type="AudioStream" uid="uid://bo34oxaxvwbq4" path="res://sfx/GOREStab_Metal Sword Blade Double Stabs Into Flesh, High Resonance 2_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav" id="8_l56iy"]
+[ext_resource type="AudioStream" uid="uid://bdw4gk33cf5v2" path="res://sfx/GOREStab_Throwing Knife Into Flesh, High Metallic Whoosh_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav" id="9_io2t8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2vrl"]
 size = Vector2(16, 16)
@@ -183,6 +188,21 @@ one_shot = true
 [node name="ActionTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Melee" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_kdlsq")
+
+[node name="Ranged" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_imo13")
+
+[node name="Magic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_aqy4k")
+
+[node name="MeleeHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_l56iy")
+
+[node name="RangedHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_io2t8")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

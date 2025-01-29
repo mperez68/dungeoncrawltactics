@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bdw4gk33cf5v2"
+path="res://.godot/imported/GOREStab_Throwing Knife Into Flesh, High Metallic Whoosh_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav-180293364ee8cc2be1fda58ef1a44ad4.sample"
+
+[deps]
+
+source_file="res://sfx/GOREStab_Throwing Knife Into Flesh, High Metallic Whoosh_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav"
+dest_files=["res://.godot/imported/GOREStab_Throwing Knife Into Flesh, High Metallic Whoosh_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav-180293364ee8cc2be1fda58ef1a44ad4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

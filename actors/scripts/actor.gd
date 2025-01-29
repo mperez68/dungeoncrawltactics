@@ -16,6 +16,13 @@ signal remove_card
 @onready var anim_player = $AnimationPlayer
 @onready var input_timer = $InputTimer
 @onready var action_timer = $ActionTimer
+
+@onready var melee_sfx = $Melee
+@onready var ranged_sfx = $Ranged
+@onready var magic_sfx = $Magic
+@onready var melee_dmg_sfx = $MeleeHit
+@onready var ranged_dmg_sfx = $RangedHit
+
 const t = preload("res://ui/fading_text.tscn")
 var rng = RandomNumberGenerator.new()
 var index = -1
@@ -381,15 +388,21 @@ func _do_action(click_position: Vector2) -> bool:
 			# range or melee animation
 			if attack_range > melee_range:
 				anim.play("shoot " + facing)
+				ranged_sfx.play()
 			else:
 				anim.play("swing " + facing)
+				melee_sfx.play()
 			# Attack all targets
 			for target in targets:
 				if chance_text != null:
 					chance_text.queue_free()
 					chance_text = null
 				target._face(position)
-				await target.attack(self)
+				if(await target.attack(self) > 0):
+					if attack_range > melee_range:
+						ranged_dmg_sfx.play()
+					else:
+						melee_dmg_sfx.play()
 			# Reset selection
 			select(SELECT_TYPE_NONE)
 	
@@ -410,6 +423,7 @@ func _do_action(click_position: Vector2) -> bool:
 				anim.play("shoot " + facing)
 			else:
 				anim.play("swing " + facing)
+			magic_sfx.play()
 			# Attack all targets
 			for target in targets:
 				if chance_text != null:

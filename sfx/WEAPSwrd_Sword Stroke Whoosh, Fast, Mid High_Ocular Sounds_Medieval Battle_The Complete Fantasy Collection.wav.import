@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b73r2eq3see14"
+path="res://.godot/imported/WEAPSwrd_Sword Stroke Whoosh, Fast, Mid High_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav-24f15dfb2ce121cac95d848c8cce073a.sample"
+
+[deps]
+
+source_file="res://sfx/WEAPSwrd_Sword Stroke Whoosh, Fast, Mid High_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav"
+dest_files=["res://.godot/imported/WEAPSwrd_Sword Stroke Whoosh, Fast, Mid High_Ocular Sounds_Medieval Battle_The Complete Fantasy Collection.wav-24f15dfb2ce121cac95d848c8cce073a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
