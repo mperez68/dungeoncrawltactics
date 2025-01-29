@@ -10,13 +10,16 @@ var roster_selection: int = -1
 var loadout_selection: int = -1
 
 func _ready() -> void:
+	update_treasure()
+
+func update_treasure():
 	$Treasure/TreasureValue.text = str(CharacterList.total_treasure)
 
 func _on_add_pressed(player_class: String) -> void:
 	if CharacterList.total_treasure >= 3:
 		CharacterList.total_treasure -= 3
 		add_actor.emit(CharacterList.get_menu_actor(CharacterList.add_actor(player_class)))
-		$Treasure/TreasureValue.text = str(CharacterList.total_treasure)
+		update_treasure()
 	else:
 		print("INSUFFICIENT TREASURE")
 

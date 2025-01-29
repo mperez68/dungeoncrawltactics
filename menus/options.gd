@@ -2,6 +2,7 @@ extends ItemList
 
 signal option_tooltip(title: String, body: String, cost: int)
 signal update_actor_panel(actor: MenuActor)
+signal update_treasure
 
 var all_items: Array[Node] = []
 var actor_index = 0
@@ -53,6 +54,8 @@ func _on_item_selected(index: int) -> void:
 
 
 func _on_item_activated(index: int) -> void:
+	if CharacterList.total_treasure < all_items[index].treasure_cost:
+		return
 	if all_items[index] is Ability:
 		CharacterList.final_loadout[actor_index].abilities.push_back(all_items[index].duplicate())
 	elif all_items[index] is Spell:
@@ -63,3 +66,4 @@ func _on_item_activated(index: int) -> void:
 	
 	update_actor_panel.emit(CharacterList.get_menu_actor_from_player_actor(CharacterList.final_loadout[actor_index]))
 	_on_return_item_selected(actor_index)
+	update_treasure.emit()

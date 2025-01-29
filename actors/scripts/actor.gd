@@ -50,6 +50,7 @@ var debug = false
 @export var armor_piercing: float = 0.0
 @export var spell_piercing: float = 0.0
 @export var armor_skill: float = 0
+var temp_armor: float = 0
 @export var magic_resist: float = 0
 @export var attack_range: int = 1
 @export var melee_range: int = 1
@@ -79,6 +80,8 @@ var facing: String = "right"
 
 # Engine
 func _ready() -> void:
+	for item in inventory:
+		item.request_ready()
 	# center on tile
 	position = map.get_center(position)
 	
@@ -129,6 +132,7 @@ func start_turn():
 	update_hud.emit(active)
 	anim_player.play("activate")
 	# reset values
+	temp_armor = 0
 	remaining_walk_range = WALK_RANGE
 	remaining_actions = MAX_ACTIONS
 	# fix astar pathing
@@ -281,7 +285,7 @@ func get_healing(min_heal: int, max_heal: int, crit: bool = false, crit_heal_mul
 
 func hit_chance(attacker: Actor) -> float:		## Chance to hit this actor, given attacker node.
 	# Armor Piercing only shreds armor, can't shred armor that isn't there ¯\_(ツ)_/¯
-	var armor_total = max(armor_skill - attacker.armor_piercing, 0)
+	var armor_total = max(armor_skill + temp_armor - attacker.armor_piercing, 0)
 	var vantage = (int(map.is_vantage(attacker.position)) - int(map.is_vantage(position))) * VANTAGE_BONUS
 	var cover = map.get_cover(attacker.position, position)
 	return clamp(BASE_HIT_CHANCE + attacker.weapon_skill - armor_total + vantage - cover, MIN_HIT_CHANCE, MAX_HIT_CHANCE)

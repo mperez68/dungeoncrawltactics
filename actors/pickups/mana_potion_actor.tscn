@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bg1kqcbhr67ue" path="res://png/spells/mana_potion/mana_potion_focus.png" id="8_s6lxk"]
 
 [node name="ManaPotionActor" instance=ExtResource("1_q0kh8")]
+description = "1 Action. Restore 1-2 mana."
+treasure_cost = 4
 texture_normal = ExtResource("4_q5mlf")
 NAME = "Mana Potion"
 
@@ -18,7 +20,9 @@ sprite_frames = ExtResource("2_3wyoc")
 
 [node name="Data" parent="." index="7"]
 script = ExtResource("3_iy1cg")
+NAME = "Mana Potion"
 description = "1 Action. Restore 1-2 mana."
+treasure_cost = 5
 texture_normal = ExtResource("4_q5mlf")
 texture_pressed = ExtResource("5_to0xt")
 texture_hover = ExtResource("6_xuaf7")

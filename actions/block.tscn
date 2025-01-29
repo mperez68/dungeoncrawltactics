@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://cujro17b0p77d"]
+
+[ext_resource type="Script" path="res://actions/scripts/block.gd" id="1_ijbqv"]
+[ext_resource type="Texture2D" uid="uid://dwnfnbl131yv6" path="res://png/spells/block/block.png" id="2_qus7q"]
+[ext_resource type="Texture2D" uid="uid://h28bipivfied" path="res://png/spells/block/block_press.png" id="3_bxwlg"]
+[ext_resource type="Texture2D" uid="uid://ccqiq0yyetke0" path="res://png/spells/block/block_hover.png" id="4_yry20"]
+[ext_resource type="Texture2D" uid="uid://qiofuux71f7i" path="res://png/spells/block/block_disabled.png" id="5_vj607"]
+[ext_resource type="Texture2D" uid="uid://ovrib8fl0ri2" path="res://png/spells/block/block_focus.png" id="6_pmjl5"]
+
+[node name="Block" type="AnimatedSprite2D"]
+script = ExtResource("1_ijbqv")
+NAME = "Block"
+description = "1 action. Improves block score by 10."
+treasure_cost = 3
+texture_normal = ExtResource("2_qus7q")
+texture_pressed = ExtResource("3_bxwlg")
+texture_hover = ExtResource("4_yry20")
+texture_disabled = ExtResource("5_vj607")
+texture_focused = ExtResource("6_pmjl5")
+cooldown = 2

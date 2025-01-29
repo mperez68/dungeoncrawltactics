@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://y3nsxhtwguig" path="res://png/spells/healing_potion/healing_potion_focused.png" id="7_vp4vm"]
 
 [node name="HealthPotionActor" instance=ExtResource("1_lfst4")]
+description = "1 action. Heal 2-3 HP."
+treasure_cost = 4
 texture_normal = ExtResource("3_3bxvy")
 NAME = "Health Potion"
 

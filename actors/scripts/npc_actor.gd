@@ -7,8 +7,9 @@ class_name NPCActor
 
 
 # constants
-const PAUSE_SHORT = 0.3
-const PAUSE_LONG = 1
+const PAUSE_SHORT: float = 0.3
+const PAUSE_LONG: float = 1
+const CYCLE_LIMIT: int = 20
 
 # Variables
 @export var target: Actor = null
@@ -36,7 +37,9 @@ func _on_mouse_exited() -> void:
 # public methods
 func start_turn():
 	super()
-	while await _ai_turn():
+	var cycles = 0
+	while await _ai_turn() and cycles < CYCLE_LIMIT:
+		cycles += 1
 		if visible and select_type == SELECT_TYPE_WALK:
 			action_timer.start(PAUSE_SHORT)
 			await action_timer.timeout

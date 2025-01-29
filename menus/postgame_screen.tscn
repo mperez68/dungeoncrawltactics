@@ -305,5 +305,6 @@ text = "??"
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_item_selected"]
 [connection signal="option_tooltip" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SelectionTooltip" method="_on_options_option_tooltip"]
 [connection signal="update_actor_panel" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_update_selected_actor"]
+[connection signal="update_treasure" from="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" to="." method="update_treasure"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/NewRunButton" to="." method="_on_new_run_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Bottom/BackButton" to="." method="_on_menu_button_pressed"]
