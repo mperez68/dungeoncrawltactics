@@ -331,18 +331,23 @@ theme = ExtResource("2_0ojvl")
 text = "BACK TO MENU"
 
 [node name="Treasure" type="HFlowContainer" parent="."]
-offset_left = 100.0
-offset_top = 50.0
-offset_right = 320.0
-offset_bottom = 90.0
+offset_left = 425.0
+offset_top = 100.0
+offset_right = 645.0
+offset_bottom = 140.0
 
 [node name="TreasureText" type="Label" parent="Treasure"]
 layout_mode = 2
-text = "Treasure: "
+text = "HOARD: "
 
 [node name="TreasureValue" type="Label" parent="Treasure"]
 layout_mode = 2
 text = "??"
+
+[node name="CurrencyIcon" type="TextureRect" parent="Treasure"]
+layout_mode = 2
+texture = ExtResource("4_jn0ei")
+expand_mode = 2
 
 [connection signal="add_actor" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_add_actor"]
 [connection signal="deselect_loadout" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_pregame_screen_deselect_loadout"]

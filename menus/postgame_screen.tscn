@@ -285,18 +285,23 @@ theme = ExtResource("3_mxc55")
 text = "BACK TO MENU"
 
 [node name="Treasure" type="HFlowContainer" parent="."]
-offset_left = 100.0
-offset_top = 50.0
-offset_right = 320.0
-offset_bottom = 90.0
+offset_left = 450.0
+offset_top = 160.0
+offset_right = 670.0
+offset_bottom = 200.0
 
 [node name="TreasureText" type="Label" parent="Treasure"]
 layout_mode = 2
-text = "Treasure: "
+text = "HOARD: "
 
 [node name="TreasureValue" type="Label" parent="Treasure"]
 layout_mode = 2
 text = "??"
+
+[node name="CurrencyIcon" type="TextureRect" parent="Treasure"]
+layout_mode = 2
+texture = ExtResource("12_ropgu")
+expand_mode = 2
 
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" method="_on_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Return" to="CenterContainer/MarginContainer/Panel/Body/Loadout/OptionsContainer/Options" method="_on_return_item_selected"]

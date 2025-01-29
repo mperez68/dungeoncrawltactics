@@ -1,14 +1,52 @@
 extends Node
 
+const SAVE_PATH = "user://game.save"
+const SAVE_ACTORS_PATH_PRE = "user://actor"
+const SAVE_ACTORS_PATH_POST = ".tscn"
+
 var all_actors: Array[PlayerActor] = []
 var final_loadout: Array[PlayerActor] = []
-var total_treasure: int = 10
+var total_treasure: int = 5
 # Save to local data on mission completion
 
 var generic_options: Array[Node] = [ preload("res://actors/pickups/health_potion_actor.tscn").instantiate(), preload("res://actors/pickups/mana_potion_actor.tscn").instantiate() ]
 var soldier_options: Array[Node] = [ preload("res://actions/block.tscn").instantiate() ]
 var archer_options: Array[Node] = [ preload("res://actions/dash.tscn").instantiate() ]
 var wizard_options: Array[Node] = [ preload("res://actions/immolate.tscn").instantiate() ]
+
+func _ready() -> void:
+	# Load if valid save
+	load_data()
+
+func save_data():
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	file.store_var(total_treasure)
+	var scene = PackedScene.new()
+	for i in all_actors.size():
+		var temp_path = SAVE_ACTORS_PATH_PRE + str(i) + SAVE_ACTORS_PATH_POST
+		scene.pack(all_actors[i].duplicate())
+		print(all_actors[i].NAME, " => ", temp_path, " ?= ", ResourceSaver.save(scene, temp_path))
+	print("Game data saved")
+
+func load_data():
+	if FileAccess.file_exists(SAVE_PATH):
+		print("found game data at ", SAVE_PATH)
+		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		total_treasure = file.get_var()
+		var i: int = 0
+		while(true):
+			var temp_path = SAVE_ACTORS_PATH_PRE + str(i) + SAVE_ACTORS_PATH_POST
+			if ResourceLoader.exists(temp_path):
+				all_actors.push_back(ResourceLoader.load(temp_path).instantiate())
+				print("loaded " + all_actors[all_actors.size() - 1].NAME + " from " + temp_path)
+			else:
+				break
+			i += 1
+		
+		file.close()
+		print("game data loaded")
+	else:
+		print("New game data")
 
 func add_actor(actor_class: String) -> int:
 	var actor: PlayerActor
