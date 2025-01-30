@@ -22,6 +22,7 @@ var turn_counter = 0
 
 # engine
 func _ready() -> void:
+	CharacterList.change_music(CharacterList.MUSIC_STATE.COVE)
 	# Deploy player characters
 	for i in CharacterList.final_loadout.size():
 		CharacterList.final_loadout[i].position = map.map_to_local(STARTING_POSITIONS[i])
@@ -102,9 +103,11 @@ func pass_turn():
 			var starting_treasure = CharacterList.total_treasure
 			if embarked.is_empty():
 				end_dialog.dialog_text = "NO SURVIVORS ESCAPED."
+				CharacterList.new_game()
+				CharacterList.save_data()
 				end_dialog.fail_state = true
 			else:
-				end_dialog.dialog_text = "ADVENTURERS HAVE DEPARTED WITH:\n"
+				end_dialog.dialog_text = str(embarked.size()) + " ADVENTURER(S) HAVE DEPARTED WITH:\n"
 				for actor in embarked:
 					for item in actor.inventory:
 						if item.NAME.contains("Treasure"):

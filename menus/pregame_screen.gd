@@ -5,15 +5,21 @@ signal roster_to_loadout(index: int)
 signal loadout_to_roster(index: int)
 signal deselect_roster
 signal deselect_loadout
+signal update_buttons
 
 var roster_selection: int = -1
 var loadout_selection: int = -1
 
 func _ready() -> void:
+	if CharacterList.all_actors.is_empty() and CharacterList.total_treasure < 3:
+		CharacterList.new_game()
+		CharacterList.save_data()
 	update_treasure()
+	CharacterList.change_music(CharacterList.MUSIC_STATE.MENU)
 
 func update_treasure():
 	$Treasure/TreasureValue.text = str(CharacterList.total_treasure)
+	update_buttons.emit()
 
 func _on_add_pressed(player_class: String) -> void:
 	if CharacterList.total_treasure >= 3:

@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://dil2o21uygfms"]
+[gd_scene load_steps=6 format=3 uid="uid://dil2o21uygfms"]
 
 [ext_resource type="Script" path="res://character_list.gd" id="1_f6thq"]
+[ext_resource type="AudioStream" uid="uid://dmxaig6jy7er6" path="res://music/MenuTheme.wav" id="2_isyx8"]
+[ext_resource type="AudioStream" uid="uid://dp4c0t6t5ht3c" path="res://music/CoveIntro.wav" id="3_aut7w"]
+[ext_resource type="AudioStream" uid="uid://nhl7fa2xsqhl" path="res://music/CoveLoop.wav" id="4_jb1rg"]
+[ext_resource type="AudioStream" uid="uid://p3ts5ctlm8p0" path="res://sfx/menu-selection-102220.wav" id="5_3pbfa"]
 
 [node name="CharacterList" type="Node"]
 script = ExtResource("1_f6thq")
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_isyx8")
+
+[node name="LevelIntro" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_aut7w")
+
+[node name="LevelLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jb1rg")
+
+[node name="MouseClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3pbfa")
+
+[node name="MenuDelay" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="finished" from="MenuMusic" to="." method="_on_menu_music_finished"]
+[connection signal="finished" from="LevelIntro" to="." method="_on_level_intro_finished"]
+[connection signal="timeout" from="MenuDelay" to="." method="_on_menu_delay_timeout"]

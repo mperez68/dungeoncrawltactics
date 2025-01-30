@@ -21,3 +21,7 @@ func update_options():
 		archer_button.disabled = true
 		wizard_button.disabled = true
 		
+
+
+func _on_pregame_screen_update_buttons() -> void:
+	update_options()

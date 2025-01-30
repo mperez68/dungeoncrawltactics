@@ -285,6 +285,7 @@ theme = ExtResource("3_mxc55")
 text = "BACK TO MENU"
 
 [node name="Treasure" type="HFlowContainer" parent="."]
+layout_mode = 0
 offset_left = 450.0
 offset_top = 160.0
 offset_right = 670.0

@@ -331,6 +331,7 @@ theme = ExtResource("2_0ojvl")
 text = "BACK TO MENU"
 
 [node name="Treasure" type="HFlowContainer" parent="."]
+layout_mode = 0
 offset_left = 425.0
 offset_top = 100.0
 offset_right = 645.0
@@ -354,6 +355,7 @@ expand_mode = 2
 [connection signal="deselect_roster" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_deselect_roster"]
 [connection signal="loadout_to_roster" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_pregame_screen_loadout_to_roster"]
 [connection signal="roster_to_loadout" from="." to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_pregame_screen_roster_to_loadout"]
+[connection signal="update_buttons" from="." to="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons" method="_on_pregame_screen_update_buttons"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Soldier" to="." method="_on_add_pressed" binds= ["soldier"]]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Soldier" to="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons" method="_on_button_pressed" binds= ["soldier"]]
 [connection signal="pressed" from="CenterContainer/MarginContainer/Panel/Body/Fill/NewButtons/Archer" to="." method="_on_add_pressed" binds= ["archer"]]

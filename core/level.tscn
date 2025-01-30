@@ -31,6 +31,7 @@ script = ExtResource("5_txawa")
 
 [connection signal="enable_ui" from="." to="Camera" method="_on_level_enable_ui"]
 [connection signal="enable_ui" from="." to="HUD" method="_on_level_enable_ui"]
+[connection signal="inc_turn_counter" from="." to="HUD" method="_on_level_inc_turn_counter"]
 [connection signal="new_turn_order" from="." to="HUD" method="_on_node_new_turn_order"]
 [connection signal="init_camera" from="Map" to="Camera" method="_on_map_init_camera"]
 [connection signal="timeout" from="TurnPauseTimer" to="." method="_on_timer_timeout"]

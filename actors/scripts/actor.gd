@@ -436,7 +436,7 @@ func _do_action(click_position: Vector2) -> bool:
 	
 		# Ability
 		SELECT_TYPE_ABILITY:
-			remaining_actions -= int(abilities[ability_pointer].effect(self, map, click_position))
+			abilities[ability_pointer].effect(self, map, click_position)
 			# Reset selection
 			select(SELECT_TYPE_NONE)
 	

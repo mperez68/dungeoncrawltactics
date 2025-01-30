@@ -217,4 +217,6 @@ description = ""
 treasure_cost = 0
 texture_normal = ExtResource("5_f8duf")
 
+[connection signal="inc_turn_counter" from="." to="HUD" method="_on_level_inc_turn_counter"]
+
 [editable path="Map"]

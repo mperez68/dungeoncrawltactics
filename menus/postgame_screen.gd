@@ -3,6 +3,7 @@ extends Control
 func _ready() -> void:
 	CharacterList.save_data()
 	update_treasure()
+	CharacterList.change_music(CharacterList.MUSIC_STATE.MENU)
 
 
 func _on_menu_button_pressed() -> void:
