@@ -1,0 +1,49 @@
+SOLDIER:
+ - Charge: deal damage on next attack based on distance travelled
+ - Shield bash: next attack also stuns enemy.
+ - Shout: Force all targets in range to aggro to the soldier.
+ - Power strike: next attack does double damage
+ - focused strike: increase hit chance
+ - Throw: next attack gets long range
+spells
+ - lay on hands: heal
+ - Empower Weapon: increase weapon range and damage for next X turns.
+ - Smite Sinner/Fiend/Beast/etc.: attack, bonus damage versus selected type
+ - Arcane Armor: increase spell resist on target
+
+ARCHER:
+ - Leap: teleport 3 tiles
+ - Aimed Shot: increase range + damage
+ - Rapid Shot: +1 remaining_actions
+ - Sneak: can't aggro this turn
+ - Dagger Strike: double accuracy and range in melee range
+spells
+ - Sleep: Stun target for X turns.
+ - vanish: remove all aggro
+ - Empower Weapon: increase weapon range and damage for next X turns.
+ - Nature's touch: Heal
+
+
+WIZARD:
+ - Empower Spell: increase spell power for 1 round.
+ - Ennervate: regenerate mana for X turns
+ - Piercing spell: increase spell piercing
+ - Blasting spell: push effect to next spell
+spells
+ - Sleep: Stun target for X turns.
+ - vanish: remove all aggro
+ - Lightning Strike: direct spell, high damage
+ - Fireball: AOE attack
+ - Restoring Rain: AOE Heal
+ - Arcane Armor: increase spell resist on target
+
+
+----- ENEMIES
+
+ - Skeletons
+	- Archers, Soldiers, Mages
+ - Daemons
+	- Mauler, Warlock
+ - Beasts
+	- Hound, Vulture, etc.
+ - Boss mobs?

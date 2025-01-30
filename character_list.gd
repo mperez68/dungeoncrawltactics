@@ -29,11 +29,13 @@ func _ready() -> void:
 func new_game():
 	all_actors.clear()
 	total_treasure = 5
+	current_level = LEVEL.LEVEL_2
 	save_data()
 
 func save_data():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_var(total_treasure)
+	file.store_var(current_level)
 	var scene = PackedScene.new()
 	for i in all_actors.size():
 		var temp_path = SAVE_ACTORS_PATH_PRE + str(i) + SAVE_ACTORS_PATH_POST
@@ -46,6 +48,7 @@ func load_data():
 		print("found game data at ", SAVE_PATH)
 		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 		total_treasure = file.get_var()
+		current_level = file.get_var()
 		var i: int = 0
 		while(true):
 			var temp_path = SAVE_ACTORS_PATH_PRE + str(i) + SAVE_ACTORS_PATH_POST
