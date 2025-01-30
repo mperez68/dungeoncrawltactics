@@ -194,11 +194,13 @@ func walk(click_position: Vector2, walk_range: int = remaining_walk_range) -> bo
 				# clear fog of war
 				_clear_fog(map.map_to_local(pos), SIGHT_RANGE)
 				# pickup non-actors
-				var non: Array[Actor] = manager.remove_non_actors_at_position(map.map_to_local(pos))
-				for a in non:
-					if (a.data.count <= 0):
-						a.data.count = 1
-					inventory.push_back(a)
+				var non: Array[Actor] = manager.get_non_actors_at_position(map.map_to_local(pos))
+				if non.size() + inventory.size() <= 5:
+					manager.remove_non_actors_at_position(map.map_to_local(pos))
+					for a in non:
+						if (a.data.count <= 0):
+							a.data.count = 1
+						inventory.push_back(a)
 				update_hud.emit(active)
 		# move actor
 		_face(click_position)

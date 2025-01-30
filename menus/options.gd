@@ -54,7 +54,7 @@ func _on_item_selected(index: int) -> void:
 
 
 func _on_item_activated(index: int) -> void:
-	if CharacterList.total_treasure < all_items[index].treasure_cost:
+	if CharacterList.total_treasure < all_items[index].treasure_cost or CharacterList.final_loadout[actor_index].abilities.size() >= 5:
 		return
 	if all_items[index] is Ability:
 		CharacterList.final_loadout[actor_index].abilities.push_back(all_items[index].duplicate())

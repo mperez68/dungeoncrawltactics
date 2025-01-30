@@ -1,6 +1,7 @@
 extends Node
 
 enum MUSIC_STATE{ OFF, MENU, COVE }
+enum LEVEL{ DEFAULT, LEVEL_1, LEVEL_2, LEVEL_3 }
 
 const SAVE_PATH = "user://game.save"
 const SAVE_ACTORS_PATH_PRE = "user://actor"
@@ -14,6 +15,7 @@ var all_actors: Array[PlayerActor] = []
 var final_loadout: Array[PlayerActor] = []
 var total_treasure: int = 5
 var music_state = MUSIC_STATE.OFF
+var current_level = LEVEL.LEVEL_1
 
 var generic_options: Array[Node] = [ preload("res://actors/pickups/health_potion_actor.tscn").instantiate(), preload("res://actors/pickups/mana_potion_actor.tscn").instantiate() ]
 var soldier_options: Array[Node] = [ preload("res://actions/block.tscn").instantiate() ]
@@ -101,6 +103,9 @@ func get_menu_actor_from_player_actor(player_actor: PlayerActor) -> MenuActor:
 	actor.init(arg, player_actor)
 	actor.actor_name = player_actor.NAME
 	return actor
+
+func open_level(new_level: LEVEL):
+	current_level = max(new_level, current_level)
 
 func change_music(state: MUSIC_STATE = MUSIC_STATE.OFF):
 	if music_state == state:

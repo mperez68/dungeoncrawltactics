@@ -115,6 +115,8 @@ func pass_turn():
 							end_dialog.dialog_text = end_dialog.dialog_text + (item.NAME) + "\n"
 					actor.inventory.clear()
 			end_dialog.dialog_text = end_dialog.dialog_text + "+" +  str(CharacterList.total_treasure - starting_treasure) + "\n" + "TOTAL: " + str(CharacterList.total_treasure)
+			if CharacterList.total_treasure - starting_treasure >= 18:
+				CharacterList.open_level(CharacterList.LEVEL.LEVEL_2)
 			end_dialog.visible = true
 			return
 	# Edge case, no actors
