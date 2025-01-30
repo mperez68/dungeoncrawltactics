@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmb0v06707pab"]
+[gd_scene load_steps=8 format=3 uid="uid://dmb0v06707pab"]
 
 [ext_resource type="Script" path="res://core/scripts/level.gd" id="1_exgqk"]
 [ext_resource type="PackedScene" uid="uid://xjcnpf3inm4w" path="res://core/map.tscn" id="2_2aprj"]
@@ -6,14 +6,39 @@
 [ext_resource type="PackedScene" uid="uid://whyqrx8a4kgj" path="res://ui/HUD.tscn" id="4_rackh"]
 [ext_resource type="Script" path="res://ui/scripts/end_game_dialog.gd" id="5_txawa"]
 
+[sub_resource type="Gradient" id="Gradient_ecnip"]
+colors = PackedColorArray(0, 0, 0, 1, 0.18359, 0.18359, 0.18359, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_67l4a"]
+gradient = SubResource("Gradient_ecnip")
+fill_from = Vector2(0.310976, 1)
+fill_to = Vector2(0.609756, 0.0243902)
+
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_exgqk")
 
-[node name="Map" parent="." instance=ExtResource("2_2aprj")]
-
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("3_hj4ot")
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="Camera"]
+show_behind_parent = true
+z_index = -2
+y_sort_enabled = true
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_67l4a")
+expand_mode = 1
+
+[node name="Map" parent="." instance=ExtResource("2_2aprj")]
 
 [node name="TurnPauseTimer" type="Timer" parent="."]
 one_shot = true

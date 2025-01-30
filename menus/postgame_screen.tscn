@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://connattinkaxg"]
+[gd_scene load_steps=15 format=3 uid="uid://connattinkaxg"]
 
 [ext_resource type="Script" path="res://menus/postgame_screen.gd" id="1_k362q"]
+[ext_resource type="Texture2D" uid="uid://ln63mkwgv0d3" path="res://menus/game_menu_bg.tres" id="2_gepr4"]
 [ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="2_ya1na"]
 [ext_resource type="Theme" uid="uid://chostgya2bpdy" path="res://ui/scripts/menu_theme.tres" id="3_mxc55"]
 [ext_resource type="Texture2D" uid="uid://ysonugtqgw7f" path="res://icon.svg" id="5_28ych"]
@@ -24,6 +25,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k362q")
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gepr4")
+expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1

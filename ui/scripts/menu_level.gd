@@ -4,7 +4,7 @@ extends Node2D
 @onready var camera = $Camera
 
 var actor_list: Array[MenuActor] = []
-var start_pos: Vector2i = Vector2i(7, 7)
+var start_pos: Vector2i = Vector2i(32, 19)
 var half_tile: Vector2 = Vector2(8, 8)
 
 func add_actor(actor: MenuActor):

@@ -40,3 +40,7 @@ func _ready():
 
 func _on_continue_game_button_pressed():
 	load_game_scene()
+	
+func _on_new_game_button_pressed():
+	CharacterList.new_game()
+	super()

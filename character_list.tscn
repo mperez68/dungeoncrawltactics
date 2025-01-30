@@ -9,16 +9,16 @@
 [node name="CharacterList" type="Node"]
 script = ExtResource("1_f6thq")
 
-[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_isyx8")
 
-[node name="LevelIntro" type="AudioStreamPlayer2D" parent="."]
+[node name="LevelIntro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_aut7w")
 
-[node name="LevelLoop" type="AudioStreamPlayer2D" parent="."]
+[node name="LevelLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jb1rg")
 
-[node name="MouseClick" type="AudioStreamPlayer2D" parent="."]
+[node name="MouseClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_3pbfa")
 
 [node name="MenuDelay" type="Timer" parent="."]

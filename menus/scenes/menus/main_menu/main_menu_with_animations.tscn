@@ -1,9 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://ca2jxkw5dd0dr"]
+[gd_scene load_steps=23 format=3 uid="uid://ca2jxkw5dd0dr"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_rb421"]
 [ext_resource type="Script" path="res://menus/scenes/menus/main_menu/main_menu_with_animations.gd" id="2_1rt0u"]
+[ext_resource type="Theme" uid="uid://chostgya2bpdy" path="res://ui/scripts/menu_theme.tres" id="2_ikik6"]
 [ext_resource type="PackedScene" uid="uid://bq1an0omho6nf" path="res://menus/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_q5wdu"]
 [ext_resource type="PackedScene" uid="uid://cui5sreinibsv" path="res://menus/scenes/credits/credits.tscn" id="4_k8yeg"]
+[ext_resource type="Script" path="res://menus/scenes/menus/main_menu/continue_game_button.gd" id="5_xt643"]
+[ext_resource type="PackedScene" uid="uid://dp8ycwgvty7gk" path="res://ui/menu_level.tscn" id="5_xurej"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -349,7 +352,16 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
+[sub_resource type="Gradient" id="Gradient_ksns2"]
+colors = PackedColorArray(0, 0, 0, 0.356863, 0, 0, 0, 0.0823529)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ibb4d"]
+gradient = SubResource("Gradient_ksns2")
+fill_from = Vector2(0.554878, 0.0731707)
+fill_to = Vector2(0.695122, 0.920732)
+
 [node name="MainMenu" instance=ExtResource("1_rb421")]
+theme = ExtResource("2_ikik6")
 script = ExtResource("2_1rt0u")
 game_scene_path = "res://menus/pregame_screen.tscn"
 options_packed_scene = ExtResource("3_q5wdu")
@@ -367,6 +379,28 @@ parameters/conditions/intro_done = false
 
 [node name="BackgroundMusicPlayer" parent="." index="3"]
 bus = &"Master"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." index="4"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" index="0"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="MenuLevel" parent="SubViewportContainer/SubViewport" index="0" instance=ExtResource("5_xurej")]
+
+[node name="BackgroundTextureRect" parent="." index="5"]
+texture = SubResource("GradientTexture2D_ibb4d")
+stretch_mode = 0
 
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
@@ -395,5 +429,9 @@ visible = false
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Continue"
+script = ExtResource("5_xt643")
+
+[node name="CreditsButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="3"]
+visible = false
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]

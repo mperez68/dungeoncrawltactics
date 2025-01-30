@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bho4wndteenyv" path="res://png/spells/small_treasure/small_treasure_focus.png" id="8_krpiw"]
 
 [node name="SmallTreasureActor" instance=ExtResource("1_5uely")]
+description = ""
+treasure_cost = 0
 NAME = "Small Treasure (+1)"
 
 [node name="AggroRadius" parent="." index="0"]
@@ -20,6 +22,8 @@ sprite_frames = ExtResource("2_uwisw")
 
 [node name="Data" parent="." index="7"]
 script = ExtResource("3_ltv6c")
+NAME = "Small Treasure"
+description = "Worth 1 value. Can be dropped."
 texture_normal = ExtResource("4_0sucg")
 texture_pressed = ExtResource("5_bc1fl")
 texture_hover = ExtResource("6_r4bi2")

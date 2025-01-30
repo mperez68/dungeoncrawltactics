@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="dungeon crawl"
+config/version="0.0.1"
 config/tags=PackedStringArray("framework")
 run/main_scene="res://menus/scenes/opening/opening_with_logo.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cs24q0scmjvkt"]
+[gd_scene load_steps=17 format=3 uid="uid://cs24q0scmjvkt"]
 
 [ext_resource type="Script" path="res://menus/pregame_screen.gd" id="1_38080"]
 [ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="1_nittt"]
 [ext_resource type="Theme" uid="uid://chostgya2bpdy" path="res://ui/scripts/menu_theme.tres" id="2_0ojvl"]
+[ext_resource type="Texture2D" uid="uid://ln63mkwgv0d3" path="res://menus/game_menu_bg.tres" id="2_hegdc"]
 [ext_resource type="Texture2D" uid="uid://ysonugtqgw7f" path="res://icon.svg" id="3_o3baq"]
 [ext_resource type="Script" path="res://menus/new_buttons.gd" id="4_hyjev"]
 [ext_resource type="Texture2D" uid="uid://cbiu2mjwpyo8i" path="res://png/spells/currency.png" id="4_jn0ei"]
@@ -26,6 +27,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_38080")
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hegdc")
+expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -328,7 +339,7 @@ text = "START"
 [node name="BackButton" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Bottom"]
 layout_mode = 2
 theme = ExtResource("2_0ojvl")
-text = "BACK TO MENU"
+text = "BACK"
 
 [node name="Treasure" type="HFlowContainer" parent="."]
 layout_mode = 0

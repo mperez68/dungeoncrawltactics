@@ -10,7 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://u7yksbsndnoo" path="res://png/spells/med_treasure/medium_treasure_focus.png" id="8_bqomy"]
 
 [node name="MediumTreasureActor" instance=ExtResource("1_yr584")]
+description = ""
+treasure_cost = 0
 NAME = "Medium Treasure (+3)"
+
+[node name="AggroRadius" parent="." index="0"]
+polygon = PackedVector2Array(8, 0, 7.84628, 1.56072, 7.39104, 3.06147, 6.65176, 4.44456, 5.65685, 5.65685, 4.44456, 6.65176, 3.06147, 7.39104, 1.56072, 7.84628, 4.89843e-16, 8, -1.56072, 7.84628, -3.06147, 7.39104, -4.44456, 6.65176, -5.65685, 5.65685, -6.65176, 4.44456, -7.39104, 3.06147, -7.84628, 1.56072, -8, 9.79685e-16, -7.84628, -1.56072, -7.39104, -3.06147, -6.65176, -4.44456, -5.65685, -5.65685, -4.44456, -6.65176, -3.06147, -7.39104, -1.56072, -7.84628, -1.46953e-15, -8, 1.56072, -7.84628, 3.06147, -7.39104, 4.44456, -6.65176, 5.65685, -5.65685, 6.65176, -4.44456, 7.39104, -3.06147, 7.84628, -1.56072)
 
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = ExtResource("2_1lpo0")
@@ -18,6 +23,8 @@ sprite_frames = ExtResource("2_1lpo0")
 [node name="Data" parent="." index="7"]
 script = ExtResource("3_g8lu4")
 value = 3
+NAME = "Medium Treasure"
+description = "Worth 3 value. Can be dropped."
 texture_normal = ExtResource("4_o3ohi")
 texture_pressed = ExtResource("5_hx42r")
 texture_hover = ExtResource("6_nw21f")
