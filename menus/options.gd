@@ -41,10 +41,12 @@ func _on_return_item_selected(index: int) -> void:
 				all_items.push_back(item)
 	add_item("Upgrade Health")
 	add_item("Upgrade Mana")
-	if actor.weapon_skill < 0.4:
-		add_item("Upgrade Weapon")
-	if actor.armor_skill < 0.4:
-		add_item("Upgrade Armor")
+	add_item("Upgrade Weapon")
+	if actor.weapon_skill > 0.3:
+		set_item_disabled(-1, true)
+	add_item("Upgrade Armor")
+	if actor.armor_skill > 0.3:
+		set_item_disabled(-1, true)
 
 func has(actor: PlayerActor, item_in: String) -> bool:
 	var ret = false
@@ -56,6 +58,7 @@ func has(actor: PlayerActor, item_in: String) -> bool:
 			ret = true
 	return ret
 
+
 func _on_item_selected(index: int) -> void:
 	if index < all_items.size():
 		var item = all_items[index]
@@ -63,13 +66,13 @@ func _on_item_selected(index: int) -> void:
 	else:
 		match index - all_items.size():
 			0:	# Health
-				option_tooltip.emit("Upgrade Health", "Increase maximum HP by 1.", UPGRADE_COST)
+				option_tooltip.emit("Inc. Health", "Increase maximum HP by 1.", UPGRADE_COST)
 			1:	# Mana
-				option_tooltip.emit("Upgrade Mana", "Increase maximum MP by 1.", UPGRADE_COST)
+				option_tooltip.emit("Inc. Mana", "Increase maximum MP by 1.", UPGRADE_COST)
 			2:	# Weapon
-				option_tooltip.emit("Upgrade Weapon", "Increase weapon score by by 10.", UPGRADE_COST)
+				option_tooltip.emit("Upg. Weapon", "Increase weapon score by by 10.", UPGRADE_COST)
 			3:	# Armor
-				option_tooltip.emit("Upgrade Armor", "Increase armor score by by 10.", UPGRADE_COST)
+				option_tooltip.emit("Upg. Armor", "Increase armor score by by 10.", UPGRADE_COST)
 
 
 func _on_item_activated(index: int) -> void:
@@ -98,10 +101,6 @@ func _on_item_activated(index: int) -> void:
 				CharacterList.final_loadout[actor_index].weapon_skill += 0.1
 			3:	# Armor
 				CharacterList.final_loadout[actor_index].armor_skill += 0.1
-		print(CharacterList.final_loadout[actor_index].MAX_HEALTH)
-		print(CharacterList.final_loadout[actor_index].MAX_MANA)
-		print(CharacterList.final_loadout[actor_index].weapon_skill)
-		print(CharacterList.final_loadout[actor_index].armor_skill)
 	else:
 		return
 	_on_return_item_selected(actor_index)
