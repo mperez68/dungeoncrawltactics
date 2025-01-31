@@ -32,8 +32,12 @@ func effect(user: Actor, map_in: Map = null, target: Variant = null) -> bool:
 				target = Vector2.ZERO
 			ret = _effect_vector(user, target)
 		type.SINGLE_TARGET:
+			if target == null:
+				target = null
 			ret = _effect_actor(user, target)
 		type.MULTI_TARGET:
+			if target == null:
+				target = []
 			ret = _effect_actor_array(user, target)
 		_:
 			ret = false

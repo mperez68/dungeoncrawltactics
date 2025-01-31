@@ -438,7 +438,16 @@ func _do_action(click_position: Vector2) -> bool:
 	
 		# Ability
 		SELECT_TYPE_ABILITY:
-			abilities[ability_pointer].effect(self, map, click_position)
+			var targets = manager.get_actors_at_position(click_position)
+			match abilities[ability_pointer].ability_type:
+				Ability.type.POSITION:
+					abilities[ability_pointer].effect(self, map, click_position)
+				Ability.type.SINGLE_TARGET:
+					if targets.size() == 1:
+						abilities[ability_pointer].effect(self, map, targets[0])
+				Ability.type.MULTI_TARGET:
+					if !targets.is_empty():
+						abilities[ability_pointer].effect(self, map, targets)
 			# Reset selection
 			select(SELECT_TYPE_NONE)
 	

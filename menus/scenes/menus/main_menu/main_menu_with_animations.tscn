@@ -353,7 +353,7 @@ transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "Open
 graph_offset = Vector2(-180.277, 49)
 
 [sub_resource type="Gradient" id="Gradient_ksns2"]
-colors = PackedColorArray(0, 0, 0, 0.356863, 0, 0, 0, 0.0823529)
+colors = PackedColorArray(0.568627, 0.317647, 0, 0.682353, 0.309804, 0.0901961, 0, 0.803922)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ibb4d"]
 gradient = SubResource("Gradient_ksns2")
@@ -404,6 +404,9 @@ stretch_mode = 0
 
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
+
+[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
+text = "v0.0.1"
 
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)

@@ -29,7 +29,7 @@ func _ready() -> void:
 func new_game():
 	all_actors.clear()
 	total_treasure = 5
-	current_level = LEVEL.LEVEL_2
+	current_level = LEVEL.LEVEL_1
 	save_data()
 
 func save_data():
@@ -137,7 +137,8 @@ func _on_menu_music_finished() -> void:
 
 
 func _on_menu_delay_timeout() -> void:
-	menu_music.play()
+	if music_state == MUSIC_STATE.MENU:
+		menu_music.play()
 
 
 func _on_level_intro_finished() -> void:

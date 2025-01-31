@@ -1,0 +1,23 @@
+[gd_scene load_steps=8 format=3 uid="uid://douxu0x0qc7al"]
+
+[ext_resource type="Script" path="res://actions/scripts/rapid_shot.gd" id="1_qj2pj"]
+[ext_resource type="Texture2D" uid="uid://csmap2v4lxre0" path="res://png/spells/rapid_shot/rapid_shot.png" id="2_fgnpl"]
+[ext_resource type="Texture2D" uid="uid://bagieiv2socor" path="res://png/spells/rapid_shot/rapid_shot_pressed.png" id="3_s6c7l"]
+[ext_resource type="Texture2D" uid="uid://bfu1cy7f16ojb" path="res://png/spells/rapid_shot/rapid_shot_hover.png" id="4_70rdb"]
+[ext_resource type="Texture2D" uid="uid://b0odmdkj02stn" path="res://png/spells/rapid_shot/rapid_shot_disabled.png" id="5_wfcgb"]
+[ext_resource type="Texture2D" uid="uid://b111kf4m7st5n" path="res://png/spells/rapid_shot/rapid_shot_focus.png" id="6_vc1yq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fmxka"]
+
+[node name="RapidShot" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_fmxka")
+script = ExtResource("1_qj2pj")
+NAME = "Rapid Shot"
+description = "Shoot a target at half range."
+texture_normal = ExtResource("2_fgnpl")
+texture_pressed = ExtResource("3_s6c7l")
+texture_hover = ExtResource("4_70rdb")
+texture_disabled = ExtResource("5_wfcgb")
+texture_focused = ExtResource("6_vc1yq")
+ability_type = 2
+cooldown = 2
