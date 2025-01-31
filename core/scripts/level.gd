@@ -103,8 +103,9 @@ func pass_turn():
 			var starting_treasure = CharacterList.total_treasure
 			if embarked.is_empty():
 				end_dialog.dialog_text = "NO SURVIVORS ESCAPED."
-				CharacterList.new_game()
-				CharacterList.save_data()
+				if CharacterList.all_actors.is_empty():
+					CharacterList.new_game()
+					CharacterList.save_data()
 				end_dialog.fail_state = true
 			else:
 				end_dialog.dialog_text = str(embarked.size()) + " ADVENTURER(S) HAVE DEPARTED WITH:\n"

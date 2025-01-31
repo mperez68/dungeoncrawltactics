@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://cme0ubmwd0pcx"]
+
+[ext_resource type="Script" path="res://actions/scripts/frostbite.gd" id="1_5nig5"]
+[ext_resource type="Texture2D" uid="uid://cjk4einmtjbvk" path="res://png/Magical Effects/Ice-Burst_dark-blue_outline_48x48.png" id="1_xea5h"]
+[ext_resource type="Texture2D" uid="uid://bidb5o4l7lu8p" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Icons/tile002.png" id="3_rgkhi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y05j5"]
+atlas = ExtResource("1_xea5h")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srjpk"]
+atlas = ExtResource("1_xea5h")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k1na"]
+atlas = ExtResource("1_xea5h")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nna6r"]
+atlas = ExtResource("1_xea5h")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbi15"]
+atlas = ExtResource("1_xea5h")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un2hm"]
+atlas = ExtResource("1_xea5h")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yevo7"]
+atlas = ExtResource("1_xea5h")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iays"]
+atlas = ExtResource("1_xea5h")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_trpto"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y05j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srjpk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k1na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nna6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbi15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un2hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yevo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iays")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}]
+
+[node name="Frostbite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_trpto")
+animation = &"hit"
+autoplay = "default"
+script = ExtResource("1_5nig5")
+NAME = "Frostbite"
+description = "1 action. 0-1 damage. Halves the targets move speed permanently."
+treasure_cost = 5
+texture_normal = ExtResource("3_rgkhi")
+spell_piercing = 0.2
+attack_range = 6
+min_damage = 0
+max_damage = 1
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

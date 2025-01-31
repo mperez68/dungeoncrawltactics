@@ -20,7 +20,7 @@ var current_level = LEVEL.LEVEL_1
 var generic_options: Array[Node] = [ preload("res://actors/pickups/health_potion_actor.tscn").instantiate(), preload("res://actors/pickups/mana_potion_actor.tscn").instantiate() ]
 var soldier_options: Array[Node] = [ preload("res://actions/block.tscn").instantiate(), preload("res://actions/dash.tscn").instantiate() ]
 var archer_options: Array[Node] = [ preload("res://actions/dash.tscn").instantiate() ]
-var wizard_options: Array[Node] = [ preload("res://actions/immolate.tscn").instantiate() ]
+var wizard_options: Array[Node] = [ preload("res://actions/immolate.tscn").instantiate(), preload("res://actions/frostbite.tscn").instantiate() ]
 
 func _ready() -> void:
 	# Load if valid save
@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func new_game():
 	all_actors.clear()
-	total_treasure = 5
+	total_treasure = 500
 	current_level = LEVEL.LEVEL_1
 	save_data()
 
