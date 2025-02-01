@@ -22,7 +22,8 @@ class_name Spell
 @export var missile: bool = false
 
 func _ready() -> void:
-	animation_finished.connect(_on_animation_finished)
+	if !animation_finished.is_connected(_on_animation_finished):
+		animation_finished.connect(_on_animation_finished)
 
 var rng = RandomNumberGenerator.new()
 const t = preload("res://ui/fading_text.tscn")
