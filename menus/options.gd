@@ -87,7 +87,8 @@ func _on_item_activated(index: int) -> void:
 		elif all_items[index] is Spell:
 			CharacterList.final_loadout[actor_index].spell_book.push_back(all_items[index].duplicate())
 		else:
-			CharacterList.final_loadout[actor_index].inventory.push_back(all_items[index].duplicate())
+			var item = all_items[index].duplicate()
+			CharacterList.final_loadout[actor_index].inventory.push_back(item)
 		CharacterList.total_treasure -= all_items[index].treasure_cost
 		
 		update_actor_panel.emit(CharacterList.get_menu_actor_from_player_actor(CharacterList.final_loadout[actor_index]))

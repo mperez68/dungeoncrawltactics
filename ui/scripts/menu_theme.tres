@@ -88,7 +88,7 @@ font_names = PackedStringArray("Century Gothic")
 
 [resource]
 default_font = SubResource("SystemFont_d0mpo")
-default_font_size = 32
+default_font_size = 28
 Button/styles/disabled = SubResource("StyleBoxFlat_kpb53")
 Button/styles/hover = SubResource("StyleBoxFlat_e62n6")
 Button/styles/normal = SubResource("StyleBoxFlat_42psv")

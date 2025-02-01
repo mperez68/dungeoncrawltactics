@@ -1,30 +1,24 @@
 [gd_scene load_steps=9 format=3 uid="uid://wv7qssdfp7hn"]
 
 [ext_resource type="PackedScene" uid="uid://mnhv4rq231mp" path="res://actors/pickups/pickup_actor.tscn" id="1_lfst4"]
+[ext_resource type="Script" path="res://actors/pickups/scripts/health_potion_actor.gd" id="2_2looc"]
 [ext_resource type="SpriteFrames" uid="uid://401llf4scyhk" path="res://actors/pickups/scripts/health_potion.tres" id="2_2vkoo"]
 [ext_resource type="Texture2D" uid="uid://dgkwn68tal51o" path="res://png/spells/healing_potion/healing_potion.png" id="3_3bxvy"]
-[ext_resource type="Script" path="res://actions/scripts/healing_potion.gd" id="3_vl8oh"]
 [ext_resource type="Texture2D" uid="uid://chim2lxd4kygc" path="res://png/spells/healing_potion/healing_potion_pressed.png" id="4_8xhdu"]
 [ext_resource type="Texture2D" uid="uid://chpw4a5nckjxc" path="res://png/spells/healing_potion/healing_potion_hover.png" id="5_g6tgu"]
+[ext_resource type="Texture2D" uid="uid://c6m3fwui8oxgt" path="res://png/spells/healing_potion/healing_potion_focus.png" id="6_4o2k5"]
 [ext_resource type="Texture2D" uid="uid://dkkijd3f5tybr" path="res://png/spells/healing_potion/healing_potion_disabled.png" id="6_7mt2e"]
-[ext_resource type="Texture2D" uid="uid://y3nsxhtwguig" path="res://png/spells/healing_potion/healing_potion_focused.png" id="7_vp4vm"]
 
 [node name="HealthPotionActor" instance=ExtResource("1_lfst4")]
-description = "1 action. Heal 2-3 HP."
-treasure_cost = 4
-texture_normal = ExtResource("3_3bxvy")
-NAME = "Health Potion"
-
-[node name="AnimatedSprite2D" parent="." index="3"]
-sprite_frames = ExtResource("2_2vkoo")
-
-[node name="Data" parent="." index="7"]
-script = ExtResource("3_vl8oh")
-NAME = "Health Potion"
-description = "1 action. Heal 2-3 HP."
-treasure_cost = 5
+script = ExtResource("2_2looc")
+description = "Heal 2-3."
+treasure_cost = 2
 texture_normal = ExtResource("3_3bxvy")
 texture_pressed = ExtResource("4_8xhdu")
 texture_hover = ExtResource("5_g6tgu")
 texture_disabled = ExtResource("6_7mt2e")
-texture_focused = ExtResource("7_vp4vm")
+texture_focused = ExtResource("6_4o2k5")
+NAME = "Health Potion"
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("2_2vkoo")

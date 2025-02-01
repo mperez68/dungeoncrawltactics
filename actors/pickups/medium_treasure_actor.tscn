@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://mnhv4rq231mp" path="res://actors/pickups/pickup_actor.tscn" id="1_yr584"]
 [ext_resource type="SpriteFrames" uid="uid://n05pmjxmjjhh" path="res://actors/scripts/medium_treasure.tres" id="2_1lpo0"]
-[ext_resource type="Script" path="res://actors/pickups/scripts/treasure.gd" id="3_g8lu4"]
+[ext_resource type="Script" path="res://actors/pickups/scripts/treasure_actor.gd" id="2_df0nj"]
 [ext_resource type="Texture2D" uid="uid://ceotxet4qdpc6" path="res://png/spells/med_treasure/medium_treasure.png" id="4_o3ohi"]
 [ext_resource type="Texture2D" uid="uid://i8dw8p0ajqgq" path="res://png/spells/med_treasure/medium_treasure_pressed.png" id="5_hx42r"]
 [ext_resource type="Texture2D" uid="uid://b2xmviw2h258l" path="res://png/spells/med_treasure/medium_treasure_hover.png" id="6_nw21f"]
@@ -10,24 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://u7yksbsndnoo" path="res://png/spells/med_treasure/medium_treasure_focus.png" id="8_bqomy"]
 
 [node name="MediumTreasureActor" instance=ExtResource("1_yr584")]
-description = ""
-treasure_cost = 0
-NAME = "Medium Treasure (+3)"
-
-[node name="AggroRadius" parent="." index="0"]
-polygon = PackedVector2Array(8, 0, 7.84628, 1.56072, 7.39104, 3.06147, 6.65176, 4.44456, 5.65685, 5.65685, 4.44456, 6.65176, 3.06147, 7.39104, 1.56072, 7.84628, 4.89843e-16, 8, -1.56072, 7.84628, -3.06147, 7.39104, -4.44456, 6.65176, -5.65685, 5.65685, -6.65176, 4.44456, -7.39104, 3.06147, -7.84628, 1.56072, -8, 9.79685e-16, -7.84628, -1.56072, -7.39104, -3.06147, -6.65176, -4.44456, -5.65685, -5.65685, -4.44456, -6.65176, -3.06147, -7.39104, -1.56072, -7.84628, -1.46953e-15, -8, 1.56072, -7.84628, 3.06147, -7.39104, 4.44456, -6.65176, 5.65685, -5.65685, 6.65176, -4.44456, 7.39104, -3.06147, 7.84628, -1.56072)
-
-[node name="AnimatedSprite2D" parent="." index="3"]
-sprite_frames = ExtResource("2_1lpo0")
-
-[node name="Data" parent="." index="7"]
-script = ExtResource("3_g8lu4")
-value = 3
-NAME = "Medium Treasure"
-description = "Worth 3 value. Can be dropped."
+script = ExtResource("2_df0nj")
+target_range = 2
+description = "Worth 3 Treasure."
+treasure_cost = 3
 texture_normal = ExtResource("4_o3ohi")
 texture_pressed = ExtResource("5_hx42r")
 texture_hover = ExtResource("6_nw21f")
 texture_disabled = ExtResource("7_bs3tu")
 texture_focused = ExtResource("8_bqomy")
 ability_type = 1
+NAME = "Medium Treasure"
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("2_1lpo0")

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://mnhv4rq231mp" path="res://actors/pickups/pickup_actor.tscn" id="1_q0kh8"]
 [ext_resource type="SpriteFrames" uid="uid://bseac4s70yq2n" path="res://actors/pickups/scripts/mana_potion.tres" id="2_3wyoc"]
-[ext_resource type="Script" path="res://actors/pickups/scripts/mana_potion.gd" id="3_iy1cg"]
+[ext_resource type="Script" path="res://actors/pickups/scripts/mana_potion_actor.gd" id="2_xkgwd"]
 [ext_resource type="Texture2D" uid="uid://cv02ss7c0spcc" path="res://png/spells/mana_potion/mana_potion.png" id="4_q5mlf"]
 [ext_resource type="Texture2D" uid="uid://cneo68srh1336" path="res://png/spells/mana_potion/mana_potion_pressed.png" id="5_to0xt"]
 [ext_resource type="Texture2D" uid="uid://d2qrd5w4k8qt7" path="res://png/spells/mana_potion/mana_potion_hover.png" id="6_xuaf7"]
@@ -10,21 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://bg1kqcbhr67ue" path="res://png/spells/mana_potion/mana_potion_focus.png" id="8_s6lxk"]
 
 [node name="ManaPotionActor" instance=ExtResource("1_q0kh8")]
-description = "1 Action. Restore 1-2 mana."
-treasure_cost = 4
-texture_normal = ExtResource("4_q5mlf")
-NAME = "Mana Potion"
-
-[node name="AnimatedSprite2D" parent="." index="3"]
-sprite_frames = ExtResource("2_3wyoc")
-
-[node name="Data" parent="." index="7"]
-script = ExtResource("3_iy1cg")
-NAME = "Mana Potion"
-description = "1 Action. Restore 1-2 mana."
-treasure_cost = 5
+script = ExtResource("2_xkgwd")
+description = "Restore 1-2 Mana."
+treasure_cost = 2
 texture_normal = ExtResource("4_q5mlf")
 texture_pressed = ExtResource("5_to0xt")
 texture_hover = ExtResource("6_xuaf7")
 texture_disabled = ExtResource("7_vckdk")
 texture_focused = ExtResource("8_s6lxk")
+NAME = "Mana Potion"
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("2_3wyoc")

@@ -297,10 +297,10 @@ text = "BACK TO MENU"
 
 [node name="Treasure" type="HFlowContainer" parent="."]
 layout_mode = 0
-offset_left = 450.0
-offset_top = 160.0
-offset_right = 670.0
-offset_bottom = 200.0
+offset_left = 475.0
+offset_top = 175.0
+offset_right = 695.0
+offset_bottom = 215.0
 
 [node name="TreasureText" type="Label" parent="Treasure"]
 layout_mode = 2

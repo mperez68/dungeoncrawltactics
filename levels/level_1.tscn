@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://b171kc0uxk88j"]
+[gd_scene load_steps=8 format=4 uid="uid://b171kc0uxk88j"]
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_6vo4r"]
 [ext_resource type="PackedScene" uid="uid://c5fx23uvfao56" path="res://actors/mobs/bandit.tscn" id="3_b2byl"]
 [ext_resource type="PackedScene" uid="uid://nutiksihwkf8" path="res://actors/mobs/cutpurse.tscn" id="4_wknx3"]
+[ext_resource type="PackedScene" uid="uid://wv7qssdfp7hn" path="res://actors/pickups/health_potion_actor.tscn" id="7_njdnu"]
 [ext_resource type="PackedScene" uid="uid://t0r6wrtidn3k" path="res://actors/pickups/large_treasure_actor.tscn" id="8_futap"]
 [ext_resource type="PackedScene" uid="uid://c62l10la6vmsm" path="res://actors/pickups/medium_treasure_actor.tscn" id="10_5ilat"]
 [ext_resource type="PackedScene" uid="uid://xqfpwfotvndm" path="res://actors/pickups/small_treasure_actor.tscn" id="11_eidp2"]
@@ -118,38 +119,63 @@ position = Vector2(808, 375)
 
 [node name="TreasureActor3" parent="." index="33" instance=ExtResource("8_futap")]
 position = Vector2(181, 600)
+description = "text"
+treasure_cost = 1
 
 [node name="TreasureActor4" parent="." index="34" instance=ExtResource("8_futap")]
 position = Vector2(663, 279)
+description = "text"
+treasure_cost = 1
 
 [node name="MediumTreasureActor" parent="." index="35" instance=ExtResource("10_5ilat")]
 position = Vector2(423, 599)
+description = "text"
+treasure_cost = 1
 
 [node name="MediumTreasureActor2" parent="." index="36" instance=ExtResource("11_eidp2")]
 position = Vector2(443, 679)
+description = "text"
 
 [node name="MediumTreasureActor3" parent="." index="37" instance=ExtResource("11_eidp2")]
 position = Vector2(250, 745)
+description = "text"
 
 [node name="MediumTreasureActor4" parent="." index="38" instance=ExtResource("11_eidp2")]
 position = Vector2(345, 488)
+description = "text"
 
 [node name="MediumTreasureActor5" parent="." index="39" instance=ExtResource("10_5ilat")]
 position = Vector2(294, 710)
+description = "text"
+treasure_cost = 1
 
 [node name="MediumTreasureActor6" parent="." index="40" instance=ExtResource("11_eidp2")]
 position = Vector2(520, 583)
+description = "text"
 
 [node name="MediumTreasureActor7" parent="." index="41" instance=ExtResource("11_eidp2")]
 position = Vector2(791, 391)
+description = "text"
 
 [node name="MediumTreasureActor9" parent="." index="42" instance=ExtResource("10_5ilat")]
 position = Vector2(468, 328)
+description = "text"
+treasure_cost = 1
 
 [node name="MediumTreasureActor10" parent="." index="43" instance=ExtResource("10_5ilat")]
 position = Vector2(791, 262)
+description = "text"
+treasure_cost = 1
 
 [node name="MediumTreasureActor11" parent="." index="44" instance=ExtResource("10_5ilat")]
 position = Vector2(728, 166)
+description = "text"
+treasure_cost = 1
+
+[node name="HealthPotionActor" parent="." index="45" instance=ExtResource("7_njdnu")]
+position = Vector2(841, 676)
+
+[node name="SmallTreasureActor" parent="." index="46" instance=ExtResource("11_eidp2")]
+position = Vector2(844, 630)
 
 [editable path="Map"]

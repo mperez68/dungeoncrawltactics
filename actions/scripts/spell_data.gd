@@ -21,6 +21,9 @@ class_name Spell
 @export var crit_modifier: float = 0
 @export var missile: bool = false
 
+func _ready() -> void:
+	animation_finished.connect(_on_animation_finished)
+
 var rng = RandomNumberGenerator.new()
 const t = preload("res://ui/fading_text.tscn")
 

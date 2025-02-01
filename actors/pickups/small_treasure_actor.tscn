@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://xqfpwfotvndm"]
 
 [ext_resource type="PackedScene" uid="uid://mnhv4rq231mp" path="res://actors/pickups/pickup_actor.tscn" id="1_5uely"]
+[ext_resource type="Script" path="res://actors/pickups/scripts/treasure_actor.gd" id="2_hloeu"]
 [ext_resource type="SpriteFrames" uid="uid://bn6rj0ptq267d" path="res://actors/scripts/small_treasure.tres" id="2_uwisw"]
-[ext_resource type="Script" path="res://actors/pickups/scripts/treasure.gd" id="3_ltv6c"]
 [ext_resource type="Texture2D" uid="uid://c151hma8d4782" path="res://png/spells/small_treasure/small_treasure.png" id="4_0sucg"]
 [ext_resource type="Texture2D" uid="uid://cto5lbo2if1du" path="res://png/spells/small_treasure/small_treasure_pressed.png" id="5_bc1fl"]
 [ext_resource type="Texture2D" uid="uid://dqt1al7tbvvhu" path="res://png/spells/small_treasure/small_treasure_hover.png" id="6_r4bi2"]
@@ -10,23 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://bho4wndteenyv" path="res://png/spells/small_treasure/small_treasure_focus.png" id="8_krpiw"]
 
 [node name="SmallTreasureActor" instance=ExtResource("1_5uely")]
-description = ""
-treasure_cost = 0
-NAME = "Small Treasure (+1)"
-
-[node name="AggroRadius" parent="." index="0"]
-polygon = PackedVector2Array(8, 0, 7.84628, 1.56072, 7.39104, 3.06147, 6.65176, 4.44456, 5.65685, 5.65685, 4.44456, 6.65176, 3.06147, 7.39104, 1.56072, 7.84628, 4.89843e-16, 8, -1.56072, 7.84628, -3.06147, 7.39104, -4.44456, 6.65176, -5.65685, 5.65685, -6.65176, 4.44456, -7.39104, 3.06147, -7.84628, 1.56072, -8, 9.79685e-16, -7.84628, -1.56072, -7.39104, -3.06147, -6.65176, -4.44456, -5.65685, -5.65685, -4.44456, -6.65176, -3.06147, -7.39104, -1.56072, -7.84628, -1.46953e-15, -8, 1.56072, -7.84628, 3.06147, -7.39104, 4.44456, -6.65176, 5.65685, -5.65685, 6.65176, -4.44456, 7.39104, -3.06147, 7.84628, -1.56072)
-
-[node name="AnimatedSprite2D" parent="." index="3"]
-sprite_frames = ExtResource("2_uwisw")
-
-[node name="Data" parent="." index="7"]
-script = ExtResource("3_ltv6c")
-NAME = "Small Treasure"
-description = "Worth 1 value. Can be dropped."
+script = ExtResource("2_hloeu")
+target_range = 2
+description = "Worth 1 Treasure."
 texture_normal = ExtResource("4_0sucg")
 texture_pressed = ExtResource("5_bc1fl")
 texture_hover = ExtResource("6_r4bi2")
 texture_disabled = ExtResource("7_gw52c")
 texture_focused = ExtResource("8_krpiw")
 ability_type = 1
+NAME = "Small Treasure"
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("2_uwisw")

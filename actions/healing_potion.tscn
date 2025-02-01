@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpyruoeq8uecq"]
+[gd_scene load_steps=8 format=3 uid="uid://bpyruoeq8uecq"]
 
 [ext_resource type="Script" path="res://actions/scripts/healing_potion.gd" id="1_06p21"]
 [ext_resource type="Texture2D" uid="uid://dgkwn68tal51o" path="res://png/spells/healing_potion/healing_potion.png" id="2_gvsdx"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dkkijd3f5tybr" path="res://png/spells/healing_potion/healing_potion_disabled.png" id="5_00xx6"]
 [ext_resource type="Texture2D" uid="uid://y3nsxhtwguig" path="res://png/spells/healing_potion/healing_potion_focused.png" id="6_2fout"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ov4eh"]
+
 [node name="HealingPotion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ov4eh")
 script = ExtResource("1_06p21")
 NAME = "Healing Potion"
 description = "Heals 2-3 HP."

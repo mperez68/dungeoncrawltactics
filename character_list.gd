@@ -33,15 +33,40 @@ func new_game():
 	save_data()
 
 func save_data():
+	clear_data()
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_var(total_treasure)
 	file.store_var(current_level)
+	file.close()
 	var scene = PackedScene.new()
 	for i in all_actors.size():
+		# Save Actor
 		var temp_path = SAVE_ACTORS_PATH_PRE + str(i) + SAVE_ACTORS_PATH_POST
-		scene.pack(all_actors[i].duplicate())
+		scene.pack(all_actors[i])
+		# Save Actors Spells, Abilities, Equipment
+		var temp_path_sp_ab_eq = SAVE_ACTORS_PATH_PRE + str(i) + "sp_ab_eq" + SAVE_ACTORS_PATH_POST
+		var actor_file = FileAccess.open(temp_path_sp_ab_eq, FileAccess.WRITE)
+		actor_file.store_var(all_actors[i].spell_book, true)
+		actor_file.store_var(all_actors[i].abilities, true)
+		actor_file.store_var(all_actors[i].inventory, true)
+		actor_file.close()
+		# Print
 		print(all_actors[i].NAME, " => ", temp_path, " ?= ", ResourceSaver.save(scene, temp_path))
 	print("Game data saved")
+
+func clear_data():
+	var i: int = 0
+	while(true):
+		# Load actor
+		var temp_path = SAVE_ACTORS_PATH_PRE + str(i) + SAVE_ACTORS_PATH_POST
+		if ResourceLoader.exists(temp_path):
+			DirAccess.remove_absolute(temp_path)
+			var temp_path_sp_ab_eq = SAVE_ACTORS_PATH_PRE + str(i) + "sp_ab_eq" + SAVE_ACTORS_PATH_POST
+			if ResourceLoader.exists(temp_path_sp_ab_eq):
+				DirAccess.remove_absolute(temp_path_sp_ab_eq)
+		else:
+			break
+		i += 1
 
 func load_data():
 	if FileAccess.file_exists(SAVE_PATH):
@@ -49,11 +74,20 @@ func load_data():
 		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 		total_treasure = file.get_var()
 		current_level = file.get_var()
+		file.close()
 		var i: int = 0
 		while(true):
+			# Load actor
 			var temp_path = SAVE_ACTORS_PATH_PRE + str(i) + SAVE_ACTORS_PATH_POST
 			if ResourceLoader.exists(temp_path):
 				all_actors.push_back(ResourceLoader.load(temp_path).instantiate())
+				var temp_path_sp_ab_eq = SAVE_ACTORS_PATH_PRE + str(i) + "sp_ab_eq" + SAVE_ACTORS_PATH_POST
+				if ResourceLoader.exists(temp_path_sp_ab_eq):
+					var actor_file = FileAccess.open(temp_path_sp_ab_eq, FileAccess.READ)
+					all_actors.back().spell_book = actor_file.get_var(true)
+					all_actors.back().abilities = actor_file.get_var(true)
+					all_actors.back().inventory = actor_file.get_var(true)
+					actor_file.close()
 				print("loaded " + all_actors[all_actors.size() - 1].NAME + " from " + temp_path)
 			else:
 				break

@@ -75,7 +75,6 @@ animations = [{
 
 [node name="Frostbite" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_trpto")
-animation = &"hit"
 autoplay = "default"
 script = ExtResource("1_5nig5")
 NAME = "Frostbite"
