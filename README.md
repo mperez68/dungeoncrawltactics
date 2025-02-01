@@ -1,6 +1,6 @@
 # Treasure Tactics
 
-[Download Here!](https://github.com/mperez68/dungeoncrawltactics/blob/24062a122c738652b20e0a0a50f000ad4c44a695/treasure%20tactics.zip)
+[Download Here](https://chath.itch.io/treasure-tactics)
 
 ## CREDITS
 
