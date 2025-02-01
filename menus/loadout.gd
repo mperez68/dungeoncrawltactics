@@ -5,6 +5,7 @@ signal add_actor(actor: MenuActor)
 signal remove_actor(index: int)
 signal update_selected_actor(actor: MenuActor)
 signal lock_loadout(is_locked: int)
+signal lock_start_button(is_locked: int)
 
 var loadout: Array[MenuActor] = []
 
@@ -23,6 +24,8 @@ func _on_pregame_screen_loadout_to_roster(index: int) -> void:
 		remove_actor.emit(index)
 		if loadout.size() < 3:
 			lock_loadout.emit(false)
+		if loadout.size() <= 0:
+			lock_start_button.emit(true)
 
 
 func _on_roster_send_to_loadout(actor: MenuActor) -> void:
@@ -31,7 +34,8 @@ func _on_roster_send_to_loadout(actor: MenuActor) -> void:
 	add_actor.emit(actor)
 	if loadout.size() >= 3:
 		lock_loadout.emit(true)
-
+	lock_start_button.emit(false)
+	
 
 func _on_item_selected(index: int) -> void:
 	update_selected_actor.emit(loadout[index])

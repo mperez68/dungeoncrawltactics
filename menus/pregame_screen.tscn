@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cs24q0scmjvkt"]
+[gd_scene load_steps=18 format=3 uid="uid://cs24q0scmjvkt"]
 
 [ext_resource type="Script" path="res://menus/pregame_screen.gd" id="1_38080"]
 [ext_resource type="Texture2D" uid="uid://b6d0ckvtsdy26" path="res://png/9patch.png" id="1_nittt"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cj88dqdi0m6io" path="res://png/spells/dash/dash.png" id="10_gwwxl"]
 [ext_resource type="Texture2D" uid="uid://0okyskgf3ygq" path="res://png/spells/immolate/immolate.png" id="12_5r1qq"]
 [ext_resource type="Texture2D" uid="uid://dgkwn68tal51o" path="res://png/spells/healing_potion/healing_potion.png" id="13_e6lak"]
+[ext_resource type="Script" path="res://menus/button.gd" id="16_76f7q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xisnd"]
 font_size = 20
@@ -395,7 +396,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(280, 2)
+size = Vector2i(280, 758)
 render_target_update_mode = 4
 
 [node name="MenuLevel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport" instance=ExtResource("5_efm55")]
@@ -407,7 +408,9 @@ alignment = 1
 [node name="Button" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Bottom"]
 layout_mode = 2
 theme = ExtResource("2_0ojvl")
+disabled = true
 text = "START"
+script = ExtResource("16_76f7q")
 
 [node name="BackButton" type="Button" parent="CenterContainer/MarginContainer/Panel/Body/Bottom"]
 layout_mode = 2
@@ -457,6 +460,7 @@ expand_mode = 2
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="." method="_on_loadout_item_selected"]
 [connection signal="item_selected" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" method="_on_item_selected"]
 [connection signal="lock_loadout" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_loadout_lock_loadout"]
+[connection signal="lock_start_button" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Bottom/Button" method="_on_loadout_lock_start_button"]
 [connection signal="remove_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport/MenuLevel" method="remove_actor"]
 [connection signal="send_to_roster" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/RosterContainer/Roster" method="_on_loadout_send_to_roster"]
 [connection signal="update_selected_actor" from="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/Loadout" to="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer" method="_on_update_selected_actor"]

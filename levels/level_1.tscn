@@ -152,4 +152,7 @@ position = Vector2(791, 262)
 [node name="MediumTreasureActor11" parent="." index="44" instance=ExtResource("10_5ilat")]
 position = Vector2(728, 166)
 
+[node name="MediumTreasureActor8" parent="." index="45" instance=ExtResource("10_5ilat")]
+position = Vector2(864, 631)
+
 [editable path="Map"]
