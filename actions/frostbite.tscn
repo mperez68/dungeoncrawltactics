@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://cme0ubmwd0pcx"]
+[gd_scene load_steps=17 format=3 uid="uid://cme0ubmwd0pcx"]
 
 [ext_resource type="Script" path="res://actions/scripts/frostbite.gd" id="1_5nig5"]
 [ext_resource type="Texture2D" uid="uid://cjk4einmtjbvk" path="res://png/Magical Effects/Ice-Burst_dark-blue_outline_48x48.png" id="1_xea5h"]
-[ext_resource type="Texture2D" uid="uid://bidb5o4l7lu8p" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Icons/tile002.png" id="3_rgkhi"]
+[ext_resource type="Texture2D" uid="uid://bu3csol4oipu6" path="res://png/spells/frostbite/frostbite.png" id="3_j2jvp"]
+[ext_resource type="Texture2D" uid="uid://7mw2rowby3gn" path="res://png/spells/frostbite/frostbite_pressed.png" id="4_0hwmw"]
+[ext_resource type="Texture2D" uid="uid://d3tqm84v500ho" path="res://png/spells/frostbite/frostbite_hover.png" id="5_4o4ve"]
+[ext_resource type="Texture2D" uid="uid://y25mmx81b1jj" path="res://png/spells/frostbite/frostbite_disabled.png" id="6_lbe7g"]
+[ext_resource type="Texture2D" uid="uid://dblqx1k04j7nu" path="res://png/spells/frostbite/frostbite_focus.png" id="7_qw66g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y05j5"]
 atlas = ExtResource("1_xea5h")
@@ -80,7 +84,11 @@ script = ExtResource("1_5nig5")
 NAME = "Frostbite"
 description = "1 action. 0-1 damage. Halves the targets move speed permanently."
 treasure_cost = 5
-texture_normal = ExtResource("3_rgkhi")
+texture_normal = ExtResource("3_j2jvp")
+texture_pressed = ExtResource("4_0hwmw")
+texture_hover = ExtResource("5_4o4ve")
+texture_disabled = ExtResource("6_lbe7g")
+texture_focused = ExtResource("7_qw66g")
 spell_piercing = 0.2
 attack_range = 6
 min_damage = 0
