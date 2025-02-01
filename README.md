@@ -22,7 +22,13 @@ Ocular Sound's [Complete Fantasy Collection](https://ocularsounds.com/products/t
 **NOTE**: I've since been informed that Ocular Sound is a notorious asset thief and most likely stole these from other sources. Going forward, I'll seek other sources.
 
 ### **Coding**:
-[Marc Perez](https://github.com/mperez68)
+[Marc Perez](https://github.com/mperez68) using the [Godot 4.3 Engine](https://godotengine.org/releases/4.3/) and the following plugins:
+
+BenjaTK's [Gaea](https://github.com/BenjaTK/Gaea)
+
+Marek Belski's [Maaack's Menus Template](https://github.com/Maaack/Godot-Menus-Template/tree/main)
+
+Hanz's [Simple Shapes](https://godotengine.org/asset-library/asset/2583)
 
 ## SUMMARY
 In **Treasure Tactics**, you control a group of up to 3 adventurers pillaging a pirate infested island for treasure in a turn-based strategy setting. The goal is to fight as far as you can through the island and return alive before you are overwhelmed. Each time you return, you'll have enhanced weapons and abilities to grab more loot than the last visit and hopefully not be left behind. Death is permanent so don't be too bold or you may not see your crew return.
