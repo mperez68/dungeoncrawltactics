@@ -5,7 +5,6 @@ class_name Map
 signal init_camera(origin: Vector2, limit: Vector2)
 
 # References
-var hl = preload("res://core/highlightrect.tscn")
 @onready var ground_layer = $Ground
 @onready var wall_layer = $Vantage
 @onready var terrain_layer = $Terrain
