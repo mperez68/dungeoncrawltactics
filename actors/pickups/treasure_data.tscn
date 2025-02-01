@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1pqqbeai4dvp"]
-
-[ext_resource type="Script" path="res://actors/pickups/scripts/treasure.gd" id="1_2y7kq"]
-
-[node name="TreasureData" type="Node"]
-script = ExtResource("1_2y7kq")
