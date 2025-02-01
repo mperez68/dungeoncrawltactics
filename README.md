@@ -14,7 +14,7 @@ uncredited misc. scatter terrain
 tilemap and some icons done by [Marc Perez](https://github.com/mperez68)
 
 ### **Music**:
-[Marc Perez](https://github.com/mperez68)
+[Marc Perez](https://github.com/mperez68) using [Ableton Live 9](https://www.ableton.com/en/blog/live-9-7-available-now/) and the EWSL [Symphonic Orchestra Plugin](https://www.soundsonline.com/orchestral/symphonic-orchestra).
 
 ### **Sfx**:
 Ocular Sound's [Complete Fantasy Collection](https://ocularsounds.com/products/the-complete-fantasy-collection?_pos=1&_psq=fantasy&_ss=e&_v=1.0)
