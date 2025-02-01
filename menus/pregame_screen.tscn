@@ -395,7 +395,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(280, 758)
+size = Vector2i(280, 2)
 render_target_update_mode = 4
 
 [node name="MenuLevel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport" instance=ExtResource("5_efm55")]

@@ -4,5 +4,5 @@ class_name Block
 
 
 func _effect_no_target(user: Actor) -> bool:
-	user.temp_armor += 0.3
+	user.temp_armor += 0.5
 	return true

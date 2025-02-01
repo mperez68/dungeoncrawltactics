@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func new_game():
 	all_actors.clear()
-	total_treasure = 500
+	total_treasure = 5
 	current_level = LEVEL.LEVEL_1
 	save_data()
 
