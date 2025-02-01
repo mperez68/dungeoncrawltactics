@@ -1,0 +1,111 @@
+[gd_scene load_steps=19 format=3 uid="uid://cqd3sp5jva3e4"]
+
+[ext_resource type="Texture2D" uid="uid://blmcssoijj4mb" path="res://png/Foozle_2DE0001_Pixel_Magic_Effects/Pixel_Magic_Effects_Animations.png" id="1_b24mw"]
+[ext_resource type="Script" path="res://actions/scripts/healing_touch.gd" id="2_lpnp0"]
+[ext_resource type="Texture2D" uid="uid://ce2qnsy07255o" path="res://png/spells/healing_touch/healing_touch.png" id="3_27sut"]
+[ext_resource type="Texture2D" uid="uid://cdkfsa2kfq4a5" path="res://png/spells/healing_touch/healing_touch_pressed.png" id="4_op4tq"]
+[ext_resource type="Texture2D" uid="uid://74sw4kwh85pv" path="res://png/spells/healing_touch/healing_touch_hover.png" id="5_15b34"]
+[ext_resource type="Texture2D" uid="uid://c7ad1twahuydp" path="res://png/spells/healing_touch/healing_touch_disabled.png" id="6_yrq20"]
+[ext_resource type="Texture2D" uid="uid://b765q50iouyle" path="res://png/spells/healing_touch/healing_touch_focus.png" id="7_svrn5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqc4r"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp6gu"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pecrv"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqla4"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lpso"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji3b0"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tacdf"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5l0a"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahkw7"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_363vv"]
+atlas = ExtResource("1_b24mw")
+region = Rect2(576, 576, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ae4ml"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqc4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp6gu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pecrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqla4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lpso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji3b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tacdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5l0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahkw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_363vv")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 10.0
+}]
+
+[node name="HealingTouch" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ae4ml")
+script = ExtResource("2_lpnp0")
+NAME = "Healing Winds"
+description = "1 action, 3 mana. Heals a target within 4 tiles for 3-4 HP."
+texture_normal = ExtResource("3_27sut")
+texture_pressed = ExtResource("4_op4tq")
+texture_hover = ExtResource("5_15b34")
+texture_disabled = ExtResource("6_yrq20")
+texture_focused = ExtResource("7_svrn5")
+mana_cost = 3
+spell_piercing = 1.0
+attack_range = 4
+min_damage = 3
+max_damage = 4
+crit_multiplier = 2.0
+crit_modifier = 0.2
+buff = true

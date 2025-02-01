@@ -5,6 +5,10 @@ extends VBoxContainer
 @onready var ability_list_container = $AbilityList
 @onready var spell_list_container = $SpellList
 @onready var inventory_list_container = $ItemsList
+@onready var hp_text = $Stats/HPBox/text
+@onready var mp_text = $Stats/MPBox/text
+@onready var ws_text = $Stats/WeapBox/text
+@onready var as_text = $Stats/ArmorBox/text
 
 const DEFAULT = preload("res://png/spells/spell_tile.png")
 
@@ -51,3 +55,8 @@ func _on_update_selected_actor(actor: MenuActor) -> void:
 		var item: EquipmentActor = actor.inventory[i]
 		inventory_list[i].texture = item.texture_normal
 		inventory_list[i].tooltip_text = item.NAME
+	
+	hp_text.text = str("[center]", actor.actor_reference.MAX_HEALTH)
+	mp_text.text = str("[center]", actor.actor_reference.MAX_MANA)
+	ws_text.text = str("[center]", actor.actor_reference.weapon_skill * 100)
+	as_text.text = str("[center]", actor.actor_reference.armor_skill * 100)

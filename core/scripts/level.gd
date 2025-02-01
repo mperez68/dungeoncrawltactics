@@ -112,7 +112,7 @@ func pass_turn():
 				for actor in embarked:
 					for item in actor.inventory:
 						if item.NAME.contains("Treasure"):
-							CharacterList.total_treasure += item.value
+							CharacterList.total_treasure += item.treasure_cost
 							end_dialog.dialog_text = end_dialog.dialog_text + (item.NAME) + "\n"
 					actor.inventory.clear()
 				end_dialog.dialog_text = end_dialog.dialog_text + "+" +  str(CharacterList.total_treasure - starting_treasure) + "\n" + "TOTAL: " + str(CharacterList.total_treasure)

@@ -230,6 +230,79 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("9_wbhxi")
 
+[node name="Stats" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HPBox" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="title" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/HPBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Health[/u]	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/HPBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]??[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="MPBox" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="title" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/MPBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Mana[/u]	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/MPBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]??[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="WeapBox" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/WeapBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Weapon[/u]	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/WeapBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]??[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="ArmorBox" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="title" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/ArmorBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Armor[/u]	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/ArmorBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]??[/center]"
+fit_content = true
+autowrap_mode = 0
+
 [node name="OptionsContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
 layout_mode = 2
 
@@ -297,10 +370,10 @@ text = "BACK TO MENU"
 
 [node name="Treasure" type="HFlowContainer" parent="."]
 layout_mode = 0
-offset_left = 475.0
-offset_top = 175.0
-offset_right = 695.0
-offset_bottom = 215.0
+offset_left = 460.0
+offset_top = 145.0
+offset_right = 680.0
+offset_bottom = 185.0
 
 [node name="TreasureText" type="Label" parent="Treasure"]
 layout_mode = 2

@@ -20,6 +20,7 @@ class_name Spell
 @export var crit_multiplier: float = 1
 @export var crit_modifier: float = 0
 @export var missile: bool = false
+@export var buff: bool = false
 
 func _ready() -> void:
 	if !animation_finished.is_connected(_on_animation_finished):
@@ -42,6 +43,11 @@ func get_damage(crit: bool = false) -> int:						## Retrieves a random damage va
 	return rng.randi_range(min_damage, max_damage) * max(1, (int(crit) * crit_multiplier))
 
 func attack(attacker: Actor, target: Actor) -> int:				## Attack vs. this player.
+	# Buff
+	if buff:
+		effect(target, false)
+		return 0
+	# Attack
 	var damage_text = t.instantiate()
 	var damage: int = 0
 	if rng.randf() < hit_chance(attacker, target):

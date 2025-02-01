@@ -314,6 +314,79 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("6_0po4e")
 
+[node name="Stats" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HPBox" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="title" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/HPBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Health[/u]	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/HPBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]??[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="MPBox" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="title" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/MPBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Mana[/u]	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/MPBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]??[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="WeapBox" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/WeapBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Weapon[/u]	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/WeapBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]??[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="ArmorBox" type="VBoxContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="title" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/ArmorBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Armor[/u]	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/LoadoutContainer/PanelContainer/VBoxContainer/Stats/ArmorBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]??[/center]"
+fit_content = true
+autowrap_mode = 0
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer/MarginContainer/Panel/Body/Loadout"]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
@@ -322,7 +395,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(280, 690)
+size = Vector2i(280, 758)
 render_target_update_mode = 4
 
 [node name="MenuLevel" parent="CenterContainer/MarginContainer/Panel/Body/Loadout/SubViewportContainer/SubViewport" instance=ExtResource("5_efm55")]

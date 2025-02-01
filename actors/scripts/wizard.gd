@@ -2,8 +2,12 @@ extends PlayerActor
 
 class_name Wizard
 
-func init_specials():
-	spell_book.push_front(preload("res://actions/immolate.tscn").instantiate())
-	
+const name1: Array[String] = [ "Inarhan", "Philess", "Phasim", "Rubras", "Usior", "Qadel", "Oveus", "Thutaz", "Edeqium", "Eqia", "Frevys", "Ofaris" ]
+const name2: Array[String] = [ "Whispering", "Cloud", "Dark", "Royal", "Chaos", "Wandering", "Fading", "Death" ]
+const name3: Array[String] = [ "Peaks", "Obelisk", "Spire", "Tower", "Keep", "Wastes", "Watchers", "Keepers" ]
+
 func gen_name():
-	NAME = [ "Inarhan", "Philess", "Phasim", "Rubras" ].pick_random() + " of The " + [ "Whispering", "Cloud", "Dark", "Royal" ].pick_random() + " " + [ "Peaks", "Obelisk", "Spire", "Tower" ].pick_random()
+	NAME = name1.pick_random() + " of The " + name2.pick_random() + " " + name3.pick_random()
+
+func init_specials():
+	spell_book.push_back(CharacterList.wizard_options.pick_random())

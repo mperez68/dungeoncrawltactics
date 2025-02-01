@@ -87,6 +87,7 @@ func _ready() -> void:
 	default = bg_rect.color
 
 func update_hud(is_active: bool):
+	hud.tracker.grab_focus()
 	# Update HUD
 	if !actor.is_sig:
 		return
@@ -100,6 +101,7 @@ func update_hud(is_active: bool):
 			hud.spell_buttons[i].texture_disabled = actor.spell_book[i].texture_disabled
 			hud.spell_buttons[i].texture_focused = actor.spell_book[i].texture_focused
 			hud.spell_buttons[i].texture_click_mask = actor.spell_book[i].texture_click_mask
+			hud.spell_buttons[i].tooltip_text = actor.spell_book[i].NAME
 	# Abilities
 	for i in actor.abilities.size():
 		if is_active:
@@ -110,6 +112,7 @@ func update_hud(is_active: bool):
 			hud.ability_buttons[i].texture_disabled = actor.abilities[i].texture_disabled
 			hud.ability_buttons[i].texture_focused = actor.abilities[i].texture_focused
 			hud.ability_buttons[i].texture_click_mask = actor.abilities[i].texture_click_mask
+			hud.ability_buttons[i].tooltip_text = actor.abilities[i].NAME
 	# Equipment
 	for i in actor.inventory.size():
 		if is_active:
@@ -120,6 +123,7 @@ func update_hud(is_active: bool):
 			hud.inventory_buttons[i].texture_disabled = actor.inventory[i].texture_disabled
 			hud.inventory_buttons[i].texture_focused = actor.inventory[i].texture_focused
 			hud.inventory_buttons[i].texture_click_mask = actor.inventory[i].texture_click_mask
+			hud.inventory_buttons[i].tooltip_text = actor.inventory[i].NAME
 	# Embark
 	if actor.can_embark:
 		hud.embark_button.disabled = false
@@ -138,6 +142,8 @@ func update_hud(is_active: bool):
 	match actor.select_type:
 		Actor.SELECT_TYPE_ATTACK:
 			hud.attack_button.grab_focus()
+		Actor.SELECT_TYPE_WALK:
+			hud.walk_button.grab_focus()
 
 func set_actor(a: Actor):
 	if a:

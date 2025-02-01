@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="dungeon crawl"
+config/name="Treasure Tactics"
+config/description="Fight Pirates, steal their gold."
 config/version="0.0.1"
 config/tags=PackedStringArray("framework")
 run/main_scene="res://menus/scenes/opening/opening_with_logo.tscn"
@@ -30,7 +31,7 @@ CharacterList="*res://character_list.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=4
+window/size/mode=2
 window/size/resizable=false
 window/size/borderless=true
 window/size/always_on_top=true

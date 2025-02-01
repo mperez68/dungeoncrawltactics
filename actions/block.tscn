@@ -10,7 +10,7 @@
 [node name="Block" type="AnimatedSprite2D"]
 script = ExtResource("1_ijbqv")
 NAME = "Block"
-description = "1 Action. Improves block score by 10."
+description = "Improves block score by 10."
 treasure_cost = 3
 texture_normal = ExtResource("2_qus7q")
 texture_pressed = ExtResource("3_bxwlg")

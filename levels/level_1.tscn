@@ -118,57 +118,38 @@ position = Vector2(808, 375)
 
 [node name="TreasureActor3" parent="." index="33" instance=ExtResource("8_futap")]
 position = Vector2(181, 600)
-description = "text"
-treasure_cost = 1
 
 [node name="TreasureActor4" parent="." index="34" instance=ExtResource("8_futap")]
 position = Vector2(663, 279)
-description = "text"
-treasure_cost = 1
 
 [node name="MediumTreasureActor" parent="." index="35" instance=ExtResource("10_5ilat")]
 position = Vector2(423, 599)
-description = "text"
-treasure_cost = 1
 
 [node name="MediumTreasureActor2" parent="." index="36" instance=ExtResource("11_eidp2")]
 position = Vector2(443, 679)
-description = "text"
 
 [node name="MediumTreasureActor3" parent="." index="37" instance=ExtResource("11_eidp2")]
 position = Vector2(250, 745)
-description = "text"
 
 [node name="MediumTreasureActor4" parent="." index="38" instance=ExtResource("11_eidp2")]
 position = Vector2(345, 488)
-description = "text"
 
 [node name="MediumTreasureActor5" parent="." index="39" instance=ExtResource("10_5ilat")]
 position = Vector2(294, 710)
-description = "text"
-treasure_cost = 1
 
 [node name="MediumTreasureActor6" parent="." index="40" instance=ExtResource("11_eidp2")]
 position = Vector2(520, 583)
-description = "text"
 
 [node name="MediumTreasureActor7" parent="." index="41" instance=ExtResource("11_eidp2")]
 position = Vector2(791, 391)
-description = "text"
 
 [node name="MediumTreasureActor9" parent="." index="42" instance=ExtResource("10_5ilat")]
 position = Vector2(468, 328)
-description = "text"
-treasure_cost = 1
 
 [node name="MediumTreasureActor10" parent="." index="43" instance=ExtResource("10_5ilat")]
 position = Vector2(791, 262)
-description = "text"
-treasure_cost = 1
 
 [node name="MediumTreasureActor11" parent="." index="44" instance=ExtResource("10_5ilat")]
 position = Vector2(728, 166)
-description = "text"
-treasure_cost = 1
 
 [editable path="Map"]

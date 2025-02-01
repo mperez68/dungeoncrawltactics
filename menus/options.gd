@@ -102,6 +102,8 @@ func _on_item_activated(index: int) -> void:
 				CharacterList.final_loadout[actor_index].weapon_skill += 0.1
 			3:	# Armor
 				CharacterList.final_loadout[actor_index].armor_skill += 0.1
+		CharacterList.total_treasure -= UPGRADE_COST
+		update_actor_panel.emit(CharacterList.get_menu_actor_from_player_actor(CharacterList.final_loadout[actor_index]))
 	else:
 		return
 	_on_return_item_selected(actor_index)
