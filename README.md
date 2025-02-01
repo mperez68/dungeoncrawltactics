@@ -11,7 +11,7 @@ Foozle's [Pixel Magic Sprite Effects](https://foozlecc.itch.io/pixel-magic-sprit
 
 uncredited misc. scatter terrain
 
-tilemap and some icons done by [Marc Perez](https://github.com/mperez68)
+tilemap and some icons done by [Marc Perez](https://github.com/mperez68) with [Aseprite](https://www.aseprite.org/) and [Tilesetter](https://www.tilesetter.org/)
 
 ### **Music**:
 [Marc Perez](https://github.com/mperez68) using [Ableton Live 9](https://www.ableton.com/en/blog/live-9-7-available-now/) and the EWSL [Symphonic Orchestra Plugin](https://www.soundsonline.com/orchestral/symphonic-orchestra).
