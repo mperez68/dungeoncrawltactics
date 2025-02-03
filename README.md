@@ -2,6 +2,14 @@
 
 [Download Here](https://chath.itch.io/treasure-tactics)
 
+![Screenshot (3)](https://github.com/user-attachments/assets/dee36533-90dd-413c-a992-a502b39edd44)
+
+![Screenshot (10)](https://github.com/user-attachments/assets/a7c7e309-7dce-4a84-9b8a-4bb187dce693)
+
+![Screenshot (7)](https://github.com/user-attachments/assets/ea1ffa0f-014f-4635-979b-fdacccabc8bc)
+
+![Screenshot (5)](https://github.com/user-attachments/assets/089e9dd7-acea-4d1f-aa38-913e2bb3598c)
+
 ## CREDITS
 
 ### **Art**:
