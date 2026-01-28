@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://58rrbo1s1l7x"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://58rrbo1s1l7x"]
 
 [ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="1_djgmd"]
 

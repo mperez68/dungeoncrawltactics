@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://b171kc0uxk88j"]
+[gd_scene format=4 uid="uid://b171kc0uxk88j"]
 
 [ext_resource type="PackedScene" uid="uid://dmb0v06707pab" path="res://core/level.tscn" id="1_6vo4r"]
 [ext_resource type="PackedScene" uid="uid://c5fx23uvfao56" path="res://actors/mobs/bandit.tscn" id="3_b2byl"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c62l10la6vmsm" path="res://actors/pickups/medium_treasure_actor.tscn" id="10_5ilat"]
 [ext_resource type="PackedScene" uid="uid://xqfpwfotvndm" path="res://actors/pickups/small_treasure_actor.tscn" id="11_eidp2"]
 
-[node name="Level" instance=ExtResource("1_6vo4r")]
+[node name="Level" unique_id=1609921827 instance=ExtResource("1_6vo4r")]
 STARTING_POSITIONS = Array[Vector2i]([Vector2i(56, 39), Vector2i(55, 40), Vector2i(56, 42)])
 
 [node name="Ground" parent="Map" index="0"]
@@ -28,131 +28,131 @@ tile_map_data = PackedByteArray("AAAAAAAABQAJAA4AAAAAAAEABQAJAA4AAAAAAAIABQAJAA4
 [node name="EndGameDialog" parent="." index="4"]
 ok_button_text = "RETURN"
 
-[node name="Bandit4" parent="." index="5" instance=ExtResource("3_b2byl")]
+[node name="Bandit4" parent="." index="5" unique_id=1564668016 instance=ExtResource("3_b2byl")]
 position = Vector2(328, 569)
 
-[node name="Bandit5" parent="." index="6" instance=ExtResource("3_b2byl")]
+[node name="Bandit5" parent="." index="6" unique_id=2093371751 instance=ExtResource("3_b2byl")]
 position = Vector2(440, 599)
 
-[node name="Bandit2" parent="." index="7" instance=ExtResource("3_b2byl")]
+[node name="Bandit2" parent="." index="7" unique_id=1583787683 instance=ExtResource("3_b2byl")]
 position = Vector2(310, 712)
 
-[node name="Bandit8" parent="." index="8" instance=ExtResource("3_b2byl")]
+[node name="Bandit8" parent="." index="8" unique_id=1134034720 instance=ExtResource("3_b2byl")]
 position = Vector2(152, 568)
 
-[node name="Bandit9" parent="." index="9" instance=ExtResource("3_b2byl")]
+[node name="Bandit9" parent="." index="9" unique_id=1078508480 instance=ExtResource("3_b2byl")]
 position = Vector2(933, 136)
 
-[node name="Bandit19" parent="." index="10" instance=ExtResource("3_b2byl")]
+[node name="Bandit19" parent="." index="10" unique_id=1155461148 instance=ExtResource("3_b2byl")]
 position = Vector2(536, 440)
 patrol_route = Array[Vector2i]([Vector2i(24, 25), Vector2i(43, 31)])
 
-[node name="Bandit10" parent="." index="11" instance=ExtResource("3_b2byl")]
+[node name="Bandit10" parent="." index="11" unique_id=1028487605 instance=ExtResource("3_b2byl")]
 position = Vector2(533, 219)
 
-[node name="Bandit11" parent="." index="12" instance=ExtResource("3_b2byl")]
+[node name="Bandit11" parent="." index="12" unique_id=1224379101 instance=ExtResource("3_b2byl")]
 position = Vector2(631, 277)
 
-[node name="Bandit12" parent="." index="13" instance=ExtResource("3_b2byl")]
+[node name="Bandit12" parent="." index="13" unique_id=98883090 instance=ExtResource("3_b2byl")]
 position = Vector2(712, 263)
 
-[node name="Bandit13" parent="." index="14" instance=ExtResource("3_b2byl")]
+[node name="Bandit13" parent="." index="14" unique_id=1640871542 instance=ExtResource("3_b2byl")]
 position = Vector2(759, 150)
 
-[node name="Bandit14" parent="." index="15" instance=ExtResource("3_b2byl")]
+[node name="Bandit14" parent="." index="15" unique_id=1671646077 instance=ExtResource("3_b2byl")]
 position = Vector2(823, 200)
 
-[node name="Bandit17" parent="." index="16" instance=ExtResource("3_b2byl")]
+[node name="Bandit17" parent="." index="16" unique_id=569019505 instance=ExtResource("3_b2byl")]
 position = Vector2(776, 375)
 
-[node name="Cutpurse" parent="." index="17" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse" parent="." index="17" unique_id=170822620 instance=ExtResource("4_wknx3")]
 position = Vector2(104, 631)
 
-[node name="Cutpurse4" parent="." index="18" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse4" parent="." index="18" unique_id=1401351307 instance=ExtResource("4_wknx3")]
 position = Vector2(425, 679)
 
-[node name="Cutpurse5" parent="." index="19" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse5" parent="." index="19" unique_id=598279266 instance=ExtResource("4_wknx3")]
 position = Vector2(342, 600)
 
-[node name="Cutpurse6" parent="." index="20" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse6" parent="." index="20" unique_id=496247549 instance=ExtResource("4_wknx3")]
 position = Vector2(344, 516)
 
-[node name="Cutpurse7" parent="." index="21" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse7" parent="." index="21" unique_id=278163959 instance=ExtResource("4_wknx3")]
 position = Vector2(537, 567)
 
-[node name="Cutpurse9" parent="." index="22" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse9" parent="." index="22" unique_id=853488230 instance=ExtResource("4_wknx3")]
 position = Vector2(583, 585)
 
-[node name="Cutpurse10" parent="." index="23" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse10" parent="." index="23" unique_id=2082249880 instance=ExtResource("4_wknx3")]
 position = Vector2(199, 565)
 
-[node name="Cutpurse11" parent="." index="24" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse11" parent="." index="24" unique_id=693947330 instance=ExtResource("4_wknx3")]
 position = Vector2(155, 598)
 
-[node name="Cutpurse2" parent="." index="25" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse2" parent="." index="25" unique_id=477212340 instance=ExtResource("4_wknx3")]
 position = Vector2(291, 747)
 patrol_route = Array[Vector2i]([Vector2i(15, 49), Vector2i(32, 49), Vector2i(39, 43)])
 
-[node name="Cutpurse3" parent="." index="26" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse3" parent="." index="26" unique_id=326203090 instance=ExtResource("4_wknx3")]
 position = Vector2(232, 743)
 patrol_route = Array[Vector2i]([Vector2i(15, 49), Vector2i(32, 49), Vector2i(39, 43)])
 
-[node name="Cutpurse13" parent="." index="27" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse13" parent="." index="27" unique_id=1304562007 instance=ExtResource("4_wknx3")]
 position = Vector2(601, 328)
 
-[node name="Cutpurse19" parent="." index="28" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse19" parent="." index="28" unique_id=2144851236 instance=ExtResource("4_wknx3")]
 position = Vector2(552, 423)
 patrol_route = Array[Vector2i]([Vector2i(24, 25), Vector2i(43, 31)])
 
-[node name="Cutpurse14" parent="." index="29" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse14" parent="." index="29" unique_id=91944749 instance=ExtResource("4_wknx3")]
 position = Vector2(506, 309)
 
-[node name="Cutpurse15" parent="." index="30" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse15" parent="." index="30" unique_id=2057067356 instance=ExtResource("4_wknx3")]
 position = Vector2(649, 278)
 
-[node name="Cutpurse16" parent="." index="31" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse16" parent="." index="31" unique_id=296028847 instance=ExtResource("4_wknx3")]
 position = Vector2(809, 312)
 
-[node name="Cutpurse17" parent="." index="32" instance=ExtResource("4_wknx3")]
+[node name="Cutpurse17" parent="." index="32" unique_id=2121933581 instance=ExtResource("4_wknx3")]
 position = Vector2(808, 375)
 
-[node name="TreasureActor3" parent="." index="33" instance=ExtResource("8_futap")]
+[node name="TreasureActor3" parent="." index="33" unique_id=1973877773 instance=ExtResource("8_futap")]
 position = Vector2(181, 600)
 
-[node name="TreasureActor4" parent="." index="34" instance=ExtResource("8_futap")]
+[node name="TreasureActor4" parent="." index="34" unique_id=987855583 instance=ExtResource("8_futap")]
 position = Vector2(663, 279)
 
-[node name="MediumTreasureActor" parent="." index="35" instance=ExtResource("10_5ilat")]
+[node name="MediumTreasureActor" parent="." index="35" unique_id=35154730 instance=ExtResource("10_5ilat")]
 position = Vector2(423, 599)
 
-[node name="MediumTreasureActor2" parent="." index="36" instance=ExtResource("11_eidp2")]
+[node name="MediumTreasureActor2" parent="." index="36" unique_id=893266610 instance=ExtResource("11_eidp2")]
 position = Vector2(443, 679)
 
-[node name="MediumTreasureActor3" parent="." index="37" instance=ExtResource("11_eidp2")]
+[node name="MediumTreasureActor3" parent="." index="37" unique_id=292750334 instance=ExtResource("11_eidp2")]
 position = Vector2(250, 745)
 
-[node name="MediumTreasureActor4" parent="." index="38" instance=ExtResource("11_eidp2")]
+[node name="MediumTreasureActor4" parent="." index="38" unique_id=1079214571 instance=ExtResource("11_eidp2")]
 position = Vector2(345, 488)
 
-[node name="MediumTreasureActor5" parent="." index="39" instance=ExtResource("10_5ilat")]
+[node name="MediumTreasureActor5" parent="." index="39" unique_id=1934655575 instance=ExtResource("10_5ilat")]
 position = Vector2(294, 710)
 
-[node name="MediumTreasureActor6" parent="." index="40" instance=ExtResource("11_eidp2")]
+[node name="MediumTreasureActor6" parent="." index="40" unique_id=1109297839 instance=ExtResource("11_eidp2")]
 position = Vector2(520, 583)
 
-[node name="MediumTreasureActor7" parent="." index="41" instance=ExtResource("11_eidp2")]
+[node name="MediumTreasureActor7" parent="." index="41" unique_id=1256930635 instance=ExtResource("11_eidp2")]
 position = Vector2(791, 391)
 
-[node name="MediumTreasureActor9" parent="." index="42" instance=ExtResource("10_5ilat")]
+[node name="MediumTreasureActor9" parent="." index="42" unique_id=1630927870 instance=ExtResource("10_5ilat")]
 position = Vector2(468, 328)
 
-[node name="MediumTreasureActor10" parent="." index="43" instance=ExtResource("10_5ilat")]
+[node name="MediumTreasureActor10" parent="." index="43" unique_id=1433086284 instance=ExtResource("10_5ilat")]
 position = Vector2(791, 262)
 
-[node name="MediumTreasureActor11" parent="." index="44" instance=ExtResource("10_5ilat")]
+[node name="MediumTreasureActor11" parent="." index="44" unique_id=1141106340 instance=ExtResource("10_5ilat")]
 position = Vector2(728, 166)
 
-[node name="MediumTreasureActor8" parent="." index="45" instance=ExtResource("10_5ilat")]
-position = Vector2(864, 631)
+[node name="MediumTreasureActor8" parent="." index="45" unique_id=1380182608 instance=ExtResource("10_5ilat")]
+position = Vector2(826, 70)
 
 [editable path="Map"]

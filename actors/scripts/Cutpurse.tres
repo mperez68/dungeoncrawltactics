@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=100 format=3 uid="uid://cbbch13g6rrsf"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://cbbch13g6rrsf"]
 
 [ext_resource type="Texture2D" uid="uid://bc0s2r4cr807o" path="res://png/Citizens - Supporter Pack/Guards/Guard_Swordman_Combat.png" id="1_033qg"]
 [ext_resource type="Texture2D" uid="uid://btrctig1ey0xb" path="res://png/Citizens - Supporter Pack/Guards/Guard_Archer_Combat.png" id="1_rsya2"]

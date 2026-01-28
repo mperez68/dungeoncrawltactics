@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://dywyn137ss6wd"]
+[gd_resource type="TileSet" format=3 uid="uid://dywyn137ss6wd"]
 
 [ext_resource type="Texture2D" uid="uid://br40an3v32y4p" path="res://png/RPG Tileset.png" id="1_e7so6"]
 [ext_resource type="Texture2D" uid="uid://uuwx3ht835jr" path="res://png/Forest_v2.png" id="2_bp4rm"]

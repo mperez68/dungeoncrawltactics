@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=99 format=3 uid="uid://bfwjw33jhspk"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bfwjw33jhspk"]
 
 [ext_resource type="Texture2D" uid="uid://dt8itggpk0fdx" path="res://png/Old Town - Citizens v0.1/Masc. Citizens/Artun/Artun_Combat.png" id="1_vl2fr"]
 [ext_resource type="Texture2D" uid="uid://bwn7bhryvcjdj" path="res://png/Old Town - Citizens v0.1/Masc. Citizens/Artun/Artun.png" id="2_ow2g4"]

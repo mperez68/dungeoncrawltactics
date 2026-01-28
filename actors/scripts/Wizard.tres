@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=99 format=3 uid="uid://ctiykgfg3wsfu"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://ctiykgfg3wsfu"]
 
 [ext_resource type="Texture2D" uid="uid://dfayurqgi2k" path="res://png/Mages/Mage_Hooded_BROWN-Combat.png" id="1_kb5mw"]
 [ext_resource type="Texture2D" uid="uid://b3hy3ci3otya7" path="res://png/Mages/Mage_Hooded_BROWN.png" id="2_esxag"]

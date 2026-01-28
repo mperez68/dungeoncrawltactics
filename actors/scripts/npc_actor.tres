@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=99 format=3 uid="uid://bkf68oan8jm3v"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bkf68oan8jm3v"]
 
 [ext_resource type="Texture2D" uid="uid://5014ptgo7awg" path="res://png/Old Town - Citizens v0.1/Masc. Citizens/Hark/Hark_Combat.png" id="1_a7boh"]
 [ext_resource type="Texture2D" uid="uid://bk0fjckuoahdv" path="res://png/Old Town - Citizens v0.1/Masc. Citizens/Hark/Hark.png" id="2_flfsl"]

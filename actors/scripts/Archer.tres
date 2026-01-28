@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=99 format=3 uid="uid://cr5vo6mligeq3"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://cr5vo6mligeq3"]
 
 [ext_resource type="Texture2D" uid="uid://ey3lasfi6w1p" path="res://png/Rogues/Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS.png" id="1_m7yp5"]
 [ext_resource type="Texture2D" uid="uid://bpm0eo8f5lmjt" path="res://png/Rogues/Hooded_Rogue_Non-Combat_Bow_Equipped.png" id="2_hf1ol"]

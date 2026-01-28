@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=99 format=3 uid="uid://b53s00lktp8ku"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://b53s00lktp8ku"]
 
 [ext_resource type="Texture2D" uid="uid://cyg10fve528k7" path="res://png/Heavy Knight/Heavy_Knight_Combat_Animations.png" id="1_58dd8"]
 [ext_resource type="Texture2D" uid="uid://buhvbqy4s8je5" path="res://png/Heavy Knight/Heavy_Knight_Non-Combat_Animations.png" id="2_s686a"]

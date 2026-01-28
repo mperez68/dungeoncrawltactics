@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=99 format=3 uid="uid://cdb4cu0m6tk22"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://cdb4cu0m6tk22"]
 
 [ext_resource type="Texture2D" uid="uid://bullp704y107g" path="res://png/Old Town - Citizens v0.1/Masc. Citizens/Grym/Grym_Combat.png" id="1_wwd0g"]
 [ext_resource type="Texture2D" uid="uid://dir678ujc7jkq" path="res://png/Old Town - Citizens v0.1/Masc. Citizens/Grym/Grym.png" id="2_eyxeh"]
