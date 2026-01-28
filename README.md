@@ -2,6 +2,14 @@
 
 [Download Here](https://chath.itch.io/treasure-tactics)
 
+![Screenshot (3)](https://github.com/user-attachments/assets/dee36533-90dd-413c-a992-a502b39edd44)
+
+![Screenshot (10)](https://github.com/user-attachments/assets/a7c7e309-7dce-4a84-9b8a-4bb187dce693)
+
+![Screenshot (7)](https://github.com/user-attachments/assets/ea1ffa0f-014f-4635-979b-fdacccabc8bc)
+
+![Screenshot (5)](https://github.com/user-attachments/assets/089e9dd7-acea-4d1f-aa38-913e2bb3598c)
+
 ## CREDITS
 
 ### **Art**:
@@ -11,7 +19,7 @@ Foozle's [Pixel Magic Sprite Effects](https://foozlecc.itch.io/pixel-magic-sprit
 
 uncredited misc. scatter terrain
 
-tilemap and some icons done by [Marc Perez](https://github.com/mperez68)
+tilemap and some icons done by [Marc Perez](https://github.com/mperez68) with [Aseprite](https://www.aseprite.org/) and [Tilesetter](https://www.tilesetter.org/)
 
 ### **Music**:
 [Marc Perez](https://github.com/mperez68) using [Ableton Live 9](https://www.ableton.com/en/blog/live-9-7-available-now/) and the EWSL [Symphonic Orchestra Plugin](https://www.soundsonline.com/orchestral/symphonic-orchestra).
